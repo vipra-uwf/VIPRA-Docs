@@ -21,6 +21,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git clone https://user:$GITHUB_TOKEN@github.com/vipra-uwf/VIPRA.git VIPRA
+        git checkout dev
 
     - name: Copy Docs
       run: |
@@ -33,6 +34,10 @@ jobs:
       with:
         doxyfile-path: ./doxyfile
         working-directory: .
+
+    - name: Remove VIPRA
+      run: |
+        rm -rf ./VIPRA
 
     - name: Push changes
       uses: ad-m/github-push-action@master
