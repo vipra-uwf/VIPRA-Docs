@@ -31,6 +31,7 @@ jobs:
         rm -rf ./docs/ ./doxyfile
         cp ./VIPRA/doxyfile ./
         cp -r ./VIPRA/docs/ ./
+        ls -la
 
     - name: Run Doxygen
       uses: mattnotmitt/doxygen-action@v1.2.1
@@ -40,7 +41,9 @@ jobs:
 
     - name: Remove VIPRA
       run: |
+        ls -la
         rm -rf ./VIPRA
+        la -la
 
     - name: Push changes
       uses: ad-m/github-push-action@master
