@@ -1,0 +1,42 @@
+name: Development Documentation
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Clone VIPRA
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git clone https://user:$GITHUB_TOKEN@github.com/vipra-uwf/VIPRA.git VIPRA
+
+    - name: Copy Docs
+      run: |
+        rm -rf ./docs/ ./doxyfile
+        cp ../VIPRA/doxyfile ./
+        cp -r ../VIPRA/docs/ ./
+
+    - name: Run Doxygen
+      uses: mattnotmitt/doxygen-action@v1.2.1
+      with:
+        doxyfile-path: ./doxyfile
+        working-directory: .
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        force: true
