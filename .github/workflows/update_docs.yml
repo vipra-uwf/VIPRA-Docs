@@ -5,7 +5,7 @@ permissions:
 
 on:
   branches:
-    - '*'
+    - '**'
   workflow_dispatch:
 
 jobs:
