@@ -21,8 +21,10 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git clone https://user:$GITHUB_TOKEN@github.com/vipra-uwf/VIPRA.git VIPRA
+        cd VIPRA
         git fetch
         git checkout origin/dev
+        cd ..
 
     - name: Copy Docs
       run: |
