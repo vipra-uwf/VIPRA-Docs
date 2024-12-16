@@ -1,0 +1,164 @@
+\chapter{Module}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module}{}\label{md_docs_2pages_2developers_2implementation_2module}\index{Module@{Module}}
+\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md104}%
+\Hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md104}%
+
+
+Each module type has its own requirements, these are the requirements common to all.\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md105}{}\doxysection{\texorpdfstring{File Requirements}{File Requirements}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md105}
+Every module requires 4 files in a seperate directory
+
+
+\begin{DoxyEnumerate}
+\item module.\+hpp\texorpdfstring{$\ast$}{*}
+\item module.\+cpp\texorpdfstring{$\ast$}{*}
+\item CMake\+Lists.\+txt
+\item vipra.\+module
+\end{DoxyEnumerate}
+
+\texorpdfstring{$\ast$}{*}\+Note\+: for 1 \& 2 the file name can be anything
+
+The CMake\+Lists.txt requirements are at the bottom\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md106}{}\doxysection{\texorpdfstring{Class Requirements}{Class Requirements}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md106}
+The module class is required to have the following. Each is explained in more details below.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_MODULE\_TYPE(type)}
+\DoxyCodeLine{VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}name"{}})}
+\DoxyCodeLine{VIPRA\_REGISTER\_PARAMS\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md107}{}\doxysection{\texorpdfstring{Details}{Details}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md107}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_MODULE\_TYPE(type)}
+
+\end{DoxyCode}
+
+
+Possible Choices\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{Model,}
+\DoxyCodeLine{Goals,}
+\DoxyCodeLine{Input,}
+\DoxyCodeLine{Output,}
+\DoxyCodeLine{Pedestrians,}
+\DoxyCodeLine{Map,}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md108}{}\doxysubsection{\texorpdfstring{Effects}{Effects}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md108}
+This sets the type of the module, making sure it receives the proper parameters and is used correctly.
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}name"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md110}{}\doxysubsection{\texorpdfstring{Effects}{Effects}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md110}
+This sets the name of the module, making sure it receives the proper parameters
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_REGISTER\_PARAMS\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md112}{}\doxysubsection{\texorpdfstring{Effects}{Effects}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md112}
+This adds parameters to the module that are loaded in at the start of a simulation\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md113}{}\doxysubsection{\texorpdfstring{Example\+:}{Example\+:}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md113}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{comment}{//\ Example\ Member\ variables\ that\ will\ hold\ the\ parameter\ values}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ param1;}
+\DoxyCodeLine{std::string\ param2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VIPRA\_REGISTER\_PARAMS\ \{}
+\DoxyCodeLine{\ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}param1"{}},\ param1),}
+\DoxyCodeLine{\ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}param2"{}},\ param2)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md115}{}\doxysection{\texorpdfstring{CMake\+Lists.\+txt}{CMake\+Lists.\+txt}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md115}
+A CMake\+Lists.\+txt file tells the build system how to include the module using \href{https://cmake.org/}{\texttt{ CMake}}
+
+Most modules simply require the following\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vipra\_module(}
+\DoxyCodeLine{\ \ NAME}
+\DoxyCodeLine{\ \ \ \ *name*}
+\DoxyCodeLine{\ \ SOURCES}
+\DoxyCodeLine{\ \ \ \ *list\ of\ .cpp\ files\ used\ in\ module*}
+\DoxyCodeLine{\ \ TYPE}
+\DoxyCodeLine{\ \ \ \ *type*}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item name\+: being how the module is refered to when selecting which modules to use in the \doxysectlink{md_docs_2pages_2researchers_2usage}{simulation config}{0}
+\item type\+: being one of the \doxysectlink{md_docs_2pages_2developers_2overview}{module types}{0}
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md116}{}\doxysubsubsection{\texorpdfstring{Adding External Libraries}{Adding External Libraries}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md116}
+Additionally, if any external libraries are needed they can be added with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ If\ searching\ locally}
+\DoxyCodeLine{vipra\_add\_library(}
+\DoxyCodeLine{\ \ LIBNAME\ *name*}
+\DoxyCodeLine{\ \ LINK\ \ \ \ *library\ name\ for\ linker,\ optional*}
+\DoxyCodeLine{\ \ TURN\_ON\ *list\ of\ options\ to\ turn\ on,\ optional*}
+\DoxyCodeLine{\ \ TURN\_OFF\ *list\ of\ options\ to\ turn\ off,\ optional*}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ If\ pulling\ a\ .tar\ file}
+\DoxyCodeLine{vipra\_add\_library(}
+\DoxyCodeLine{\ \ LIBNAME\ *name*}
+\DoxyCodeLine{\ \ LIBURL\ \ *url*}
+\DoxyCodeLine{\ \ LINK\ \ \ \ *library\ name\ for\ linker,\ optional*}
+\DoxyCodeLine{\ \ TURN\_ON\ *list\ of\ options\ to\ turn\ on,\ optional*}
+\DoxyCodeLine{\ \ TURN\_OFF\ *list\ of\ options\ to\ turn\ off,\ optional*}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ If\ pulling\ from\ git}
+\DoxyCodeLine{vipra\_add\_library(}
+\DoxyCodeLine{\ \ LIBNAME\ *name*}
+\DoxyCodeLine{\ \ GIT\_URL\ *url*}
+\DoxyCodeLine{\ \ GIT\_TAG\ *tag,\ optional*}
+\DoxyCodeLine{\ \ LINK\ \ \ \ *library\ name\ for\ linker,\ optional*}
+\DoxyCodeLine{\ \ TURN\_ON\ *list\ of\ options\ to\ turn\ on,\ optional*}
+\DoxyCodeLine{\ \ TURN\_OFF\ *list\ of\ options\ to\ turn\ off,\ optional*}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+{\ttfamily LINK} is the name used by the linker ({\ttfamily -\/l\texorpdfstring{$\ast$}{*}\+LINK\texorpdfstring{$\ast$}{*}}) it defaults equal to {\ttfamily LIBNAME}.
+
+\begin{quote}
+!!! Important Note\+: vipra\+\_\+add\+\_\+library may not work for some libraries, in that case add the library manually through normal CMake commands. Let us know of any libraries that don\textquotesingle{}t work. \end{quote}
+\hypertarget{md_docs_2pages_2developers_2implementation_2module_autotoc_md117}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_docs_2pages_2developers_2implementation_2module_autotoc_md117}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vipra\_module(}
+\DoxyCodeLine{\ \ NAME}
+\DoxyCodeLine{\ \ \ \ Calm}
+\DoxyCodeLine{\ \ SOURCES}
+\DoxyCodeLine{\ \ \ \ calm\_model.cpp}
+\DoxyCodeLine{\ \ TYPE}
+\DoxyCodeLine{\ \ \ \ Model}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,127 @@
+\doxysection{line.\+hpp}
+\hypertarget{line_8hpp_source}{}\label{line_8hpp_source}\index{VIPRA/include/vipra/geometry/line.hpp@{VIPRA/include/vipra/geometry/line.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Geometry\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{enum\ class}\ Orientation\ \{\ COLLINEAR,\ CLOCKWISE,\ COUNTERCLOCKWISE\ \};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ \{}
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ start;}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ end;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#18\ add\ more\ to\ the\ line\ class}}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ start,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ end)\ :\ start(start),\ end(end)\ \{\}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ length()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00019\ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ start.distance\_to(end);}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_ac5e6555769c77251dc80a8b6df162a74}{direction}}()\ const\ noexcept\ -\/>\ VIPRA::\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00029\ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ (end\ -\/\ start).\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}();}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00041\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a023b99deacf304762731a0bec5b24a74}{orientation\_to}}(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ line,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ point)\ \textcolor{keyword}{noexcept}\ -\/>\ Orientation}
+\DoxyCodeLine{00043\ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ VIPRA::f\_pnt\ val\ =\ (line.end.y\ -\/\ line.start.y)\ *\ (point.x\ -\/\ line.end.x)\ -\/}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (line.end.x\ -\/\ line.start.x)\ *\ (point.y\ -\/\ line.end.y);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ val\ >\ 0\ )\ \textcolor{keywordflow}{return}\ Orientation::CLOCKWISE;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ val\ <\ 0\ )\ \textcolor{keywordflow}{return}\ Orientation::COUNTERCLOCKWISE;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ Orientation::COLLINEAR;}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a1c7ba1f2512c250976781aa2f6e95a9f}{closest\_point}}(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ point)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}}
+\DoxyCodeLine{00060\ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#18\ verify}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ lineLength\ =\ start.distance\_to(end);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ lineLength\ ==\ 0.0\ )\ \textcolor{keywordflow}{return}\ start;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ t\ =\ std::max(}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}VIPRA::f\_pnt\textcolor{keyword}{>}(0.0),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ std::min(\textcolor{keyword}{static\_cast<}VIPRA::f\_pnt\textcolor{keyword}{>}(1.0),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (point\ -\/\ start).dot(end\ -\/\ start)\ /\ (lineLength\ *\ lineLength)));}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ start\ +\ (end\ -\/\ start)\ *\ t;}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a358b9e546d9c70ccf40e4f6a3980fdd3}{is\_point\_on}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ point)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00082\ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ point.x\ <=\ std::max(start.x,\ end.x)\ \&\&}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ point.y\ <=\ std::max(start.y,\ end.y)\ \&\&}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ point.x\ >=\ std::min(start.x,\ end.x)\ \&\&}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ point.y\ >=\ std::min(start.y,\ end.y);}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00096\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a85383b4da380c7dd7fad432e1d959dcc}{does\_intersect}}(}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00098\ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a8d1bdf34a4c3f4add91de6d03173e94f}{do\_intersect}}(*\textcolor{keyword}{this},\ other);}
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00109\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a836ee004923cecf57e31e5d2b67fb12f}{intersection\_point}}(\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}}
+\DoxyCodeLine{00111\ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ assert(\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a85383b4da380c7dd7fad432e1d959dcc}{does\_intersect}}(other));}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ a1\ =\ end.y\ -\/\ start.y;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ b1\ =\ start.x\ -\/\ end.x;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ c1\ =\ a1\ *\ start.x\ +\ b1\ *\ start.y;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ a2\ =\ other.end.y\ -\/\ other.start.y;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ b2\ =\ other.start.x\ -\/\ other.end.x;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ c2\ =\ a2\ *\ other.start.x\ +\ b2\ *\ other.start.y;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ determinant\ =\ a1\ *\ b2\ -\/\ a2\ *\ b1;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ determinant\ ==\ 0\ )\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{0,\ 0,\ 0\};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ x\ =\ (b2\ *\ c1\ -\/\ b1\ *\ c2)\ /\ determinant;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ y\ =\ (a1\ *\ c2\ -\/\ a2\ *\ c1)\ /\ determinant;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{x,\ y,\ 0\};}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00140\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a8d1bdf34a4c3f4add91de6d03173e94f}{do\_intersect}}(\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ line1,}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ line2)\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00142\ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ Orientation\ ori1\ =\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a023b99deacf304762731a0bec5b24a74}{orientation\_to}}(line1,\ line2.start);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ Orientation\ ori2\ =\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a023b99deacf304762731a0bec5b24a74}{orientation\_to}}(line1,\ line2.end);}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ Orientation\ ori3\ =\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a023b99deacf304762731a0bec5b24a74}{orientation\_to}}(line2,\ line1.start);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ Orientation\ ori4\ =\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a023b99deacf304762731a0bec5b24a74}{orientation\_to}}(line2,\ line1.end);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ori1\ !=\ ori2\ \&\&\ ori3\ !=\ ori4\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ori1\ ==\ Orientation::COLLINEAR\ \&\&\ line1.is\_point\_on(line2.start)\ )}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ori2\ ==\ Orientation::COLLINEAR\ \&\&\ line1.is\_point\_on(line2.end)\ )}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ori3\ ==\ Orientation::COLLINEAR\ \&\&\ line2.is\_point\_on(line1.start)\ )}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ori4\ ==\ Orientation::COLLINEAR\ \&\&\ line2.is\_point\_on(line1.end)\ )}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00160\ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{\string~Line}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}(\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&\&)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00168\ \};}
+\DoxyCodeLine{00169\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Geometry}}
+
+\end{DoxyCode}

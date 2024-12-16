@@ -1,0 +1,78 @@
+\doxysection{VIPRA\+::Data\+Structures\+::Graph\+Mixin\texorpdfstring{$<$}{<} class\+\_\+t, data\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin}{}\label{classVIPRA_1_1DataStructures_1_1GraphMixin}\index{VIPRA::DataStructures::GraphMixin$<$ class\_t, data\_t $>$@{VIPRA::DataStructures::GraphMixin$<$ class\_t, data\_t $>$}}
+
+
+generic undirected Graph datastructure mixin  
+
+
+
+
+{\ttfamily \#include $<$graph.\+hpp$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structVIPRA_1_1DataStructures_1_1GraphMixin_1_1Node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a98aa75d18f2eff92041984750b03700f}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a98aa75d18f2eff92041984750b03700f} 
+using {\bfseries value\+\_\+t} = data\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a086442e84dff7dc664cfc399e936a8b2}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a086442e84dff7dc664cfc399e936a8b2} 
+void {\bfseries reserve} (VIPRA\+::idx size)
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_abb1eaffb4fcd104b844fd3ef32a98bf7}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_abb1eaffb4fcd104b844fd3ef32a98bf7} 
+void {\bfseries clear} ()
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a87e5d2844133ce56873453beeb3efee6}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a87e5d2844133ce56873453beeb3efee6} 
+constexpr auto {\bfseries node\+\_\+count} () const -\/$>$ VIPRA\+::idx
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a3bd67f0347742ae5f7ee34c431e8ab4d}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a3bd67f0347742ae5f7ee34c431e8ab4d} 
+constexpr auto {\bfseries nodes} () -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1DataStructures_1_1GraphMixin_1_1Node}{Node}} $>$ \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a0598088d73f6dc099259c9ddc8cad168}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a0598088d73f6dc099259c9ddc8cad168} 
+constexpr auto {\bfseries nodes} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1DataStructures_1_1GraphMixin_1_1Node}{Node}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_ac3528b18cbc988b28ab66309d22db2f5}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_ac3528b18cbc988b28ab66309d22db2f5} 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_aef41db618e79f784c9ed634951eff1dc}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_aef41db618e79f784c9ed634951eff1dc} 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) const -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_af79d0acdb047f38f274507ee31bdc6ab}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_af79d0acdb047f38f274507ee31bdc6ab} 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) -\/$>$ data\+\_\+t \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_ae4c24f4d788dff3b1b597d61568293de}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_ae4c24f4d788dff3b1b597d61568293de} 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) const -\/$>$ data\+\_\+t const \&
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_a49f3816f5ef9c78a9e2bc1f5108cd816}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_a49f3816f5ef9c78a9e2bc1f5108cd816} 
+void {\bfseries add\+\_\+edge} (VIPRA\+::idx node\+Idx1, VIPRA\+::idx node\+Idx2)
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_ae9a1ac9f8eace2a008da9341ea1c3683}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_ae9a1ac9f8eace2a008da9341ea1c3683} 
+constexpr auto {\bfseries add\+\_\+node} (data\+\_\+t data) -\/$>$ VIPRA\+::idx
+\item 
+\Hypertarget{classVIPRA_1_1DataStructures_1_1GraphMixin_ac000187a8d83d056b9c2aeb11c2db337}\label{classVIPRA_1_1DataStructures_1_1GraphMixin_ac000187a8d83d056b9c2aeb11c2db337} 
+auto {\bfseries add\+\_\+node} (data\+\_\+t data, std\+::vector$<$ VIPRA\+::idx $>$ neighbors) -\/$>$ VIPRA\+::idx
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename class\+\_\+t, typename data\+\_\+t$>$\newline
+class VIPRA\+::\+Data\+Structures\+::\+Graph\+Mixin$<$ class\+\_\+t, data\+\_\+t $>$}
+generic undirected Graph datastructure mixin 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/data\+\_\+structures/graph.\+hpp\end{DoxyCompactItemize}

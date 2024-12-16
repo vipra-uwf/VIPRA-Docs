@@ -1,0 +1,56 @@
+\doxysection{subselector.\+hpp}
+\hypertarget{subselector_8hpp_source}{}\label{subselector_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/selectors/subselector.hpp@{VIPRA/include/vipra/vipra\_behaviors/selectors/subselector.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/condition.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/pedestrian\_types.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorResult}{SelectorResult}}\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ starved;}
+\DoxyCodeLine{00019\ \ \ VIPRA::idxVec\ group;}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }SelectorFunc\ =\ std::function<\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorResult}{SelectorResult}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::idxVec\&,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}})>;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}}\ \{}
+\DoxyCodeLine{00034\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}})}
+\DoxyCodeLine{00035\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}})}
+\DoxyCodeLine{00036\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}})}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}}(typeUID\ grp,\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ typ,\ \textcolor{keywordtype}{bool}\ req,\ SelectorFunc\ sel)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ :\ group(grp),\ type(typ),\ required(req),\ \_select(std::move(sel))}
+\DoxyCodeLine{00041\ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{auto}\ select\_peds(\textcolor{keyword}{const}\ VIPRA::idxVec\&\ totalGroup,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ usableGroup,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pack)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorResult}{SelectorResult}}}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \_select(totalGroup,\ usableGroup,\ pack);}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ NOLINTBEGIN\ -\/\ (rolland)\ Having\ these\ public\ increases\ readability\ \ \ :\ ignoring\ (cppcoreguidelines-\/non-\/private-\/member-\/variables-\/in-\/classes)}}
+\DoxyCodeLine{00052\ \ \ typeUID\ group;}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ \ \ type;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ required;}
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ NOLINTEND}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ SelectorFunc\ \ \ \ \ \ \ \ \ \ \ \ \ \_select;}
+\DoxyCodeLine{00059\ \ \ std::optional<Condition>\ \_condition;}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

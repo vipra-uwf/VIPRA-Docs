@@ -1,0 +1,50 @@
+\doxysection{VIPRA\+::Modules\+::Output Class Reference}
+\hypertarget{classVIPRA_1_1Modules_1_1Output}{}\label{classVIPRA_1_1Modules_1_1Output}\index{VIPRA::Modules::Output@{VIPRA::Modules::Output}}
+
+
+Base Output module.  
+
+
+
+
+{\ttfamily \#include $<$output.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Modules\+::Output\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{dd/d3c/classVIPRA_1_1Modules_1_1Output__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_ab7a5df97e1c91de80abb939a10426715}\label{classVIPRA_1_1Modules_1_1Output_ab7a5df97e1c91de80abb939a10426715} 
+virtual void {\bfseries write} (std\+::filesystem\+::path const \&output\+Dir)=0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_a63ee952e0c7914ea52f15cb1827fb8ac}\label{classVIPRA_1_1Modules_1_1Output_a63ee952e0c7914ea52f15cb1827fb8ac} 
+virtual void {\bfseries timestep\+\_\+update} (VIPRA\+::timestep, VIPRA\+::delta\+\_\+t, \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} const \&)=0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_a385af227e1b018acd2c925aab8339339}\label{classVIPRA_1_1Modules_1_1Output_a385af227e1b018acd2c925aab8339339} 
+{\bfseries Output} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_aecceda13cd9f71fb5d03c81548a4e73e}\label{classVIPRA_1_1Modules_1_1Output_aecceda13cd9f71fb5d03c81548a4e73e} 
+{\bfseries Output} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&\&)=delete
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_a3ff42f0076f0d3aa6415de2785553a12}\label{classVIPRA_1_1Modules_1_1Output_a3ff42f0076f0d3aa6415de2785553a12} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Output_af87fd2c361d5a6d82cf1865942f3e89f}\label{classVIPRA_1_1Modules_1_1Output_af87fd2c361d5a6d82cf1865942f3e89f} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Output module. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/modules/output.\+hpp\end{DoxyCompactItemize}

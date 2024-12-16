@@ -1,0 +1,19 @@
+\doxysection{atom.\+hpp}
+\hypertarget{atom_8hpp_source}{}\label{atom_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/actions/atom.hpp@{VIPRA/include/vipra/vipra\_behaviors/actions/atom.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }Atom\ =}
+\DoxyCodeLine{00011\ \ \ \ \ std::function<void(Simpack\&,\ VIPRA::idxVec\ \textcolor{keyword}{const}\&,\ std::vector<bool>\ \textcolor{keyword}{const}\&,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&)>;}
+\DoxyCodeLine{00013\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

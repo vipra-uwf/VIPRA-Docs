@@ -1,0 +1,91 @@
+\doxysection{Model\+::Calm Class Reference}
+\hypertarget{classModel_1_1Calm}{}\label{classModel_1_1Calm}\index{Model::Calm@{Model::Calm}}
+
+
+Inheritance diagram for Model\+::Calm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{dd/dd0/classModel_1_1Calm__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Model\+::Calm\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{d1/d7b/classModel_1_1Calm__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classModel_1_1Calm_ad992a1609ad50f080067c6b3315452f9}\label{classModel_1_1Calm_ad992a1609ad50f080067c6b3315452f9} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}mean\+Mass"{}, \+\_\+config.\+mean\+Mass), VIPRA\+\_\+\+PARAM("{}mass\+Std\+Dev"{}, \+\_\+config.\+mass\+Std\+Dev), VIPRA\+\_\+\+PARAM("{}mean\+Mass"{}, \+\_\+config.\+mean\+Mass), VIPRA\+\_\+\+PARAM("{}mass\+Std\+Dev"{}, \+\_\+config.\+mass\+Std\+Dev), VIPRA\+\_\+\+PARAM("{}mean\+Reaction\+Time"{}, \+\_\+config.\+mean\+Reaction\+Time), VIPRA\+\_\+\+PARAM("{}reaction\+Time\+Std\+Dev"{}, \+\_\+config.\+reaction\+Time\+Std\+Dev), VIPRA\+\_\+\+PARAM("{}mean\+Max\+Speed"{}, \+\_\+config.\+mean\+Max\+Speed), VIPRA\+\_\+\+PARAM("{}max\+Speed\+Std\+Dev"{}, \+\_\+config.\+max\+Speed\+Std\+Dev), VIPRA\+\_\+\+PARAM("{}mean\+Shoulder\+Len"{}, \+\_\+config.\+mean\+Shoulder\+Len), VIPRA\+\_\+\+PARAM("{}shoulder\+Len\+Std\+Dev"{}, \+\_\+config.\+shoulder\+Len\+Std\+Dev)) VIPRA\+\_\+\+MODEL\+\_\+\+INIT\+\_\+\+STEP
+\item 
+\Hypertarget{classModel_1_1Calm_ab48751889feb88bd68f6dd52ea2e6560}\label{classModel_1_1Calm_ab48751889feb88bd68f6dd52ea2e6560} 
+{\bfseries calc\+\_\+neighbors} (pedset, map, goals)
+\item 
+\Hypertarget{classModel_1_1Calm_a485f04a7748a449700935d84da63063e}\label{classModel_1_1Calm_a485f04a7748a449700935d84da63063e} 
+{\bfseries calc\+\_\+betas} ()
+\item 
+\Hypertarget{classModel_1_1Calm_acc3d05a7e0d9f61675fd1057d955b934}\label{classModel_1_1Calm_acc3d05a7e0d9f61675fd1057d955b934} 
+{\bfseries update\+\_\+state} (pedset, goals, state, deltaT)
+\item 
+\Hypertarget{classModel_1_1Calm_a7513d97ee3f5b7ff752379ab4e7bc36f}\label{classModel_1_1Calm_a7513d97ee3f5b7ff752379ab4e7bc36f} 
+{\bfseries if} (timestep $>$ 0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Calm $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{VIPRA\+::\+Modules\+::\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Model} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&)=default
+\item 
+{\bfseries Model} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classModel_1_1Calm_a2b977dcb0a24b3d56e7cb45d40970b40}{VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{VIPRA\+::\+Modules\+::\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+MODEL\+\_\+\+INIT\+\_\+\+STEP} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classModel_1_1Calm_a2b977dcb0a24b3d56e7cb45d40970b40}\index{Model::Calm@{Model::Calm}!VIPRA\_MODEL\_TIMESTEP@{VIPRA\_MODEL\_TIMESTEP}}
+\index{VIPRA\_MODEL\_TIMESTEP@{VIPRA\_MODEL\_TIMESTEP}!Model::Calm@{Model::Calm}}
+\doxysubsubsection{\texorpdfstring{VIPRA\_MODEL\_TIMESTEP}{VIPRA\_MODEL\_TIMESTEP}}
+{\footnotesize\ttfamily \label{classModel_1_1Calm_a2b977dcb0a24b3d56e7cb45d40970b40} 
+Model\+::\+Calm\+::\+VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ calc\_shoulders(pedset.all\_coords(),\ goals.current\_goals())}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/model/\+Calm/Calm.\+hpp\item 
+VIPRA/modules/model/\+Calm/calm\+\_\+model.\+cpp\end{DoxyCompactItemize}

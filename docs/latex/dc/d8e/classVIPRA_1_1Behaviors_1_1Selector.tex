@@ -1,0 +1,66 @@
+\doxysection{VIPRA\+::Behaviors\+::Selector Class Reference}
+\hypertarget{classVIPRA_1_1Behaviors_1_1Selector}{}\label{classVIPRA_1_1Behaviors_1_1Selector}\index{VIPRA::Behaviors::Selector@{VIPRA::Behaviors::Selector}}
+
+
+Combines/\+Organizes Sub\+Selectors to select pedestrians for types.  
+
+
+
+
+{\ttfamily \#include $<$selector.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Selector_a328c3c8bb2b2d5311af6befdec3fa2fc}{initialize}} (std\+::string const \&, \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}} pack)
+\begin{DoxyCompactList}\small\item\em Initializes the pedestrian groups, and runs the sub selectors over them. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_aeb29265b08c49aec8d8c4ad1f220fdf8}\label{classVIPRA_1_1Behaviors_1_1Selector_aeb29265b08c49aec8d8c4ad1f220fdf8} 
+void {\bfseries set\+\_\+all\+\_\+types} (\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}} types)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_aaceda564be235420b3f1535f455dd046}\label{classVIPRA_1_1Behaviors_1_1Selector_aaceda564be235420b3f1535f455dd046} 
+void {\bfseries add\+\_\+sub\+\_\+selector} (\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{Sub\+Selector}} const \&subselector)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_ac721cf33dea18d45ba69a906f06d713d}\label{classVIPRA_1_1Behaviors_1_1Selector_ac721cf33dea18d45ba69a906f06d713d} 
+auto {\bfseries get\+\_\+groups} () -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1GroupsContainer}{Groups\+Container}} \&
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_a3dbc74b35e7a5d36f65dc94a6cf54d30}\label{classVIPRA_1_1Behaviors_1_1Selector_a3dbc74b35e7a5d36f65dc94a6cf54d30} 
+auto {\bfseries get\+\_\+groups} () const -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1GroupsContainer}{Groups\+Container}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_a8ed5dadd2f338f4b68a0868e34f34999}\label{classVIPRA_1_1Behaviors_1_1Selector_a8ed5dadd2f338f4b68a0868e34f34999} 
+auto {\bfseries selector\+\_\+count} () const -\/$>$ VIPRA\+::size
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Combines/\+Organizes Sub\+Selectors to select pedestrians for types. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Selector_a328c3c8bb2b2d5311af6befdec3fa2fc}\index{VIPRA::Behaviors::Selector@{VIPRA::Behaviors::Selector}!initialize@{initialize}}
+\index{initialize@{initialize}!VIPRA::Behaviors::Selector@{VIPRA::Behaviors::Selector}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Behaviors_1_1Selector_a328c3c8bb2b2d5311af6befdec3fa2fc} 
+void VIPRA\+::\+Behaviors\+::\+Selector\+::initialize (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{behavior\+Name}{, }\item[{\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}}]{pack}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the pedestrian groups, and runs the sub selectors over them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em behavior\+Name} & \+: \\
+\hline
+{\em seed} & \+: \\
+\hline
+{\em ped\+Set} & \+: \\
+\hline
+{\em map} & \+: \\
+\hline
+{\em goals} & \+: \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/vipra\+\_\+behaviors/selectors/selector.\+hpp\item 
+VIPRA/src/vipra\+\_\+behaviors/selectors/selector.\+cpp\end{DoxyCompactItemize}

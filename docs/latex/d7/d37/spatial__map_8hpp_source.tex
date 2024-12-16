@@ -1,0 +1,140 @@
+\doxysection{spatial\+\_\+map.\+hpp}
+\hypertarget{spatial__map_8hpp_source}{}\label{spatial__map_8hpp_source}\index{VIPRA/include/vipra/data\_structures/spatial\_map.hpp@{VIPRA/include/vipra/data\_structures/spatial\_map.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#16\ complete\ proper\ implementation}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/types/size.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }VIPRA::DataStructures\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1SpatialMap}{SpatialMap}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{void}\ update\_grids(std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&\ oldPositions,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&\ newPositions)}
+\DoxyCodeLine{00022\ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ for\ all\ of\ the\ data,\ check\ if\ they\ moved\ grids,\ if\ they\ did\ update\ both}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ currIdx\ =\ 0;\ currIdx\ <\ newPositions.size();\ ++currIdx\ )\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ oldGrid\ =\ get\_grid(oldPositions[currIdx]);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ newGrid\ =\ get\_grid(newPositions[currIdx]);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \&oldGrid\ ==\ \&newGrid\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ oldGrid.erase(std::remove(oldGrid.begin(),\ oldGrid.end(),\ currIdx),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oldGrid.end());}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ newGrid.push\_back(currIdx);}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{void}\ for\_each\_neighbor(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos,\ \textcolor{keyword}{auto}\&\&\ func)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ TODO(rolland,\ issue\ \#40)\ this\ only\ gets\ the\ surrounding\ 9\ grids}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Loop\ through\ the\ surrounding\ grids\ and\ call\ the\ provided\ function\ with\ each\ pedestrian\ in\ each\ grid}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{int}\ i\ =\ -\/1;\ i\ <=\ 1;\ ++i\ )\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{int}\ j\ =\ -\/1;\ j\ <=\ 1;\ ++j\ )\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ out\_of\_bounds(pos.x\ +\ i\ *\ \_cellSize,\ pos.y\ +\ j\ *\ \_cellSize)\ )}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ neighbor\ =}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ get\_grid(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{pos.x\ +\ i\ *\ \_cellSize,\ pos.y\ +\ j\ *\ \_cellSize\});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ value\ :\ neighbor\ )\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ func(value);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{void}\ initialize(VIPRA::f\_pnt\ cellSize,\ VIPRA::f\_pnt\ width,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f\_pnt\ height,\ std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&\ positions,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<data\_t>\ \textcolor{keyword}{const}\&\ data)}
+\DoxyCodeLine{00059\ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ assert(cellSize\ !=\ 0);}
+\DoxyCodeLine{00061\ \ \ \ \ assert(width\ !=\ 0);}
+\DoxyCodeLine{00062\ \ \ \ \ assert(height\ !=\ 0);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \_cellSize\ =\ cellSize;}
+\DoxyCodeLine{00065\ \ \ \ \ set\_grids(width,\ height);}
+\DoxyCodeLine{00066\ \ \ \ \ initialize\_grids(positions,\ data);}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ std::vector<std::vector<data\_t>>\ \_grid;}
+\DoxyCodeLine{00071\ \ \ VIPRA::size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_rows\{\};}
+\DoxyCodeLine{00072\ \ \ VIPRA::size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_cols\{\};}
+\DoxyCodeLine{00073\ \ \ VIPRA::f\_pnt\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_cellSize\{\};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ set\_grids(VIPRA::f\_pnt\ width,\ VIPRA::f\_pnt\ height)}
+\DoxyCodeLine{00076\ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \_rows\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::ceil(height\ /\ \_cellSize));}
+\DoxyCodeLine{00078\ \ \ \ \ \_cols\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::ceil(width\ /\ \_cellSize));}
+\DoxyCodeLine{00079\ \ \ \ \ \_grid.resize(\_rows\ *\ \_cols);}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ initialize\_grids(std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&\ positions,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<data\_t>\ \textcolor{keyword}{const}\&\ \ \ \ \ data)}
+\DoxyCodeLine{00084\ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ positions.size()\ !=\ data.size()\ )}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Spatial\ Map\ initialized\ with\ differing\ counts\ of\ data\ and\ "{}}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}positions"{}});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Create\ grids}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\&\ grid\ :\ \_grid\ )\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ grid\ =\ std::vector<data\_t>();}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Add\ all\ of\ the\ pedestrians\ in\ each\ grid\ to\ their\ respective\ grid}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ currIdx\ =\ 0;\ currIdx\ <\ positions.size();\ ++currIdx\ )\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ grid\ =\ get\_grid(positions[currIdx]);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ grid.push\_back(data[currIdx]);}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ get\_grid(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::idx>\&}
+\DoxyCodeLine{00110\ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ assert(!\ out\_of\_bounds(pos));}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{auto}\ gridX\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(pos.x\ /\ \_cellSize);}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{auto}\ gridY\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(pos.y\ /\ \_cellSize);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ \_grid[gridX\ +\ gridY\ *\ \_cols];}
+\DoxyCodeLine{00117\ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00125\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ get\_grid(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::idx>\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00127\ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ assert(!\ out\_of\_bounds(pos));}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ \_grid[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(pos.x\ /\ \_cellSize)\ +}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(pos.y\ /\ \_cellSize)\ *\ \_cols];}
+\DoxyCodeLine{00132\ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00142\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ out\_of\_bounds(}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ VIPRA::f\_pnt\ gridX,\ VIPRA::f\_pnt\ gridY)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00144\ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ gridX\ <\ 0\ ||\ gridX\ >=\ \_cols\ *\ \_cellSize\ ||\ gridY\ <\ 0\ ||}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ gridY\ >=\ \_rows\ *\ \_cellSize;}
+\DoxyCodeLine{00147\ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00157\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ out\_of\_bounds(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00158\ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ out\_of\_bounds(pos.x,\ pos.y);}
+\DoxyCodeLine{00160\ \ \ \}}
+\DoxyCodeLine{00161\ \};}
+\DoxyCodeLine{00162\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::DataStructures}}
+
+\end{DoxyCode}

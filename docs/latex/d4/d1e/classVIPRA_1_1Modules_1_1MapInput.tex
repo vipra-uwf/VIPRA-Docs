@@ -1,0 +1,183 @@
+\doxysection{VIPRA\+::Modules\+::Map\+Input Class Reference}
+\hypertarget{classVIPRA_1_1Modules_1_1MapInput}{}\label{classVIPRA_1_1Modules_1_1MapInput}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+
+
+Base Map\+Input Module.  
+
+
+
+
+{\ttfamily \#include $<$map\+\_\+input.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Modules\+::Map\+Input\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{d7/d6a/classVIPRA_1_1Modules_1_1MapInput__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_a0bd81f66b1749f81324969ab27d43b5b}{load}} (std\+::string const \&)=0
+\item 
+virtual auto \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc}{get\+\_\+obstacles}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$=0
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+virtual auto \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac}{get\+\_\+spawns}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$=0
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+virtual auto \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72}{get\+\_\+objectives}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ $>$=0
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+virtual auto \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb}{get\+\_\+areas}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$=0
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_a3b3a273df5fd5c949eb4add87a945331}\label{classVIPRA_1_1Modules_1_1MapInput_a3b3a273df5fd5c949eb4add87a945331} 
+{\bfseries Map\+Input} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_ada5b21e1b0ddd3ed05b9e96491b3f1a3}\label{classVIPRA_1_1Modules_1_1MapInput_ada5b21e1b0ddd3ed05b9e96491b3f1a3} 
+{\bfseries Map\+Input} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_a8a6642e6f14acec4c568bf2f5d04aa0c}\label{classVIPRA_1_1Modules_1_1MapInput_a8a6642e6f14acec4c568bf2f5d04aa0c} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_a2ae080e96c12e7ba884c786eff686525}\label{classVIPRA_1_1Modules_1_1MapInput_a2ae080e96c12e7ba884c786eff686525} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Map\+Input Module. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}!get\_areas@{get\_areas}}
+\index{get\_areas@{get\_areas}!VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+\doxysubsubsection{\texorpdfstring{get\_areas()}{get\_areas()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb} 
+virtual auto VIPRA\+::\+Modules\+::\+Map\+Input\+::get\+\_\+areas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [pure virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDXF_aa0ec3d51780ba8687b9a0fe5062fea17}{DXF}}, and \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_ac290a8f66ed8aeee533acf0f949948ec}{VIPRA\+::\+Input\+::\+JSON}}.
+
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}!get\_objectives@{get\_objectives}}
+\index{get\_objectives@{get\_objectives}!VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+\doxysubsubsection{\texorpdfstring{get\_objectives()}{get\_objectives()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72} 
+virtual auto VIPRA\+::\+Modules\+::\+Map\+Input\+::get\+\_\+objectives (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [pure virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDXF_a87725300457a1f5b30f06555c33bab83}{DXF}}, and \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a1e28940a861d5adb665979bff89617bf}{VIPRA\+::\+Input\+::\+JSON}}.
+
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}!get\_obstacles@{get\_obstacles}}
+\index{get\_obstacles@{get\_obstacles}!VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+\doxysubsubsection{\texorpdfstring{get\_obstacles()}{get\_obstacles()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc} 
+virtual auto VIPRA\+::\+Modules\+::\+Map\+Input\+::get\+\_\+obstacles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [pure virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDXF_a515c90b78bee2e61bff9228695d22a01}{DXF}}, and \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_aeec78b200266398e3aca6f2322825a6e}{VIPRA\+::\+Input\+::\+JSON}}.
+
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}!get\_spawns@{get\_spawns}}
+\index{get\_spawns@{get\_spawns}!VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+\doxysubsubsection{\texorpdfstring{get\_spawns()}{get\_spawns()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac} 
+virtual auto VIPRA\+::\+Modules\+::\+Map\+Input\+::get\+\_\+spawns (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [pure virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDXF_aa372d3f3936e00717fff47f64905226b}{DXF}}, and \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a996c9ac74f613b1a34ef50aaec9ceaf3}{VIPRA\+::\+Input\+::\+JSON}}.
+
+\Hypertarget{classVIPRA_1_1Modules_1_1MapInput_a0bd81f66b1749f81324969ab27d43b5b}\index{VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}!load@{load}}
+\index{load@{load}!VIPRA::Modules::MapInput@{VIPRA::Modules::MapInput}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Modules_1_1MapInput_a0bd81f66b1749f81324969ab27d43b5b} 
+virtual void VIPRA\+::\+Modules\+::\+Map\+Input\+::load (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classDXF_a063cbb92af10469c384fb5dc57b2f5f9}{DXF}}, and \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535}{VIPRA\+::\+Input\+::\+JSON}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/modules/map\+\_\+input.\+hpp\end{DoxyCompactItemize}

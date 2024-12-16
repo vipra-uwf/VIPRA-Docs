@@ -1,0 +1,70 @@
+\doxysection{VIPRA\+::Behaviors\+::Behavior\+Builder Class Reference}
+\hypertarget{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}{}\label{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}\index{VIPRA::Behaviors::BehaviorBuilder@{VIPRA::Behaviors::BehaviorBuilder}}
+
+
+Parses Behavior Files and Creates the Runtime Functionality they describe.  
+
+
+
+
+{\ttfamily \#include $<$behavior\+\_\+builder.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Behaviors\+::Behavior\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{dd/da7/classVIPRA_1_1Behaviors_1_1BehaviorBuilder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Behaviors\+::Behavior\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{dc/dbd/classVIPRA_1_1Behaviors_1_1BehaviorBuilder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder_abc3c63e92ff7b827f15ac2fac175b680}{build}} (std\+::string name, std\+::filesystem\+::path const \&filepath, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, VIPRA\+::seed seed) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{Human\+Behavior}}
+\begin{DoxyCompactList}\small\item\em Parses the behavior file at filepath, returns the behavior it describes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parses Behavior Files and Creates the Runtime Functionality they describe. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Behaviors_1_1BehaviorBuilder_abc3c63e92ff7b827f15ac2fac175b680}\index{VIPRA::Behaviors::BehaviorBuilder@{VIPRA::Behaviors::BehaviorBuilder}!build@{build}}
+\index{build@{build}!VIPRA::Behaviors::BehaviorBuilder@{VIPRA::Behaviors::BehaviorBuilder}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Behaviors_1_1BehaviorBuilder_abc3c63e92ff7b827f15ac2fac175b680} 
+auto VIPRA\+::\+Behaviors\+::\+Behavior\+Builder\+::build (\begin{DoxyParamCaption}\item[{std\+::string}]{behavior\+Name}{, }\item[{std\+::filesystem\+::path const \&}]{filepath}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&}]{map}{, }\item[{VIPRA\+::seed}]{seed}{}\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{Human\+Behavior}}\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Parses the behavior file at filepath, returns the behavior it describes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em behavior\+Name} & \+: name of the behavior \\
+\hline
+{\em filepath} & \+: path to the behavior file \\
+\hline
+{\em seed\+Num} & \+: seed for randomization \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Human\+Behavior\&\& 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/vipra\+\_\+behaviors/builder/behavior\+\_\+builder.\+hpp\item 
+VIPRA/src/vipra\+\_\+behaviors/builder/behavior\+\_\+builder.\+cpp\end{DoxyCompactItemize}

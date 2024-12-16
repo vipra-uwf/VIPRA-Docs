@@ -1,0 +1,31 @@
+\doxysection{model.\+hpp}
+\hypertarget{modules_2model_8hpp_source}{}\label{modules_2model_8hpp_source}\index{VIPRA/include/vipra/modules/model.hpp@{VIPRA/include/vipra/modules/model.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/model.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/goals.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrians.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/types/state.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/types/time.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\ \{}
+\DoxyCodeLine{00017\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{virtual}\ VIPRA\_MODEL\_TIMESTEP\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{virtual}\ VIPRA\_MODEL\_INIT\_STEP\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{auto}\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{Model}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Model}{\string~Model}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

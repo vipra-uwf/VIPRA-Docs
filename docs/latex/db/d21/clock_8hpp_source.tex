@@ -1,0 +1,52 @@
+\doxysection{clock.\+hpp}
+\hypertarget{clock_8hpp_source}{}\label{clock_8hpp_source}\index{VIPRA/include/vipra/util/clock.hpp@{VIPRA/include/vipra/util/clock.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Util\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }nano\ =\ std::chrono::nanoseconds;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }micro\ =\ std::chrono::microseconds;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }milli\ =\ std::chrono::milliseconds;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }seconds\ =\ std::chrono::seconds;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ TODO(rolland):\ add\ to\ documentation}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ time\_t\ =\ seconds,\ \textcolor{keyword}{typename}\ clock\_t\ =\ std::chrono::steady\_clock>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock}{Clock}}\ \{}
+\DoxyCodeLine{00021\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_ae60dcb2d34b70d5ca44df509a3759b87}{now}}()\ -\/>\ time\_t\ \{\ \textcolor{keywordflow}{return}\ clock\_t::now();\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_a3da32043739026665aaaeb2ceb6abe7b}{start}}()}
+\DoxyCodeLine{00034\ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \_running\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00036\ \ \ \ \ \_start\ =\ clock\_t::now();}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ is\_running()\ const\ -\/>\ \textcolor{keywordtype}{bool}\ \{\ \textcolor{keywordflow}{return}\ \_running;\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_a43fd4f08d0be575cc17fab20f44f10b0}{click}}()\ -\/>\ time\_t}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ \_running\ )\ \textcolor{keywordflow}{return}\ ZERO;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::duration\_cast<time\_t>(clock\_t::now()\ -\/\ \_start);}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_a84e31bb5334a0e98d01def149616aafd}{stop}}()\ -\/>\ time\_t}
+\DoxyCodeLine{00058\ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ \_running\ )\ \textcolor{keywordflow}{return}\ ZERO;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{auto}\ duration\ =\ std::chrono::duration\_cast<time\_t>(clock\_t::now()\ -\/\ \_start);}
+\DoxyCodeLine{00061\ \ \ \ \ \_running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ duration;}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ time\_t\ ZERO\ =\ time\_t::zero();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00069\ \ \ std::chrono::time\_point<clock\_t>\ \_start;}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Util}}
+
+\end{DoxyCode}

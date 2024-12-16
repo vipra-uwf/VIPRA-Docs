@@ -1,0 +1,156 @@
+\doxysection{drw\+\_\+reader.\+hpp}
+\hypertarget{drw__reader_8hpp_source}{}\label{drw__reader_8hpp_source}\index{VIPRA/modules/input/dxf/drw\_reader.hpp@{VIPRA/modules/input/dxf/drw\_reader.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}drw\_interface.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\ :\ \textcolor{keyword}{public}\ DRW\_Interface\ \{}
+\DoxyCodeLine{00009\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00011\ \ \ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}(\mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{auto}\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{\string~DrwReader}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{DrwReader}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NUM\_SUBDIVISIONS\ =\ 126;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_vipra\_polygons()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ -\/>\ \textcolor{keyword}{const}\ std::vector<VIPRA::Geometry::Polygon>\&}
+\DoxyCodeLine{00021\ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_obstacles;}
+\DoxyCodeLine{00023\ \ \ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{auto}\ get\_vipra\_goals()}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ -\/>\ \textcolor{keyword}{const}\ std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>\&}
+\DoxyCodeLine{00027\ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_objectives;}
+\DoxyCodeLine{00029\ \ \ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{auto}\ get\_vipra\_pedestrians()\ -\/>\ \textcolor{keyword}{const}\ std::vector<VIPRA::Geometry::Polygon>\&}
+\DoxyCodeLine{00032\ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_spawns;}
+\DoxyCodeLine{00034\ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a58a24ad0c84f8c8ddbc8a61f70ee99ad}{addHeader}}(\textcolor{keyword}{const}\ DRW\_Header*\ data)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_obstacles()\ -\/>\ std::vector<VIPRA::Geometry::Polygon>}
+\DoxyCodeLine{00042\ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ \_obstacles;}
+\DoxyCodeLine{00044\ \ \ \}}
+\DoxyCodeLine{00045\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_objectives()}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ -\/>\ std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \_objectives;}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_pedestrians()\ -\/>\ std::vector<VIPRA::Geometry::Polygon>}
+\DoxyCodeLine{00051\ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \_spawns;}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_areas()}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ -\/>\ std::map<std::string,\ VIPRA::Geometry::Polygon>}
+\DoxyCodeLine{00056\ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \_areas;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_ad27484c86d5c03e343494eff4618bebd}{addLType}}(\textcolor{keyword}{const}\ DRW\_LType\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_aaa97f865d8e41b62e1582800cee8e9e1}{addLayer}}(\textcolor{keyword}{const}\ DRW\_Layer\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a6110c5c5207bc2e35c7fefd86f00ab59}{addDimStyle}}(\textcolor{keyword}{const}\ DRW\_Dimstyle\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_acb99c62bb9994c6effde1ddf3aa1cde7}{addVport}}(\textcolor{keyword}{const}\ DRW\_Vport\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5eb64cedd445f7925ad1b37a677c9db6}{addTextStyle}}(\textcolor{keyword}{const}\ DRW\_Textstyle\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1098e1bc377150d56ff5072a299830db}{addAppId}}(\textcolor{keyword}{const}\ DRW\_AppId\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a0eb3262ded10dfbf52cd299f20bb951e}{addBlock}}(\textcolor{keyword}{const}\ DRW\_Block\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a61b8053a769ab04bd0bf263ffe715773}{setBlock}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ handle)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a8bf3af8279a2da50ec20241475613c1c}{endBlock}}()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a6c1dd8980f8e179fda321865809d94e5}{addPoint}}(\textcolor{keyword}{const}\ DRW\_Point\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a33127283d22bf40d4169cbcd4582c173}{addLine}}(\textcolor{keyword}{const}\ DRW\_Line\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a02ff4ec493454c984af302a6353de2be}{addRay}}(\textcolor{keyword}{const}\ DRW\_Ray\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a7d2edab55658a858cf143ae6cba1454a}{addXline}}(\textcolor{keyword}{const}\ DRW\_Xline\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a51969483b8ae4474ae605ed3127acf5e}{addArc}}(\textcolor{keyword}{const}\ DRW\_Arc\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a78f043a7fca0ffbd0f2b78fbeff36f18}{addCircle}}(\textcolor{keyword}{const}\ DRW\_Circle\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a70dc3abdc9cf8e56b7fbad98f5d78474}{addEllipse}}(\textcolor{keyword}{const}\ DRW\_Ellipse\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_adc6f663084ec315d31f3d48a40354dae}{addLWPolyline}}(\textcolor{keyword}{const}\ DRW\_LWPolyline\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a3e241214f70174b960acf9b571fc8a0c}{addPolyline}}(\textcolor{keyword}{const}\ DRW\_Polyline\&\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ /***************************}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ *\ Unused,\ expand\ as\ needed.}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ **************************/}}
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a99098a9fc69d914790e34044fa47dff9}{addSpline}}(\textcolor{keyword}{const}\ DRW\_Spline*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a3d5dcaba889d84d73d5aa2071b57b3b6}{addKnot}}(\textcolor{keyword}{const}\ DRW\_Entity\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5e1f68cbda25db9cbc14ee6803c511c5}{addInsert}}(\textcolor{keyword}{const}\ DRW\_Insert\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a25ccb5f326b51bcb7256da031d35eb23}{addTrace}}(\textcolor{keyword}{const}\ DRW\_Trace\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a480f5975653a799aa3f127a794ff9294}{add3dFace}}(\textcolor{keyword}{const}\ DRW\_3Dface\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1cdee646364d5dea0ded31ade7816d40}{addSolid}}(\textcolor{keyword}{const}\ DRW\_Solid\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5db6a470f12c569f704893e7867025ec}{addMText}}(\textcolor{keyword}{const}\ DRW\_MText\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1695ecd79411d526e092429fea38830e}{addText}}(\textcolor{keyword}{const}\ DRW\_Text\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a54c1be3e3c7cfbec6ab64fded30368c1}{addDimAlign}}(\textcolor{keyword}{const}\ DRW\_DimAligned*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a31a1ee01e6b3aa0e2f3bb07549879e3e}{addDimLinear}}(\textcolor{keyword}{const}\ DRW\_DimLinear*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a18a6ad7444475e119593c7001c95a0d6}{addDimRadial}}(\textcolor{keyword}{const}\ DRW\_DimRadial*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_adea97c2f7d2b56097861e2a07c0fbed4}{addDimDiametric}}(\textcolor{keyword}{const}\ DRW\_DimDiametric*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_adb79a26f989f7680f354e5c8804b342c}{addDimAngular}}(\textcolor{keyword}{const}\ DRW\_DimAngular*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae3b9811059e68d075b37b8365624772f}{addDimAngular3P}}(\textcolor{keyword}{const}\ DRW\_DimAngular3p*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1f62a705d5e3db0c949680d12feb1e5a}{addDimOrdinate}}(\textcolor{keyword}{const}\ DRW\_DimOrdinate*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a24978bab6bb7f89a1f10c49fb7c39461}{addLeader}}(\textcolor{keyword}{const}\ DRW\_Leader*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a035b7b1cc09bea310d9f43a833ca0112}{addHatch}}(\textcolor{keyword}{const}\ DRW\_Hatch*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a82efa4aea488be1222b3b7ce9cb99e60}{addViewport}}(\textcolor{keyword}{const}\ DRW\_Viewport\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae12e200cc30d191534b33703a714c896}{addImage}}(\textcolor{keyword}{const}\ DRW\_Image*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae5c9f5353356e1bcb1561097755e9fc4}{linkImage}}(\textcolor{keyword}{const}\ DRW\_ImageDef*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_a0a9eb9be705c9e7f27559b1a43b5aebb}{addComment}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ comment)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1DrwReader_adcbe2e7d8333b26a3d4df97c06678402}{addPlotSettings}}(\textcolor{keyword}{const}\ DRW\_PlotSettings*\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{void}\ writeHeader(DRW\_Header\&\ data)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ writeBlocks()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordtype}{void}\ writeBlockRecords()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ writeEntities()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{void}\ writeLTypes()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{void}\ writeLayers()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{void}\ writeTextstyles()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{void}\ writeVports()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{void}\ writeDimstyles()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordtype}{void}\ writeObjects()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordtype}{void}\ writeAppId()\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ /**************************/}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00181\ \ \ std::vector<VIPRA::Geometry::Polygon>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_obstacles;}
+\DoxyCodeLine{00182\ \ \ std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>\ \_objectives;}
+\DoxyCodeLine{00183\ \ \ std::vector<VIPRA::Geometry::Polygon>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_spawns;}
+\DoxyCodeLine{00184\ \ \ std::map<std::string,\ VIPRA::Geometry::Polygon>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \_areas;}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordtype}{void}\ add\_obstacle(\textcolor{keyword}{const}\ std::vector<VIPRA::f3d>\&\ points,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ object\_type);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_polygon(}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ std::vector<std::shared\_ptr<DRW\_Vertex>>\&\ vertexList)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::f3d>;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_2d\_vector\_polygon(}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ std::vector<std::shared\_ptr<DRW\_Vertex2D>>\&\ vertexList)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::f3d>;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_arc\_as\_polygon(}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ DRW\_Coord\ center,\ \textcolor{keywordtype}{double}\ radius,\ \textcolor{keywordtype}{double}\ start\_angle,}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ end\_angle)\ -\/>\ std::vector<VIPRA::f3d>;}
+\DoxyCodeLine{00200\ \};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

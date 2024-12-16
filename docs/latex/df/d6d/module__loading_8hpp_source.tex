@@ -1,0 +1,91 @@
+\doxysection{module\+\_\+loading.\+hpp}
+\hypertarget{module__loading_8hpp_source}{}\label{module__loading_8hpp_source}\index{VIPRA/include/vipra/simulation/module\_loading.hpp@{VIPRA/include/vipra/simulation/module\_loading.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <dlfcn.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/modules.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/special\_modules/parameters.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ module\_t>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ load\_module(std::string\ \textcolor{keyword}{const}\&\ name,\ std::string\ \textcolor{keyword}{const}\&\ installDir,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Modules::Type\ type)}
+\DoxyCodeLine{00021\ \ \ \ \ -\/>\ std::pair<}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::unique\_ptr<std::remove\_cvref\_t<module\_t>>,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ std::function<void(\textcolor{keywordtype}{void}*,\ Parameters\&,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&)>>}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{using\ }mod\_t\ =\ std::remove\_cvref\_t<module\_t>;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{typedef}\ mod\_t*\ (*make\_module)();}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{typedef}\ void\ (*config\_module)(\textcolor{keywordtype}{void}*,\ \mbox{\hyperlink{classVIPRA_1_1Parameters}{VIPRA::Parameters}}\&,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ std::string\ path;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{if}\ (\ type\ ==\ Modules::Type::PedInput\ ||\ type\ ==\ Modules::Type::MapInput\ )}
+\DoxyCodeLine{00034\ \ \ \ \ path\ =\ installDir\ +\ \textcolor{stringliteral}{"{}/input/lib"{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}.so"{}};}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00036\ \ \ \ \ path\ =\ installDir\ +\ \textcolor{charliteral}{'/'}\ +\ Modules::to\_string(type)\ +\ \textcolor{stringliteral}{"{}/lib"{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}.so"{}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (\ !\ std::filesystem::exists(path)\ )\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}{VIPRA::Log::error}}(\textcolor{stringliteral}{"{}No\ Module\ \{\}\ at\ \{\}"{}},\ name,\ path);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Module\ Not\ Found"{}});}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Loading\ Module:\ \{\}\ at\ \{\}"{}},\ name,\ path);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{void}*\ module\ =\ dlopen(path.c\_str(),\ RTLD\_LAZY);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{if}\ (\ module\ ==\ \textcolor{keyword}{nullptr}\ )\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}module\ not\ found\ at:\ "{}}\ <<\ path\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}{VIPRA::Log::error}}(\textcolor{stringliteral}{"{}dlopen\ failed:\ \{\}\(\backslash\)n"{}},\ dlerror());}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unable\ to\ load\ module"{}});}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ NOLINTBEGIN(cppcoreguidelines-\/pro-\/type-\/reinterpret-\/cast)}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{auto}\ func\ =\ \textcolor{keyword}{reinterpret\_cast<}make\_module\textcolor{keyword}{>}(dlsym(module,\ \textcolor{stringliteral}{"{}create\_module"{}}));}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{auto}\ configFunc\ =}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}config\_module\textcolor{keyword}{>}(dlsym(module,\ \textcolor{stringliteral}{"{}setup\_module"{}}));}
+\DoxyCodeLine{00057\ \ \ \textcolor{comment}{//\ NOLINTEND(cppcoreguidelines-\/pro-\/type-\/reinterpret-\/cast)}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (\ func\ ==\ \textcolor{keyword}{nullptr}\ )\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}create\_module\ not\ found\ in:\ "{}}\ <<\ path\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Module\ Missing\ VIPRA\_REGISTER\_MODULE"{}});}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{if}\ (\ configFunc\ ==\ \textcolor{keyword}{nullptr}\ )\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}setup\_module\ not\ found\ in:\ "{}}\ <<\ path\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Module\ Missing\ VIPRA\_REGISTER\_MODULE"{}});}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Creating\ Module"{}});}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ std::unique\_ptr<mod\_t>\ mod(func());}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (\ mod.get()\ ==\ \textcolor{keyword}{nullptr}\ )\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Module\ not\ created\(\backslash\)n"{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unable\ to\ create\ Module"{}});}
+\DoxyCodeLine{00076\ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Returning\ Module"{}});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ \{std::move(mod),}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ std::function<void(void*,\ Parameters\&,\ VIPRA::Random::Engine\&)>(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ configFunc)\};}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

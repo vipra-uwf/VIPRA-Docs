@@ -1,0 +1,17 @@
+\doxysection{performance.\+hpp}
+\hypertarget{performance_8hpp_source}{}\label{performance_8hpp_source}\index{VIPRA/include/vipra/macros/performance.hpp@{VIPRA/include/vipra/macros/performance.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifdef\ VIPRA\_PERF\_TESTING}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ VIPRA\_INLINE}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ VIPRA\_INLINE\ \_\_attribute\_\_((always\_inline))}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

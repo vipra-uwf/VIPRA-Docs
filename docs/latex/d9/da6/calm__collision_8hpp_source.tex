@@ -1,0 +1,311 @@
+\doxysection{calm\+\_\+collision.\+hpp}
+\hypertarget{calm__collision_8hpp_source}{}\label{calm__collision_8hpp_source}\index{VIPRA/modules/model/Calm/calm\_collision.hpp@{VIPRA/modules/model/Calm/calm\_collision.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}calm\_model\_types.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/geometry.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/types/time.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }CALM\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{VIPRA::Geometry::Line}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{VIPRA::Geometry::Rectangle}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCALM_1_1Collision}{Collision}}\ \{}
+\DoxyCodeLine{00018\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{void}\ initialize(\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ goals,\ \mbox{\hyperlink{structCALM_1_1ModelData}{ModelData}}\ \textcolor{keyword}{const}\&\ data)}
+\DoxyCodeLine{00020\ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ raceStatuses\ =\ std::vector<RaceStatus>(pedset.num\_pedestrians(),\ NO\_RACE);}
+\DoxyCodeLine{00022\ \ \ \ \ inRace\ =\ std::vector<std::vector<bool>>(}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ pedset.num\_pedestrians(),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::vector<bool>(pedset.num\_pedestrians(),\ \textcolor{keyword}{false}));}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ intersectionMidpoints\ =\ std::vector<VIPRA::f3dVec>(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ pedset.num\_pedestrians(),\ VIPRA::f3dVec(pedset.num\_pedestrians()));}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ velocityDirections\ =\ VIPRA::f3dVec(pedset.num\_pedestrians());}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ initialize\_rectangles(pedset,\ goals,\ data);}
+\DoxyCodeLine{00032\ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{void}\ race\_detection(\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset,\ \mbox{\hyperlink{structCALM_1_1ModelData}{ModelData}}\ \textcolor{keyword}{const}\&\ data,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ goals,\ VIPRA::timestep\ timestep,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*map*/})}
+\DoxyCodeLine{00037\ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ calc\_collision\_rectangles(pedset,\ goals,\ data);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::size\ pedCnt\ =\ pedset.num\_pedestrians();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ i\ =\ 0;\ i\ <\ pedCnt;\ ++i\ )\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ goals.is\_goal\_met(i)\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ check\ =\ check\_if\_highest\_priority(pedset,\ goals,\ i,\ timestep);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ check\ )\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ raceStatuses[i]\ =\ NO\_RACE;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ raceStatuses[i]\ =\ WAIT;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ initialize\_rectangles(\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ goals,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCALM_1_1ModelData}{ModelData}}\ \textcolor{keyword}{const}\&\ data)}
+\DoxyCodeLine{00056\ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ collisionRectangles\ =\ std::vector<Rectangle>(pedset.num\_pedestrians());}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ shldrs\ =\ data.shoulderLens;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::size\ i\ =\ 0;\ i\ <\ collisionRectangles.size();\ i++\ )\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ coords\ =\ pedset.ped\_coords(i);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goalCoords\ =\ goals.current\_goal(i);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goalDirection\ =\ goalCoords\ -\/\ coords;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ shldr1\ =}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{-\/goalDirection.y,\ goalDirection.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shldrs[i])\ +}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ coords;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ shldr2\ =}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{goalDirection.y,\ -\/goalDirection.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shldrs[i])\ +}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ coords;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ range\ =\ (goalDirection.unit()\ *\ RECTANGLE\_RANGE);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ collisionRectangles[i]\ =}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\{shldr1,\ shldr1\ +\ range,\ shldr2\ +\ range,\ shldr2\};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ status(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ RaceStatus}
+\DoxyCodeLine{00078\ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ raceStatuses[pedIdx];}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ std::vector<RaceStatus>\ \ \ \ \ \ \ \ \ \ \ \ \ \ raceStatuses;}
+\DoxyCodeLine{00083\ \ \ std::vector<Rectangle>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collisionRectangles;}
+\DoxyCodeLine{00084\ \ \ std::vector<std::vector<bool>>\ \ \ \ \ \ \ inRace;}
+\DoxyCodeLine{00085\ \ \ std::vector<std::vector<VIPRA::f3d>>\ intersectionMidpoints;}
+\DoxyCodeLine{00086\ \ \ std::vector<VIPRA::f3d>\ \ \ \ \ \ \ \ \ \ \ \ \ \ velocityDirections;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ VIPRA::size\ \ MAX\_COUNT\ =\ 500;}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ VIPRA::f\_pnt\ MINSPEED\ =\ 0.00000001F;}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ VIPRA::f\_pnt\ RECTANGLE\_RANGE\ =\ 0.4;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{void}\ calc\_collision\_rectangles(\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ goals,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCALM_1_1ModelData}{ModelData}}\ \textcolor{keyword}{const}\&\ data)}
+\DoxyCodeLine{00094\ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ coords\ =\ pedset.all\_coords();}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ velocities\ =\ pedset.all\_velocities();}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ shldrs\ =\ data.shoulderLens;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::size\ pedCnt\ =\ pedset.num\_pedestrians();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ i\ =\ 0;\ i\ <\ pedCnt;\ ++i\ )\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pedVel\ =\ velocities[i];}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ pedVel\ ==\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{\}\ )\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goalCoords\ =\ goals.current\_goal(i);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goalDirection\ =\ goalCoords\ -\/\ coords[i];}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ shldr1\ =}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{-\/goalDirection.y,\ goalDirection.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shldrs[i])\ +}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ coords[i];}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ shldr2\ =}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{goalDirection.y,\ -\/goalDirection.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shldrs[i])\ +}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ coords[i];}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ range\ =\ (goalDirection.unit()\ *\ RECTANGLE\_RANGE);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ collisionRectangles[i]\ =}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\{shldr1,\ shldr1\ +\ range,\ shldr2\ +\ range,\ shldr2\};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\ shoulders\ =\ \mbox{\hyperlink{classCALM_1_1Collision_a49750337bd874d5c9d38273288485a44}{get\_shoulder\_points}}(coords[i],\ pedVel,\ shldrs[i]);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ range\ =\ (pedVel.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ RECTANGLE\_RANGE);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ collisionRectangles[i]\ =}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\{shoulders.start,\ shoulders.start\ +\ range,}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shoulders.end\ +\ range,\ shoulders.end\};}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ add\_intersection\_points(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ start1,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ end1,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ start2,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ end2,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f3dVec\&\ intersectionPoints)}
+\DoxyCodeLine{00131\ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ NOLINTBEGIN(readability-\/identifier-\/length)}}
+\DoxyCodeLine{00133\ \ \ \ \ VIPRA::f\_pnt\ a1\ =\ end1.y\ -\/\ start1.y;}
+\DoxyCodeLine{00134\ \ \ \ \ VIPRA::f\_pnt\ b1\ =\ start1.x\ -\/\ end1.x;}
+\DoxyCodeLine{00135\ \ \ \ \ VIPRA::f\_pnt\ a2\ =\ end2.y\ -\/\ start2.y;}
+\DoxyCodeLine{00136\ \ \ \ \ VIPRA::f\_pnt\ b2\ =\ start2.x\ -\/\ end2.x;}
+\DoxyCodeLine{00137\ \ \ \ \ VIPRA::f\_pnt\ c1\ =\ a1\ *\ start1.x\ +\ b1\ *\ start1.y;}
+\DoxyCodeLine{00138\ \ \ \ \ VIPRA::f\_pnt\ c2\ =\ a2\ *\ start2.x\ +\ b2\ *\ start2.y;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ NOLINTEND(readability-\/identifier-\/length)}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ VIPRA::f\_pnt\ det\ =\ a1\ *\ b2\ -\/\ a2\ *\ b1;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ det\ ==\ 0\ )\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\{start1,\ end1\}.\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a358b9e546d9c70ccf40e4f6a3980fdd3}{is\_point\_on}}(start2)\ )}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ intersectionPoints.push\_back(start2);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\{start1,\ end1\}.\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a358b9e546d9c70ccf40e4f6a3980fdd3}{is\_point\_on}}(end2)\ )}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ intersectionPoints.push\_back(end2);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\{start2,\ end2\}.\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a358b9e546d9c70ccf40e4f6a3980fdd3}{is\_point\_on}}(start1)\ )}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ intersectionPoints.push\_back(start1);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}\{start2,\ end2\}.\mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line_a358b9e546d9c70ccf40e4f6a3980fdd3}{is\_point\_on}}(end1)\ )}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ intersectionPoints.push\_back(start1);}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ VIPRA::f\_pnt\ pointX\{\};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ VIPRA::f\_pnt\ pointY\{\};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ pointX\ =\ (b2\ *\ c1\ -\/\ b1\ *\ c2)\ /\ det;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ pointY\ =\ -\/(a2\ *\ c1\ -\/\ a1\ *\ c2)\ /\ det;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ intersectionPoints.emplace\_back(pointX,\ pointY);}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_collision\_area\_midpoint(}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ VIPRA::idx\ index1,\ VIPRA::idx\ index2)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}}
+\DoxyCodeLine{00164\ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\ \textcolor{keyword}{const}\&\ rec1\ =\ collisionRectangles[index1];}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\ \textcolor{keyword}{const}\&\ rec2\ =\ collisionRectangles[index2];}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ sides1\ =\ rec1.sides();}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ sides2\ =\ rec2.sides();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ VIPRA::f3dVec\ intersectionPoints;}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 4;\ i++\ )\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ 4;\ j++\ )\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ sides1[i].does\_intersect(sides2[j])\ )\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ add\_intersection\_points(sides1[i].start,\ sides1[i].end,}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sides2[j].start,\ sides2[j].end,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intersectionPoints);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ midpoint(0,\ 0,\ 0);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ intersectionPoint\ :\ intersectionPoints\ )\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ midpoint\ +=\ intersectionPoint;}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ midpoint\ /=\ intersectionPoints.size();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ midpoint;}
+\DoxyCodeLine{00189\ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ check\_if\_highest\_priority(}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ goals,\ VIPRA::idx\ pedIdx,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ VIPRA::timestep\ \textcolor{comment}{/*timestep*/})\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00194\ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{auto}\ neighbors\ =\ pedset.all\_neighbors\_within(pedIdx,\ 1);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ flag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ otherIdx\ :\ neighbors\ )\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ otherIdx\ ==\ pedIdx\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ goals.is\_goal\_met(otherIdx)\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ coords1\ =\ pedset.ped\_coords(pedIdx);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ coords2\ =\ pedset.ped\_coords(otherIdx);}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ VIPRA::f\_pnt\ DIST2\ =\ (4\ *\ RECTANGLE\_RANGE\ *\ RECTANGLE\_RANGE);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ coords1.distance\_to\_sqrd(coords2)\ >=\ DIST2\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cr2in1\ =\ collisionRectangles[pedIdx].is\_point\_inside(coords2);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cr1in2\ =\ collisionRectangles[otherIdx].is\_point\_inside(coords1);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goal1\ =\ goals.current\_goal(pedIdx);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ goal2\ =\ goals.current\_goal(otherIdx);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ goals\ don't\ match,\ check\ if\ coordinates\ of\ the\ pedestrians\ are\ in}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \textcolor{comment}{//\ each\ others\ collision\ rectangles}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ goal1\ !=\ goal2\ )\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ cr2in1\ )\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ cr1in2\ )\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ pedestrians\ collide,\ if\ not\ continue\ onto\ next\ passenger}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ collisionCheck\ =\ \mbox{\hyperlink{classCALM_1_1Collision_a7ed96b00981b28155cafd150be069c6a}{check\_if\_collide}}(pedIdx,\ otherIdx);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ collisionCheck\ )\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ inRace[pedIdx][otherIdx]\ )\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ goals\ match,\ use\ distance\ comparision}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ goal1\ ==\ goal2\ )\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ coords1.distance\_to\_sqrd(goal1)\ >}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ coords2.distance\_to\_sqrd(goal2)\ )\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ inRace[pedIdx][otherIdx]\ )\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ goals\ don't\ match,\ use\ collision\ midpoint\ to\ resolve\ race\ condition}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ collisionMidpoint;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ inRace[pedIdx][otherIdx]\ )\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ collisionMidpoint\ =\ get\_collision\_area\_midpoint(pedIdx,\ otherIdx);}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ velocityDirections[pedIdx]\ =\ pedset.ped\_velocity(pedIdx).unit();}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ intersectionMidpoints[pedIdx][otherIdx]\ =\ collisionMidpoint;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ intersectionMidpoints[otherIdx][pedIdx]\ =\ collisionMidpoint;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ inRace[otherIdx][pedIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ inRace[pedIdx][otherIdx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ collisionMidpoint\ =\ intersectionMidpoints[pedIdx][otherIdx];}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ coords1.distance\_to\_sqrd(collisionMidpoint)\ >}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ coords2.distance\_to\_sqrd(collisionMidpoint)\ )}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\ coords1.distance\_to\_sqrd(collisionMidpoint)\ ==}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coords2.distance\_to\_sqrd(collisionMidpoint)\ )\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ pedIdx\ <\ otherIdx\ )\ flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{return}\ flag;}
+\DoxyCodeLine{00283\ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00293\ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classCALM_1_1Collision_a7ed96b00981b28155cafd150be069c6a}{check\_if\_collide}}(VIPRA::idx\ index1,\ VIPRA::idx\ index2)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00294\ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\ \textcolor{keyword}{const}\&\ rect1\ =\ collisionRectangles[index1];}
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}\ \textcolor{keyword}{const}\&\ rect2\ =\ collisionRectangles[index2];}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{return}\ VIPRA::Geometry::do\_intersect(rect1,\ rect2);}
+\DoxyCodeLine{00298\ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00308\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classCALM_1_1Collision_a49750337bd874d5c9d38273288485a44}{get\_shoulder\_points}}(}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\&\ coords,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\&\ velocity,}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ VIPRA::f\_pnt\ shoulderWidth)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}}
+\DoxyCodeLine{00311\ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ velocity\ ==\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{\}\ )\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{0,\ shoulderWidth\}),\ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{0,\ -\/shoulderWidth\})\};}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{-\/velocity.y,\ velocity.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shoulderWidth)\ +\ coords,}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{velocity.y,\ -\/velocity.x\}.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ shoulderWidth)\ +\ coords\};}
+\DoxyCodeLine{00319\ \ \ \}}
+\DoxyCodeLine{00320\ \};}
+\DoxyCodeLine{00321\ \}\ \ \textcolor{comment}{//\ namespace\ CALM}}
+
+\end{DoxyCode}

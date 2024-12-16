@@ -1,0 +1,149 @@
+\doxysection{VIPRA\+::Parameters Class Reference}
+\hypertarget{classVIPRA_1_1Parameters}{}\label{classVIPRA_1_1Parameters}\index{VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Parameters_af8e58953d73fdb789fe45e5b6bf03333}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Clears the parameters, does NOT reset the input module. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad}{register\+\_\+param}} (Modules\+::\+Type module, std\+::string const \&module\+Name, std\+::string const \&param\+Name)
+\begin{DoxyCompactList}\small\item\em Registers a parameter for a module. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Parameters_a25519b3c0cdf2e735a946c3e64560def}{has\+\_\+param}} (Modules\+::\+Type module, std\+::string const \&module\+Name, std\+::string const \&param\+Name) const -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Returns true if the parameter exists, otherwise false. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Parameters_a3b2819c6103bb596dc1b2d0e1c801bf1}{has\+\_\+required\+\_\+param}} (Modules\+::\+Type module, std\+::string const \&module\+Name, std\+::string const \&param\+Name) const -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Returns true if the parameter exists, otherwise false. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Parameters_ae4437dc0679576a10d7feb8fa02c1056}\label{classVIPRA_1_1Parameters_ae4437dc0679576a10d7feb8fa02c1056} 
+auto {\bfseries get\+\_\+input} () -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON}{VIPRA\+::\+Input\+::\+JSON}} \&
+\item 
+\Hypertarget{classVIPRA_1_1Parameters_a62b2d0787aa4766e22f6d847fd2468ed}\label{classVIPRA_1_1Parameters_a62b2d0787aa4766e22f6d847fd2468ed} 
+auto {\bfseries get\+\_\+used\+\_\+parameters} () const -\/$>$ std\+::string
+\item 
+{\footnotesize template$<$typename data\+\_\+t $>$ }\\auto \mbox{\hyperlink{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}{get\+\_\+param}} (Modules\+::\+Type module, std\+::string const \&module\+Name, std\+::string const \&param\+Name, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Random\+::\+Engine}} \&engine) const -\/$>$ std\+::remove\+\_\+cvref\+\_\+t$<$ data\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Returns the value of the parameter if it exists, otherwise throws an error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}\index{VIPRA::Parameters@{VIPRA::Parameters}!get\_param@{get\_param}}
+\index{get\_param@{get\_param}!VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection{\texorpdfstring{get\_param()}{get\_param()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545} 
+template$<$typename data\+\_\+t $>$ \\
+auto VIPRA\+::\+Parameters\+::get\+\_\+param (\begin{DoxyParamCaption}\item[{Modules\+::\+Type}]{module}{, }\item[{std\+::string const \&}]{module\+Name}{, }\item[{std\+::string const \&}]{param\+Name}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Random\+::\+Engine}} \&}]{engine}{}\end{DoxyParamCaption}) const -\/$>$ std\+::remove\+\_\+cvref\+\_\+t$<$data\+\_\+t$>$\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns the value of the parameter if it exists, otherwise throws an error. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em module} & \\
+\hline
+{\em module\+Name} & \\
+\hline
+{\em param\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Parameters_a25519b3c0cdf2e735a946c3e64560def}\index{VIPRA::Parameters@{VIPRA::Parameters}!has\_param@{has\_param}}
+\index{has\_param@{has\_param}!VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection{\texorpdfstring{has\_param()}{has\_param()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Parameters_a25519b3c0cdf2e735a946c3e64560def} 
+auto VIPRA\+::\+Parameters\+::has\+\_\+param (\begin{DoxyParamCaption}\item[{Modules\+::\+Type}]{module}{, }\item[{std\+::string const \&}]{module\+Name}{, }\item[{std\+::string const \&}]{param\+Name}{}\end{DoxyParamCaption}) const -\/$>$ bool\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns true if the parameter exists, otherwise false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module} & \\
+\hline
+{\em module\+Name} & \\
+\hline
+{\em param\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Parameters_a3b2819c6103bb596dc1b2d0e1c801bf1}\index{VIPRA::Parameters@{VIPRA::Parameters}!has\_required\_param@{has\_required\_param}}
+\index{has\_required\_param@{has\_required\_param}!VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection{\texorpdfstring{has\_required\_param()}{has\_required\_param()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Parameters_a3b2819c6103bb596dc1b2d0e1c801bf1} 
+auto VIPRA\+::\+Parameters\+::has\+\_\+required\+\_\+param (\begin{DoxyParamCaption}\item[{Modules\+::\+Type}]{module}{, }\item[{std\+::string const \&}]{module\+Name}{, }\item[{std\+::string const \&}]{param\+Name}{}\end{DoxyParamCaption}) const -\/$>$ bool\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns true if the parameter exists, otherwise false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module} & \\
+\hline
+{\em module\+Name} & \\
+\hline
+{\em param\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad}\index{VIPRA::Parameters@{VIPRA::Parameters}!register\_param@{register\_param}}
+\index{register\_param@{register\_param}!VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection{\texorpdfstring{register\_param()}{register\_param()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad} 
+void VIPRA\+::\+Parameters\+::register\+\_\+param (\begin{DoxyParamCaption}\item[{Modules\+::\+Type}]{module}{, }\item[{std\+::string const \&}]{module\+Name}{, }\item[{std\+::string const \&}]{param\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Registers a parameter for a module. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em module\+\_\+t} & \\
+\hline
+{\em param\+\_\+t} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em module} & \\
+\hline
+{\em module\+Name} & \\
+\hline
+{\em param\+Name} & \\
+\hline
+{\em param} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1Parameters_af8e58953d73fdb789fe45e5b6bf03333}\index{VIPRA::Parameters@{VIPRA::Parameters}!reset@{reset}}
+\index{reset@{reset}!VIPRA::Parameters@{VIPRA::Parameters}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Parameters_af8e58953d73fdb789fe45e5b6bf03333} 
+void VIPRA\+::\+Parameters\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the parameters, does NOT reset the input module. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em VIPRA\+::\+Input\+::\+JSON} & \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/special\+\_\+modules/parameters.\+hpp\item 
+VIPRA/src/parameters.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,129 @@
+\doxysection{VIPRA\+::Map\+::Quad\+Tree Class Reference}
+\hypertarget{classVIPRA_1_1Map_1_1QuadTree}{}\label{classVIPRA_1_1Map_1_1QuadTree}\index{VIPRA::Map::QuadTree@{VIPRA::Map::QuadTree}}
+
+
+Map module that uses a quadtree to store obstacles.  
+
+
+
+
+{\ttfamily \#include $<$quad\+\_\+tree.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Map\+::Quad\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{d8/db9/classVIPRA_1_1Map_1_1QuadTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Map\+::Quad\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{df/dbc/classVIPRA_1_1Map_1_1QuadTree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Map_1_1QuadTree_a8ede3afab8211aa55a145b7e74202374}\label{classVIPRA_1_1Map_1_1QuadTree_a8ede3afab8211aa55a145b7e74202374} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+NAME} ("{}Quad\+Tree"{})
+\item 
+\Hypertarget{classVIPRA_1_1Map_1_1QuadTree_a1d5789c64becee48d2ff84a3167064ab}\label{classVIPRA_1_1Map_1_1QuadTree_a1d5789c64becee48d2ff84a3167064ab} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (Map)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Quad\+Tree $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries obstacle\+\_\+added} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&obstacle)
+\item 
+virtual void {\bfseries objective\+\_\+added} (std\+::string const \&type, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&objective)
+\item 
+virtual void {\bfseries area\+\_\+added} (std\+::string const \&name, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&polygon)
+\item 
+virtual auto {\bfseries collision} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} point) const -\/$>$ bool
+\item 
+virtual auto {\bfseries collision} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle}{VIPRA\+::\+Geometry\+::\+Circle}} const \&radius) const -\/$>$ bool
+\item 
+virtual auto {\bfseries ray\+\_\+hit} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} end) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+void {\bfseries add\+\_\+obstacle} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&obstacle)
+\item 
+void {\bfseries add\+\_\+objective} (std\+::string const \&type, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&objective)
+\item 
+void {\bfseries add\+\_\+spawn} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&spawn)
+\item 
+void {\bfseries add\+\_\+area} (std\+::string const \&name, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&polygon)
+\item 
+auto {\bfseries get\+\_\+objectives} () const -\/$>$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ const \&
+\item 
+auto {\bfseries get\+\_\+objectives} (std\+::string const \&type) const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+auto {\bfseries get\+\_\+dimensions} () const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}
+\item 
+auto {\bfseries get\+\_\+objective\+\_\+types} () const -\/$>$ std\+::vector$<$ std\+::string $>$ const \&
+\item 
+auto {\bfseries get\+\_\+obstacles} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+auto {\bfseries get\+\_\+spawns} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+auto {\bfseries get\+\_\+areas} () const -\/$>$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$
+\item 
+void {\bfseries initialize} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}} \&input)
+\item 
+{\bfseries Map} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&)=default
+\item 
+{\bfseries Map} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&\&) noexcept=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVIPRA_1_1Map_1_1QuadTree_ac6f822d5f91ea080e35b7cd2440b979f}{VIPRA\+\_\+\+MAP\+\_\+\+INIT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries VIPRA\+\_\+\+MAP\+\_\+\+INIT} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Map module that uses a quadtree to store obstacles. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classVIPRA_1_1Map_1_1QuadTree_ac6f822d5f91ea080e35b7cd2440b979f}\index{VIPRA::Map::QuadTree@{VIPRA::Map::QuadTree}!VIPRA\_MAP\_INIT@{VIPRA\_MAP\_INIT}}
+\index{VIPRA\_MAP\_INIT@{VIPRA\_MAP\_INIT}!VIPRA::Map::QuadTree@{VIPRA::Map::QuadTree}}
+\doxysubsubsection{\texorpdfstring{VIPRA\_MAP\_INIT}{VIPRA\_MAP\_INIT}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Map_1_1QuadTree_ac6f822d5f91ea080e35b7cd2440b979f} 
+VIPRA\+::\+Map\+::\+Quad\+Tree\+::\+VIPRA\+\_\+\+MAP\+\_\+\+INIT}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ VIPRA::f\_pnt\ \_obsDistance\{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/map/quad\+\_\+tree/quad\+\_\+tree.\+hpp\end{DoxyCompactItemize}

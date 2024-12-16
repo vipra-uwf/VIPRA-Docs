@@ -1,0 +1,68 @@
+\doxysection{astar.\+hpp}
+\hypertarget{modules_2goals_2astar_2astar_8hpp_source}{}\label{modules_2goals_2astar_2astar_8hpp_source}\index{VIPRA/modules/goals/astar/astar.hpp@{VIPRA/modules/goals/astar/astar.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}pathing\_graph.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/goals.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/module.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/goals.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrians.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }VIPRA::Goals\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Goals_1_1AStar}{AStar}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA::Modules::Module}}<AStar>,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA::Modules::Goals}}\ \{}
+\DoxyCodeLine{00025\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}AStar"{}})}
+\DoxyCodeLine{00027\ \ \ VIPRA\_MODULE\_TYPE(Goals)}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}endGoalType"{}},\ \_endGoalType),}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}goalRange"{}},\ \_goalRange),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}gridSize"{}},\ \_gridSize),}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}closestObstacle"{}},\ \_closestObstacle))}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ VIPRA\_GOALS\_INIT\_STEP;}
+\DoxyCodeLine{00035\ \ \ VIPRA\_GOALS\_UPDATE\_STEP;}
+\DoxyCodeLine{00036\ \ \ VIPRA\_GOALS\_NEXT\_GOAL;}
+\DoxyCodeLine{00037\ \ \ VIPRA\_GOALS\_CHANGE\_GOAL;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ std::string\ \ \_endGoalType;}
+\DoxyCodeLine{00041\ \ \ VIPRA::f\_pnt\ \_goalRange;}
+\DoxyCodeLine{00042\ \ \ VIPRA::f\_pnt\ \_gridSize;}
+\DoxyCodeLine{00043\ \ \ VIPRA::f\_pnt\ \_closestObstacle;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ std::vector<std::vector<VIPRA::f3d>>\ \_paths;}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{PathingGraph}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_graph;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{void}\ set\_end\_goals(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA::Modules::Pedestrians}}\ \textcolor{keyword}{const}\&\ pedset,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ \ \ map,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ engine);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ squash\_path(std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&\ path,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ \textcolor{comment}{/*engine*/})}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ -\/>\ std::vector<f3d>;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_nearest\_goal(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos,\ std::vector<VIPRA::Geometry::Polygon>\ \textcolor{keyword}{const}\&\ goals)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::Geometry::Polygon>::const\_iterator;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ find\_path(VIPRA::idx\ pedIdx,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ startPos,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine);}
+\DoxyCodeLine{00062\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ find\_random\_point(}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA::Geometry::Polygon}}\ \textcolor{keyword}{const}\&,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}};}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Goals}}
+
+\end{DoxyCode}

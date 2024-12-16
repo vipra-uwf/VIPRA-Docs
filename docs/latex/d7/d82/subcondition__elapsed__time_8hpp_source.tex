@@ -1,0 +1,44 @@
+\doxysection{subcondition\+\_\+elapsed\+\_\+time.\+hpp}
+\hypertarget{subcondition__elapsed__time_8hpp_source}{}\label{subcondition__elapsed__time_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_elapsed\_time.hpp@{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_elapsed\_time.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/sub\_condition.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/numeric\_value.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}}\ \{}
+\DoxyCodeLine{00013\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}})}
+\DoxyCodeLine{00014\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}})}
+\DoxyCodeLine{00015\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}})}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{Behaviors::NumericValue}}\ time,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ \ \ \ \ \ \ \ \ \ \ \ \ \ event)}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ :\ \_event(event),\ \_requiredTime(std::move(time))}
+\DoxyCodeLine{00020\ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ operator()(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ std::vector<bool>\&\ met,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ BoolOp\ \textcolor{comment}{/*unused*/});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ VIPRA::idx\ \ \ \ \ \ \ \ \ \ \ \ \ \ \_event\{\};}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{Behaviors::NumericValue}}\ \_requiredTime;}
+\DoxyCodeLine{00030\ \ \ VIPRA::time\_s\ \ \ \ \ \ \ \ \ \ \ \_startTime\{\};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(bugprone-\/easily-\/swappable-\/parameters)}}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ in\_time\_step(VIPRA::time\_s\ \ currTime,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::time\_s\ \ checkTime,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::delta\_t\ deltaT)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00036\ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::delta\_t\ left\ =\ checkTime\ -\/\ deltaT;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::delta\_t\ right\ =\ checkTime\ +\ deltaT;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ (currTime\ >\ left\ \&\&\ currTime\ <\ right);}
+\DoxyCodeLine{00040\ \ \ \}}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

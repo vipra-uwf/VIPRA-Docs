@@ -1,0 +1,97 @@
+\doxysection{dxf.\+hpp}
+\hypertarget{dxf_8hpp_source}{}\label{dxf_8hpp_source}\index{VIPRA/modules/input/dxf/dxf.hpp@{VIPRA/modules/input/dxf/dxf.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_USE\_MATH\_DEFINES}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/module.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map\_input.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/serializable.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}drw\_reader.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ ERRORS:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{0\ \ \ BAD\_NONE}}
+\DoxyCodeLine{00019\ \textcolor{comment}{1\ \ \ BAD\_UNKNOWN}}
+\DoxyCodeLine{00020\ \textcolor{comment}{2\ \ \ BAD\_OPEN}}
+\DoxyCodeLine{00021\ \textcolor{comment}{3\ \ \ BAD\_VERSION}}
+\DoxyCodeLine{00022\ \textcolor{comment}{4\ \ \ BAD\_READ\_METADATA}}
+\DoxyCodeLine{00023\ \textcolor{comment}{5\ \ \ BAD\_READ\_FILE\_HEADER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{6\ \ \ BAD\_READ\_HEADER}}
+\DoxyCodeLine{00025\ \textcolor{comment}{7\ \ \ BAD\_READ\_HANDLES}}
+\DoxyCodeLine{00026\ \textcolor{comment}{8\ \ \ BAD\_READ\_CLASSES}}
+\DoxyCodeLine{00027\ \textcolor{comment}{9\ \ \ BAD\_READ\_TABLES}}
+\DoxyCodeLine{00028\ \textcolor{comment}{10\ \ BAD\_READ\_BLOCKS}}
+\DoxyCodeLine{00029\ \textcolor{comment}{11\ \ BAD\_READ\_ENTITIES}}
+\DoxyCodeLine{00030\ \textcolor{comment}{12\ \ BAD\_READ\_OBJECTS}}
+\DoxyCodeLine{00031\ \textcolor{comment}{13\ \ BAD\_READ\_SECTION}}
+\DoxyCodeLine{00032\ \textcolor{comment}{14\ \ BAD\_CODE\_PARSED}}
+\DoxyCodeLine{00033\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDXF}{DXF}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA::Modules::Module}}<DXF>,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA::Modules::Serializable}},}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA::Modules::MapInput}}\ \{}
+\DoxyCodeLine{00043\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}DXF"{}});}
+\DoxyCodeLine{00045\ \ \ VIPRA\_MODULE\_TYPE(MapInput);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ VIPRA\_REGISTER\_PARAMS()}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDXF_a063cbb92af10469c384fb5dc57b2f5f9}{load}}(std::string\ \textcolor{keyword}{const}\&\ filepath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ TODO(rolland):\ implement}}
+\DoxyCodeLine{00052\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ serialize()\ -\/>\ std::string\ \textcolor{keyword}{override}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};\ \}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parse(std::string\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*data*/})\textcolor{keyword}{\ override\ }\{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classDXF_a515c90b78bee2e61bff9228695d22a01}{get\_obstacles}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classDXF_aa372d3f3936e00717fff47f64905226b}{get\_spawns}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classDXF_a87725300457a1f5b30f06555c33bab83}{get\_objectives}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ -\/>\ std::optional<std::map<}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ std::string,\ std::vector<VIPRA::Geometry::Polygon>>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classDXF_aa0ec3d51780ba8687b9a0fe5062fea17}{get\_areas}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ -\/>\ std::optional<}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_objective\_types(std::vector<std::string>\ \textcolor{keyword}{const}\&\ keys)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ std::optional<std::vector<std::string>>}
+\DoxyCodeLine{00068\ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ keys.size()\ !=\ 1\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ keys[0]\ !=\ \textcolor{stringliteral}{"{}obj\_types"{}}\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<std::string>\ types;}
+\DoxyCodeLine{00073\ \ \ \ \ types.reserve(\_objectives.size());}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ [type,\ coords]\ :\ \_objectives\ )\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ types.push\_back(type);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ \{types\};}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_polygons(}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ std::vector<std::shared\_ptr<DRW\_Vertex>>\&\ vertexList)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ std::filesystem::path\ \_filepath;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>\ \_objectives;}
+\DoxyCodeLine{00090\ \ \ std::vector<VIPRA::Geometry::Polygon>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_obstacles;}
+\DoxyCodeLine{00091\ \ \ std::vector<VIPRA::Geometry::Polygon>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_spawns;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ std::map<std::string,\ VIPRA::Geometry::Polygon>\ \_areas;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{VIPRA::DrwReader}}\ \_drwReader;}
+\DoxyCodeLine{00096\ \};}
+
+\end{DoxyCode}

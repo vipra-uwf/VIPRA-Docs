@@ -1,0 +1,88 @@
+\chapter{Pedestrian Set Implementation}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians}{}\label{md_docs_2pages_2developers_2implementation_2pedestrians}\index{Pedestrian Set Implementation@{Pedestrian Set Implementation}}
+\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md121}%
+\Hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md121}%
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md122}{}\doxysection{\texorpdfstring{Required Methods}{Required Methods}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md122}
+In addition to the \doxysectlink{md_docs_2pages_2developers_2implementation_2module}{Base Module}{0} requirements {\ttfamily Goals} require the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_PEDS\_INIT\_STEP;}
+\DoxyCodeLine{VIPRA\_PEDS\_UPDATE\_STEP;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VIPRA::idx\ closest\_ped(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{VIPRA::idx\ conditional\_closest\_ped(VIPRA::idx\ pedIdx,\ \textcolor{keyword}{auto}\&\&\ condition)\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md123}{}\doxysection{\texorpdfstring{Details}{Details}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md123}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_PEDS\_INIT\_STEP\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md124}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md124}
+
+\begin{DoxyItemize}
+\item {\ttfamily input} -\/ Input module implementation
+\item {\ttfamily map} -\/ Map module implementation
+\item {\ttfamily engine} -\/ \doxysectlink{md_docs_2pages_2developers_2usage_2randomization}{VIPRA Random Engine}{0}
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md125}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md125}
+{\ttfamily NONE}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md126}{}\doxysubsubsection{\texorpdfstring{Expected Results}{Expected Results}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md126}
+The module is ready for use
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_PEDS\_UPDATE\_STEP\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md128}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md128}
+
+\begin{DoxyItemize}
+\item {\ttfamily state} \+: VIPRA\+::\+State\& -\/ out parameter, updated positions/velocities of pedestrians
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md129}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md129}
+{\ttfamily NONE}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md130}{}\doxysubsubsection{\texorpdfstring{Expected Results}{Expected Results}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md130}
+The module is ready to correctly return results for its required methods
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA::idx\ closest\_ped\_impl(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md132}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md132}
+
+\begin{DoxyItemize}
+\item {\ttfamily ped\+Idx} \+: VIPRA\+::idx -\/ index of pedestrian to find the nearest neighbor of
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md133}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md133}
+{\ttfamily VIPRA\+::idx} -\/ index of pedestrian nearest pedestrian ped\+Idx\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md134}{}\doxysubsubsection{\texorpdfstring{Expected Results}{Expected Results}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md134}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA::idx\ conditional\_closest\_ped\_impl(VIPRA::idx\ pedIdx,\ \textcolor{keyword}{auto}\&\&\ condition)\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md136}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md136}
+
+\begin{DoxyItemize}
+\item {\ttfamily ped\+Idx} \+: VIPRA\+::idx -\/ index of pedestrian to find the nearest neighbor of
+\item {\ttfamily condition} \+: bool(\+VIPRA\+::idx) -\/ callable that returns true if the condition matches a given pedestrian
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md137}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md137}
+{\ttfamily VIPRA\+::idx} -\/ index of pedestrian nearest pedestrian ped\+Idx that matches the condition\hypertarget{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md138}{}\doxysubsubsection{\texorpdfstring{Expected Results}{Expected Results}}\label{md_docs_2pages_2developers_2implementation_2pedestrians_autotoc_md138}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+ 

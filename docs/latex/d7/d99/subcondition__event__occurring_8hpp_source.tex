@@ -1,0 +1,45 @@
+\doxysection{subcondition\+\_\+event\+\_\+occurring.\+hpp}
+\hypertarget{subcondition__event__occurring_8hpp_source}{}\label{subcondition__event__occurring_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event\_occurring.hpp@{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event\_occurring.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/sub\_condition.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/behavior\_context.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/events/event.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}}\ \{}
+\DoxyCodeLine{00012\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}})}
+\DoxyCodeLine{00013\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}})}
+\DoxyCodeLine{00014\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}})}
+\DoxyCodeLine{00015\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}}(VIPRA::idx\ event,\ \textcolor{keywordtype}{bool}\ negate)}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ :\ \_event(event),\ \_negate(negate)}
+\DoxyCodeLine{00018\ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{void}\ operator()(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ \textcolor{comment}{/*unused*/},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ std::vector<bool>\&\ met,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ BoolOp\ \textcolor{comment}{/*unused*/})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_negate\ )\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ std::fill(met.begin(),\ met.end(),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ pack.context.events[\_event].is\_occurring());}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ std::fill(met.begin(),\ met.end(),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pack.context.events[\_event].is\_occurring());}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ VIPRA::idx\ \_event;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \_negate\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

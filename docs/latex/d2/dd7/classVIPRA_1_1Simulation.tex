@@ -1,0 +1,97 @@
+\doxysection{VIPRA\+::Simulation Class Reference}
+\hypertarget{classVIPRA_1_1Simulation}{}\label{classVIPRA_1_1Simulation}\index{VIPRA::Simulation@{VIPRA::Simulation}}
+
+
+Inheritance diagram for VIPRA\+::Simulation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{dd/d61/classVIPRA_1_1Simulation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Simulation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{da/dca/classVIPRA_1_1Simulation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a9ee302ca5e69a9725dbda84bba869f4e}\label{classVIPRA_1_1Simulation_a9ee302ca5e69a9725dbda84bba869f4e} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+NAME} ("{}main"{})
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_aa323e8d24b07edc4643e44921a954dc1}\label{classVIPRA_1_1Simulation_aa323e8d24b07edc4643e44921a954dc1} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (\mbox{\hyperlink{classVIPRA_1_1Simulation}{Simulation}})
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a745275b5b8e82832cb7079b929cac8d8}\label{classVIPRA_1_1Simulation_a745275b5b8e82832cb7079b929cac8d8} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}max\+\_\+timestep"{}, \+\_\+max\+Timestep), VIPRA\+\_\+\+PARAM("{}timestep\+\_\+size"{}, \+\_\+timestep\+Size), VIPRA\+\_\+\+PARAM("{}output\+\_\+frequency"{}, \+\_\+output\+Frequency), VIPRA\+\_\+\+PARAM("{}random\+\_\+seed"{}, \+\_\+seed), VIPRA\+\_\+\+PARAM("{}output\+\_\+params"{}, \+\_\+output\+Params))
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_ab2e26a0b55bb8a82d084e1f74eada704}\label{classVIPRA_1_1Simulation_ab2e26a0b55bb8a82d084e1f74eada704} 
+void {\bfseries run\+\_\+sim} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&params)
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Simulation_a6804a45fdcd5a9c73c021ad00523f59b}{operator()}} (std\+::string const \&ped\+Path, std\+::string const \&map\+Path, std\+::string const \&params\+Path)
+\begin{DoxyCompactList}\small\item\em Runs the simulation with the given parameters. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Simulation_adcc41b6f8e4ed83a222810de0f8df42a}\label{classVIPRA_1_1Simulation_adcc41b6f8e4ed83a222810de0f8df42a} 
+void {\bfseries set\+\_\+install\+\_\+dir} (std\+::string const \&dir)
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a422cf77be042a8db07301627943a6d25}\label{classVIPRA_1_1Simulation_a422cf77be042a8db07301627943a6d25} 
+void {\bfseries set\+\_\+module} (Modules\+::\+Type type, std\+::string const \&name)
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a29b403ed67a85901a9f1bd04a9ab5a76}\label{classVIPRA_1_1Simulation_a29b403ed67a85901a9f1bd04a9ab5a76} 
+void {\bfseries set\+\_\+modules} (std\+::string const \&modules\+Path)
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a8d0c2283f597add20fc1092ea623bd73}\label{classVIPRA_1_1Simulation_a8d0c2283f597add20fc1092ea623bd73} 
+void {\bfseries set\+\_\+sim\+\_\+id} (VIPRA\+::idx idx)
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a38d9a5a2d3a716ca12088f588def1ec9}\label{classVIPRA_1_1Simulation_a38d9a5a2d3a716ca12088f588def1ec9} 
+void {\bfseries add\+\_\+sim\+\_\+id} (VIPRA\+::idx idx)
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a600498cb845d81ca7e9e0a2902c4d03d}\label{classVIPRA_1_1Simulation_a600498cb845d81ca7e9e0a2902c4d03d} 
+auto {\bfseries get\+\_\+sim\+\_\+id} () const -\/$>$ VIPRA\+::idx
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_a5dfc72a8870e7d9d613e495016fe67a9}\label{classVIPRA_1_1Simulation_a5dfc72a8870e7d9d613e495016fe67a9} 
+auto {\bfseries get\+\_\+ped\+\_\+input} () -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Modules\+::\+Pedestrian\+Input}} \&
+\item 
+\Hypertarget{classVIPRA_1_1Simulation_af97b43e63d8fa82c4f41afa34828cf3f}\label{classVIPRA_1_1Simulation_af97b43e63d8fa82c4f41afa34828cf3f} 
+auto {\bfseries get\+\_\+map\+\_\+input} () -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Modules\+::\+Map\+Input}} \&
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Simulation $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Simulation_a6804a45fdcd5a9c73c021ad00523f59b}\index{VIPRA::Simulation@{VIPRA::Simulation}!operator()@{operator()}}
+\index{operator()@{operator()}!VIPRA::Simulation@{VIPRA::Simulation}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Simulation_a6804a45fdcd5a9c73c021ad00523f59b} 
+void VIPRA\+::\+Simulation\+::operator() (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{ped\+Path}{, }\item[{std\+::string const \&}]{map\+Path}{, }\item[{std\+::string const \&}]{params\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Runs the simulation with the given parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & parameter module to use for the simulation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+output\+\_\+data\+\_\+t Tuple of the output data 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/simulation/sim\+\_\+type.\+hpp\item 
+VIPRA/src/sim\+\_\+type.\+cpp\end{DoxyCompactItemize}

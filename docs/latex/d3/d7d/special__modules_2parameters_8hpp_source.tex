@@ -1,0 +1,141 @@
+\doxysection{parameters.\+hpp}
+\hypertarget{special__modules_2parameters_8hpp_source}{}\label{special__modules_2parameters_8hpp_source}\index{VIPRA/include/vipra/special\_modules/parameters.hpp@{VIPRA/include/vipra/special\_modules/parameters.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/input/json.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/modules.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/random/distributions.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ TODO(rolland):\ Check\ that\ all\ required\ parameters\ are\ provided\ (maybe\ not\ needed,\ they\ are\ checked\ when\ the\ module\ tries\ to\ get\ it)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#26\ No\ way\ of\ checking\ what\ a\ parameter\ was,\ once\ get\_param\ is\ called\ the\ random\ engine\ moves\ on}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ this\ is\ needed\ for\ outputing\ the\ parameters\ used\ in\ a\ simulation\ run}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\ \{}
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_af8e58953d73fdb789fe45e5b6bf03333}{reset}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad}{register\_param}}(Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_a25519b3c0cdf2e735a946c3e64560def}{has\_param}}(Modules::Type\ \ \ \ \ \ module,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName)\ \textcolor{keyword}{const}\ -\/>\ bool;}
+\DoxyCodeLine{00031\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_a3b2819c6103bb596dc1b2d0e1c801bf1}{has\_required\_param}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName)\ \textcolor{keyword}{const}\ -\/>\ bool;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_input()\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON}{VIPRA::Input::JSON}}\&\ \{\ \textcolor{keywordflow}{return}\ \_input;\ \}}
+\DoxyCodeLine{00036\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_used\_parameters()\ \textcolor{keyword}{const}\ -\/>\ std::string}
+\DoxyCodeLine{00037\ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ \_usedParameters.dump();}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00042\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}{get\_param}}(}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Random::Engine}}\&\ \ \ \ engine)\ \textcolor{keyword}{const}\ -\/>\ std::remove\_cvref\_t<data\_t>;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON}{VIPRA::Input::JSON}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_input;}
+\DoxyCodeLine{00049\ \ \ std::map<Modules::Type,\ std::map<std::string,\ std::set<std::string>>>\ \_params;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ TODO(rolland,\ issue\ \#26):\ mutable\ is\ disgusting,\ but\ currently\ needed\ to\ keep\ get\_param\ const\ while\ still\ recording\ the\ parameters\ used.}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{mutable}\ nlohmann::json\ \_usedParameters;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ array\_t>}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{auto}\ get\_array\_param(Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName)\ \textcolor{keyword}{const}\ -\/>\ array\_t;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ contains(Modules::Type\ \ \ \ \ \ module,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00061\ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \_params.contains(module)\ \&\&}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \_params.at(module).contains(moduleName)\ \&\&}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \_params.at(module).at(moduleName).contains(paramName);}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ record\_param(Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \_usedParameters[to\_string(module)][moduleName][paramName]\ =\ value;}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}{Parameters::get\_param}}(Modules::Type\ module,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Random::Engine}}\&\ engine)}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ std::remove\_cvref\_t<data\_t>}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{using\ }param\_t\ =\ std::remove\_cvref\_t<data\_t>;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ std::string\ moduleStr\ =\ to\_string(module);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{comment}{//\ Check\ that\ the\ parameter\ was\ registered}}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{if}\ (\ !\ contains(module,\ moduleName,\ paramName)\ )\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Parameter:\ "{}}\ +\ paramName\ +\ \textcolor{stringliteral}{"{}\ For\ "{}}\ +}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_string(module)\ +\ \textcolor{stringliteral}{"{}\ Module:\ "{}}\ +\ moduleName\ +}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ Not\ Registered"{}});}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{comment}{//\ load\ the\ value\ of\ the\ parameter}}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{auto}\ value\ =\ std::optional<param\_t>\{\};}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \mbox{\hyperlink{structVIPRA_1_1Util_1_1is__specialization}{Util::is\_specialization<param\_t,\ std::vector>::value}}\ )\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ the\ parameter\ is\ supposed\ to\ be\ an\ array,\ load\ it\ as\ such}}
+\DoxyCodeLine{00111\ \ \ \ \ value\ =\ get\_array\_param<param\_t>(module,\ moduleName,\ paramName);}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ the\ parameter\ is\ meant\ to\ be\ a\ single\ value,\ follow\ parameter\ randomization\ rules}}
+\DoxyCodeLine{00115\ \ \ \ \ value\ =\ \_input.get\_param<param\_t>(moduleStr,\ moduleName,\ paramName,\ engine);}
+\DoxyCodeLine{00116\ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.has\_value()\ )\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ parameter\ value\ wasn't\ found,\ throw}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Required\ Parameter:\ "{}}\ +\ paramName\ +\ \textcolor{stringliteral}{"{}\ For\ "{}}\ +}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_string(module)\ +\ \textcolor{stringliteral}{"{}\ Module:\ "{}}\ +\ moduleName\ +}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ Not\ Provided\ In\ Input"{}});}
+\DoxyCodeLine{00123\ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ record\_param(module,\ moduleName,\ paramName,\ value.value());}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{return}\ param\_t\{std::move(value.value())\};}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ array\_t>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{auto}\ Parameters::get\_array\_param(Modules::Type\ \ \ \ \ \ module,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName)\ \textcolor{keyword}{const}\ -\/>\ array\_t}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ std::string\ moduleStr\ =\ to\_string(module);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordflow}{if}\ (\ !\ contains(module,\ moduleName,\ paramName)\ )}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Parameter:\ "{}}\ +\ paramName\ +\ \textcolor{stringliteral}{"{}\ For\ "{}}\ +}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_string(module)\ +\ \textcolor{stringliteral}{"{}\ Module:\ "{}}\ +\ moduleName\ +}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ Not\ Registered"{}});}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{auto}\ value\ =\ \_input.get<array\_t>(\{moduleStr,\ moduleName,\ paramName\});}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.has\_value()\ )\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Required\ Parameter:\ "{}}\ +\ paramName\ +\ \textcolor{stringliteral}{"{}\ For\ "{}}\ +}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_string(module)\ +\ \textcolor{stringliteral}{"{}\ Module:\ "{}}\ +\ moduleName\ +}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ Not\ Provided\ In\ Input"{}});}
+\DoxyCodeLine{00157\ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordflow}{return}\ value.value();}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

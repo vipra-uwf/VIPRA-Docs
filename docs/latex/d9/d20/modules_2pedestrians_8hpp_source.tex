@@ -1,0 +1,254 @@
+\doxysection{pedestrians.\+hpp}
+\hypertarget{modules_2pedestrians_8hpp_source}{}\label{modules_2pedestrians_8hpp_source}\index{VIPRA/include/vipra/modules/pedestrians.hpp@{VIPRA/include/vipra/modules/pedestrians.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/circle.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/errors.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/module.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/module.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrian\_input.hpp"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}vipra/random/distributions.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}vipra/types/size.hpp"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}vipra/types/state.hpp"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/pedestrians.hpp"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule}{BaseModule}}<Pedestrians>\ \{}
+\DoxyCodeLine{00036\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{virtual}\ VIPRA\_PEDS\_INIT\_STEP\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{virtual}\ VIPRA\_PEDS\_UPDATE\_STEP\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{auto}\ all\_neighbors\_within(VIPRA::idx\ \ \ pedIdx,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f\_pnt\ radius)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ -\/>\ std::vector<VIPRA::idx>\ =\ 0;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{auto}\ closest\_ped(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ -\/>\ VIPRA::idx\ =\ 0;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{auto}\ conditional\_closest\_ped(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ VIPRA::idx\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pedIdx,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(VIPRA::idx)>\ \textcolor{keyword}{const}\&\ condition)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::idx\ =\ 0;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ VIPRA\_MODULE\_TYPE(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ VIPRA\_REGISTER\_BASE\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}random\_count"{}},\ \_randomPedCnt),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}spawn\_random"{}},\ \_randomSpawn),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}use\_file"{}},\ \_useFile))}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{void}\ initialize(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA::Modules::PedestrianInput}}\&\ input,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)}
+\DoxyCodeLine{00058\ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Initializing\ Pedestrians"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ (\_randomSpawn\ ||\ \_useFile)\ )}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ VIPRA\_BASE\_MODULE\_ERROR(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians"{}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Random\ spawning\ AND\ Using\ the\ pedestrian\ file\ input\ is\ turned\ off\ "{}}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}in\ parameters\ (Cannot\ Add\ any\ "{}}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians,\ "{}}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}one\ needs\ to\ be\ true)"{}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ init\_specific\_peds(input);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_randomSpawn\ \&\&\ \_randomPedCnt\ >\ 0\ )\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ init\_random\_peds(map,\ engine);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_coords.size()\ ==\ 0\ )}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ VIPRA\_BASE\_MODULE\_ERROR(\textcolor{stringliteral}{"{}Pedestrians"{}},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ Pedestrians\ added\ to\ simulation"{}});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ assert(\_coords.size()\ >\ 0);}
+\DoxyCodeLine{00079\ \ \ \ \ assert(\_coords.size()\ ==\ \_velocities.size());}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ init\_step(map,\ engine);}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Pedestrians\ Initialized"{}});}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ update(\mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\ \textcolor{keyword}{const}\&\ state)}
+\DoxyCodeLine{00086\ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ update\_step(state);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ pedIdx\ =\ 0;\ pedIdx\ <\ state.size();\ ++pedIdx\ )\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \_coords[pedIdx]\ =\ state.positions[pedIdx];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \_velocities[pedIdx]\ =\ state.velocities[pedIdx];}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ distance(VIPRA::idx\ firstPed,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ secondPed)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00097\ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ \_coords[firstPed].distance\_to(\_coords[secondPed]);}
+\DoxyCodeLine{00099\ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ num\_pedestrians()\ \textcolor{keyword}{const}\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00102\ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ \_coords.size();}
+\DoxyCodeLine{00104\ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ ped\_coords(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00107\ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ assert(pedIdx\ <\ \_coords.size());}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \_coords[pedIdx];}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ all\_coords()\ \textcolor{keyword}{const}\ -\/>\ std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00114\ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \_coords;}
+\DoxyCodeLine{00116\ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ ped\_velocity(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00119\ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ assert(pedIdx\ <\ \_velocities.size());}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{return}\ \_velocities[pedIdx];}
+\DoxyCodeLine{00122\ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ all\_velocities()\ \textcolor{keyword}{const}\ -\/>\ std::vector<VIPRA::f3d>\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00125\ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ \_velocities;}
+\DoxyCodeLine{00127\ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00130\ \ \ VIPRA::f3dVec\ \_coords;}
+\DoxyCodeLine{00131\ \ \ VIPRA::f3dVec\ \_velocities;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{size\_t}\ \_randomPedCnt\{0\};}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{bool}\ \ \ \_randomSpawn\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{bool}\ \ \ \_useFile\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ set\_velocities(VIPRA::f3dVec\ \textcolor{keyword}{const}\&\ velocities)}
+\DoxyCodeLine{00139\ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \_velocities\ =\ velocities;}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ set\_velocities(VIPRA::f3dVec\&\&\ velocities)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00143\ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \_velocities\ =\ velocities;}
+\DoxyCodeLine{00145\ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordtype}{void}\ set\_coordinates(VIPRA::f3dVec\ \textcolor{keyword}{const}\&\ coordinates)}
+\DoxyCodeLine{00148\ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \_coords\ =\ coordinates;}
+\DoxyCodeLine{00150\ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{void}\ set\_coordinates(VIPRA::f3dVec\&\&\ coordinates)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00152\ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \_coords\ =\ coordinates;}
+\DoxyCodeLine{00154\ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_velocities()\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f3dVec\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00157\ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ \_velocities;}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_coordinates()\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f3dVec\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00161\ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ \_coords;}
+\DoxyCodeLine{00163\ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{void}\ init\_random\_peds(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ \ \ \ \ engine)}
+\DoxyCodeLine{00167\ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#45\ handle\ spawn\ points}}
+\DoxyCodeLine{00169\ \ \ \ \ assert(\_coords.size()\ ==\ \_velocities.size());}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{auto}\ spawnAreas\ =\ map.get\_spawns();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ spawnAreas.size()\ ==\ 0\ )\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4}{VIPRA::Log::warn}}(}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{\}\ Pedestrians\ were\ set\ to\ spawn\ randomly,\ but\ no\ spawn\ areas\ were\ "{}}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}provided\ in\ the\ map"{}},}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \_randomPedCnt);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ startSize\ =\ \_coords.size();}
+\DoxyCodeLine{00181\ \ \ \ \ \_coords.resize(\_coords.size()\ +\ \_randomPedCnt);}
+\DoxyCodeLine{00182\ \ \ \ \ \_velocities.resize(\_velocities.size()\ +\ \_randomPedCnt);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1uniform__distribution}{VIPRA::Random::uniform\_distribution<size\_t>}}\ polyDist\{0,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spawnAreas.size()\ -\/\ 1\};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ go\ through\ each\ pedestrian\ and\ give\ them\ a\ random\ point\ inside\ one\ of\ the\ spawn\ points}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ startSize;\ i\ <\ \_coords.size();\ ++i\ )\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ VIPRA::idx\ spawnIdx\ =\ polyDist(engine);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \_coords[i]\ =\ find\_random\_point(spawnAreas[spawnIdx],\ map,\ engine);}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}\{\}\ pedestrians\ added\ randomly\ to\ \{\}\ spawn\ areas"{}},}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_randomPedCnt,\ spawnAreas.size());}
+\DoxyCodeLine{00196\ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \textcolor{keywordtype}{void}\ init\_specific\_peds(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA::Modules::PedestrianInput}}\&\ input)}
+\DoxyCodeLine{00199\ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ \_useFile\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{auto}\ coords\ =\ input.get\_pedestrians();}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ (coords\ ||\ \_randomSpawn)\ )}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ VIPRA\_BASE\_MODULE\_ERROR(}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians"{}},}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Could\ not\ find\ pedestrian\ coordinates\ in\ input\ file\ and\ random\ "{}}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}spawning\ is\ turned\ off\ (No\ "{}}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians\ Added)"{}});}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ coords\ )}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4}{VIPRA::Log::warn}}(}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians\ were\ set\ to\ be\ loaded\ from\ a\ file,\ but\ no\ coordinates\ "{}}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}could\ be\ loaded"{}});}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}\{\}\ pedestrians\ added\ at\ \{\}\ specific\ spots"{}},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*coords).size(),\ (*coords).size());}
+\DoxyCodeLine{00217\ \ \ \ \ set\_coordinates(std::move(*coords));}
+\DoxyCodeLine{00218\ \ \ \ \ set\_velocities(std::vector<VIPRA::f3d>(\_coords.size()));}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ find\_random\_point(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA::Geometry::Polygon}}\ \textcolor{keyword}{const}\&\ polygon,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ map,}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ \ \ \ \ \ \ \ \ \ engine)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00224\ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ MAX\_RETRIES\ =\ 20;}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ retries\ =\ 0;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ point\ =\ polygon.random\_point(engine);}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{while}\ (\ map.collision(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle}{Geometry::Circle}}\{point,\ 0.3\})\ )\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ point\ =\ polygon.random\_point(engine);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ ++retries;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ retries\ >\ MAX\_RETRIES\ )\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ VIPRA\_BASE\_MODULE\_ERROR(}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Pedestrians"{}},}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Unable\ to\ obtain\ a\ point\ in\ the\ spawn\ area\ centered\ at\ (\{\},\ \{\}).\ "{}}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Make\ sure\ all\ spawn\ areas\ are\ outside\ of\ obstacles."{}},}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ polygon.center().x,\ polygon.center().y);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00242\ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{\string~Pedestrians}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00246\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00247\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\ \textcolor{keyword}{const}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00249\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\ \textcolor{keyword}{const}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00250\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\&\&)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00251\ \};}
+\DoxyCodeLine{00252\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

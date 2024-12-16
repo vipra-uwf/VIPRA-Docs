@@ -1,0 +1,443 @@
+\doxysection{VIPRA\+::Drw\+Reader Class Reference}
+\hypertarget{classVIPRA_1_1DrwReader}{}\label{classVIPRA_1_1DrwReader}\index{VIPRA::DrwReader@{VIPRA::DrwReader}}
+
+
+Inheritance diagram for VIPRA\+::Drw\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{d1/dde/classVIPRA_1_1DrwReader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Drw\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{dd/d4a/classVIPRA_1_1DrwReader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a50398ca30552e570b4407303145167a2}\label{classVIPRA_1_1DrwReader_a50398ca30552e570b4407303145167a2} 
+{\bfseries Drw\+Reader} (const \mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ae4d5a7fb3f8372b97ea92ea0c606316d}\label{classVIPRA_1_1DrwReader_ae4d5a7fb3f8372b97ea92ea0c606316d} 
+{\bfseries Drw\+Reader} (\mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&\&)=default
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_adef5c4ea2364600f0fc8a74e6f43dafc}\label{classVIPRA_1_1DrwReader_adef5c4ea2364600f0fc8a74e6f43dafc} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a028849b5f5ff85ce8c1795bae8aff1fa}\label{classVIPRA_1_1DrwReader_a028849b5f5ff85ce8c1795bae8aff1fa} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1DrwReader}{Drw\+Reader}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a9762cac16bd099319fb7460193f09afd}\label{classVIPRA_1_1DrwReader_a9762cac16bd099319fb7460193f09afd} 
+auto {\bfseries get\+\_\+vipra\+\_\+polygons} () const -\/$>$ const std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ \&
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a9aef497b2b0faa9097659d7a902a5a8b}\label{classVIPRA_1_1DrwReader_a9aef497b2b0faa9097659d7a902a5a8b} 
+auto {\bfseries get\+\_\+vipra\+\_\+goals} () -\/$>$ const std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ \&
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a1f629131e41735ce17993507a5706e13}\label{classVIPRA_1_1DrwReader_a1f629131e41735ce17993507a5706e13} 
+auto {\bfseries get\+\_\+vipra\+\_\+pedestrians} () -\/$>$ const std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ \&
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a58a24ad0c84f8c8ddbc8a61f70ee99ad}{add\+Header}} (const DRW\+\_\+\+Header \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_acf171cd7b4e4dd0bee193e7b744247bc}\label{classVIPRA_1_1DrwReader_acf171cd7b4e4dd0bee193e7b744247bc} 
+auto {\bfseries get\+\_\+obstacles} () -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a7a33dedb1f2eb0c1afc450c139988ed6}\label{classVIPRA_1_1DrwReader_a7a33dedb1f2eb0c1afc450c139988ed6} 
+auto {\bfseries get\+\_\+objectives} () -\/$>$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a8693de042d69cfa198ced40f4c8875bd}\label{classVIPRA_1_1DrwReader_a8693de042d69cfa198ced40f4c8875bd} 
+auto {\bfseries get\+\_\+pedestrians} () -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ae922dc1631c4db2a3b51224dbfed4da1}\label{classVIPRA_1_1DrwReader_ae922dc1631c4db2a3b51224dbfed4da1} 
+auto {\bfseries get\+\_\+areas} () -\/$>$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_ad27484c86d5c03e343494eff4618bebd}{add\+LType}} (const DRW\+\_\+\+LType \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_aaa97f865d8e41b62e1582800cee8e9e1}{add\+Layer}} (const DRW\+\_\+\+Layer \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a6110c5c5207bc2e35c7fefd86f00ab59}{add\+Dim\+Style}} (const DRW\+\_\+\+Dimstyle \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_acb99c62bb9994c6effde1ddf3aa1cde7}{add\+Vport}} (const DRW\+\_\+\+Vport \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5eb64cedd445f7925ad1b37a677c9db6}{add\+Text\+Style}} (const DRW\+\_\+\+Textstyle \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1098e1bc377150d56ff5072a299830db}{add\+App\+Id}} (const DRW\+\_\+\+App\+Id \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a0eb3262ded10dfbf52cd299f20bb951e}{add\+Block}} (const DRW\+\_\+\+Block \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a61b8053a769ab04bd0bf263ffe715773}{set\+Block}} (const int handle) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a8bf3af8279a2da50ec20241475613c1c}{end\+Block}} () override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a6c1dd8980f8e179fda321865809d94e5}{add\+Point}} (const DRW\+\_\+\+Point \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a33127283d22bf40d4169cbcd4582c173}{add\+Line}} (const DRW\+\_\+\+Line \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a02ff4ec493454c984af302a6353de2be}{add\+Ray}} (const DRW\+\_\+\+Ray \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a7d2edab55658a858cf143ae6cba1454a}{add\+Xline}} (const DRW\+\_\+\+Xline \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a51969483b8ae4474ae605ed3127acf5e}{add\+Arc}} (const DRW\+\_\+\+Arc \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a78f043a7fca0ffbd0f2b78fbeff36f18}{add\+Circle}} (const DRW\+\_\+\+Circle \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a70dc3abdc9cf8e56b7fbad98f5d78474}{add\+Ellipse}} (const DRW\+\_\+\+Ellipse \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_adc6f663084ec315d31f3d48a40354dae}{add\+LWPolyline}} (const DRW\+\_\+\+LWPolyline \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a3e241214f70174b960acf9b571fc8a0c}{add\+Polyline}} (const DRW\+\_\+\+Polyline \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a99098a9fc69d914790e34044fa47dff9}{add\+Spline}} (const DRW\+\_\+\+Spline \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a3d5dcaba889d84d73d5aa2071b57b3b6}{add\+Knot}} (const DRW\+\_\+\+Entity \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5e1f68cbda25db9cbc14ee6803c511c5}{add\+Insert}} (const DRW\+\_\+\+Insert \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a25ccb5f326b51bcb7256da031d35eb23}{add\+Trace}} (const DRW\+\_\+\+Trace \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a480f5975653a799aa3f127a794ff9294}{add3d\+Face}} (const DRW\+\_\+3\+Dface \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1cdee646364d5dea0ded31ade7816d40}{add\+Solid}} (const DRW\+\_\+\+Solid \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a5db6a470f12c569f704893e7867025ec}{add\+MText}} (const DRW\+\_\+\+MText \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1695ecd79411d526e092429fea38830e}{add\+Text}} (const DRW\+\_\+\+Text \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a54c1be3e3c7cfbec6ab64fded30368c1}{add\+Dim\+Align}} (const DRW\+\_\+\+Dim\+Aligned \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a31a1ee01e6b3aa0e2f3bb07549879e3e}{add\+Dim\+Linear}} (const DRW\+\_\+\+Dim\+Linear \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a18a6ad7444475e119593c7001c95a0d6}{add\+Dim\+Radial}} (const DRW\+\_\+\+Dim\+Radial \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_adea97c2f7d2b56097861e2a07c0fbed4}{add\+Dim\+Diametric}} (const DRW\+\_\+\+Dim\+Diametric \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_adb79a26f989f7680f354e5c8804b342c}{add\+Dim\+Angular}} (const DRW\+\_\+\+Dim\+Angular \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae3b9811059e68d075b37b8365624772f}{add\+Dim\+Angular3P}} (const DRW\+\_\+\+Dim\+Angular3p \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a1f62a705d5e3db0c949680d12feb1e5a}{add\+Dim\+Ordinate}} (const DRW\+\_\+\+Dim\+Ordinate \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a24978bab6bb7f89a1f10c49fb7c39461}{add\+Leader}} (const DRW\+\_\+\+Leader \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a035b7b1cc09bea310d9f43a833ca0112}{add\+Hatch}} (const DRW\+\_\+\+Hatch \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a82efa4aea488be1222b3b7ce9cb99e60}{add\+Viewport}} (const DRW\+\_\+\+Viewport \&data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae12e200cc30d191534b33703a714c896}{add\+Image}} (const DRW\+\_\+\+Image \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_ae5c9f5353356e1bcb1561097755e9fc4}{link\+Image}} (const DRW\+\_\+\+Image\+Def \texorpdfstring{$\ast$}{*}data) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_a0a9eb9be705c9e7f27559b1a43b5aebb}{add\+Comment}} (const char \texorpdfstring{$\ast$}{*}comment) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1DrwReader_adcbe2e7d8333b26a3d4df97c06678402}{add\+Plot\+Settings}} (const DRW\+\_\+\+Plot\+Settings \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a7cbb701c9f01148c1e4d7405bfdd81cb}\label{classVIPRA_1_1DrwReader_a7cbb701c9f01148c1e4d7405bfdd81cb} 
+void {\bfseries write\+Header} (DRW\+\_\+\+Header \&data) override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_aaa6fe8f1a63cbfcedbad228573df3cff}\label{classVIPRA_1_1DrwReader_aaa6fe8f1a63cbfcedbad228573df3cff} 
+void {\bfseries write\+Blocks} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ae5a34afeb39bf6adc807c7a67176ecfc}\label{classVIPRA_1_1DrwReader_ae5a34afeb39bf6adc807c7a67176ecfc} 
+void {\bfseries write\+Block\+Records} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a39f3f1359e93659952538336ca731e18}\label{classVIPRA_1_1DrwReader_a39f3f1359e93659952538336ca731e18} 
+void {\bfseries write\+Entities} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_aedc18f1ce0dab5c4074eb65703af6994}\label{classVIPRA_1_1DrwReader_aedc18f1ce0dab5c4074eb65703af6994} 
+void {\bfseries write\+LTypes} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a33d4ba12d4798a678de41521aaafd5ce}\label{classVIPRA_1_1DrwReader_a33d4ba12d4798a678de41521aaafd5ce} 
+void {\bfseries write\+Layers} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ac1435175c68a52483d680c144939aa1f}\label{classVIPRA_1_1DrwReader_ac1435175c68a52483d680c144939aa1f} 
+void {\bfseries write\+Textstyles} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ad8d9db42f8db6e93ee5c53e5a3a8be14}\label{classVIPRA_1_1DrwReader_ad8d9db42f8db6e93ee5c53e5a3a8be14} 
+void {\bfseries write\+Vports} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a72f5cc2222ced64dc0f11cdbc451aecf}\label{classVIPRA_1_1DrwReader_a72f5cc2222ced64dc0f11cdbc451aecf} 
+void {\bfseries write\+Dimstyles} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a67c8c8f9e2ff5fc7e44ea7eb66f2ae8a}\label{classVIPRA_1_1DrwReader_a67c8c8f9e2ff5fc7e44ea7eb66f2ae8a} 
+void {\bfseries write\+Objects} () override
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_a4f6d315bb463a591dd7fb823fdae82a4}\label{classVIPRA_1_1DrwReader_a4f6d315bb463a591dd7fb823fdae82a4} 
+void {\bfseries write\+App\+Id} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1DrwReader_ad671a631db375e2ae848637742a537cb}\label{classVIPRA_1_1DrwReader_ad671a631db375e2ae848637742a537cb} 
+static const int {\bfseries NUM\+\_\+\+SUBDIVISIONS} = 126
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1DrwReader_a480f5975653a799aa3f127a794ff9294}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!add3dFace@{add3dFace}}
+\index{add3dFace@{add3dFace}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{add3dFace()}{add3dFace()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a480f5975653a799aa3f127a794ff9294} 
+void VIPRA\+::\+Drw\+Reader\+::add3d\+Face (\begin{DoxyParamCaption}\item[{const DRW\+\_\+3\+Dface \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every 3dface start \Hypertarget{classVIPRA_1_1DrwReader_a1098e1bc377150d56ff5072a299830db}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addAppId@{addAppId}}
+\index{addAppId@{addAppId}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addAppId()}{addAppId()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a1098e1bc377150d56ff5072a299830db} 
+void VIPRA\+::\+Drw\+Reader\+::add\+App\+Id (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+App\+Id \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every App\+Id entry. \Hypertarget{classVIPRA_1_1DrwReader_a51969483b8ae4474ae605ed3127acf5e}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addArc@{addArc}}
+\index{addArc@{addArc}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addArc()}{addArc()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a51969483b8ae4474ae605ed3127acf5e} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Arc (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Arc \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every arc \Hypertarget{classVIPRA_1_1DrwReader_a0eb3262ded10dfbf52cd299f20bb951e}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addBlock@{addBlock}}
+\index{addBlock@{addBlock}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addBlock()}{addBlock()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a0eb3262ded10dfbf52cd299f20bb951e} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Block (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Block \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every block. Note\+: all entities added after this command go into this block until end\+Block() is called.
+
+\begin{DoxySeeAlso}{See also}
+end\+Block() 
+\end{DoxySeeAlso}
+\Hypertarget{classVIPRA_1_1DrwReader_a78f043a7fca0ffbd0f2b78fbeff36f18}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addCircle@{addCircle}}
+\index{addCircle@{addCircle}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addCircle()}{addCircle()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a78f043a7fca0ffbd0f2b78fbeff36f18} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Circle (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Circle \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every circle \Hypertarget{classVIPRA_1_1DrwReader_a0a9eb9be705c9e7f27559b1a43b5aebb}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addComment@{addComment}}
+\index{addComment@{addComment}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addComment()}{addComment()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a0a9eb9be705c9e7f27559b1a43b5aebb} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Comment (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{comment}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every comment in the DXF file (code 999). \Hypertarget{classVIPRA_1_1DrwReader_a54c1be3e3c7cfbec6ab64fded30368c1}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimAlign@{addDimAlign}}
+\index{addDimAlign@{addDimAlign}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimAlign()}{addDimAlign()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a54c1be3e3c7cfbec6ab64fded30368c1} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Align (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Aligned \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every aligned dimension entity. \Hypertarget{classVIPRA_1_1DrwReader_adb79a26f989f7680f354e5c8804b342c}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimAngular@{addDimAngular}}
+\index{addDimAngular@{addDimAngular}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimAngular()}{addDimAngular()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_adb79a26f989f7680f354e5c8804b342c} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Angular (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Angular \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every angular dimension (2 lines version) entity. \Hypertarget{classVIPRA_1_1DrwReader_ae3b9811059e68d075b37b8365624772f}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimAngular3P@{addDimAngular3P}}
+\index{addDimAngular3P@{addDimAngular3P}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimAngular3P()}{addDimAngular3P()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_ae3b9811059e68d075b37b8365624772f} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Angular3P (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Angular3p \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every angular dimension (3 points version) entity. \Hypertarget{classVIPRA_1_1DrwReader_adea97c2f7d2b56097861e2a07c0fbed4}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimDiametric@{addDimDiametric}}
+\index{addDimDiametric@{addDimDiametric}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimDiametric()}{addDimDiametric()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_adea97c2f7d2b56097861e2a07c0fbed4} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Diametric (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Diametric \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every diametric dimension entity. \Hypertarget{classVIPRA_1_1DrwReader_a31a1ee01e6b3aa0e2f3bb07549879e3e}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimLinear@{addDimLinear}}
+\index{addDimLinear@{addDimLinear}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimLinear()}{addDimLinear()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a31a1ee01e6b3aa0e2f3bb07549879e3e} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Linear (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Linear \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every linear or rotated dimension entity. \Hypertarget{classVIPRA_1_1DrwReader_a1f62a705d5e3db0c949680d12feb1e5a}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimOrdinate@{addDimOrdinate}}
+\index{addDimOrdinate@{addDimOrdinate}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimOrdinate()}{addDimOrdinate()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a1f62a705d5e3db0c949680d12feb1e5a} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Ordinate (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Ordinate \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every ordinate dimension entity. \Hypertarget{classVIPRA_1_1DrwReader_a18a6ad7444475e119593c7001c95a0d6}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimRadial@{addDimRadial}}
+\index{addDimRadial@{addDimRadial}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimRadial()}{addDimRadial()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a18a6ad7444475e119593c7001c95a0d6} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Radial (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dim\+Radial \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every radial dimension entity. \Hypertarget{classVIPRA_1_1DrwReader_a6110c5c5207bc2e35c7fefd86f00ab59}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addDimStyle@{addDimStyle}}
+\index{addDimStyle@{addDimStyle}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addDimStyle()}{addDimStyle()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a6110c5c5207bc2e35c7fefd86f00ab59} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Dim\+Style (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Dimstyle \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every dim style. \Hypertarget{classVIPRA_1_1DrwReader_a70dc3abdc9cf8e56b7fbad98f5d78474}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addEllipse@{addEllipse}}
+\index{addEllipse@{addEllipse}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addEllipse()}{addEllipse()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a70dc3abdc9cf8e56b7fbad98f5d78474} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Ellipse (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Ellipse \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every ellipse \Hypertarget{classVIPRA_1_1DrwReader_a035b7b1cc09bea310d9f43a833ca0112}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addHatch@{addHatch}}
+\index{addHatch@{addHatch}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addHatch()}{addHatch()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a035b7b1cc09bea310d9f43a833ca0112} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Hatch (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Hatch \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every hatch entity. \Hypertarget{classVIPRA_1_1DrwReader_a58a24ad0c84f8c8ddbc8a61f70ee99ad}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addHeader@{addHeader}}
+\index{addHeader@{addHeader}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addHeader()}{addHeader()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a58a24ad0c84f8c8ddbc8a61f70ee99ad} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Header (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Header \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called when header is parsed. ~\newline
+ \Hypertarget{classVIPRA_1_1DrwReader_ae12e200cc30d191534b33703a714c896}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addImage@{addImage}}
+\index{addImage@{addImage}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addImage()}{addImage()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_ae12e200cc30d191534b33703a714c896} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Image (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Image \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every image entity. \Hypertarget{classVIPRA_1_1DrwReader_a5e1f68cbda25db9cbc14ee6803c511c5}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addInsert@{addInsert}}
+\index{addInsert@{addInsert}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addInsert()}{addInsert()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a5e1f68cbda25db9cbc14ee6803c511c5} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Insert (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Insert \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every insert. \Hypertarget{classVIPRA_1_1DrwReader_a3d5dcaba889d84d73d5aa2071b57b3b6}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addKnot@{addKnot}}
+\index{addKnot@{addKnot}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addKnot()}{addKnot()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a3d5dcaba889d84d73d5aa2071b57b3b6} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Knot (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Entity \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every spline knot value \Hypertarget{classVIPRA_1_1DrwReader_aaa97f865d8e41b62e1582800cee8e9e1}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addLayer@{addLayer}}
+\index{addLayer@{addLayer}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addLayer()}{addLayer()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_aaa97f865d8e41b62e1582800cee8e9e1} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Layer (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Layer \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every layer. \Hypertarget{classVIPRA_1_1DrwReader_a24978bab6bb7f89a1f10c49fb7c39461}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addLeader@{addLeader}}
+\index{addLeader@{addLeader}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addLeader()}{addLeader()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a24978bab6bb7f89a1f10c49fb7c39461} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Leader (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Leader \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every leader start. \Hypertarget{classVIPRA_1_1DrwReader_a33127283d22bf40d4169cbcd4582c173}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addLine@{addLine}}
+\index{addLine@{addLine}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addLine()}{addLine()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a33127283d22bf40d4169cbcd4582c173} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Line (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Line \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every line \Hypertarget{classVIPRA_1_1DrwReader_ad27484c86d5c03e343494eff4618bebd}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addLType@{addLType}}
+\index{addLType@{addLType}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addLType()}{addLType()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_ad27484c86d5c03e343494eff4618bebd} 
+void VIPRA\+::\+Drw\+Reader\+::add\+LType (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+LType \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every line Type. ~\newline
+ \Hypertarget{classVIPRA_1_1DrwReader_adc6f663084ec315d31f3d48a40354dae}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addLWPolyline@{addLWPolyline}}
+\index{addLWPolyline@{addLWPolyline}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addLWPolyline()}{addLWPolyline()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_adc6f663084ec315d31f3d48a40354dae} 
+void VIPRA\+::\+Drw\+Reader\+::add\+LWPolyline (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+LWPolyline \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every lwpolyline \Hypertarget{classVIPRA_1_1DrwReader_a5db6a470f12c569f704893e7867025ec}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addMText@{addMText}}
+\index{addMText@{addMText}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addMText()}{addMText()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a5db6a470f12c569f704893e7867025ec} 
+void VIPRA\+::\+Drw\+Reader\+::add\+MText (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+MText \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every Multi Text entity. \Hypertarget{classVIPRA_1_1DrwReader_adcbe2e7d8333b26a3d4df97c06678402}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addPlotSettings@{addPlotSettings}}
+\index{addPlotSettings@{addPlotSettings}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addPlotSettings()}{addPlotSettings()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_adcbe2e7d8333b26a3d4df97c06678402} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Plot\+Settings (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Plot\+Settings \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for PLOTSETTINGS object definition. \Hypertarget{classVIPRA_1_1DrwReader_a6c1dd8980f8e179fda321865809d94e5}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addPoint@{addPoint}}
+\index{addPoint@{addPoint}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addPoint()}{addPoint()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a6c1dd8980f8e179fda321865809d94e5} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Point (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Point \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every point \Hypertarget{classVIPRA_1_1DrwReader_a3e241214f70174b960acf9b571fc8a0c}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addPolyline@{addPolyline}}
+\index{addPolyline@{addPolyline}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addPolyline()}{addPolyline()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a3e241214f70174b960acf9b571fc8a0c} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Polyline (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Polyline \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every polyline start \Hypertarget{classVIPRA_1_1DrwReader_a02ff4ec493454c984af302a6353de2be}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addRay@{addRay}}
+\index{addRay@{addRay}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addRay()}{addRay()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a02ff4ec493454c984af302a6353de2be} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Ray (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Ray \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every ray \Hypertarget{classVIPRA_1_1DrwReader_a1cdee646364d5dea0ded31ade7816d40}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addSolid@{addSolid}}
+\index{addSolid@{addSolid}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addSolid()}{addSolid()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a1cdee646364d5dea0ded31ade7816d40} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Solid (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Solid \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every solid start \Hypertarget{classVIPRA_1_1DrwReader_a99098a9fc69d914790e34044fa47dff9}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addSpline@{addSpline}}
+\index{addSpline@{addSpline}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addSpline()}{addSpline()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a99098a9fc69d914790e34044fa47dff9} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Spline (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Spline \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every spline \Hypertarget{classVIPRA_1_1DrwReader_a1695ecd79411d526e092429fea38830e}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addText@{addText}}
+\index{addText@{addText}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addText()}{addText()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a1695ecd79411d526e092429fea38830e} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Text (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Text \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every Text entity. \Hypertarget{classVIPRA_1_1DrwReader_a5eb64cedd445f7925ad1b37a677c9db6}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addTextStyle@{addTextStyle}}
+\index{addTextStyle@{addTextStyle}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addTextStyle()}{addTextStyle()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a5eb64cedd445f7925ad1b37a677c9db6} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Text\+Style (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Textstyle \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every text style. \Hypertarget{classVIPRA_1_1DrwReader_a25ccb5f326b51bcb7256da031d35eb23}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addTrace@{addTrace}}
+\index{addTrace@{addTrace}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addTrace()}{addTrace()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a25ccb5f326b51bcb7256da031d35eb23} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Trace (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Trace \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every trace start \Hypertarget{classVIPRA_1_1DrwReader_a82efa4aea488be1222b3b7ce9cb99e60}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addViewport@{addViewport}}
+\index{addViewport@{addViewport}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addViewport()}{addViewport()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a82efa4aea488be1222b3b7ce9cb99e60} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Viewport (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Viewport \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every viewport entity. \Hypertarget{classVIPRA_1_1DrwReader_acb99c62bb9994c6effde1ddf3aa1cde7}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addVport@{addVport}}
+\index{addVport@{addVport}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addVport()}{addVport()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_acb99c62bb9994c6effde1ddf3aa1cde7} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Vport (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Vport \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every VPORT table. \Hypertarget{classVIPRA_1_1DrwReader_a7d2edab55658a858cf143ae6cba1454a}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!addXline@{addXline}}
+\index{addXline@{addXline}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{addXline()}{addXline()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a7d2edab55658a858cf143ae6cba1454a} 
+void VIPRA\+::\+Drw\+Reader\+::add\+Xline (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Xline \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Called for every xline \Hypertarget{classVIPRA_1_1DrwReader_a8bf3af8279a2da50ec20241475613c1c}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!endBlock@{endBlock}}
+\index{endBlock@{endBlock}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{endBlock()}{endBlock()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a8bf3af8279a2da50ec20241475613c1c} 
+void VIPRA\+::\+Drw\+Reader\+::end\+Block (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called to end the current block \Hypertarget{classVIPRA_1_1DrwReader_ae5c9f5353356e1bcb1561097755e9fc4}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!linkImage@{linkImage}}
+\index{linkImage@{linkImage}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{linkImage()}{linkImage()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_ae5c9f5353356e1bcb1561097755e9fc4} 
+void VIPRA\+::\+Drw\+Reader\+::link\+Image (\begin{DoxyParamCaption}\item[{const DRW\+\_\+\+Image\+Def \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+Called for every image definition. \Hypertarget{classVIPRA_1_1DrwReader_a61b8053a769ab04bd0bf263ffe715773}\index{VIPRA::DrwReader@{VIPRA::DrwReader}!setBlock@{setBlock}}
+\index{setBlock@{setBlock}!VIPRA::DrwReader@{VIPRA::DrwReader}}
+\doxysubsubsection{\texorpdfstring{setBlock()}{setBlock()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1DrwReader_a61b8053a769ab04bd0bf263ffe715773} 
+void VIPRA\+::\+Drw\+Reader\+::set\+Block (\begin{DoxyParamCaption}\item[{const int}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+In DWG called when the following entities corresponding to a block different from the current. Note\+: all entities added after this command go into this block until set\+Block() is called already.
+
+int handle are the value of DRW\+\_\+\+Block\+::handle\+Block added with add\+Block() 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/input/dxf/drw\+\_\+reader.\+hpp\item 
+VIPRA/modules/input/dxf/drw\+\_\+reader.\+cpp\end{DoxyCompactItemize}

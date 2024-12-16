@@ -1,0 +1,36 @@
+\doxysection{sub\+\_\+condition.\+hpp}
+\hypertarget{sub__condition_8hpp_source}{}\label{sub__condition_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/conditions/sub\_condition.hpp@{VIPRA/include/vipra/vipra\_behaviors/conditions/sub\_condition.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{enum\ class}\ BoolOp\ \{\ AND,\ OR\ \};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ short\_circuit(VIPRA::idx\ idx,\ std::vector<bool>\&\ met,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ prevMet,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BoolOp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oper)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (\ oper\ ==\ BoolOp::AND\ \&\&\ !\ prevMet[idx]\ )\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ met[idx]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{if}\ (\ oper\ ==\ BoolOp::OR\ \&\&\ prevMet[idx]\ )\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ met[idx]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00032\ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{using\ }SubCondition\ =\ std::function<void(}
+\DoxyCodeLine{00038\ \ \ \ \ Simpack,\ VIPRA::idxVec\ \textcolor{keyword}{const}\&,\ std::vector<Target>\ \textcolor{keyword}{const}\&,}
+\DoxyCodeLine{00039\ \ \ \ \ std::vector<bool>\&,\ std::vector<bool>\ \textcolor{keyword}{const}\&,\ BoolOp)>;}
+\DoxyCodeLine{00040\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

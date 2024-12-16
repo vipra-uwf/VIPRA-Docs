@@ -1,0 +1,16 @@
+\doxysection{has\+\_\+parameters.\+hpp}
+\hypertarget{has__parameters_8hpp_source}{}\label{has__parameters_8hpp_source}\index{VIPRA/include/vipra/concepts/has\_parameters.hpp@{VIPRA/include/vipra/concepts/has\_parameters.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/is\_void.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Concepts\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00007\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1has__parameters}{has\_parameters}}\ =\ \textcolor{keyword}{requires}(class\_t\ instance)\ \{}
+\DoxyCodeLine{00008\ \ \ \{\ instance.module\_params()\ \};}
+\DoxyCodeLine{00009\ \};}
+\DoxyCodeLine{00010\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Concepts}}
+
+\end{DoxyCode}

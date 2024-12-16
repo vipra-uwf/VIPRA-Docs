@@ -1,0 +1,169 @@
+\chapter{base\+\_\+modules}
+\hypertarget{md_docs_2pages_2researchers_2base__modules}{}\label{md_docs_2pages_2researchers_2base__modules}\index{base\_modules@{base\_modules}}
+\texorpdfstring{$\vert$}{|} \doxylink{index_md_docs_2docs}{Main Page} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2parameters}{Module Parameters}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md181}{}\doxysection{\texorpdfstring{Included Modules}{Included Modules}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md181}
+There are several modules included with VIPRA.
+
+{\bfseries{Model}}\+:
+\begin{DoxyItemize}
+\item Calm Model
+\end{DoxyItemize}
+
+{\bfseries{Goals}}\+:
+\begin{DoxyItemize}
+\item AStar
+\end{DoxyItemize}
+
+{\bfseries{Map}}\+:
+\begin{DoxyItemize}
+\item Quad\+Tree
+\end{DoxyItemize}
+
+{\bfseries{Pedestrian Set}}\+:
+\begin{DoxyItemize}
+\item Grid
+\end{DoxyItemize}
+
+{\bfseries{Input}}\+:
+\begin{DoxyItemize}
+\item JSON
+\end{DoxyItemize}
+
+{\bfseries{Output}}\+:
+\begin{DoxyItemize}
+\item JSON
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md183}{}\doxysection{\texorpdfstring{Models}{Models}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md183}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md184}{}\doxysubsection{\texorpdfstring{Calm Model}{Calm Model}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md184}
+This {\ttfamily Model} module implements the \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229690}{\texttt{ Calm Model}}\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md185}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md185}
+
+\begin{DoxyItemize}
+\item {\ttfamily mean\+Mass} \+: Mean mass for population
+\item {\ttfamily mass\+Std\+Dev} \+: Standard Deviation for mass
+\item {\ttfamily mean\+Reaction\+Time} \+: Mean reaction time for population
+\item {\ttfamily reaction\+Time\+Std\+Dev} \+: Standard Deviation for reaction time
+\item {\ttfamily mean\+Max\+Speed} \+: Mean max speed for population
+\item {\ttfamily max\+Speed\+Std\+Dev} \+: Standard deviation for max speed
+\item {\ttfamily mean\+Shoulder\+Len} \+: Mean shoulder length for population
+\item {\ttfamily shoulder\+Len\+Std\+Dev} \+: Standard deviation for shoulder length ~\newline
+
+\end{DoxyItemize}
+
+In {\bfseries{module\+\_\+params.\+json}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}model"{}:\ \{}
+\DoxyCodeLine{\ \ "{}calm"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}meanMass"{}:\ 1.0,}
+\DoxyCodeLine{\ \ \ \ "{}massStdDev"{}:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ "{}meanReactionTime"{}:\ 0.5,}
+\DoxyCodeLine{\ \ \ \ "{}reactionTimeStdDev"{}:\ 0.05,}
+\DoxyCodeLine{\ \ \ \ "{}meanMaxSpeed"{}:\ 1.0,}
+\DoxyCodeLine{\ \ \ \ "{}meanShoulderLen"{}:\ 0.2,}
+\DoxyCodeLine{\ \ \ \ "{}maxSpeedStdDev"{}:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ "{}shoulderLenStdDev"{}:\ 0.05}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\},}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md187}{}\doxysection{\texorpdfstring{Goals}{Goals}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md187}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md188}{}\doxysubsection{\texorpdfstring{AStar Goals}{AStar Goals}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md188}
+This {\ttfamily Goals} module uses the A\texorpdfstring{$\ast$}{*} algorithm to find paths for each pedestrian.\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md189}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md189}
+
+\begin{DoxyItemize}
+\item {\ttfamily end\+Goal\+Type} \+: Name of object in map each pedestrian tries to reach (e.\+g. "{}exit"{})
+\item {\ttfamily goal\+Range} \+: Range, in meters, before a goal is counted as "{}reached"{} (e.\+g. 0.\+05)
+\item {\ttfamily grid\+Size} \+: Length of each side, in meters, of each grid in the pathing graph (e.\+g. 0.\+1)
+\item {\ttfamily closest\+Obstacle} \+: Closest a grid center can be to an obstacle before being considered non-\/traversable
+\end{DoxyItemize}
+
+In {\bfseries{module\+\_\+params.\+json}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}goals"{}:\ \{}
+\DoxyCodeLine{\ \ "{}AStar"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ endGoalType:\ "{}exit"{},}
+\DoxyCodeLine{\ \ \ \ goalRange:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ gridSize:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ closestObstacle:\ 0.35}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\},}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md191}{}\doxysection{\texorpdfstring{Maps}{Maps}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md191}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md192}{}\doxysubsection{\texorpdfstring{Quad\+Tree Map}{Quad\+Tree Map}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md192}
+This {\ttfamily Map} module uses the Quad Tree to hold the map geometry.\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md193}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md193}
+
+\begin{DoxyItemize}
+\item {\ttfamily min\+Quad\+Size} \+: Size at which quads stop being subdivided
+\end{DoxyItemize}
+
+In {\bfseries{module\+\_\+params.\+json}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}map"{}:\ \{}
+\DoxyCodeLine{\ \ "{}QuadTree"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}minQuadSize"{}:\ 0.05}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\},}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md195}{}\doxysection{\texorpdfstring{Pedestrian Sets}{Pedestrian Sets}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md195}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md196}{}\doxysubsection{\texorpdfstring{Grid Pedestrian Set}{Grid Pedestrian Set}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md196}
+This {\ttfamily Pedestrian Set} module holds pedestrians in a grid of cells, allowing for more efficient lookup of nearest neighbors\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md197}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md197}
+
+\begin{DoxyItemize}
+\item {\ttfamily grid\+Size}\+: Size of each grid cell
+\end{DoxyItemize}
+
+In {\bfseries{module\+\_\+params.\+json}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}pedestrians"{}:\ \{}
+\DoxyCodeLine{\ \ "{}Grid"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}gridSize"{}:\ 0.5}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\},}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md198}{}\doxysection{\texorpdfstring{Inputs}{Inputs}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md198}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md199}{}\doxysubsection{\texorpdfstring{JSON Input}{JSON Input}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md199}
+This {\ttfamily Input} module loads JSON data, using \href{https://github.com/nlohmann/json}{\texttt{ nlohmann JSON}}.
+
+For importing maps, it is recommended to use the DXF module. More information on how to use .dxf files in your project can be found here.\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md200}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md200}
+
+\begin{DoxyItemize}
+\item NONE
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md202}{}\doxysection{\texorpdfstring{Outputs}{Outputs}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md202}
+\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md203}{}\doxysubsection{\texorpdfstring{Trajectories\+Json Output}{Trajectories\+Json Output}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md203}
+This {\ttfamily Output} module creates a JSON file containing the positions of each pedestrian for each timestep that matches the output frequency in the simulation module parameters.\hypertarget{md_docs_2pages_2researchers_2base__modules_autotoc_md204}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{md_docs_2pages_2researchers_2base__modules_autotoc_md204}
+
+\begin{DoxyItemize}
+\item {\ttfamily filename}\+: Name of the output file
+\end{DoxyItemize}
+
+In {\bfseries{module\+\_\+params.\+json}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}output"{}:\ \{}
+\DoxyCodeLine{\ \ "{}coordinator"{}:\ \{\ \ //\ Output\ is\ special\ in\ that\ it\ has\ a\ coordinator\ for\ when\ there\ are\ multiple\ output\ modules}
+\DoxyCodeLine{\ \ \ \ "{}output\_dir"{}:\ "{}./sim\_output"{}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}TrajectoriesJson"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}filename"{}:\ "{}trajectories.json"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\},}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+ 

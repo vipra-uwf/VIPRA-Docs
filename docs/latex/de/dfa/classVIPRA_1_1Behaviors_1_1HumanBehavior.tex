@@ -1,0 +1,115 @@
+\doxysection{VIPRA\+::Behaviors\+::Human\+Behavior Class Reference}
+\hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior}{}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior}\index{VIPRA::Behaviors::HumanBehavior@{VIPRA::Behaviors::HumanBehavior}}
+
+
+{\ttfamily \#include $<$human\+\_\+behavior.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a1ae6e06823a94c09ade55f76d6c3e5c9}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a1ae6e06823a94c09ade55f76d6c3e5c9} 
+{\bfseries Human\+Behavior} (std\+::string behavior\+Name)
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior_a85c09951c230a1a56a53efc518d381c1}{initialize}} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules\+::\+Goals}} \&goals)
+\begin{DoxyCompactList}\small\item\em initializes behavior selector \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior_ae3d26c7d0c4fcfa794d95dc4a5ecf079}{timestep}} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} \&map, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules\+::\+Goals}} \&goals, \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} \&state, VIPRA\+::delta\+\_\+t deltaT)
+\begin{DoxyCompactList}\small\item\em Evaluates behavior events, and performs actions of pedestrians. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_aa315fae73c7415ee2b075487dc927c12}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_aa315fae73c7415ee2b075487dc927c12} 
+void {\bfseries set\+\_\+all\+\_\+ped\+\_\+types} (\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}} types)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a8ab7053224408710160a67845f567e0a}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a8ab7053224408710160a67845f567e0a} 
+void {\bfseries add\+\_\+sub\+\_\+selector} (auto const \&sub\+Selector)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_aaa4881a0635052f3f1dc79cbb0dafaa1}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_aaa4881a0635052f3f1dc79cbb0dafaa1} 
+void {\bfseries add\+\_\+action} (type\+UID type, auto const \&action)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a74f8bf85be7efc45b2c6c44a13654508}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a74f8bf85be7efc45b2c6c44a13654508} 
+auto {\bfseries add\+\_\+event} (\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Event}{Event}} const \&evnt) -\/$>$ VIPRA\+::idx
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a67a1f89cce642c5cced1eefc37e114fe}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a67a1f89cce642c5cced1eefc37e114fe} 
+auto {\bfseries add\+\_\+location} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Location}} const \&loc) -\/$>$ VIPRA\+::idx
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a169314bde3c9ae345e4825ba57aadfb5}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a169314bde3c9ae345e4825ba57aadfb5} 
+void {\bfseries add\+\_\+objectives} (std\+::string const \&name, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Geometry\+::\+Polygon}} $>$ const \&locations)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a97669de65e1aade602cabf1cc49b4cfb}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a97669de65e1aade602cabf1cc49b4cfb} 
+auto {\bfseries get\+\_\+name} () const noexcept -\/$>$ std\+::string const \&
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_abbf39e9d992ef0d2486b9d0a0f3f105b}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_abbf39e9d992ef0d2486b9d0a0f3f105b} 
+auto {\bfseries event\+\_\+count} () const noexcept -\/$>$ VIPRA\+::size
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_af1bbe460cfefe6519b811d44609076b6}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_af1bbe460cfefe6519b811d44609076b6} 
+auto {\bfseries location\+\_\+count} () const noexcept -\/$>$ VIPRA\+::size
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_ad009d43a8e1b3ce2c2443d7c1d51c595}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_ad009d43a8e1b3ce2c2443d7c1d51c595} 
+auto {\bfseries selector\+\_\+count} () noexcept -\/$>$ VIPRA\+::size
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a327c557665e48be8134e94a504fca97b}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a327c557665e48be8134e94a504fca97b} 
+auto {\bfseries action\+\_\+count} () const noexcept -\/$>$ VIPRA\+::size
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a445641c0206a54a1553fda9d4837457b}\label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a445641c0206a54a1553fda9d4837457b} 
+void {\bfseries set\+\_\+seed} (VIPRA\+::seed seed)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Describes a specific human behavior. Implementations can either define the behavior directly in C++ or use a DSL. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_a85c09951c230a1a56a53efc518d381c1}\index{VIPRA::Behaviors::HumanBehavior@{VIPRA::Behaviors::HumanBehavior}!initialize@{initialize}}
+\index{initialize@{initialize}!VIPRA::Behaviors::HumanBehavior@{VIPRA::Behaviors::HumanBehavior}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Behaviors_1_1HumanBehavior_a85c09951c230a1a56a53efc518d381c1} 
+void VIPRA\+::\+Behaviors\+::\+Human\+Behavior\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} const \&}]{pedset}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&}]{map}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules\+::\+Goals}} \&}]{goals}{}\end{DoxyParamCaption})}
+
+
+
+initializes behavior selector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ped\+Set} & \+: pedestrian set object \\
+\hline
+{\em map} & \+: map object \\
+\hline
+{\em goals} & \+: goals object \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1Behaviors_1_1HumanBehavior_ae3d26c7d0c4fcfa794d95dc4a5ecf079}\index{VIPRA::Behaviors::HumanBehavior@{VIPRA::Behaviors::HumanBehavior}!timestep@{timestep}}
+\index{timestep@{timestep}!VIPRA::Behaviors::HumanBehavior@{VIPRA::Behaviors::HumanBehavior}}
+\doxysubsubsection{\texorpdfstring{timestep()}{timestep()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Behaviors_1_1HumanBehavior_ae3d26c7d0c4fcfa794d95dc4a5ecf079} 
+void VIPRA\+::\+Behaviors\+::\+Human\+Behavior\+::timestep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} \&}]{pedset}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} \&}]{map}{, }\item[{\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules\+::\+Goals}} \&}]{goals}{, }\item[{\mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} \&}]{state}{, }\item[{VIPRA\+::delta\+\_\+t}]{deltaT}{}\end{DoxyParamCaption})}
+
+
+
+Evaluates behavior events, and performs actions of pedestrians. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Modules\+::\+Pedestrians} & \\
+\hline
+{\em Modules\+::\+Map} & \\
+\hline
+{\em Modules\+::\+Goals} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em pedset} & \\
+\hline
+{\em map} & \\
+\hline
+{\em goals} & \\
+\hline
+{\em state} & \\
+\hline
+{\em deltaT} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/vipra\+\_\+behaviors/behavior/human\+\_\+behavior.\+hpp\item 
+VIPRA/src/vipra\+\_\+behaviors/behavior/human\+\_\+behavior.\+cpp\end{DoxyCompactItemize}

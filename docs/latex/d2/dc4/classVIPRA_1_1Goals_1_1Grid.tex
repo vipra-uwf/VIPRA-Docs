@@ -1,0 +1,80 @@
+\doxysection{VIPRA\+::Goals\+::Grid Class Reference}
+\hypertarget{classVIPRA_1_1Goals_1_1Grid}{}\label{classVIPRA_1_1Goals_1_1Grid}\index{VIPRA::Goals::Grid@{VIPRA::Goals::Grid}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structVIPRA_1_1Goals_1_1Grid_1_1GridPoint}{Grid\+Point}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_ac7a3fd78eeaad6eaf894409f6659ab19}\label{classVIPRA_1_1Goals_1_1Grid_ac7a3fd78eeaad6eaf894409f6659ab19} 
+void {\bfseries intialize} (auto const \&map, VIPRA\+::f\+\_\+pnt grid\+Size)
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_aeb8a4b275ecc37baf1fb0cbe76872c79}\label{classVIPRA_1_1Goals_1_1Grid_aeb8a4b275ecc37baf1fb0cbe76872c79} 
+auto {\bfseries get\+\_\+grid} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos) -\/$>$ \mbox{\hyperlink{structVIPRA_1_1Goals_1_1Grid_1_1GridPoint}{Grid\+Point}} \&
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_abe86b3f9365179fcc1700d8796b8b875}\label{classVIPRA_1_1Goals_1_1Grid_abe86b3f9365179fcc1700d8796b8b875} 
+auto {\bfseries get\+\_\+grid} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1Goals_1_1Grid_1_1GridPoint}{Grid\+Point}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a251fd34ce366f2001a3a364720a7ec12}\label{classVIPRA_1_1Goals_1_1Grid_a251fd34ce366f2001a3a364720a7ec12} 
+auto {\bfseries get\+\_\+x\+\_\+count} () const -\/$>$ size\+\_\+t
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a2c273db71b0f50ce0e770bd0f3415286}\label{classVIPRA_1_1Goals_1_1Grid_a2c273db71b0f50ce0e770bd0f3415286} 
+auto {\bfseries get\+\_\+y\+\_\+count} () const -\/$>$ size\+\_\+t
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a291e89483f3c02f8bb682f1121249a09}\label{classVIPRA_1_1Goals_1_1Grid_a291e89483f3c02f8bb682f1121249a09} 
+auto {\bfseries begin} () -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Goals_1_1Grid_1_1GridPoint}{Grid\+Point}} $>$\+::iterator
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a79816555470f376c6b94bd423466464d}\label{classVIPRA_1_1Goals_1_1Grid_a79816555470f376c6b94bd423466464d} 
+auto {\bfseries end} () -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Goals_1_1Grid_1_1GridPoint}{Grid\+Point}} $>$\+::iterator
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a67429c80bd6e1581f99d5bf23712e47f}\label{classVIPRA_1_1Goals_1_1Grid_a67429c80bd6e1581f99d5bf23712e47f} 
+void {\bfseries flood\+\_\+fill} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start, auto const \&map)
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a0a3d3a1c56b378e61f8700e6cf6dda36}\label{classVIPRA_1_1Goals_1_1Grid_a0a3d3a1c56b378e61f8700e6cf6dda36} 
+void {\bfseries flood\+\_\+fill} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start, auto const \&map, \mbox{\hyperlink{classVIPRA_1_1Goals_1_1DensityGrid}{Density\+Grid}} const \&density\+Grid)
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid_a5ffea4c12a5bc1884552d4413373a0b1}{get\+\_\+closest\+\_\+grid\+\_\+idx}} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos) const -\/$>$ VIPRA\+::idx
+\begin{DoxyCompactList}\small\item\em Gets the closest grid index to the coordinate. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a0a5a0b0698f07d6d73b08c1305e4bb9f}\label{classVIPRA_1_1Goals_1_1Grid_a0a5a0b0698f07d6d73b08c1305e4bb9f} 
+auto {\bfseries grid\+\_\+center} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_aa1d1cee05efc3cc3bfc9c867138fc567}\label{classVIPRA_1_1Goals_1_1Grid_aa1d1cee05efc3cc3bfc9c867138fc567} 
+{\bfseries Grid} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_adf883e2d739da31b0fe54b45f3881aa2}\label{classVIPRA_1_1Goals_1_1Grid_adf883e2d739da31b0fe54b45f3881aa2} 
+{\bfseries Grid} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a4dc0349e54295fe4baa08fcc9062a80d}\label{classVIPRA_1_1Goals_1_1Grid_a4dc0349e54295fe4baa08fcc9062a80d} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a077987b3a6f05dfb2acc9e36a197357e}\label{classVIPRA_1_1Goals_1_1Grid_a077987b3a6f05dfb2acc9e36a197357e} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}} \&=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Goals_1_1Grid_a5ffea4c12a5bc1884552d4413373a0b1}\index{VIPRA::Goals::Grid@{VIPRA::Goals::Grid}!get\_closest\_grid\_idx@{get\_closest\_grid\_idx}}
+\index{get\_closest\_grid\_idx@{get\_closest\_grid\_idx}!VIPRA::Goals::Grid@{VIPRA::Goals::Grid}}
+\doxysubsubsection{\texorpdfstring{get\_closest\_grid\_idx()}{get\_closest\_grid\_idx()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Goals_1_1Grid_a5ffea4c12a5bc1884552d4413373a0b1} 
+auto VIPRA\+::\+Goals\+::\+Grid\+::get\+\_\+closest\+\_\+grid\+\_\+idx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}}]{pos}{}\end{DoxyParamCaption}) const -\/$>$ VIPRA\+::idx   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Gets the closest grid index to the coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+VIPRA\+::idx 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/goals/potential\+\_\+field/grid.\+hpp\end{DoxyCompactItemize}

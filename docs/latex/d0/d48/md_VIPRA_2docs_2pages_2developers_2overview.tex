@@ -1,0 +1,68 @@
+\chapter{overview}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview}{}\label{md_VIPRA_2docs_2pages_2developers_2overview}\index{overview@{overview}}
+\texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2docs}{Main Page}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2setup}{Developer Setup}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Module Implementations}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2examples_2list}{Examples}{0} \texorpdfstring{$\vert$}{|}
+
+VIPRA can either be used\+:
+\begin{DoxyItemize}
+\item as a \doxysectlink{md_VIPRA_2docs_2pages_2developers_2library}{Library}{0} for use in other projects
+\item as a Standalone Simulation
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md528}{}\doxysection{\texorpdfstring{Setup}{Setup}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md528}
+Requirements and Setup are found on the \doxysectlink{md_VIPRA_2docs_2pages_2developers_2setup}{Setup Page}{0}\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md529}{}\doxysection{\texorpdfstring{Modules}{Modules}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md529}
+{\ttfamily VIPRA} is broken into {\ttfamily Modules}, each with their own responsibilities in the simulation
+
+Here are the requirements for each of the module types.
+
+
+\begin{DoxyEnumerate}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2module}{Base Module}{0} -\/ Requirements common to all module types
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2model}{Model}{0}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2goals}{Goals}{0}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2map}{Maps}{0}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2pedestrians}{Pedestrians}{0}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2input}{Input}{0}
+\item \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2output}{Output}{0}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md531}{}\doxysection{\texorpdfstring{Simulation Overview}{Simulation Overview}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md531}
+Below are the steps taken in a full simulation run.
+
+
+
+{\bfseries{Simulation Steps}}\begin{adjustwidth}{1em}{0em}
+
+
+\end{adjustwidth}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md532}{}\doxysection{\texorpdfstring{Simulation Steps}{Simulation Steps}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md532}
+These are the general steps taken when a simulation is run.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md533}{}\doxysubsubsubsection{\texorpdfstring{1. Module Loading}{1. Module Loading}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md533}
+First a Simulation is constructed, then Modules are loaded using dlopen.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md534}{}\doxysubsubsubsection{\texorpdfstring{2. Run Sim}{2. Run Sim}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md534}
+The simulation is started using either {\ttfamily operator()} or {\ttfamily run\+\_\+sim()}.
+
+These both take
+\begin{DoxyEnumerate}
+\item {\ttfamily Input Module} -\/ Loads Pedestrians
+\item {\ttfamily Map Input Module} -\/ Loads Map geometry
+\item {\ttfamily Parameter Module} -\/ Loads Parameters
+\end{DoxyEnumerate}
+
+as their arguments.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md535}{}\doxysubsubsubsection{\texorpdfstring{3. Parameters Loaded}{3. Parameters Loaded}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md535}
+The {\ttfamily Parameter Module} calls {\ttfamily load()} on it\textquotesingle{}s {\ttfamily Parameter Input} module.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md536}{}\doxysubsubsubsection{\texorpdfstring{4. Parameters Registered}{4. Parameters Registered}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md536}
+Each Module has its REGISTER\+\_\+\+MODULE\+\_\+\+PARAMS method called.
+
+This is used to tell the simulation which parameters are required by each module and where to place them.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md537}{}\doxysubsubsubsection{\texorpdfstring{5. Modules Configured}{5. Modules Configured}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md537}
+The loaded parameters are passed in to each module.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md538}{}\doxysubsubsubsection{\texorpdfstring{6. Modules Initialized}{6. Modules Initialized}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md538}
+The {\ttfamily Map}, {\ttfamily Goals}, {\ttfamily Model}, and {\ttfamily Behavior Model} have their {\ttfamily INIT\+\_\+\+STEP} methods called.
+
+This allows each module to setup any necessary pre-\/simulation work.\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md539}{}\doxysubsubsubsection{\texorpdfstring{7. Simulation Run}{7. Simulation Run}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md539}
+The following is run until the {\ttfamily Goals} module simulation goal is met, or until the simulation {\ttfamily max\+\_\+timestep} is reached.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{model.timestep();}
+\DoxyCodeLine{behaviors.timestep();}
+\DoxyCodeLine{pedestrian\_set.update();}
+\DoxyCodeLine{goals.update();}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md540}{}\doxysubsubsubsection{\texorpdfstring{8. Output}{8. Output}}\label{md_VIPRA_2docs_2pages_2developers_2overview_autotoc_md540}
+Finally, each of the {\ttfamily Output} modules {\ttfamily write} method is called.  

@@ -1,0 +1,182 @@
+\doxysection{polygon.\+hpp}
+\hypertarget{polygon_8hpp_source}{}\label{polygon_8hpp_source}\index{VIPRA/include/vipra/geometry/polygon.hpp@{VIPRA/include/vipra/geometry/polygon.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/line.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/rectangle.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/triangle.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }VIPRA::Geometry\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\ \{}
+\DoxyCodeLine{00018\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{auto}\ random\_point(\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ is\_point\_inside(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ point)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ bool;}
+\DoxyCodeLine{00022\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ bounding\_box()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}};}
+\DoxyCodeLine{00023\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ center()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}};}
+\DoxyCodeLine{00024\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ points()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ std::vector<f3d>\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00025\ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \_points;}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ sides()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ std::vector<Line>;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ std::vector<f3d>\ \_points;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::vector<f3d>\ \textcolor{keyword}{const}\&\ points)\ :\ \_points(points)\ \{\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::vector<f3d>\&\&\ points)\ :\ \_points(std::move(points))\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ po\textcolor{keywordtype}{int}\_s>}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::array<f3d,\ point\_s>\ \textcolor{keyword}{const}\&\ points)}
+\DoxyCodeLine{00040\ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \_points.resize(point\_s);}
+\DoxyCodeLine{00042\ \ \ \ \ std::copy(points.begin(),\ points.end(),\ \_points.begin());}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ po\textcolor{keywordtype}{int}\_s>}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::array<f3d,\ point\_s>\&\&\ points)}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \_points.resize(point\_s);}
+\DoxyCodeLine{00049\ \ \ \ \ std::copy(points.begin(),\ points.end(),\ \_points.begin());}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::vector<Line>\ \textcolor{keyword}{const}\&\ lines)}
+\DoxyCodeLine{00053\ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \_points.resize(lines.size());}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ lines.size();\ ++i\ )\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \_points[i]\ =\ lines[i].start;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::vector<Line>\&\&\ lines)}
+\DoxyCodeLine{00061\ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \_points.resize(lines.size());}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ lines.size();\ ++i\ )\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \_points[i]\ =\ lines[i].start;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ po\textcolor{keywordtype}{int}\_s>}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::array<Line,\ point\_s>\ \textcolor{keyword}{const}\&\ lines)}
+\DoxyCodeLine{00070\ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \_points.resize(point\_s);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ point\_s;\ ++i\ )\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \_points[i]\ =\ lines[i].start;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ po\textcolor{keywordtype}{int}\_s>}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(std::array<Line,\ point\_s>\&\&\ lines)}
+\DoxyCodeLine{00079\ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \_points.resize(point\_s);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ point\_s;\ ++i\ )\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \_points[i]\ =\ lines[i].start;}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{\string~Polygon}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\ \textcolor{keyword}{const}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\ \textcolor{keyword}{const}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\&\&)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ IMPLEMENTATION\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ Polygon::is\_point\_inside(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ point)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{//\ TODO(rolland):\ verify\ this}}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{bool}\ isInside\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ side\ :\ sides()\ )\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ side.is\_point\_on(point)\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ side.start.y\ >\ point.y\ !=\ side.end.y\ >\ point.y\ \&\&}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ point.x\ <\ (side.end.x\ -\/\ side.start.x)\ *\ (point.y\ -\/\ side.start.y)\ /}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (side.end.y\ -\/\ side.start.y)\ +}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ side.start.x\ )\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ isInside\ =\ !\ isInside;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{return}\ isInside;}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ Polygon::center()\ const\ noexcept\ -\/>\ f3d}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sideList\ =\ sides();}
+\DoxyCodeLine{00115\ \ \ f3d\ \ \ \ \ \ \ \ center;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ std::for\_each(sideList.begin(),\ sideList.end(),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&](Line\ \textcolor{keyword}{const}\&\ edge)\ \{\ center\ +=\ edge.start;\ \});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordflow}{return}\ center\ /=\ sideList.size();}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ Polygon::random\_point(\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00124\ \ \ \ \ -\/>\ f3d}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \textcolor{comment}{//\ TODO(rolland):\ this\ is\ disgusting}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{auto}\ box\ =\ bounding\_box();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ Random::uniform\_distribution<VIPRA::f\_pnt>\ xDist\{box.sides()[3].end.x,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ box.sides()[3].start.x\};}
+\DoxyCodeLine{00132\ \ \ Random::uniform\_distribution<VIPRA::f\_pnt>\ yDist\{box.sides()[2].end.y,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ box.sides()[2].start.y\};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ f3d\ point;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ point.x\ =\ xDist(engine);}
+\DoxyCodeLine{00139\ \ \ \ \ point.y\ =\ yDist(engine);}
+\DoxyCodeLine{00140\ \ \ \}\ \textcolor{keywordflow}{while}\ (\ !\ box.is\_point\_inside(point)\ );}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ Polygon::bounding\_box()\ const\ noexcept\ -\/>\ Rectangle}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ f3d\ botLeft\{std::numeric\_limits<VIPRA::f\_pnt>::max(),}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<VIPRA::f\_pnt>::max()\};}
+\DoxyCodeLine{00148\ \ \ f3d\ topRight\{std::numeric\_limits<VIPRA::f\_pnt>::min(),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<VIPRA::f\_pnt>::min()\};}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ point\ :\ \_points\ )\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ topRight.x\ =\ std::max(\{topRight.x,\ point.x\});}
+\DoxyCodeLine{00152\ \ \ \ \ topRight.y\ =\ std::max(\{topRight.y,\ point.y\});}
+\DoxyCodeLine{00153\ \ \ \ \ botLeft.x\ =\ std::min(\{botLeft.x,\ point.x\});}
+\DoxyCodeLine{00154\ \ \ \ \ botLeft.y\ =\ std::min(\{botLeft.y,\ point.y\});}
+\DoxyCodeLine{00155\ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ f3d\ topLeft\ =\ f3d\{botLeft.x,\ topRight.y\};}
+\DoxyCodeLine{00158\ \ \ f3d\ botRight\ =\ f3d\{topRight.x,\ botLeft.y\};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{return}\ Rectangle\{botLeft,\ topLeft,\ topRight,\ botRight\};}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ Polygon::sides()\ const\ noexcept\ -\/>\ std::vector<Line>}
+\DoxyCodeLine{00164\ \{}
+\DoxyCodeLine{00165\ \ \ std::vector<Line>\ lines;}
+\DoxyCodeLine{00166\ \ \ lines.resize(\_points.size());}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \_points.size()\ -\/\ 1;\ ++i\ )\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ lines[i]\ =\ Line\{\_points[i],\ \_points[i\ +\ 1]\};}
+\DoxyCodeLine{00170\ \ \ \}}
+\DoxyCodeLine{00171\ \ \ lines.back()\ =\ Line\{\_points.back(),\ \_points.front()\};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordflow}{return}\ lines;}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Geometry}}
+
+\end{DoxyCode}

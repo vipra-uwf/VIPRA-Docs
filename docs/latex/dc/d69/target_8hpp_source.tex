@@ -1,0 +1,30 @@
+\doxysection{target.\+hpp}
+\hypertarget{target_8hpp_source}{}\label{target_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/targets/target.hpp@{VIPRA/include/vipra/vipra\_behaviors/targets/target.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{enum\ class}\ TargetType\ \{}
+\DoxyCodeLine{00008\ \ \ INVALID,}
+\DoxyCodeLine{00009\ \ \ PEDESTRIAN,}
+\DoxyCodeLine{00010\ \ \ LOCATION,}
+\DoxyCodeLine{00011\ \ \ EVENT,}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ \{}
+\DoxyCodeLine{00019\ \ \ TargetType\ type;}
+\DoxyCodeLine{00020\ \ \ VIPRA::idx\ targetIdx;}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Self}{Self}}\ \{}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ target;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{using\ }TargetFunc\ =\ std::function<\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}},\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Self}{Self}})>;}
+\DoxyCodeLine{00036\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

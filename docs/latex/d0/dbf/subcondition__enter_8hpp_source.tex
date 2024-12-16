@@ -1,0 +1,32 @@
+\doxysection{subcondition\+\_\+enter.\+hpp}
+\hypertarget{subcondition__enter_8hpp_source}{}\label{subcondition__enter_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_enter.hpp@{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_enter.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/sub\_condition.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}}\ \{}
+\DoxyCodeLine{00009\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}})}
+\DoxyCodeLine{00010\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}})}
+\DoxyCodeLine{00011\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}})}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}}(VIPRA::idx\ location)\ :\ \_location\{location\}\ \{\}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{void}\ operator()(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ targets,\ std::vector<bool>\&\ met,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ BoolOp\ \textcolor{comment}{/*unused*/});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ VIPRA::idx\ \_location;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{comment}{//\ TODO(rolland):\ temporary\ fix\ for\ not\ having\ pedestrian\ memory}}
+\DoxyCodeLine{00024\ \ \ std::vector<bool>\ \_entered;}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

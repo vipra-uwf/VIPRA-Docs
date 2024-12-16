@@ -1,0 +1,104 @@
+\doxysection{VIPRA\+::Modules\+::Map Class Reference}
+\hypertarget{classVIPRA_1_1Modules_1_1Map}{}\label{classVIPRA_1_1Modules_1_1Map}\index{VIPRA::Modules::Map@{VIPRA::Modules::Map}}
+
+
+Base Map Module Class.  
+
+
+
+
+{\ttfamily \#include $<$map.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Modules\+::Map\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{d3/d5e/classVIPRA_1_1Modules_1_1Map__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a33a52197e879d012d751366ec7b87a85}\label{classVIPRA_1_1Modules_1_1Map_a33a52197e879d012d751366ec7b87a85} 
+virtual void {\bfseries obstacle\+\_\+added} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&obstacle)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a55f327dcb6ec1988453f608d11a8d347}\label{classVIPRA_1_1Modules_1_1Map_a55f327dcb6ec1988453f608d11a8d347} 
+virtual void {\bfseries objective\+\_\+added} (std\+::string const \&type, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&objective)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a28969715353692b54f9f9be3e3380bcd}\label{classVIPRA_1_1Modules_1_1Map_a28969715353692b54f9f9be3e3380bcd} 
+virtual void {\bfseries area\+\_\+added} (std\+::string const \&name, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&polygon)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a8080d2cc17d9d67380ebcf2ae68a5872}\label{classVIPRA_1_1Modules_1_1Map_a8080d2cc17d9d67380ebcf2ae68a5872} 
+virtual auto {\bfseries collision} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} point) const -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a158ec378ba6ee43e9acdb187c773e95e}\label{classVIPRA_1_1Modules_1_1Map_a158ec378ba6ee43e9acdb187c773e95e} 
+virtual auto {\bfseries collision} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle}{VIPRA\+::\+Geometry\+::\+Circle}} const \&radius) const -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_af2fb4da4c0d5a34ca4c70d22132ad15c}\label{classVIPRA_1_1Modules_1_1Map_af2fb4da4c0d5a34ca4c70d22132ad15c} 
+virtual auto {\bfseries ray\+\_\+hit} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} end) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a6f166b62f8681d109b7817a449a8a9b4}\label{classVIPRA_1_1Modules_1_1Map_a6f166b62f8681d109b7817a449a8a9b4} 
+void {\bfseries add\+\_\+obstacle} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&obstacle)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a941ac3b3fe893def685051746b6a7dcc}\label{classVIPRA_1_1Modules_1_1Map_a941ac3b3fe893def685051746b6a7dcc} 
+void {\bfseries add\+\_\+objective} (std\+::string const \&type, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&objective)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_ae5940ad0f902741dcbfeed92b67f069e}\label{classVIPRA_1_1Modules_1_1Map_ae5940ad0f902741dcbfeed92b67f069e} 
+void {\bfseries add\+\_\+spawn} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&spawn)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_af82dbcbaf4583e819b912ccedcfefe11}\label{classVIPRA_1_1Modules_1_1Map_af82dbcbaf4583e819b912ccedcfefe11} 
+void {\bfseries add\+\_\+area} (std\+::string const \&name, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&polygon)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a37a2dc2206254e0c88378e49871fcc96}\label{classVIPRA_1_1Modules_1_1Map_a37a2dc2206254e0c88378e49871fcc96} 
+auto {\bfseries get\+\_\+objectives} () const -\/$>$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a99d5b682662daa0193859449fb3a0356}\label{classVIPRA_1_1Modules_1_1Map_a99d5b682662daa0193859449fb3a0356} 
+auto {\bfseries get\+\_\+objectives} (std\+::string const \&type) const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a377ec41560c5fe935b51cbe45e313cc0}\label{classVIPRA_1_1Modules_1_1Map_a377ec41560c5fe935b51cbe45e313cc0} 
+auto {\bfseries get\+\_\+dimensions} () const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a210c7038f7ed176966cbe77c28db275d}\label{classVIPRA_1_1Modules_1_1Map_a210c7038f7ed176966cbe77c28db275d} 
+auto {\bfseries get\+\_\+objective\+\_\+types} () const -\/$>$ std\+::vector$<$ std\+::string $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_ae945115b7146c0c1ec945ee606a88176}\label{classVIPRA_1_1Modules_1_1Map_ae945115b7146c0c1ec945ee606a88176} 
+auto {\bfseries get\+\_\+obstacles} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_ae0a3c3e3cba31f64ae9b27785035dfe1}\label{classVIPRA_1_1Modules_1_1Map_ae0a3c3e3cba31f64ae9b27785035dfe1} 
+auto {\bfseries get\+\_\+spawns} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a518417fc3bd1142579dc4c18e3b35771}\label{classVIPRA_1_1Modules_1_1Map_a518417fc3bd1142579dc4c18e3b35771} 
+auto {\bfseries get\+\_\+areas} () const -\/$>$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a3a8b4411586755a8a6f6ec4a4918bb65}\label{classVIPRA_1_1Modules_1_1Map_a3a8b4411586755a8a6f6ec4a4918bb65} 
+void {\bfseries initialize} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}} \&input)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a03636fde3baf685fa2ea275c4ff9b4d2}\label{classVIPRA_1_1Modules_1_1Map_a03636fde3baf685fa2ea275c4ff9b4d2} 
+{\bfseries Map} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a4e4767e538dd23d6f2df9fee40502873}\label{classVIPRA_1_1Modules_1_1Map_a4e4767e538dd23d6f2df9fee40502873} 
+{\bfseries Map} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_aad93e48cd67395105b65a524953c475b}\label{classVIPRA_1_1Modules_1_1Map_aad93e48cd67395105b65a524953c475b} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a795386fc04de6fce2abd410f0fa50dfa}\label{classVIPRA_1_1Modules_1_1Map_a795386fc04de6fce2abd410f0fa50dfa} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Map}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Map_a036d8272dcabd5f86480c6676be9718b}\label{classVIPRA_1_1Modules_1_1Map_a036d8272dcabd5f86480c6676be9718b} 
+virtual {\bfseries VIPRA\+\_\+\+MAP\+\_\+\+INIT} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Map Module Class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/modules/map.\+hpp\end{DoxyCompactItemize}

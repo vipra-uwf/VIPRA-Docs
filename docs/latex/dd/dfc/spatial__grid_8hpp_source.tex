@@ -1,0 +1,39 @@
+\doxysection{spatial\+\_\+grid.\+hpp}
+\hypertarget{spatial__grid_8hpp_source}{}\label{spatial__grid_8hpp_source}\index{VIPRA/modules/pedestrians/SpatialGrid/spatial\_grid.hpp@{VIPRA/modules/pedestrians/SpatialGrid/spatial\_grid.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/data\_structures/spatial\_map.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrians.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Pedestrians\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ NEW\_VIPRA\_MODULE(SpatialGrid,\ Pedestrians)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}SpatialGrid"{}});}
+\DoxyCodeLine{00018\ \ \ VIPRA\_MODULE\_TYPE(Pedestrians);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}gridSize"{}},\ \_cellSize));}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ VIPRA\_PEDS\_INIT\_STEP\ \ \ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ VIPRA\_PEDS\_UPDATE\_STEP\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ conditional\_closest\_ped(}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ VIPRA::idx\ ped,\ std::function<\textcolor{keywordtype}{bool}(VIPRA::idx)>\ \textcolor{keyword}{const}\&\ condition)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ VIPRA::idx\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ closest\_ped(VIPRA::idx\ ped)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::idx\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\_neighbors\_within(VIPRA::idx\ \ \ pedIdx,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f\_pnt\ radius)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ std::vector<VIPRA::idx>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ VIPRA::f\_pnt\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_cellSize\{\};}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1SpatialMap}{VIPRA::DataStructures::SpatialMap<VIPRA::idx>}}\ \_spatialGrid;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Pedestrians}}
+
+\end{DoxyCode}

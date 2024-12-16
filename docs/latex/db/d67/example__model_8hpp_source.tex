@@ -1,0 +1,38 @@
+\doxysection{example\+\_\+model.\+hpp}
+\hypertarget{example__model_8hpp_source}{}\label{example__model_8hpp_source}\index{VIPRA/examples/example\_model/example\_model.hpp@{VIPRA/examples/example\_model/example\_model.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}vipra.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Create\ a\ new\ module,\ with\ it's\ C++\ name\ and\ Module\ type\ (see\ Modules\ page\ for\ other\ types)}}
+\DoxyCodeLine{00005\ NEW\_VIPRA\_MODULE(ExampleModel,\ Model)}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00008\ \ \ \textcolor{comment}{//\ Give\ the\ module\ a\ name\ and\ set\ its\ type}}
+\DoxyCodeLine{00009\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}Example"{}})}
+\DoxyCodeLine{00010\ \ \ VIPRA\_MODULE\_TYPE(Model)}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \textcolor{comment}{//\ Add\ in\ the\ parameter\ registration\ step,\ this\ is\ where\ we\ tell\ VIPRA\ what\ parameters\ the\ module\ needs}}
+\DoxyCodeLine{00013\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM("{}radius"{},\ \_radius))}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{comment}{//\ Add\ in\ the\ initialization\ step,\ this\ is\ run\ right\ before\ the\ simulation\ starts}}
+\DoxyCodeLine{00016\ \ \ VIPRA\_MODEL\_INIT\_STEP\ \{\ \_initialPoints\ =\ pedset.all\_coords();\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \textcolor{comment}{//\ Add\ in\ the\ timestep,\ this\ is\ where\ the\ model\ updates\ the\ pedestrians\ state}}
+\DoxyCodeLine{00019\ \ \ VIPRA\_MODEL\_TIMESTEP}
+\DoxyCodeLine{00020\ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ pedset.num\_pedestrians();\ ++i\ )\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ pedestrian's\ position,\ to\ make\ them\ move\ in\ a\ circle}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ state.positions[i]\ =\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \_initialPoints[i][0]\ +\ \_radius\ *\ std::cos(deltaT\ *\ timestep),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \_initialPoints[i][1]\ +\ \_radius\ *\ std::sin(deltaT\ *\ timestep)\};}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ VIPRA::f\_pnt\ \ \_radius;}
+\DoxyCodeLine{00031\ \ \ VIPRA::f3dVec\ \_initialPoints;}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

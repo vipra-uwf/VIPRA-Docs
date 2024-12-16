@@ -1,0 +1,47 @@
+\doxysection{selector\+\_\+exactly\+\_\+\+N.\+hpp}
+\hypertarget{selector__exactly__N_8hpp_source}{}\label{selector__exactly__N_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/selectors/selector\_exactly\_N.hpp@{VIPRA/include/vipra/vipra\_behaviors/selectors/selector\_exactly\_N.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/selectors/subselector.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/numeric\_value.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorExactlyN}{SelectorExactlyN}}\ \{}
+\DoxyCodeLine{00015\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorExactlyN}{SelectorExactlyN}})}
+\DoxyCodeLine{00016\ \ \ COPYABLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorExactlyN}{SelectorExactlyN}})}
+\DoxyCodeLine{00017\ \ \ MOVEABLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorExactlyN}{SelectorExactlyN}})}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorExactlyN}{SelectorExactlyN}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{NumericValue}}\ count)\ :\ selectCount(std::move(count))}
+\DoxyCodeLine{00020\ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{NumericValue}}\ selectCount;}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ VIPRA::idxVec\&\ \textcolor{comment}{/*unused*/},\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ group,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pack)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorResult}{SelectorResult}}}
+\DoxyCodeLine{00026\ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{auto}\ groupPeds\ =\ group;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{auto}\ pedCnt\ =\ \textcolor{keyword}{static\_cast<}VIPRA::size\textcolor{keyword}{>}(std::round(selectCount.value(0)));}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ starved\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ pedCnt\ >\ group.size()\ )\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ starved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ pedCnt\ =\ group.size();}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Selector\ Exaclty\ N:\ Selecting\ \{\}\ Pedestrians"{}},\ pedCnt);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ std::shuffle(groupPeds.begin(),\ groupPeds.end(),\ pack.context.engine);}
+\DoxyCodeLine{00040\ \ \ \ \ groupPeds.resize(pedCnt);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \{starved,\ groupPeds\};}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

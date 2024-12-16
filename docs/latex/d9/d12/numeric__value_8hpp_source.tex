@@ -1,0 +1,71 @@
+\doxysection{numeric\+\_\+value.\+hpp}
+\hypertarget{numeric__value_8hpp_source}{}\label{numeric__value_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/values/numeric\_value.hpp@{VIPRA/include/vipra/vipra\_behaviors/values/numeric\_value.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/random/random.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }ValueFunc\ =\ std::function<VIPRA::f\_pnt(VIPRA::seed,\ VIPRA::idx)>;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{NumericValue}}\ \{}
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{NumericValue}}(VIPRA::seed\ seedNum,\ ValueFunc\ func)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ :\ \_seed(seedNum),\ \_val(std::move(func))}
+\DoxyCodeLine{00025\ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ value(VIPRA::idx\ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00029\ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ \_val(\_seed,\ pedIdx);}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ VIPRA::seed\ \_seed\{\};}
+\DoxyCodeLine{00035\ \ \ ValueFunc\ \ \ \_val;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{NumericValue}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1ExactValue}{ExactValue}}\ \{}
+\DoxyCodeLine{00046\ \ \ VIPRA::f\_pnt\ value;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \ operator()(VIPRA::seed\ \textcolor{comment}{/*unused*/},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ \textcolor{comment}{/*unused*/})\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1RandomFloatValue}{RandomFloatValue}}\ \{}
+\DoxyCodeLine{00059\ \ \ VIPRA::f\_pnt\ min\{\};}
+\DoxyCodeLine{00060\ \ \ VIPRA::f\_pnt\ max\{\};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ operator()(VIPRA::seed\ seed,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ \ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00064\ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1DRNG_acd85b757a43f7ca4ce0be5eba1a8137e}{Behaviors::DRNG::ped\_random\_float}}(seed,\ pedIdx,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Min}{Min}}\{min\},\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Max}{Max}}\{max\});}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1RandomNumberValue}{RandomNumberValue}}\ \{}
+\DoxyCodeLine{00074\ \ \ VIPRA::f\_pnt\ min\{\};}
+\DoxyCodeLine{00075\ \ \ VIPRA::f\_pnt\ max\{\};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ operator()(VIPRA::seed\ seed,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ \ pedIdx)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00079\ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ std::round(}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1DRNG_acd85b757a43f7ca4ce0be5eba1a8137e}{Behaviors::DRNG::ped\_random\_float}}(seed,\ pedIdx,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Min}{Min}}\{min\},\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Max}{Max}}\{max\}));}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

@@ -1,0 +1,139 @@
+\doxysection{VIPRA\+::Modules\+::Pedestrians Class Reference}
+\hypertarget{classVIPRA_1_1Modules_1_1Pedestrians}{}\label{classVIPRA_1_1Modules_1_1Pedestrians}\index{VIPRA::Modules::Pedestrians@{VIPRA::Modules::Pedestrians}}
+
+
+Base Pedestrians module.  
+
+
+
+
+{\ttfamily \#include $<$pedestrians.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Modules\+::Pedestrians\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{dc/dfa/classVIPRA_1_1Modules_1_1Pedestrians__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Modules\+::Pedestrians\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{dd/d9f/classVIPRA_1_1Modules_1_1Pedestrians__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_ab6c52068a2e86cb9162b460b2900972c}\label{classVIPRA_1_1Modules_1_1Pedestrians_ab6c52068a2e86cb9162b460b2900972c} 
+virtual auto {\bfseries all\+\_\+neighbors\+\_\+within} (VIPRA\+::idx ped\+Idx, VIPRA\+::f\+\_\+pnt radius) const -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$=0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a524736e10cf237cfbde60dcb8f750410}\label{classVIPRA_1_1Modules_1_1Pedestrians_a524736e10cf237cfbde60dcb8f750410} 
+virtual auto {\bfseries closest\+\_\+ped} (VIPRA\+::idx ped\+Idx) const -\/$>$ VIPRA\+::idx=0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_aac350fd18a175255fd3889391e6980a3}\label{classVIPRA_1_1Modules_1_1Pedestrians_aac350fd18a175255fd3889391e6980a3} 
+virtual auto {\bfseries conditional\+\_\+closest\+\_\+ped} (VIPRA\+::idx ped\+Idx, std\+::function$<$ bool(VIPRA\+::idx)$>$ const \&condition) const -\/$>$ VIPRA\+::idx=0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_adcd0304f9123de130a7e8b3f86f3849b}\label{classVIPRA_1_1Modules_1_1Pedestrians_adcd0304f9123de130a7e8b3f86f3849b} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}})
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a879b91767e41cdcd37155089dcc6768e}\label{classVIPRA_1_1Modules_1_1Pedestrians_a879b91767e41cdcd37155089dcc6768e} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+BASE\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}random\+\_\+count"{}, \+\_\+random\+Ped\+Cnt), VIPRA\+\_\+\+PARAM("{}spawn\+\_\+random"{}, \+\_\+random\+Spawn), VIPRA\+\_\+\+PARAM("{}use\+\_\+file"{}, \+\_\+use\+File)) void initialize(VIPRA
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_adcc74d63587b06fadf441a7e43a234d8}\label{classVIPRA_1_1Modules_1_1Pedestrians_adcc74d63587b06fadf441a7e43a234d8} 
+void {\bfseries update} (\mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} const \&state)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a06e2bb5a21e5be97bc0543109fc56d42}\label{classVIPRA_1_1Modules_1_1Pedestrians_a06e2bb5a21e5be97bc0543109fc56d42} 
+auto {\bfseries distance} (VIPRA\+::idx first\+Ped, VIPRA\+::idx second\+Ped) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a28162e84f5d4c1d05a92045f86ce0e2a}\label{classVIPRA_1_1Modules_1_1Pedestrians_a28162e84f5d4c1d05a92045f86ce0e2a} 
+auto {\bfseries num\+\_\+pedestrians} () const -\/$>$ VIPRA\+::size
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a41866cf4da688f2d34f0571117c36111}\label{classVIPRA_1_1Modules_1_1Pedestrians_a41866cf4da688f2d34f0571117c36111} 
+auto {\bfseries ped\+\_\+coords} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_ac8f00a977142f44f03bad091c44cb2e1}\label{classVIPRA_1_1Modules_1_1Pedestrians_ac8f00a977142f44f03bad091c44cb2e1} 
+auto {\bfseries all\+\_\+coords} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_ab2337d22580b117ae8f9f99fdf0451bb}\label{classVIPRA_1_1Modules_1_1Pedestrians_ab2337d22580b117ae8f9f99fdf0451bb} 
+auto {\bfseries ped\+\_\+velocity} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_ac11a0e555b67d4e6554be3826c72a1ad}\label{classVIPRA_1_1Modules_1_1Pedestrians_ac11a0e555b67d4e6554be3826c72a1ad} 
+auto {\bfseries all\+\_\+velocities} () const -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a40fadd16dc1084060c9b72f2bd79e42a}\label{classVIPRA_1_1Modules_1_1Pedestrians_a40fadd16dc1084060c9b72f2bd79e42a} 
+{\bfseries Pedestrians} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} const \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a59c29cdd2a9768cf3be332997003d2c6}\label{classVIPRA_1_1Modules_1_1Pedestrians_a59c29cdd2a9768cf3be332997003d2c6} 
+{\bfseries Pedestrians} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a4c97ef6002a2f4f8d7a86455674ee9b8}\label{classVIPRA_1_1Modules_1_1Pedestrians_a4c97ef6002a2f4f8d7a86455674ee9b8} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} const \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_adf191b0cfb5626d01cd173ae9798489e}\label{classVIPRA_1_1Modules_1_1Pedestrians_adf191b0cfb5626d01cd173ae9798489e} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Pedestrians}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule}{VIPRA\+::\+Modules\+::\+Base\+Module$<$ Pedestrians $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a2ffeb9f248f5230cacf74cd325f965e8}{register\+\_\+base\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a068ab6fd03b07540360ac0b39f9c6c74}{config\+\_\+base}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a5061fa673830cd108c1f9eb130f98792}\label{classVIPRA_1_1Modules_1_1Pedestrians_a5061fa673830cd108c1f9eb130f98792} 
+virtual {\bfseries VIPRA\+\_\+\+PEDS\+\_\+\+INIT\+\_\+\+STEP} = 0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_abe93643b36adc126a1186dac0d312acb}\label{classVIPRA_1_1Modules_1_1Pedestrians_abe93643b36adc126a1186dac0d312acb} 
+virtual {\bfseries VIPRA\+\_\+\+PEDS\+\_\+\+UPDATE\+\_\+\+STEP} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_ac219c4b4d028a48e72b54ebce5da3344}\label{classVIPRA_1_1Modules_1_1Pedestrians_ac219c4b4d028a48e72b54ebce5da3344} 
+void {\bfseries set\+\_\+velocities} (VIPRA\+::f3d\+Vec const \&velocities)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a31a0353f88ba15d6a0c50ab15db1293b}\label{classVIPRA_1_1Modules_1_1Pedestrians_a31a0353f88ba15d6a0c50ab15db1293b} 
+void {\bfseries set\+\_\+velocities} (VIPRA\+::f3d\+Vec \&\&velocities) noexcept
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a484d8d39618af6fece13f75de55bc3eb}\label{classVIPRA_1_1Modules_1_1Pedestrians_a484d8d39618af6fece13f75de55bc3eb} 
+void {\bfseries set\+\_\+coordinates} (VIPRA\+::f3d\+Vec const \&coordinates)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a2dee260462fb519b47836af4b81584ba}\label{classVIPRA_1_1Modules_1_1Pedestrians_a2dee260462fb519b47836af4b81584ba} 
+void {\bfseries set\+\_\+coordinates} (VIPRA\+::f3d\+Vec \&\&coordinates) noexcept
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a3aa501f9531ce5b3a7593d787a1a0234}\label{classVIPRA_1_1Modules_1_1Pedestrians_a3aa501f9531ce5b3a7593d787a1a0234} 
+auto {\bfseries get\+\_\+velocities} () const -\/$>$ VIPRA\+::f3d\+Vec const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_aac25d23ff884e16d706273a38b099470}\label{classVIPRA_1_1Modules_1_1Pedestrians_aac25d23ff884e16d706273a38b099470} 
+auto {\bfseries get\+\_\+coordinates} () const -\/$>$ VIPRA\+::f3d\+Vec const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a13787bf5d000f4b3f6ae97c10f66931c}\label{classVIPRA_1_1Modules_1_1Pedestrians_a13787bf5d000f4b3f6ae97c10f66931c} 
+void {\bfseries init\+\_\+random\+\_\+peds} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a1b31901f8ecd824cd991893e18810386}\label{classVIPRA_1_1Modules_1_1Pedestrians_a1b31901f8ecd824cd991893e18810386} 
+void {\bfseries init\+\_\+specific\+\_\+peds} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA\+::\+Modules\+::\+Pedestrian\+Input}} \&input)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Pedestrians_a82a0e72dd38049fb4394fec5ed625574}\label{classVIPRA_1_1Modules_1_1Pedestrians_a82a0e72dd38049fb4394fec5ed625574} 
+static auto {\bfseries find\+\_\+random\+\_\+point} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} const \&polygon, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine) -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Pedestrians module. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/modules/pedestrians.\+hpp\end{DoxyCompactItemize}

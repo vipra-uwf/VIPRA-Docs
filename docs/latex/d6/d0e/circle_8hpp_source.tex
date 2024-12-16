@@ -1,0 +1,50 @@
+\doxysection{circle.\+hpp}
+\hypertarget{circle_8hpp_source}{}\label{circle_8hpp_source}\index{VIPRA/include/vipra/geometry/circle.hpp@{VIPRA/include/vipra/geometry/circle.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/line.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Geometry\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle}{Circle}}\ \{}
+\DoxyCodeLine{00010\ \ \ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#17\ add\ more}}
+\DoxyCodeLine{00011\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle}{Circle}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ center,\ VIPRA::f\_pnt\ radius)}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ :\ \_center(center),\ \_radius(radius)}
+\DoxyCodeLine{00014\ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ center()\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\&}
+\DoxyCodeLine{00018\ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ \_center;}
+\DoxyCodeLine{00020\ \ \ \}}
+\DoxyCodeLine{00021\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ radius()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ -\/>\ \textcolor{keyword}{const}\ VIPRA::f\_pnt\&}
+\DoxyCodeLine{00023\ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \_radius;}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00034\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Circle_a6bb83106d2051c657a00692d3bb58151}{is\_inside}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ point)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00036\ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ (point.distance\_to(\_center)\ <=\ \_radius);}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ does\_intersect(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{VIPRA::Geometry::Line}}\ line)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00042\ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ line.closest\_point(\_center).distance\_to(\_center)\ <=\ \_radius;}
+\DoxyCodeLine{00044\ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ \ \ \_center;}
+\DoxyCodeLine{00048\ \ \ VIPRA::f\_pnt\ \_radius\{\};}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Geometry}}
+
+\end{DoxyCode}

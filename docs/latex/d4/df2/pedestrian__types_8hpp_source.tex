@@ -1,0 +1,121 @@
+\doxysection{pedestrian\+\_\+types.\+hpp}
+\hypertarget{pedestrian__types_8hpp_source}{}\label{pedestrian__types_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/definitions/pedestrian\_types.hpp@{VIPRA/include/vipra/vipra\_behaviors/definitions/pedestrian\_types.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/types/size.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }typeUID\ =\ uint64\_t;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ \{}
+\DoxyCodeLine{00024\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}})}
+\DoxyCodeLine{00025\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}})}
+\DoxyCodeLine{00026\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}})}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ typeUID\ fullType\ =\ 0;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}(typeUID\ tid)\ noexcept\ :\ fullType(tid)\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_adb9a2ccc37a5a0f9aa2d1f83b3337076}{type\_count}}()\ const\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00039\ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ VIPRA::size\ count\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ typeUID\ \ \ \ \ check\ =\ 1;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{while}\ (\ (check\ \&\ fullType)\ !=\ 0U\ )\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ check\ =\ check\ <<\ 1U;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ ++count;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_af16ee80987f84f82fe96a2c46d828790}{for\_each\_type}}(std::function<\textcolor{keywordtype}{void}(typeUID)>\ \textcolor{keyword}{const}\&\ func)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ typeUID\ type\ =\ fullType;}
+\DoxyCodeLine{00058\ \ \ \ \ typeUID\ check\ =\ 1;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}\ (\ check\ <=\ type\ )\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (type\ \&\ check)\ !=\ 0U\ )\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ func(check);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ check\ =\ check\ <<\ 1U;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a97a77ef6ad365592c2d63114e1a036b7}{is\_type}}(typeUID\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00074\ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ ((type\ \&\ fullType)\ !=\ 0U)\ \&\&\ ((\string~type\ \&\ fullType)\ ==\ 0);}
+\DoxyCodeLine{00076\ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_aa94e441230704804c1b2f5701987cdf2}{has\_type}}(typeUID\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00085\ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ (type\ \&\ fullType)\ !=\ 0U;}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a94167cabb75fd6ead63dc9f952167cfe}{operator+}}(typeUID\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}}
+\DoxyCodeLine{00096\ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\{fullType\ |\ type\};}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a352728f7328e7fdde17806c00fb8b21f}{operator+=}}(typeUID\ type)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\&}
+\DoxyCodeLine{00107\ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ fullType\ =\ (fullType\ |\ type);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_abcc877d13e190017783558ba2962bce6}{operator+}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}}
+\DoxyCodeLine{00119\ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\{fullType\ |\ type.fullType\};}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a2e8fa3e2beb5a7be5c636dc3c91a82c6}{operator+=}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\&}
+\DoxyCodeLine{00130\ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ fullType\ =\ (fullType\ |\ type.fullType);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00133\ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a40ac12cf54cecd427ba59498ee80189b}{operator-\/}}(typeUID\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}}
+\DoxyCodeLine{00142\ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\{fullType\ \&\ \string~type\};}
+\DoxyCodeLine{00144\ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_ace9058c940fd7f70c29c82555a7393cc}{operator-\/=}}(typeUID\ type)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\&}
+\DoxyCodeLine{00153\ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ fullType\ =\ (fullType\ \&\ \string~type);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00156\ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a007550dc3355ab359e8bd6db83550339}{operator-\/}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}}
+\DoxyCodeLine{00165\ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\{fullType\ \&\ \string~type.fullType\};}
+\DoxyCodeLine{00167\ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a0db5a21be40ed5166b2a5f14add71a58}{operator-\/=}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\&}
+\DoxyCodeLine{00176\ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ fullType\ =\ (fullType\ \&\ \string~type.fullType);}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_a7c692a65d238c56be2fe0cc7fd1199f0}{operator==}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00189\ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ fullType\ ==\ type.fullType;}
+\DoxyCodeLine{00191\ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00200\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_af3e58af15b0639ed91e154bad5e9d1f5}{operator!=}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00201\ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ fullType\ !=\ type.fullType;}
+\DoxyCodeLine{00203\ \ \ \}}
+\DoxyCodeLine{00204\ \};}
+\DoxyCodeLine{00205\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

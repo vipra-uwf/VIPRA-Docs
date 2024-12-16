@@ -1,0 +1,40 @@
+\doxysection{template\+\_\+specialization.\+hpp}
+\hypertarget{template__specialization_8hpp_source}{}\label{template__specialization_8hpp_source}\index{VIPRA/include/vipra/util/template\_specialization.hpp@{VIPRA/include/vipra/util/template\_specialization.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }VIPRA::Util\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ type\_t,\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...>\ \textcolor{keyword}{class\ }ref\_t>}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ NOLINTNEXTLINE}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1is__specialization}{is\_specialization}}\ :\ std::false\_type\ \{}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...>\ \textcolor{keyword}{class\ }ref\_t,\ \textcolor{keyword}{typename}...\ arg\_ts>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1is__specialization}{is\_specialization}}<ref\_t<arg\_ts...>,\ ref\_t>\ :\ std::true\_type\ \{}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1get__specialization__internal}{get\_specialization\_internal}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}\ <\textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ template\_t,\ \textcolor{keyword}{typename}\ inner\_t>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1get__specialization__internal}{get\_specialization\_internal}}<template\_t<inner\_t>>\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{using\ }type\ =\ inner\_t;}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1get__map__specialization}{get\_map\_specialization}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ k\_t,\ \textcolor{keyword}{typename}\ v\_t>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Util_1_1get__map__specialization}{get\_map\_specialization}}<std::map<k\_t,\ v\_t>>\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{using\ }key\_t\ =\ k\_t;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{using\ }value\_t\ =\ v\_t;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Util}}
+
+\end{DoxyCode}

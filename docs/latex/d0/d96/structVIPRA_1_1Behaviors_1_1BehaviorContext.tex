@@ -1,0 +1,59 @@
+\doxysection{VIPRA\+::Behaviors\+::Behavior\+Context Struct Reference}
+\hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext}{}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext}\index{VIPRA::Behaviors::BehaviorContext@{VIPRA::Behaviors::BehaviorContext}}
+
+
+The context in which a simulation is run. This includes the elapsed time, the random number generator, the current state of pedestrians, and the current events.  
+
+
+
+
+{\ttfamily \#include $<$behavior\+\_\+context.\+hpp$>$}
+
+
+
+Collaboration diagram for VIPRA\+::Behaviors\+::Behavior\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{d8/d3f/structVIPRA_1_1Behaviors_1_1BehaviorContext__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_a049386aabaf331506a539b3b4aa5eac0}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_a049386aabaf331506a539b3b4aa5eac0} 
+using {\bfseries pack\+\_\+t} = \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_ad83a62419ca5b800e9bb4e41459c6aff}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_ad83a62419ca5b800e9bb4e41459c6aff} 
+VIPRA\+::delta\+\_\+t {\bfseries elapsed\+Time} = 0
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_ad4d257f1e5f1fac8eeb3061cfb9d673b}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_ad4d257f1e5f1fac8eeb3061cfb9d673b} 
+\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} {\bfseries engine}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_a6b16ad7f8be21f1c13279c8de2925b70}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_a6b16ad7f8be21f1c13279c8de2925b70} 
+std\+::vector$<$ Behaviors\+::state\+UID $>$ {\bfseries ped\+States}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_a1b2702ae8560721f6f9bce159af9e616}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_a1b2702ae8560721f6f9bce159af9e616} 
+std\+::vector$<$ Behaviors\+::type\+UID $>$ {\bfseries types}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_a639c61398d871a777754fdbfe36342e4}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_a639c61398d871a777754fdbfe36342e4} 
+std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Event}{Event}} $>$ {\bfseries events}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_a4bf07e84dad2e9a1d00b965f4ec72281}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_a4bf07e84dad2e9a1d00b965f4ec72281} 
+std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Behaviors\+::\+Location}} $>$ {\bfseries locations}
+\item 
+\Hypertarget{structVIPRA_1_1Behaviors_1_1BehaviorContext_aaaeb6cbd08dbda3cb7d661af783df77c}\label{structVIPRA_1_1Behaviors_1_1BehaviorContext_aaaeb6cbd08dbda3cb7d661af783df77c} 
+std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Behaviors\+::\+Location}} $>$ $>$ {\bfseries objectives}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The context in which a simulation is run. This includes the elapsed time, the random number generator, the current state of pedestrians, and the current events. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/vipra\+\_\+behaviors/definitions/behavior\+\_\+context.\+hpp\end{DoxyCompactItemize}

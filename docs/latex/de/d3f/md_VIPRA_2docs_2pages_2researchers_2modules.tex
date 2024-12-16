@@ -1,0 +1,53 @@
+\chapter{modules}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules}{}\label{md_VIPRA_2docs_2pages_2researchers_2modules}\index{modules@{modules}}
+\texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2docs}{Main Page}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2parameters}{Module Parameters}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md732}{}\doxysection{\texorpdfstring{Modules}{Modules}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md732}
+The VIPRA framework is designed to be customizable to individual needs. This is done through {\ttfamily Modules}, each module is responsible for different parts of a simulation.
+
+\doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Developers can extend VIPRA through {\ttfamily Modules}}{0}.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md733}{}\doxysubsection{\texorpdfstring{Module Types}{Module Types}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md733}
+Modules can be categorized into 6 different types.
+\begin{DoxyItemize}
+\item {\ttfamily Model}
+\item {\ttfamily Goals}
+\item {\ttfamily Map}
+\item {\ttfamily Pedestrian Set}
+\item {\ttfamily Input}
+\item {\ttfamily Output}
+\end{DoxyItemize}
+
+Some \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{Base Module Implementations}{0} are provided with VIPRA
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md735}{}\doxysubsubsection{\texorpdfstring{Model}{Model}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md735}
+{\ttfamily Model} modules are the pedestrian dynamics models that govern how the pedestrians will move during a simulation.
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md737}{}\doxysubsubsection{\texorpdfstring{Goals}{Goals}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md737}
+Goals modules handle pathfinding for the simulation.
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md739}{}\doxysubsubsection{\texorpdfstring{Map}{Map}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md739}
+Map modules hold the geometry of the environment and handle map/pedestrian collision detection.
+
+The main focus of Map modules is performance.
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md741}{}\doxysubsubsection{\texorpdfstring{Pedestrian Set}{Pedestrian Set}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md741}
+Pedestrian Set modules hold the pedestrian positions/velocities and handle queries to pedestrians (ex. nearest neighbor).
+
+The main focus of the pedestrian set is performance, but can also be used to add constraints to how pedestrians can move (i.\+e. celluar automata vs continuous fields)
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md743}{}\doxysubsubsection{\texorpdfstring{Input}{Input}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md743}
+Input modules handle loading input for the simulation.
+
+These include the\+:
+\begin{DoxyItemize}
+\item {\ttfamily Map Input}\+: responsible for loading in the map file
+\item {\ttfamily Pedestrian Input}\+: responsible for loading in initial pedestrian positions
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md745}{}\doxysubsubsection{\texorpdfstring{Output}{Output}}\label{md_VIPRA_2docs_2pages_2researchers_2modules_autotoc_md745}
+Output modules handle producing output from the simulation.
+
+Multiple can be added to one simulation to produce. 

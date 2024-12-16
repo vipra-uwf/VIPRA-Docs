@@ -1,0 +1,96 @@
+\chapter{parameters}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters}{}\label{md_VIPRA_2docs_2pages_2researchers_2parameters}\index{parameters@{parameters}}
+\texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2docs}{Main Page}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2parameters}{Module Parameters}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md746}{}\doxysection{\texorpdfstring{Module Parameters}{Module Parameters}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md746}
+Parameters are loaded into each module before they are initizalized. The exact steps of a simulation run are shown in \href{../developers/overview.md\#simulation-steps}{\texttt{ {\ttfamily Simluation Steps}}}.
+
+Parameters can use any {\ttfamily Para\+Reader} module, the \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{{\ttfamily JSON}}{0} input module provided works for this.
+
+The format for JSON parameters is\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}module\ type"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}module\ name"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}parameter\ name"{}:\ "{}parameter\ value"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Example of a {\ttfamily Goals} module parameters\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\ \ "{}goals"{}:\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Module\ Type}
+\DoxyCodeLine{\ \ \ \ "{}astar"{}:\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Module\ Name}
+\DoxyCodeLine{\ \ \ \ \ \ "{}endGoalType"{}:\ "{}exit"{},\ \ //\ Parameter\ values}
+\DoxyCodeLine{\ \ \ \ \ \ "{}gridSize"{}:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}closestObstacle"{}:\ 0.25,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}goalRange"{}:\ 0.05}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md747}{}\doxysection{\texorpdfstring{Parameter Sweeps}{Parameter Sweeps}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md747}
+Parameter sweeps run many simulations with randomized parameters to get a better idea of the possible outcomes.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md748}{}\doxysection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md748}
+Parameters are provided as they are with a normal run, with some extra rules.
+
+{\ttfamily NOTE\+:} parameters are randomized in a non-\/parameter sweep run if provided in this format\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md749}{}\doxysubsection{\texorpdfstring{Non-\/\+Random Values}{Non-\/\+Random Values}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md749}
+Any parameter that should not be randomized is provided as it is normally.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{single\_string:\ "{}example1"{}}
+\DoxyCodeLine{single\_float:\ 1.0}
+
+\end{DoxyCode}
+
+
+Array\textquotesingle{}s can still be used as they normally would be.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{array\_param:\ [1.0,\ 2.0,\ 3.0]}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md750}{}\doxysubsection{\texorpdfstring{Discrete Random Values}{Discrete Random Values}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md750}
+Parameters can be randomized between a set of discrete values.
+
+For each simulation run, the actual value for the parameter is randomly chosen from the list given with a uniform distribution.
+
+Examples\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{discrete\_string\_param:\ [\ "{}option1"{},\ "{}option2"{},\ "{}option3"{}\ ]}
+\DoxyCodeLine{discrete\_float\_param:\ [\ 1.0,\ 1.2,\ 1.4\ ]}
+
+\end{DoxyCode}
+
+
+{\ttfamily NOTE\+:} Array parameters can NOT be randomized
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ will\ NOT\ work}
+\DoxyCodeLine{random\_array\_param:\ [\ [1,2],\ [3,4]\ ]}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md751}{}\doxysubsection{\texorpdfstring{Continuous Random Values}{Continuous Random Values}}\label{md_VIPRA_2docs_2pages_2researchers_2parameters_autotoc_md751}
+Numerical parameters can also be randomized within a continuous range.
+
+For each simulation run, the actual value for the parameter is randomly chosen with a uniform distribution from {\ttfamily min} to {\ttfamily max} inclusively.
+
+Examples\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{continuous\_param:\ \{}
+\DoxyCodeLine{\ \ "{}min"{}:\ 1.0,}
+\DoxyCodeLine{\ \ "{}max"{}:\ 4.0}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\ttfamily NOTE\+:} Only float values can be continuous 

@@ -1,0 +1,216 @@
+\doxysection{cli\+\_\+arguments.\+hpp}
+\hypertarget{cli__arguments_8hpp_source}{}\label{cli__arguments_8hpp_source}\index{VIPRA/include/vipra/util/cli\_arguments.hpp@{VIPRA/include/vipra/util/cli\_arguments.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/numeric.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum}\ ArgType\ :\ uint8\_t\ \{\ OPTIONAL\ =\ 0x00,\ REQUIRED\ =\ 0x01,\ VALUE\_REQUIRED\ =\ 0x02,\ BOTH\ =\ 0x03\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator|(ArgType\ Lhs,\ ArgType\ Rhs)\ -\/>\ ArgType}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ArgType\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Lhs)\ |}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Rhs));}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator\&(ArgType\ Lhs,\ ArgType\ Rhs)\ -\/>\ ArgType}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ArgType\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Lhs)\ \&}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Rhs));}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator==(ArgType\ Lhs,\ ArgType\ Rhs)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Lhs)\ ==}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Rhs);}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator!=(ArgType\ Lhs,\ ArgType\ Rhs)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Lhs)\ !=}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<ArgType>\textcolor{keyword}{>}(Rhs);}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Args}{Args}}\ \{}
+\DoxyCodeLine{00041\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{using\ }ArgsMap\ =\ std::map<std::string,\ std::string,\ std::less<>>;}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{using\ }ArgsSet\ =\ std::set<std::string,\ std::less<>>;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Args_a8eb59421103baed4feb69a05a8dd65f9}{parse}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}*\ argv)}
+\DoxyCodeLine{00052\ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ get\_args().clear();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{auto}\ args\ =\ format(argc,\ argv);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ arg\ =\ std::next(args.begin());\ arg\ !=\ args.end();\ ++arg\ )\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ arg-\/>length()\ <\ 2\ )\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unknown\ Flag:\ "{}}\ +\ *arg);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (*arg)[0]\ !=\ \textcolor{charliteral}{'-\/'}\ )\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unknown\ Flag:\ "{}}\ +\ *arg);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [flag,\ val]\ =\ split\_arg(*arg);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [fullValid,\ fullError]\ =\ validate\_flag(flag,\ val);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ fullValid\ )\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ get\_args()[flag]\ =\ val;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [compositeValid,\ compositeError]\ =\ validate\_composite\_flag(flag);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ compositeValid\ )\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(fullError\ +\ \textcolor{stringliteral}{"{}:\ "{}}\ +=\ flag);}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ check\_required();}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Args_aac53d011493b9bdc0814956c0dc4e024}{register\_arg}}(std::string\ \textcolor{keyword}{const}\&\ key)\ \{\ get\_arg\_map()[key]\ =\ ArgType::OPTIONAL;\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Args_a9e4d974ea6d5b77a6e992a1967010566}{register\_arg}}(std::string\ \textcolor{keyword}{const}\&\ key,\ ArgType\ type)}
+\DoxyCodeLine{00092\ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ type\ \&\ ArgType::REQUIRED\ )\ get\_req\_set().insert(key);}
+\DoxyCodeLine{00094\ \ \ \ \ get\_arg\_map()[key]\ =\ type;}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Args_ad5dba955f88a9e0e9a4a0b112c116ecd}{register\_arg}}(std::string\ \textcolor{keyword}{const}\&\ key,\ std::string\ \textcolor{keyword}{const}\&\ defaultValue,\ ArgType\ type)}
+\DoxyCodeLine{00104\ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ type\ \&\ ArgType::REQUIRED\ )\ get\_req\_set().insert(key);}
+\DoxyCodeLine{00106\ \ \ \ \ get\_arg\_map()[key]\ =\ type;}
+\DoxyCodeLine{00107\ \ \ \ \ get\_defaults()[key]\ =\ defaultValue;}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Args_a5e0c936dd670196c7e7e1ae42c900f3f}{has}}(std::string\_view\ key)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00118\ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ get\_defaults().find(key)\ !=\ get\_defaults().end()\ )\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_args().find(key)\ !=\ get\_args().end();}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ val\_t\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{00133\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Args_a12f622ce955c60b5093de097116d007e}{get}}(std::string\_view\ key)\ -\/>\ val\_t}
+\DoxyCodeLine{00134\ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ get\_args().find(key);}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ iter\ ==\ get\_args().end()\ )\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ iter\ =\ get\_defaults().find(key);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ iter\ ==\ get\_defaults().end()\ )}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Attempt\ To\ Access\ Missing\ Argument:"{}}\ +\ std::string(key));}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1Numeric}{Concepts::Numeric<val\_t>}}\ )\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}val\_t\textcolor{keyword}{>}(std::stof(iter-\/>second));}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ iter-\/>second;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Args_a23f0c1dfa9da9c6ffb75d370f4a46142}{count}}()\ -\/>\ \textcolor{keywordtype}{size\_t}\ \{\ \textcolor{keywordflow}{return}\ get\_args().size();\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Args_a8f88c02a5d2b4c931b40acc6a7e2c217}{reset}}()}
+\DoxyCodeLine{00162\ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ get\_arg\_map().clear();}
+\DoxyCodeLine{00164\ \ \ \ \ get\_req\_set().clear();}
+\DoxyCodeLine{00165\ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ split\_arg(std::string\_view\ arg)\ -\/>\ std::pair<std::string,\ std::string>}
+\DoxyCodeLine{00175\ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{auto}\ loc\ =\ arg.find(\textcolor{charliteral}{'='});}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ loc\ ==\ std::string::npos\ )\ \textcolor{keywordflow}{return}\ std::make\_pair(std::string(arg.begin()\ +\ 1),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_pair(std::string(arg.begin()\ +\ 1,\ loc\ -\/\ 1),}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string(arg.begin()\ +\ loc\ +\ 1,\ arg.length()\ -\/\ (loc\ +\ 1)));}
+\DoxyCodeLine{00181\ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ split\_single\_letter\_args(std::string\_view\ arg)\ -\/>\ std::vector<std::string>}
+\DoxyCodeLine{00184\ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ std::vector<std::string>\ args;}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ chr\ :\ arg\ )\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ args.emplace\_back(1,\ chr);}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ args;}
+\DoxyCodeLine{00190\ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ validate\_composite\_flag(std::string\ \textcolor{keyword}{const}\&\ arg)\ -\/>\ std::pair<bool,\ std::string>}
+\DoxyCodeLine{00199\ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{auto}\ flags\ =\ split\_single\_letter\_args(arg);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ flag\ :\ flags\ )\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ valid\ =\ validate\_flag(flag,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ valid.first\ )\ \textcolor{keywordflow}{return}\ valid;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ get\_args()[flag]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}"{}}\};}
+\DoxyCodeLine{00208\ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ validate\_flag(std::string\_view\ flag,\ std::string\_view\ value)\ -\/>\ std::pair<bool,\ std::string>}
+\DoxyCodeLine{00216\ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{auto}\&\ argSet\ =\ get\_arg\_map();}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{auto}\ \ iter\ =\ argSet.find(flag);}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ iter\ ==\ argSet.end()\ )\ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Unknown\ Flag"{}}\};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{auto}\ type\ =\ iter-\/>second;}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (type\ \&\ ArgType::VALUE\_REQUIRED)\ ==\ ArgType::VALUE\_REQUIRED\ )\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ value.empty()\ )\ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Required\ Value\ Missing"{}}\};}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}"{}}\};}
+\DoxyCodeLine{00228\ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00235\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ check\_required()}
+\DoxyCodeLine{00236\ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ arg\ :\ get\_req\_set()\ )\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ \mbox{\hyperlink{classVIPRA_1_1Args_a5e0c936dd670196c7e7e1ae42c900f3f}{has}}(arg)\ )\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Missing\ Flag:\ "{}}\ +\ arg);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00251\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ format(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}*\ argv)\ -\/>\ std::vector<std::string>}
+\DoxyCodeLine{00252\ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ std::vector<std::string>\{argv,\ std::next(argv,\ \textcolor{keyword}{static\_cast<}std::ptrdiff\_t\textcolor{keyword}{>}(argc))\};}
+\DoxyCodeLine{00254\ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ get\_arg\_map()\ -\/>\ std::map<std::string,\ ArgType,\ std::less<>>\&}
+\DoxyCodeLine{00257\ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{static}\ std::map<std::string,\ ArgType,\ std::less<>>\ argSet;}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ argSet;}
+\DoxyCodeLine{00260\ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ get\_req\_set()\ -\/>\ ArgsSet\&}
+\DoxyCodeLine{00263\ \ \ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{static}\ ArgsSet\ reqSet;}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ reqSet;}
+\DoxyCodeLine{00266\ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ get\_args()\ -\/>\ ArgsMap\&}
+\DoxyCodeLine{00269\ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{static}\ ArgsMap\ args;}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{return}\ args;}
+\DoxyCodeLine{00272\ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ get\_defaults()\ -\/>\ ArgsMap\&}
+\DoxyCodeLine{00275\ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{static}\ ArgsMap\ defaults\{\};}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ defaults;}
+\DoxyCodeLine{00278\ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00281\ \ \ Args()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00282\ \};}
+\DoxyCodeLine{00283\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

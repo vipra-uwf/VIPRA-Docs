@@ -1,0 +1,211 @@
+\doxysection{DXF Class Reference}
+\hypertarget{classDXF}{}\label{classDXF}\index{DXF@{DXF}}
+
+
+Parameter and Polygon qualified dxf input module.  
+
+
+
+
+{\ttfamily \#include $<$dxf.\+hpp$>$}
+
+
+
+Inheritance diagram for DXF\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/ded/classDXF__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for DXF\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d15/classDXF__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDXF_aea83784533f57a3b8424cf247655d192}\label{classDXF_aea83784533f57a3b8424cf247655d192} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+NAME} ("{}DXF"{})
+\item 
+\Hypertarget{classDXF_a1365ac3ea25b868439e9366bd752a17c}\label{classDXF_a1365ac3ea25b868439e9366bd752a17c} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (Map\+Input)
+\item 
+void \mbox{\hyperlink{classDXF_a063cbb92af10469c384fb5dc57b2f5f9}{load}} (std\+::string const \&filepath) override
+\begin{DoxyCompactList}\small\item\em Loads the DXF file from the given path. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classDXF_ad53cfbd87368f82da8e9e6878176fb73}{serialize}} () -\/$>$ std\+::string override
+\item 
+void \mbox{\hyperlink{classDXF_a960ec986f8680d04695ff4ea22eee9f5}{parse}} (std\+::string const \&) override
+\item 
+auto \mbox{\hyperlink{classDXF_a515c90b78bee2e61bff9228695d22a01}{get\+\_\+obstacles}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns obstacles geometry from the .dxf file. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classDXF_aa372d3f3936e00717fff47f64905226b}{get\+\_\+spawns}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns spawn area geometry from the .dxf file. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classDXF_a87725300457a1f5b30f06555c33bab83}{get\+\_\+objectives}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns Objectives map from the .dxf file. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classDXF_aa0ec3d51780ba8687b9a0fe5062fea17}{get\+\_\+areas}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns spawn area geometry from the .dxf file. \end{DoxyCompactList}\item 
+\Hypertarget{classDXF_a0d0564559348b997fb28bb17ac086b1b}\label{classDXF_a0d0564559348b997fb28bb17ac086b1b} 
+auto {\bfseries get\+\_\+objective\+\_\+types} (std\+::vector$<$ std\+::string $>$ const \&keys) const -\/$>$ std\+::optional$<$ std\+::vector$<$ std\+::string $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ DXF $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Serializable} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&)=default
+\item 
+{\bfseries Serializable} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Map\+Input} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&)=default
+\item 
+{\bfseries Map\+Input} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDXF_af203e2ad192f049e8838eb42fd55817a}\label{classDXF_af203e2ad192f049e8838eb42fd55817a} 
+static auto {\bfseries get\+\_\+polygons} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ DRW\+\_\+\+Vertex $>$ $>$ \&vertex\+List) -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameter and Polygon qualified dxf input module. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDXF_aa0ec3d51780ba8687b9a0fe5062fea17}\index{DXF@{DXF}!get\_areas@{get\_areas}}
+\index{get\_areas@{get\_areas}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{get\_areas()}{get\_areas()}}
+{\footnotesize\ttfamily \label{classDXF_aa0ec3d51780ba8687b9a0fe5062fea17} 
+auto DXF\+::get\+\_\+areas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$           std\+::map$<$std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}}$>$$>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns spawn area geometry from the .dxf file. 
+
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$std\+::string, std\+::vector$<$\+VIPRA\+::\+Geometry\+::\+Polygon$>$$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classDXF_a87725300457a1f5b30f06555c33bab83}\index{DXF@{DXF}!get\_objectives@{get\_objectives}}
+\index{get\_objectives@{get\_objectives}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{get\_objectives()}{get\_objectives()}}
+{\footnotesize\ttfamily \label{classDXF_a87725300457a1f5b30f06555c33bab83} 
+auto DXF\+::get\+\_\+objectives (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$std\+::map$<$           std\+::string, std\+::vector$<$\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}}$>$$>$$>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns Objectives map from the .dxf file. 
+
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$std\+::vector$<$\+VIPRA\+::\+Geometry\+::\+Polygon$>$$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classDXF_a515c90b78bee2e61bff9228695d22a01}\index{DXF@{DXF}!get\_obstacles@{get\_obstacles}}
+\index{get\_obstacles@{get\_obstacles}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{get\_obstacles()}{get\_obstacles()}}
+{\footnotesize\ttfamily \label{classDXF_a515c90b78bee2e61bff9228695d22a01} 
+auto DXF\+::get\+\_\+obstacles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$std\+::vector$<$\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}}$>$$>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns obstacles geometry from the .dxf file. 
+
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$std\+::vector$<$\+VIPRA\+::\+Geometry\+::\+Polygon$>$$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classDXF_aa372d3f3936e00717fff47f64905226b}\index{DXF@{DXF}!get\_spawns@{get\_spawns}}
+\index{get\_spawns@{get\_spawns}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{get\_spawns()}{get\_spawns()}}
+{\footnotesize\ttfamily \label{classDXF_aa372d3f3936e00717fff47f64905226b} 
+auto DXF\+::get\+\_\+spawns (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$std\+::vector$<$\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}}$>$$>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns spawn area geometry from the .dxf file. 
+
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$std\+::vector$<$\+VIPRA\+::\+Geometry\+::\+Polygon$>$$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classDXF_a063cbb92af10469c384fb5dc57b2f5f9}\index{DXF@{DXF}!load@{load}}
+\index{load@{load}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classDXF_a063cbb92af10469c384fb5dc57b2f5f9} 
+void DXF\+::load (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Loads the DXF file from the given path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & \\
+\hline
+\end{DoxyParams}
+\href{https://github.com/codelibs/libdxfrw}{\texttt{ https\+://github.\+com/codelibs/libdxfrw}} 
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classDXF_a960ec986f8680d04695ff4ea22eee9f5}\index{DXF@{DXF}!parse@{parse}}
+\index{parse@{parse}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classDXF_a960ec986f8680d04695ff4ea22eee9f5} 
+void DXF\+::parse (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}.
+
+\Hypertarget{classDXF_ad53cfbd87368f82da8e9e6878176fb73}\index{DXF@{DXF}!serialize@{serialize}}
+\index{serialize@{serialize}!DXF@{DXF}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{classDXF_ad53cfbd87368f82da8e9e6878176fb73} 
+auto DXF\+::serialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ std\+::string\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/input/dxf/dxf.\+hpp\item 
+VIPRA/modules/input/dxf/dxf.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,50 @@
+\doxysection{calm\+\_\+model\+\_\+types.\+hpp}
+\hypertarget{calm__model__types_8hpp_source}{}\label{calm__model__types_8hpp_source}\index{VIPRA/modules/model/Calm/calm\_model\_types.hpp@{VIPRA/modules/model/Calm/calm\_model\_types.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/line.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/types/size.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }CALM\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum}\ RaceStatus\ \{\ NO\_RACE,\ WAIT\ \};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCALM_1_1ConfigData}{ConfigData}}\ \{}
+\DoxyCodeLine{00011\ \ \ VIPRA::f\_pnt\ meanMass;}
+\DoxyCodeLine{00012\ \ \ VIPRA::f\_pnt\ massStdDev;}
+\DoxyCodeLine{00013\ \ \ VIPRA::f\_pnt\ meanReactionTime;}
+\DoxyCodeLine{00014\ \ \ VIPRA::f\_pnt\ reactionTimeStdDev;}
+\DoxyCodeLine{00015\ \ \ VIPRA::f\_pnt\ meanMaxSpeed;}
+\DoxyCodeLine{00016\ \ \ VIPRA::f\_pnt\ maxSpeedStdDev;}
+\DoxyCodeLine{00017\ \ \ VIPRA::f\_pnt\ meanShoulderLen;}
+\DoxyCodeLine{00018\ \ \ VIPRA::f\_pnt\ shoulderLenStdDev;}
+\DoxyCodeLine{00019\ \ \ VIPRA::size\ \ randomSeed;}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCALM_1_1ModelData}{ModelData}}\ \{}
+\DoxyCodeLine{00023\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ masses;}
+\DoxyCodeLine{00024\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ reactionTimes;}
+\DoxyCodeLine{00025\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ maxSpeeds;}
+\DoxyCodeLine{00026\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ shoulderLens;}
+\DoxyCodeLine{00027\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ betas;}
+\DoxyCodeLine{00028\ \ \ std::vector<VIPRA::f\_pnt>\ \ \ \ \ \ \ \ \ \ nearestDists;}
+\DoxyCodeLine{00029\ \ \ std::vector<VIPRA::Geometry::Line>\ shoulders;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ size()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{size\_t}\ \{\ \textcolor{keywordflow}{return}\ masses.size();\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{void}\ resize(\textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{00034\ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ masses.resize(size);}
+\DoxyCodeLine{00036\ \ \ \ \ reactionTimes.resize(size);}
+\DoxyCodeLine{00037\ \ \ \ \ maxSpeeds.resize(size);}
+\DoxyCodeLine{00038\ \ \ \ \ shoulderLens.resize(size);}
+\DoxyCodeLine{00039\ \ \ \ \ betas.resize(size);}
+\DoxyCodeLine{00040\ \ \ \ \ nearestDists.resize(size);}
+\DoxyCodeLine{00041\ \ \ \ \ shoulders.resize(size);}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ \}\ \ \textcolor{comment}{//\ namespace\ CALM}}
+
+\end{DoxyCode}

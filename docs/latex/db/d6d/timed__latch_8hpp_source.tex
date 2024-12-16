@@ -1,0 +1,66 @@
+\doxysection{timed\+\_\+latch.\+hpp}
+\hypertarget{timed__latch_8hpp_source}{}\label{timed__latch_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/util/timed\_latch.hpp@{VIPRA/include/vipra/vipra\_behaviors/util/timed\_latch.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/types/time.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/numeric\_value.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection}{TimedLatchCollection}}\ \{}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection}{TimedLatchCollection}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{Behaviors::NumericValue}}\ value)}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ :\ \_duration(std::move(value))}
+\DoxyCodeLine{00019\ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection_afb5b9d07d65794368b933e2f633439ce}{resize}}(VIPRA::size\ latchCnt)\ \{\ \_startTimes.resize(latchCnt,\ -\/1);\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection_a5b22b1e0b1bc68a8ddce4d8479c02d63}{latch}}(VIPRA::time\_s\ startTime,\ VIPRA::idx\ pedIdx)}
+\DoxyCodeLine{00037\ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_startTimes[pedIdx]\ ==\ -\/1\ )\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \_startTimes[pedIdx]\ =\ startTime;}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ size()\ const\ -\/>\ VIPRA::size\ \{\ \textcolor{keywordflow}{return}\ \_startTimes.size();\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection_a4e679d7971b4d22d20adf662c02c6f80}{check}}(VIPRA::time\_s\ currTime,\ VIPRA::idx\ pedIdx)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00054\ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_startTimes[pedIdx]\ ==\ -\/1\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ VIPRA::f\_pnt\ val\ =\ \_duration.value(pedIdx);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ currTime\ -\/\ \_startTimes.at(pedIdx)\ >=\ val\ )\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \_startTimes.at(pedIdx)\ =\ -\/1;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection_af08c024755ec8eafd0b00efadd3d5b38}{get\_duration}}(VIPRA::idx\ pedIdx)\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00073\ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \_duration.value(pedIdx);}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{Behaviors::NumericValue}}\ \ \ \ \_duration;}
+\DoxyCodeLine{00079\ \ \ std::vector<VIPRA::time\_s>\ \_startTimes;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ in\_time\_step(VIPRA::time\_s\ \ currTime,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::time\_s\ \ checkTime,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::delta\_t\ deltaT)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00093\ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::delta\_t\ left\ =\ checkTime\ -\/\ deltaT;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::delta\_t\ right\ =\ checkTime\ +\ deltaT;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ (currTime\ >\ left\ \&\&\ currTime\ <\ right);}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

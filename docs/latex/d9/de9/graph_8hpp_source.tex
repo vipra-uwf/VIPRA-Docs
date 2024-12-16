@@ -1,0 +1,92 @@
+\doxysection{graph.\+hpp}
+\hypertarget{graph_8hpp_source}{}\label{graph_8hpp_source}\index{VIPRA/include/vipra/data\_structures/graph.hpp@{VIPRA/include/vipra/data\_structures/graph.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/algorithms/astar.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }VIPRA::DataStructures\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t,\ \textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{GraphMixin}}\ \{}
+\DoxyCodeLine{00020\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \textcolor{keyword}{using\ }value\_t\ =\ data\_t;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1DataStructures_1_1GraphMixin_1_1Node}{Node}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ data\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data;}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<VIPRA::idx>\ neighbors;}
+\DoxyCodeLine{00026\ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{void}\ reserve(VIPRA::idx\ size)\ \{\ \_nodes.reserve(size);\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ clear()\ \{\ \_nodes.clear();\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ node\_count()\ const\ -\/>\ VIPRA::idx\ \{\ \textcolor{keywordflow}{return}\ \_nodes.size();\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ nodes()\ -\/>\ std::vector<Node>\&\ \{\ \textcolor{keywordflow}{return}\ \_nodes;\ \}}
+\DoxyCodeLine{00035\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ nodes()\ const\ -\/>\ std::vector<Node>\ const\&\ \{\ \textcolor{keywordflow}{return}\ \_nodes;\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ neighbors(VIPRA::idx\ nodeIdx)\ -\/>\ std::vector<VIPRA::idx>\&}
+\DoxyCodeLine{00038\ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ assert(nodeIdx\ <\ \_nodes.size());}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes[nodeIdx].neighbors;}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ neighbors(VIPRA::idx\ nodeIdx)\ \textcolor{keyword}{const}\ -\/>\ std::vector<VIPRA::idx>\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00043\ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ assert(nodeIdx\ <\ \_nodes.size());}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes[nodeIdx].neighbors;}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ data(VIPRA::idx\ nodeIdx)\ -\/>\ data\_t\&}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ assert(nodeIdx\ <\ \_nodes.size());}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes[nodeIdx].data;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ data(VIPRA::idx\ nodeIdx)\ \textcolor{keyword}{const}\ -\/>\ data\_t\ \textcolor{keyword}{const}\&}
+\DoxyCodeLine{00054\ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ assert(nodeIdx\ <\ \_nodes.size());}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes[nodeIdx].data;}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{void}\ add\_edge(VIPRA::idx\ nodeIdx1,\ VIPRA::idx\ nodeIdx2)}
+\DoxyCodeLine{00060\ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ assert(nodeIdx1\ <\ \_nodes.size());}
+\DoxyCodeLine{00062\ \ \ \ \ assert(nodeIdx2\ <\ \_nodes.size());}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \_nodes[nodeIdx1].neighbors.push\_back(nodeIdx2);}
+\DoxyCodeLine{00065\ \ \ \ \ \_nodes[nodeIdx2].neighbors.push\_back(nodeIdx1);}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ add\_node(data\_t\ data)\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00069\ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \_nodes.push\_back(Node\{data,\ \{\}\});}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes.size()\ -\/\ 1;}
+\DoxyCodeLine{00072\ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ add\_node(data\_t\ data,\ std::vector<VIPRA::idx>\ neighbors)\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00075\ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \_nodes.emplace\_back(Node\{data,\ neighbors\});}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ neighbor\ :\ neighbors\ )\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \_nodes[neighbor].neighbors.push\_back(\_nodes.size()\ -\/\ 1);}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \_nodes.size()\ -\/\ 1;}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ std::vector<Node>\ \_nodes;}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00093\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1Graph}{Graph}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{GraphMixin}}<void,\ data\_t>\ \{\};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1Graph}{Algo::AStar::Graph<Graph<VIPRA::f3d>}}>);}
+\DoxyCodeLine{00096\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::DataStructures}}
+
+\end{DoxyCode}

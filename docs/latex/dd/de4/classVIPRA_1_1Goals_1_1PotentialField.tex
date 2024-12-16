@@ -1,0 +1,135 @@
+\doxysection{VIPRA\+::Goals\+::Potential\+Field Class Reference}
+\hypertarget{classVIPRA_1_1Goals_1_1PotentialField}{}\label{classVIPRA_1_1Goals_1_1PotentialField}\index{VIPRA::Goals::PotentialField@{VIPRA::Goals::PotentialField}}
+
+
+Inheritance diagram for VIPRA\+::Goals\+::Potential\+Field\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{d1/d59/classVIPRA_1_1Goals_1_1PotentialField__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Goals\+::Potential\+Field\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{df/de9/classVIPRA_1_1Goals_1_1PotentialField__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_a131eae9638cf400a4aea4db9b4f114d2}\label{classVIPRA_1_1Goals_1_1PotentialField_a131eae9638cf400a4aea4db9b4f114d2} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}end\+Goal\+Type"{}, \+\_\+end\+Goal\+Type), VIPRA\+\_\+\+PARAM("{}cell\+Size"{}, \+\_\+cell\+Size), VIPRA\+\_\+\+PARAM("{}density\+Update\+Frequency"{}, \+\_\+density\+Update\+Frequency), VIPRA\+\_\+\+PARAM("{}density\+Cell\+Size"{}, \+\_\+density\+Cell\+Size), VIPRA\+\_\+\+PARAM("{}density\+Weight"{}, \+\_\+density\+Weight)) VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_a4e959bf66803861b3647c117b9afd9c2}\label{classVIPRA_1_1Goals_1_1PotentialField_a4e959bf66803861b3647c117b9afd9c2} 
+{\bfseries if} (\+\_\+density\+Check\+Counter $>$=\+\_\+density\+Update\+Frequency)
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_aa89808aba2cdab8c1bea2df61753f2a2}\label{classVIPRA_1_1Goals_1_1PotentialField_aa89808aba2cdab8c1bea2df61753f2a2} 
+{\bfseries for} (VIPRA\+::idx ped\+Idx=0;ped\+Idx$<$ pedset.\+num\+\_\+pedestrians();++ped\+Idx)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Potential\+Field $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries initialize} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA\+::\+Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+void {\bfseries update} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, VIPRA\+::delta\+\_\+t deltaT)
+\item 
+void {\bfseries change\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} curr\+Pos, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} goal\+Pos, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx) const -\/$>$ bool
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+sim\+\_\+goal\+\_\+met} () const -\/$>$ bool
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries time\+\_\+since\+\_\+last\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+{\bfseries Goals} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&)=default
+\item 
+{\bfseries Goals} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PotentialField_a682ae4d779aae154e8c480b8a98a6cb4}{VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP}}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_a943c7b91a3be737df53a23224c791813}\label{classVIPRA_1_1Goals_1_1PotentialField_a943c7b91a3be737df53a23224c791813} 
+{\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL} \{ return false
+\item 
+\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PotentialField_a6a2bdf6ef101a1f7312f6be5e448c960}{VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx, bool met)
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+current\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_a6a2bdf6ef101a1f7312f6be5e448c960}\index{VIPRA::Goals::PotentialField@{VIPRA::Goals::PotentialField}!VIPRA\_GOALS\_CHANGE\_GOAL@{VIPRA\_GOALS\_CHANGE\_GOAL}}
+\index{VIPRA\_GOALS\_CHANGE\_GOAL@{VIPRA\_GOALS\_CHANGE\_GOAL}!VIPRA::Goals::PotentialField@{VIPRA::Goals::PotentialField}}
+\doxysubsubsection{\texorpdfstring{VIPRA\_GOALS\_CHANGE\_GOAL}{VIPRA\_GOALS\_CHANGE\_GOAL}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Goals_1_1PotentialField_a6a2bdf6ef101a1f7312f6be5e448c960} 
+VIPRA\+::\+Goals\+::\+Potential\+Field\+::\+VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Potential\ Field\ Goals\ is\ unable\ to\ change\ goals"{}})}
+
+\end{DoxyCode}
+\Hypertarget{classVIPRA_1_1Goals_1_1PotentialField_a682ae4d779aae154e8c480b8a98a6cb4}\index{VIPRA::Goals::PotentialField@{VIPRA::Goals::PotentialField}!VIPRA\_GOALS\_UPDATE\_STEP@{VIPRA\_GOALS\_UPDATE\_STEP}}
+\index{VIPRA\_GOALS\_UPDATE\_STEP@{VIPRA\_GOALS\_UPDATE\_STEP}!VIPRA::Goals::PotentialField@{VIPRA::Goals::PotentialField}}
+\doxysubsubsection{\texorpdfstring{VIPRA\_GOALS\_UPDATE\_STEP}{VIPRA\_GOALS\_UPDATE\_STEP}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Goals_1_1PotentialField_a682ae4d779aae154e8c480b8a98a6cb4} 
+VIPRA\+::\+Goals\+::\+Potential\+Field\+::\+VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \_densityCheckCounter++}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/goals/potential\+\_\+field/potential\+\_\+field.\+hpp\end{DoxyCompactItemize}

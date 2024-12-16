@@ -1,0 +1,64 @@
+\doxysection{VIPRA\+::Geometry\+::Polygon Class Reference}
+\hypertarget{classVIPRA_1_1Geometry_1_1Polygon}{}\label{classVIPRA_1_1Geometry_1_1Polygon}\index{VIPRA::Geometry::Polygon@{VIPRA::Geometry::Polygon}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_adea99e54fa46e8faa9ad05b489186ebd}\label{classVIPRA_1_1Geometry_1_1Polygon_adea99e54fa46e8faa9ad05b489186ebd} 
+auto {\bfseries random\+\_\+point} (\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine) const noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a50a25cf486c606ae8285566ba9c422cd}\label{classVIPRA_1_1Geometry_1_1Polygon_a50a25cf486c606ae8285566ba9c422cd} 
+auto {\bfseries is\+\_\+point\+\_\+inside} (\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point) const noexcept -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a68ea265bf793741ab8b358488a4d2a8f}\label{classVIPRA_1_1Geometry_1_1Polygon_a68ea265bf793741ab8b358488a4d2a8f} 
+auto {\bfseries bounding\+\_\+box} () const noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a7a6f3ecb105281e47b63db9cf8416be6}\label{classVIPRA_1_1Geometry_1_1Polygon_a7a6f3ecb105281e47b63db9cf8416be6} 
+auto {\bfseries center} () const noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a43f5b85a32efef3dedbea21ce4cf048f}\label{classVIPRA_1_1Geometry_1_1Polygon_a43f5b85a32efef3dedbea21ce4cf048f} 
+auto {\bfseries points} () const noexcept -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a4aa6020d9031e958c8498faac4114bbd}\label{classVIPRA_1_1Geometry_1_1Polygon_a4aa6020d9031e958c8498faac4114bbd} 
+auto {\bfseries sides} () const noexcept -\/$>$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}} $>$
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a1574955854415fa3e247e8ef14e396a2}\label{classVIPRA_1_1Geometry_1_1Polygon_a1574955854415fa3e247e8ef14e396a2} 
+{\bfseries Polygon} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} $>$ const \&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a694f8d50c76974ec527e1863606c96b8}\label{classVIPRA_1_1Geometry_1_1Polygon_a694f8d50c76974ec527e1863606c96b8} 
+{\bfseries Polygon} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} $>$ \&\&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a9264cf3e09e6f1e4c27669ce79e78900}\label{classVIPRA_1_1Geometry_1_1Polygon_a9264cf3e09e6f1e4c27669ce79e78900} 
+{\footnotesize template$<$size\+\_\+t point\+\_\+s$>$ }\\{\bfseries Polygon} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}, point\+\_\+s $>$ const \&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a80669b1ee6e5254dde76e4d2723c4249}\label{classVIPRA_1_1Geometry_1_1Polygon_a80669b1ee6e5254dde76e4d2723c4249} 
+{\footnotesize template$<$size\+\_\+t point\+\_\+s$>$ }\\{\bfseries Polygon} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}, point\+\_\+s $>$ \&\&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a9f0f7e791cb6b99b1636ff5ce23f46c8}\label{classVIPRA_1_1Geometry_1_1Polygon_a9f0f7e791cb6b99b1636ff5ce23f46c8} 
+{\bfseries Polygon} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}} $>$ const \&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a133c8c0c19b2bdfcadb96039bd3e4004}\label{classVIPRA_1_1Geometry_1_1Polygon_a133c8c0c19b2bdfcadb96039bd3e4004} 
+{\bfseries Polygon} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}} $>$ \&\&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a4d7fa79988ef79bd1a00361c3457a8ae}\label{classVIPRA_1_1Geometry_1_1Polygon_a4d7fa79988ef79bd1a00361c3457a8ae} 
+{\footnotesize template$<$size\+\_\+t point\+\_\+s$>$ }\\{\bfseries Polygon} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}, point\+\_\+s $>$ const \&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a40580f5068644066e2fc8871db4e95f8}\label{classVIPRA_1_1Geometry_1_1Polygon_a40580f5068644066e2fc8871db4e95f8} 
+{\footnotesize template$<$size\+\_\+t point\+\_\+s$>$ }\\{\bfseries Polygon} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}, point\+\_\+s $>$ \&\&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_af88359af79791c88d29da1d7392a7cac}\label{classVIPRA_1_1Geometry_1_1Polygon_af88359af79791c88d29da1d7392a7cac} 
+{\bfseries Polygon} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} const \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_ad73c415cfc7e936264e233518efe1c50}\label{classVIPRA_1_1Geometry_1_1Polygon_ad73c415cfc7e936264e233518efe1c50} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} const \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a82f2490f6519490cbcdb726225469659}\label{classVIPRA_1_1Geometry_1_1Polygon_a82f2490f6519490cbcdb726225469659} 
+{\bfseries Polygon} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Polygon_a5e94b2d76d4fe16d12371c1fc2a7c3ca}\label{classVIPRA_1_1Geometry_1_1Polygon_a5e94b2d76d4fe16d12371c1fc2a7c3ca} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{Polygon}} \&=default
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/geometry/polygon.\+hpp\end{DoxyCompactItemize}

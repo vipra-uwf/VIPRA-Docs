@@ -1,0 +1,10 @@
+\doxysection{VIPRA\+::Concepts\+::String\+View Concept Reference}
+\hypertarget{conceptVIPRA_1_1Concepts_1_1StringView}{}\label{conceptVIPRA_1_1Concepts_1_1StringView}\index{VIPRA::Concepts::StringView@{VIPRA::Concepts::StringView}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ type\_t>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1StringView}{VIPRA::Concepts::StringView}}\ =\ }
+\DoxyCodeLine{\ \ \ \ std::is\_same\_v<type\_t,\ std::string\_view>\ ||\ std::is\_convertible\_v<type\_t,\ std::string\_view>}
+
+\end{DoxyCode}

@@ -1,0 +1,482 @@
+\doxysection{attributes.\+hpp}
+\hypertarget{attributes_8hpp_source}{}\label{attributes_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/attributes/attributes.hpp@{VIPRA/include/vipra/vipra\_behaviors/attributes/attributes.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/behavior/exceptions.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/behavior\_context.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/dsl\_types.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/events/event.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/events/event\_status.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/numeric\_value.hpp"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{enum\ class}\ Attribute\ \{}
+\DoxyCodeLine{00025\ \ \ INVALID\ =\ 0,}
+\DoxyCodeLine{00026\ \ \ POSITION,}
+\DoxyCodeLine{00027\ \ \ DIMENSIONS,}
+\DoxyCodeLine{00028\ \ \ VELOCITY,}
+\DoxyCodeLine{00029\ \ \ END\_GOAL,}
+\DoxyCodeLine{00030\ \ \ CURR\_GOAL,}
+\DoxyCodeLine{00031\ \ \ STATE,}
+\DoxyCodeLine{00032\ \ \ LOCATION,}
+\DoxyCodeLine{00033\ \ \ STATUS,}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{enum\ class}\ Type\ \{}
+\DoxyCodeLine{00041\ \ \ INVALID\ =\ 0,}
+\DoxyCodeLine{00042\ \ \ NUMBER,}
+\DoxyCodeLine{00043\ \ \ COORD,}
+\DoxyCodeLine{00044\ \ \ STATE,}
+\DoxyCodeLine{00045\ \ \ STATUS,}
+\DoxyCodeLine{00046\ \ \ LOCATION,}
+\DoxyCodeLine{00047\ \ \ TOWARDS\_LOC,}
+\DoxyCodeLine{00048\ \ \ TOWARDS\_ATTR,}
+\DoxyCodeLine{00049\ \ \ OBJECTIVE,}
+\DoxyCodeLine{00050\ \ \ POSITION}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ \{}
+\DoxyCodeLine{00058\ \ \ Type\ \ \ \ \ \ \ \ type;}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}*\ value;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}(Type\ aType,\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}*\ aVal)\ :\ type(aType),\ value(aVal)\ \{\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ type\_check(Type\ check)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ type\ !=\ check\ )\ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Type"{}});}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ value\_t>}
+\DoxyCodeLine{00075\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue_ae0964eb1cceefc25f3c309c5b21e062b}{as}}()\ const\ -\/>\ value\_t\ const\&}
+\DoxyCodeLine{00076\ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{static\_cast<}value\_t\ const*\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{00078\ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ value\_t>}
+\DoxyCodeLine{00087\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue_a2016bc67451d374f93b54f554e86b388}{as\_ptr}}()\ const\ -\/>\ value\_t\ const*}
+\DoxyCodeLine{00088\ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}value\_t\ const*\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{00090\ \ \ \}}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeValue}{AttributeValue}}\ \{}
+\DoxyCodeLine{00098\ \ \ Type\ \ type;}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}*\ value;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeValue_aa1c6a36f232cc6c6f58de867da81e25b}{type\_check}}(Type\ check)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ type\ !=\ check\ )\ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Type"{}});}
+\DoxyCodeLine{00109\ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ value\_t>}
+\DoxyCodeLine{00118\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeValue_a2c568bcf4205da9816100d63e3b9c46b}{as}}()\ -\/>\ value\_t\&}
+\DoxyCodeLine{00119\ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{static\_cast<}value\_t*\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ value\_t>}
+\DoxyCodeLine{00130\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeValue_a485d667aabace20bf455dd1283d38179}{as\_ptr}}()\ const\ -\/>\ value\_t*}
+\DoxyCodeLine{00131\ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}value\_t*\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{00133\ \ \ \}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling}{AttributeHandling}}\ \{}
+\DoxyCodeLine{00141\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_ad83435c0020218b0423f05ea4b65aaa0}{get\_value}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ target,\ Attribute\ attr,}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pack)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}}
+\DoxyCodeLine{00152\ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ target.type\ )\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::PEDESTRIAN:}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_ped\_value(target,\ attr,\ pack);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::EVENT:}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_event\_value(target,\ attr,\ pack);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::LOCATION:}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_location\_value(target,\ attr,\ pack);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::INVALID:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::INVALID,\ \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::INVALID,\ \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00165\ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_aa41ff14a37109ac57eeb4d8973f1502b}{set\_value}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ target,\ Attribute\ attr,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value)}
+\DoxyCodeLine{00178\ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ target.type\ )\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::PEDESTRIAN:}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ set\_ped\_value(target,\ attr,\ pack,\ state,\ value);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::EVENT:}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ set\_event\_value(target,\ attr,\ pack,\ value);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::LOCATION:}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ set\_location\_value(target,\ attr,\ pack,\ value);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::INVALID:}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00203\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_a98ef890c7063ec814525eb69402946bf}{scale\_value}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ target,\ Attribute\ attr,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value)}
+\DoxyCodeLine{00205\ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ target.type\ )\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::PEDESTRIAN:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ scale\_ped\_value(target,\ attr,\ pack,\ state,\ value);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::EVENT:}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Cannot\ Scale\ Event\ Value"{}});}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::LOCATION:}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Cannot\ Scale\ Location\ Value"{}});}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ TargetType::INVALID:}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00229\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_a2637cc7ce6cacbdfe35c80a9b101b640}{is\_coord\_loc\_compare}}(}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value1,\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value2)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00231\ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return}\ (value1.type\ ==\ Type::COORD\ \&\&\ value2.type\ ==\ Type::LOCATION)\ ||}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ (value1.type\ ==\ Type::LOCATION\ \&\&\ value2.type\ ==\ Type::COORD);}
+\DoxyCodeLine{00234\ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00245\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_ae3dd5ead8aa2096a39ed94a8a6daf3ac}{coord\_loc\_compare}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value1,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value2,}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pack)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00248\ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ value1.type\ ==\ Type::COORD\ \&\&\ value2.type\ ==\ Type::LOCATION\ )\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pack.context.locations[value2.as<VIPRA::idx>()].is\_point\_inside(}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ value1.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>());}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ value2.type\ ==\ Type::COORD\ \&\&\ value1.type\ ==\ Type::LOCATION\ )\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pack.context.locations[value1.as<VIPRA::idx>()].is\_point\_inside(}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ value2.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>());}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00260\ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00270\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_a7f605c6b98e7e0156c8d42361983d991}{is\_equal}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value1,}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value2,}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ pack)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00273\ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_a2637cc7ce6cacbdfe35c80a9b101b640}{is\_coord\_loc\_compare}}(value1,\ value2)\ )\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_ae3dd5ead8aa2096a39ed94a8a6daf3ac}{coord\_loc\_compare}}(value1,\ value2,\ pack);}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ value1.type\ !=\ value2.type\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ value1.type\ )\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::INVALID:}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Invalid\ Attribute\ Type"{}});}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::NUMBER:}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value1.as<VIPRA::f\_pnt>()\ ==\ value2.as<VIPRA::f\_pnt>();}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::COORD:}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value1.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>().distance\_to\_sqrd(}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value2.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>())\ <=\ 0.04;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::STATE:}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value1.as<stateUID>()\ ==\ value2.as<stateUID>();}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::STATUS:}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value1.as<EventStatus>()\ ==\ value2.as<EventStatus>();}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::LOCATION:}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value1.as<VIPRA::idx>()\ ==\ value2.as<VIPRA::idx>();}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00301\ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00311\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_ae534d13fab37898338187d0fa434ec52}{is\_not\_equal}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value1,}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}\ value2,}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ pack)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00314\ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ !\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_a7f605c6b98e7e0156c8d42361983d991}{is\_equal}}(value1,\ value2,\ pack);}
+\DoxyCodeLine{00316\ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00326\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ value\_t>}
+\DoxyCodeLine{00327\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1AttributeHandling_afce65558b870ba3378be30fa2fee792d}{store\_value}}(Type\ type,\ value\_t\&\&\ value)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}}
+\DoxyCodeLine{00329\ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{auto}\&\ valueStore\ =\ get\_value\_store();}
+\DoxyCodeLine{00331\ \ \ \ \ valueStore.emplace\_back(}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ type,\ \textcolor{keyword}{new}\ std::remove\_cvref\_t<value\_t>(std::forward<value\_t>(value)));}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordflow}{return}\ valueStore.back();}
+\DoxyCodeLine{00334\ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ cleanup()}
+\DoxyCodeLine{00337\ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ data\ :\ get\_value\_store()\ )\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \textcolor{comment}{//\ NOLINTBEGIN(cppcoreguidelines-\/owning-\/memory)}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ data.type\ )\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::INVALID:}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ throw\ std::runtime\_error("{}Invalid\ Type"{});}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::NUMBER:}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<VIPRA::f\_pnt>();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::COORD:}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::STATE:}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<stateUID>();}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::STATUS:}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<EventStatus>();}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::LOCATION:}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ [[fallthrough]];}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::TOWARDS\_LOC:}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<VIPRA::idx>();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Type::TOWARDS\_ATTR:}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ data.as\_ptr<Attribute>();}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ throw\ std::runtime\_error("{}Cleanup\ Error:\ Unknown\ Type"{});}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \textcolor{comment}{//\ NOLINTEND(cppcoreguidelines-\/owning-\/memory)}}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ get\_value\_store().clear();}
+\DoxyCodeLine{00372\ \ \ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\ \textcolor{keyword}{const}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00376\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\ \textcolor{keyword}{const}\&)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\&\&)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00379\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00380\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{\string~DeferedCleanup}}()\ \{\ AttributeHandling::cleanup();\ \}}
+\DoxyCodeLine{00381\ \ \ \};}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00384\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1AttributeHandling_1_1DeferedCleanup}{DeferedCleanup}}\ CLEANUP;}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(cppcoreguidelines-\/avoid-\/non-\/const-\/global-\/variables)\ Bug\ in\ clang-\/tidy\ (https://bugs.llvm.org/show\_bug.cgi?id=48040)}}
+\DoxyCodeLine{00387\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ get\_value\_store()\ -\/>\ std::vector<CAttributeValue>\&}
+\DoxyCodeLine{00388\ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<CAttributeValue>\ valueStore;}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keywordflow}{return}\ valueStore;}
+\DoxyCodeLine{00391\ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00401\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_ped\_value(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}}\ target,\ Attribute\ attr,}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pack)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{CAttributeValue}}}
+\DoxyCodeLine{00403\ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::POSITION:}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::COORD,\ \&pack.pedset.ped\_coords(target.targetIdx)\};}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::VELOCITY:}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::COORD,\ \&pack.state.velocities[target.targetIdx]\};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::END\_GOAL:}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::COORD,\ \&pack.goals.end\_goal(target.targetIdx)\};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::CURR\_GOAL:}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::COORD,\ \&pack.goals.current\_goal(target.targetIdx)\};}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATE:}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::STATE,\ \&pack.context.pedStates[target.targetIdx]\};}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Pedestrian\ Attribute"{}});}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00428\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_event\_value(Target\ \ \ \ target,}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Attribute\ attr,}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pack)\ -\/>\ CAttributeValue}
+\DoxyCodeLine{00431\ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::LOCATION:}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ (rolland)\ :\ get\ this\ added\ in\ when\ event\ locations\ are\ done}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Event\ Locations\ Not\ Implmented"{}});}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATUS:}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::STATUS,}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&pack.context.events[target.targetIdx].get\_status()\};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Event\ Attribute"{}});}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00452\ \ \ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_location\_value(}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ Target\ target,\ Attribute\ attr,\ \textcolor{keyword}{auto}\ pack)\ -\/>\ CAttributeValue}
+\DoxyCodeLine{00454\ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::POSITION:}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{Type::COORD,}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&pack.context.locations[target.targetIdx].center()\};}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::DIMENSIONS:}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Location\ Attribute"{}});}
+\DoxyCodeLine{00462\ \ \ \ \ \}}
+\DoxyCodeLine{00463\ \ \ \}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00474\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_ped\_value(Target\ target,\ Attribute\ attr,\ Simpack\ pack,}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,\ CAttributeValue\ value)}
+\DoxyCodeLine{00476\ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::POSITION:}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ set\_position(target,\ state,\ value);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::VELOCITY:}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ set\_velocity(target,\ pack,\ state,\ value);}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::END\_GOAL:}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ set\_goal(target,\ pack,\ value);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::CURR\_GOAL:}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Unable\ to\ set\ Pedestrian\ Current\ Goal"{}});}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATE:}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ set\_state(target,\ pack,\ value);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Pedestrian\ Attribute"{}});}
+\DoxyCodeLine{00495\ \ \ \ \ \}}
+\DoxyCodeLine{00496\ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00506\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_location\_value(Target\ \textcolor{comment}{/*target*/},\ Attribute\ attr,}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Simpack\ \textcolor{comment}{/*pack*/},}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CAttributeValue\ \textcolor{comment}{/*value*/})}
+\DoxyCodeLine{00509\ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::POSITION:}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::DIMENSIONS:}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Location\ Attribute"{}});}
+\DoxyCodeLine{00515\ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00527\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ scale\_ped\_value(Target\ target,\ Attribute\ attr,}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Simpack\ pack,\ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CAttributeValue\ value)}
+\DoxyCodeLine{00530\ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::POSITION:}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Cannot\ Scale\ Pedestrian\ Position"{}});}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::VELOCITY:}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ scale\_velocity(target,\ pack,\ state,\ value);}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::CURR\_GOAL:}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::END\_GOAL:}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Cannot\ Scale\ Pedestrian\ Position"{}});}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATE:}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ set\_state(target,\ pack,\ value);}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::INVALID:}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::LOCATION:}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATUS:}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Pedestrian\ Attribute"{}});}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::DIMENSIONS:}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Pedestrians\ Do\ Not\ Have\ Dimensions"{}});}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ \ \ \}}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00564\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_event\_value(Target\ target,\ Attribute\ attr,}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Simpack\ pack,\ CAttributeValue\ value)}
+\DoxyCodeLine{00566\ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ attr\ )\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::LOCATION:}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ (rolland)\ :\ get\ this\ added\ in\ when\ event\ locations\ are\ done}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Event\ Locations\ Not\ Implmented"{}});}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Attribute::STATUS:}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ pack.context.events[target.targetIdx].set\_status(}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ value.as<Behaviors::EventStatus>());}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ DSLException::error(\textcolor{stringliteral}{"{}Invalid\ Event\ Attribute"{}});}
+\DoxyCodeLine{00577\ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00589\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_position(Target\ target,\ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CAttributeValue\ value)}
+\DoxyCodeLine{00591\ \ \ \{}
+\DoxyCodeLine{00592\ \ \ \ \ value.type\_check(Type::COORD);}
+\DoxyCodeLine{00593\ \ \ \ \ state.positions[target.targetIdx]\ =\ value.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>();}
+\DoxyCodeLine{00594\ \ \ \}}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00603\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_state(Target\ target,\ Simpack\ pack,}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CAttributeValue\ value)}
+\DoxyCodeLine{00605\ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ value.type\_check(Type::STATE);}
+\DoxyCodeLine{00607\ \ \ \ \ pack.context.pedStates[target.targetIdx]\ =\ value.as<stateUID>();}
+\DoxyCodeLine{00608\ \ \ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00617\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_goal(Target\ target,\ Simpack\ pack,}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CAttributeValue\ value)}
+\DoxyCodeLine{00619\ \ \ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keyword}{auto}\&\ \ \ \ \ \ \ goals\ =\ pack.goals;}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keyword}{auto}\&\ \ \ \ \ \ \ \mbox{\hyperlink{classcontext}{context}}\ =\ pack.\mbox{\hyperlink{classcontext_adad83dfd237fee0e8ea86937ef1802c6}{context}};}
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ pedset\ =\ pack.pedset;}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ value.type\ ==\ Type::COORD\ )\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ goals.change\_end\_goal(target.targetIdx,}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pedset.ped\_coords(target.targetIdx),}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>(),\ \mbox{\hyperlink{classcontext}{context}}.engine);}
+\DoxyCodeLine{00628\ \ \ \ \ \}}
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\ value.type\ ==\ Type::LOCATION\ )\ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \textcolor{comment}{//\ TODO(rolland):\ this\ doesn't\ take\ into\ account\ two\ pedestrains\ going\ to\ the\ same\ location}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ goals.change\_end\_goal(}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ target.targetIdx,\ pedset.ped\_coords(target.targetIdx),}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcontext}{context}}.locations[value.as<VIPRA::idx>()].random\_point(}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcontext}{context}}.engine),}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcontext}{context}}.engine);}
+\DoxyCodeLine{00636\ \ \ \ \ \}}
+\DoxyCodeLine{00637\ \ \ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00647\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_velocity(Target\ target,\ Simpack\ pack,}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,\ CAttributeValue\ value)}
+\DoxyCodeLine{00649\ \ \ \{}
+\DoxyCodeLine{00650\ \ \ \ \ value.type\_check(Type::COORD);}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ state.velocities[target.targetIdx]\ =\ value.as<\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}>();}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ originalPos\ =\ pack.pedset.ped\_coords(target.targetIdx);}
+\DoxyCodeLine{00655\ \ \ \ \ state.positions[target.targetIdx]\ =}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ originalPos\ +\ (state.velocities[target.targetIdx]\ *\ pack.dT);}
+\DoxyCodeLine{00657\ \ \ \}}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ END\ SETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00661\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SCALING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00671\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ scale\_velocity(Target\ target,\ Simpack\ pack,}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,\ CAttributeValue\ value)}
+\DoxyCodeLine{00673\ \ \ \{}
+\DoxyCodeLine{00674\ \ \ \ \ value.type\_check(Type::NUMBER);}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ NumericValue\ \textcolor{keyword}{const}\&\ scale\ =\ *\textcolor{keyword}{static\_cast<}NumericValue\ const*\textcolor{keyword}{>}(value.value);}
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{comment}{//\ TODO\ (rolland):\ get\ magnitude,\ scale\ that\ then\ apply\ to\ the\ unit\ vector}}
+\DoxyCodeLine{00678\ \ \ \ \ VIPRA::f\_pnt\ scaleVal\ =\ scale.value(target.targetIdx);}
+\DoxyCodeLine{00679\ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ tempvel\ =\ state.velocities[target.targetIdx];}
+\DoxyCodeLine{00680\ \ \ \ \ tempvel\ *=\ scaleVal;}
+\DoxyCodeLine{00681\ \ \ \ \ state.positions[target.targetIdx]\ =}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ pack.pedset.ped\_coords(target.targetIdx)\ +\ (tempvel\ *\ pack.dT);}
+\DoxyCodeLine{00683\ \ \ \}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ END\ SCALING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00686\ \};}
+\DoxyCodeLine{00687\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

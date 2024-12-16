@@ -1,0 +1,82 @@
+\doxysection{param\+\_\+reader.\+hpp}
+\hypertarget{param__reader_8hpp_source}{}\label{param__reader_8hpp_source}\index{VIPRA/include/vipra/modules/param\_reader.hpp@{VIPRA/include/vipra/modules/param\_reader.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/numeric.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/random/distributions.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/util/crtp.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ module\_t>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1ParamReader}{ParamReader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<ParamReader<module\_t>>\ \{}
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{auto}\ get\_param(std::string\ \textcolor{keyword}{const}\&\ type,\ std::string\ \textcolor{keyword}{const}\&\ moduleName,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramName,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ std::optional<std::remove\_cvref\_t<data\_t>>}
+\DoxyCodeLine{00027\ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{auto}\ singleValue\ =\ this-\/>self().template\ get<std::remove\_cvref\_t<data\_t>>(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{type,\ moduleName,\ paramName\});}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ singleValue\ )\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ singleValue;}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{auto}\ arrayValue\ =}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ this-\/>self().template\ get<std::vector<std::remove\_cvref\_t<data\_t>>>(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{type,\ moduleName,\ paramName\});}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ arrayValue\ )\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_discrete\_value<std::remove\_cvref\_t<data\_t>>(arrayValue.value(),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engine);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{auto}\ mapValue\ =}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ this-\/>self()}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ .template\ get<std::map<std::string,\ std::remove\_cvref\_t<data\_t>>>(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{type,\ moduleName,\ paramName\});}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ mapValue\ )\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1Numeric}{Concepts::Numeric<std::remove\_cvref\_t<data\_t>}}>\ )\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NOTE(rolland):\ strings\ cannot\ be\ ranges}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_range\_value<std::remove\_cvref\_t<data\_t>>(mapValue.value(),}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engine);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{auto}\ get\_discrete\_value(std::vector<data\_t>\ \textcolor{keyword}{const}\&\ data,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ \ \ \ \ engine)\ \textcolor{keyword}{const}\ -\/>\ data\_t}
+\DoxyCodeLine{00064\ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1uniform__distribution}{VIPRA::Random::uniform\_distribution<size\_t>}}\ dist(0,\ data.size()\ -\/\ 1);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ data[dist(engine)];}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1Numeric}{Concepts::Numeric<data\_t>}}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{auto}\ get\_range\_value(std::map<std::string,\ data\_t>\ \textcolor{keyword}{const}\&\ data,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)\ \textcolor{keyword}{const}\ -\/>\ data\_t}
+\DoxyCodeLine{00073\ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1uniform__distribution}{VIPRA::Random::uniform\_distribution<data\_t>}}\ dist(data.at(\textcolor{stringliteral}{"{}min"{}}),}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data.at(\textcolor{stringliteral}{"{}max"{}}));}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ dist(engine);}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

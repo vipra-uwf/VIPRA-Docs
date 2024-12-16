@@ -1,0 +1,118 @@
+\doxysection{CALM\+::Collision Class Reference}
+\hypertarget{classCALM_1_1Collision}{}\label{classCALM_1_1Collision}\index{CALM::Collision@{CALM::Collision}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCALM_1_1Collision_a8f4122c3acd863004031fd36f9271533}\label{classCALM_1_1Collision_a8f4122c3acd863004031fd36f9271533} 
+void {\bfseries initialize} (auto const \&pedset, auto const \&goals, \mbox{\hyperlink{structCALM_1_1ModelData}{Model\+Data}} const \&data)
+\item 
+\Hypertarget{classCALM_1_1Collision_a91ca040ecd9c60e91d55004abc95cda7}\label{classCALM_1_1Collision_a91ca040ecd9c60e91d55004abc95cda7} 
+void {\bfseries race\+\_\+detection} (auto const \&pedset, \mbox{\hyperlink{structCALM_1_1ModelData}{Model\+Data}} const \&data, auto const \&goals, VIPRA\+::timestep timestep, auto const \&)
+\item 
+\Hypertarget{classCALM_1_1Collision_a8574ab36bb12a7d447e014ec683f013b}\label{classCALM_1_1Collision_a8574ab36bb12a7d447e014ec683f013b} 
+void {\bfseries initialize\+\_\+rectangles} (auto const \&pedset, auto const \&goals, \mbox{\hyperlink{structCALM_1_1ModelData}{Model\+Data}} const \&data)
+\item 
+\Hypertarget{classCALM_1_1Collision_a5462d976118c19c00dd6856bdacb5a62}\label{classCALM_1_1Collision_a5462d976118c19c00dd6856bdacb5a62} 
+auto {\bfseries status} (VIPRA\+::idx ped\+Idx) const -\/$>$ Race\+Status
+\item 
+\Hypertarget{classCALM_1_1Collision_ad56b5a33c030e54c1c391f1b2b51fe47}\label{classCALM_1_1Collision_ad56b5a33c030e54c1c391f1b2b51fe47} 
+void {\bfseries calc\+\_\+collision\+\_\+rectangles} (auto const \&pedset, auto const \&goals, \mbox{\hyperlink{structCALM_1_1ModelData}{Model\+Data}} const \&data)
+\item 
+\Hypertarget{classCALM_1_1Collision_ae29625eb5b067e4f033a6e937ea52daa}\label{classCALM_1_1Collision_ae29625eb5b067e4f033a6e937ea52daa} 
+auto {\bfseries get\+\_\+collision\+\_\+area\+\_\+midpoint} (VIPRA\+::idx index1, VIPRA\+::idx index2) -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}
+\item 
+\Hypertarget{classCALM_1_1Collision_a7ef907d217eab3297d86b05e1d9600eb}\label{classCALM_1_1Collision_a7ef907d217eab3297d86b05e1d9600eb} 
+auto {\bfseries check\+\_\+if\+\_\+highest\+\_\+priority} (auto const \&pedset, auto const \&goals, VIPRA\+::idx ped\+Idx, VIPRA\+::timestep) -\/$>$ bool
+\item 
+auto \mbox{\hyperlink{classCALM_1_1Collision_a7ed96b00981b28155cafd150be069c6a}{check\+\_\+if\+\_\+collide}} (VIPRA\+::idx index1, VIPRA\+::idx index2) -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Checks if two indices\textquotesingle{} collision rectangles collide. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCALM_1_1Collision_a03ca7382d2822643d8ca1e763f343411}\label{classCALM_1_1Collision_a03ca7382d2822643d8ca1e763f343411} 
+static void {\bfseries add\+\_\+intersection\+\_\+points} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start1, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} end1, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} start2, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} end2, VIPRA\+::f3d\+Vec \&intersection\+Points)
+\item 
+static VIPRA\+\_\+\+INLINE auto \mbox{\hyperlink{classCALM_1_1Collision_a49750337bd874d5c9d38273288485a44}{get\+\_\+shoulder\+\_\+points}} (const \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} \&coords, const \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} \&velocity, VIPRA\+::f\+\_\+pnt shoulder\+Width) noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}
+\begin{DoxyCompactList}\small\item\em Gets the shoulder points of a pedestrian. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCALM_1_1Collision_a4f05b6f7d8542bc173714bfad89fbf46}\label{classCALM_1_1Collision_a4f05b6f7d8542bc173714bfad89fbf46} 
+std\+::vector$<$ Race\+Status $>$ {\bfseries race\+Statuses}
+\item 
+\Hypertarget{classCALM_1_1Collision_adf77aa46c091f8112a122161ffb1c084}\label{classCALM_1_1Collision_adf77aa46c091f8112a122161ffb1c084} 
+std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} $>$ {\bfseries collision\+Rectangles}
+\item 
+\Hypertarget{classCALM_1_1Collision_a8aadd8a714a549fa894be4cb0ef9826b}\label{classCALM_1_1Collision_a8aadd8a714a549fa894be4cb0ef9826b} 
+std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ {\bfseries in\+Race}
+\item 
+\Hypertarget{classCALM_1_1Collision_a288f93782dfc08fb14f43c0aecfd7919}\label{classCALM_1_1Collision_a288f93782dfc08fb14f43c0aecfd7919} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} $>$ $>$ {\bfseries intersection\+Midpoints}
+\item 
+\Hypertarget{classCALM_1_1Collision_a52354a13219b76f7d03626e027df0d35}\label{classCALM_1_1Collision_a52354a13219b76f7d03626e027df0d35} 
+std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} $>$ {\bfseries velocity\+Directions}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCALM_1_1Collision_a89084d503c58ecd80220960d142fd34a}\label{classCALM_1_1Collision_a89084d503c58ecd80220960d142fd34a} 
+static constexpr VIPRA\+::size {\bfseries MAX\+\_\+\+COUNT} = 500
+\item 
+\Hypertarget{classCALM_1_1Collision_a06b67f646036137e2e9e469036f1fa17}\label{classCALM_1_1Collision_a06b67f646036137e2e9e469036f1fa17} 
+static constexpr VIPRA\+::f\+\_\+pnt {\bfseries MINSPEED} = 0.\+00000001F
+\item 
+\Hypertarget{classCALM_1_1Collision_a17913d73093edad67e810856e59da83f}\label{classCALM_1_1Collision_a17913d73093edad67e810856e59da83f} 
+static constexpr VIPRA\+::f\+\_\+pnt {\bfseries RECTANGLE\+\_\+\+RANGE} = 0.\+4
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCALM_1_1Collision_a7ed96b00981b28155cafd150be069c6a}\index{CALM::Collision@{CALM::Collision}!check\_if\_collide@{check\_if\_collide}}
+\index{check\_if\_collide@{check\_if\_collide}!CALM::Collision@{CALM::Collision}}
+\doxysubsubsection{\texorpdfstring{check\_if\_collide()}{check\_if\_collide()}}
+{\footnotesize\ttfamily \label{classCALM_1_1Collision_a7ed96b00981b28155cafd150be069c6a} 
+auto CALM\+::\+Collision\+::check\+\_\+if\+\_\+collide (\begin{DoxyParamCaption}\item[{VIPRA\+::idx}]{index1}{, }\item[{VIPRA\+::idx}]{index2}{}\end{DoxyParamCaption}) -\/$>$ bool   \hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if two indices\textquotesingle{} collision rectangles collide. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index1} & \+: \\
+\hline
+{\em index2} & \+: \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\Hypertarget{classCALM_1_1Collision_a49750337bd874d5c9d38273288485a44}\index{CALM::Collision@{CALM::Collision}!get\_shoulder\_points@{get\_shoulder\_points}}
+\index{get\_shoulder\_points@{get\_shoulder\_points}!CALM::Collision@{CALM::Collision}}
+\doxysubsubsection{\texorpdfstring{get\_shoulder\_points()}{get\_shoulder\_points()}}
+{\footnotesize\ttfamily \label{classCALM_1_1Collision_a49750337bd874d5c9d38273288485a44} 
+static VIPRA\+\_\+\+INLINE auto CALM\+::\+Collision\+::get\+\_\+shoulder\+\_\+points (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} \&}]{coords}{, }\item[{const \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} \&}]{velocity}{, }\item[{VIPRA\+::f\+\_\+pnt}]{shoulder\+Width}{}\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [nodiscard]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the shoulder points of a pedestrian. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & \+: Coordinates of the pedestrian \\
+\hline
+{\em velocity} & \+: Velocity of the pedestrian \\
+\hline
+{\em shoulder\+Width} & \+: Width of the pedestrian \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Line \+: Line containing the shoulder points 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/model/\+Calm/calm\+\_\+collision.\+hpp\end{DoxyCompactItemize}

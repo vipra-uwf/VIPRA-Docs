@@ -1,0 +1,81 @@
+\doxysection{VIPRA\+::Data\+Structures\+::Graph\texorpdfstring{$<$}{<} data\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classVIPRA_1_1DataStructures_1_1Graph}{}\label{classVIPRA_1_1DataStructures_1_1Graph}\index{VIPRA::DataStructures::Graph$<$ data\_t $>$@{VIPRA::DataStructures::Graph$<$ data\_t $>$}}
+
+
+generic Graph datastructure  
+
+
+
+
+{\ttfamily \#include $<$graph.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Data\+Structures\+::Graph\texorpdfstring{$<$}{<} data\+\_\+t \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{d4/d62/classVIPRA_1_1DataStructures_1_1Graph__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Data\+Structures\+::Graph\texorpdfstring{$<$}{<} data\+\_\+t \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{d6/dbc/classVIPRA_1_1DataStructures_1_1Graph__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{VIPRA\+::\+Data\+Structures\+::\+Graph\+Mixin$<$ void, data\+\_\+t $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries value\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{VIPRA\+::\+Data\+Structures\+::\+Graph\+Mixin$<$ void, data\+\_\+t $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries reserve} (VIPRA\+::idx size)
+\item 
+void {\bfseries clear} ()
+\item 
+constexpr auto {\bfseries node\+\_\+count} () const -\/$>$ VIPRA\+::idx
+\item 
+constexpr auto {\bfseries nodes} () -\/$>$ std\+::vector$<$ Node $>$ \&
+\item 
+constexpr auto {\bfseries nodes} () const -\/$>$ std\+::vector$<$ Node $>$ const \&
+\item 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ \&
+\item 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) const -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ const \&
+\item 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) -\/$>$ data\+\_\+t \&
+\item 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) const -\/$>$ data\+\_\+t const \&
+\item 
+void {\bfseries add\+\_\+edge} (VIPRA\+::idx node\+Idx1, VIPRA\+::idx node\+Idx2)
+\item 
+constexpr auto {\bfseries add\+\_\+node} (data\+\_\+t data) -\/$>$ VIPRA\+::idx
+\item 
+auto {\bfseries add\+\_\+node} (data\+\_\+t data, std\+::vector$<$ VIPRA\+::idx $>$ neighbors) -\/$>$ VIPRA\+::idx
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename data\+\_\+t$>$\newline
+class VIPRA\+::\+Data\+Structures\+::\+Graph$<$ data\+\_\+t $>$}
+generic Graph datastructure 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/data\+\_\+structures/graph.\+hpp\end{DoxyCompactItemize}

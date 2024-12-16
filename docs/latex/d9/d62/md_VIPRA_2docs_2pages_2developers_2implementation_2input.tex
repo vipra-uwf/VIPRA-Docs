@@ -1,0 +1,169 @@
+\chapter{Input Implementation}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input}{}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input}\index{Input Implementation@{Input Implementation}}
+\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md415}%
+\Hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md415}%
+
+
+\begin{quote}
+!!! Important Note\+: Inputs should hold off on loading their input until their {\ttfamily load\+\_\+impl} method is called. This reduces the amount of I/O during parallel runs. \end{quote}
+There are several sub-\/sets of {\ttfamily Input Modules}\+:
+\begin{DoxyEnumerate}
+\item Serializable Input
+\item Map Input
+\end{DoxyEnumerate}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md416}{}\doxysection{\texorpdfstring{Required Methods}{Required Methods}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md416}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ load\_impl();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{std::optional<data\_t>\ get(std::vector<std::string>\ \textcolor{keyword}{const}\&);}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md417}{}\doxysubsection{\texorpdfstring{Details}{Details}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md417}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ load\_impl();}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md418}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md418}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md419}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md419}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md420}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md420}
+The input is ready to return its loaded data
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{std::optional<data\_t>\ get(std::vector<std::string>\ \textcolor{keyword}{const}\&);}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md421}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md421}
+{\ttfamily keys} -\/ a list of keys that should uniquely identify a requested value\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md422}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md422}
+{\ttfamily std\+::optional\texorpdfstring{$<$}{<}data\+\_\+t\texorpdfstring{$>$}{>}} -\/ an optional with the value, {\ttfamily std\+::nullopt} if the value was unable to be returned\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md423}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md423}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md425}{}\doxysection{\texorpdfstring{Serializable Input Implementation}{Serializable Input Implementation}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md425}
+Serializable Input modules additionally require\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::string\ to\_string();}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ parse\_impl(std::string\ \textcolor{keyword}{const}\&);}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md426}{}\doxysubsection{\texorpdfstring{Details}{Details}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md426}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::string\ to\_string()}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md427}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md427}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md428}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md428}
+{\ttfamily std\+::string} -\/ the string represenation of the input data, to be used in {\ttfamily deserialize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md429}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md429}
+{\ttfamily NONE}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ parse\_impl(std::string\ \textcolor{keyword}{const}\&);}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md430}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md430}
+{\ttfamily data} -\/ the serialized data to be deserialized\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md431}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md431}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md432}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md432}
+The serialized data is deserialized and loaded into the input module\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md433}{}\doxysection{\texorpdfstring{Map Input Implementation}{Map Input Implementation}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md433}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::optional<std::vector<VIPRA::Geometry::Polygon>>\ get\_obstacles\_impl()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{std::optional<std::vector<VIPRA::Geometry::Polygon>>\ get\_spawns\_impl()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{std::optional<std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>>\ get\_objectives\_impl()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{std::optional<std::map<std::string,\ VIPRA::Geometry::Polygon>>\ get\_areas\_impl()\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::optional<std::vector<VIPRA::Geometry::Polygon>>\ get\_obstacles\_impl()\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md434}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md434}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md435}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md435}
+The map obstacles
+
+
+\begin{DoxyItemize}
+\item an empty std\+::vector, if there are no map obstacles
+\item {\ttfamily std\+::nullopt}, if there was an issue loading the map obstacles
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md436}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md436}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::optional<std::vector<VIPRA::Geometry::Polygon>>\ get\_spawns\_impl()\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md438}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md438}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md439}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md439}
+The map spawns
+
+
+\begin{DoxyItemize}
+\item an empty std\+::vector, if there are no map spawns
+\item {\ttfamily std\+::nullopt}, if there was an issue loading the map spawns
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md440}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md440}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::optional<std::map<std::string,\ std::vector<VIPRA::Geometry::Polygon>>>\ get\_objectives\_impl()\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md442}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md442}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md443}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md443}
+The map objectives
+
+
+\begin{DoxyItemize}
+\item an empty std\+::map, if there are no map objectives
+\item {\ttfamily std\+::nullopt}, if there was an issue loading the map objectives
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md444}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md444}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{std::optional<std::map<std::string,\ VIPRA::Geometry::Polygon>>\ get\_areas\_impl()\ \textcolor{keyword}{const};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md446}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md446}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md447}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md447}
+The map areas
+
+
+\begin{DoxyItemize}
+\item an empty std\+::map, if there are no map areas
+\item {\ttfamily std\+::nullopt}, if there was an issue loading the map areas
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md448}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2input_autotoc_md448}
+{\ttfamily NONE}
+
+\DoxyHorRuler{0}
+ 

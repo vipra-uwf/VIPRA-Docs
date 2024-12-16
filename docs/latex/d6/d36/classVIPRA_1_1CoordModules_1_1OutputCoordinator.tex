@@ -1,0 +1,106 @@
+\doxysection{VIPRA\+::Coord\+Modules\+::Output\+Coordinator Class Reference}
+\hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator}{}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator}\index{VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}}
+
+
+Inheritance diagram for VIPRA\+::Coord\+Modules\+::Output\+Coordinator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{d1/d3b/classVIPRA_1_1CoordModules_1_1OutputCoordinator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Coord\+Modules\+::Output\+Coordinator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{d2/df9/classVIPRA_1_1CoordModules_1_1OutputCoordinator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_af1ce4270daf46bc22e9f1afc06854f52}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_af1ce4270daf46bc22e9f1afc06854f52} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+NAME} ("{}coordinator"{})
+\item 
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_aeb9ec047b0a70dbbeb08f5cc2e0aaa91}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_aeb9ec047b0a70dbbeb08f5cc2e0aaa91} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (Output)
+\item 
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_ac2bfde4c4f8abec839d907883da7e2b1}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_ac2bfde4c4f8abec839d907883da7e2b1} 
+void {\bfseries add\+\_\+output} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Modules\+::\+Output}} $>$ \&\&module, std\+::function$<$ void(void \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&)$>$ \&\&config)
+\item 
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a64ad148396d7eff84c0c1e83137be734}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a64ad148396d7eff84c0c1e83137be734} 
+void {\bfseries config} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1CoordModules_1_1OutputCoordinator_abc00e7954399379365a42ffd244d1a02}{new\+\_\+run}} (VIPRA\+::idx run\+Idx)
+\begin{DoxyCompactList}\small\item\em Creates a new output directory for the current simulation run. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a764f8b83a39b7cec5ce2c09a51a3d651}{write}} ()
+\begin{DoxyCompactList}\small\item\em Calls write on all outputs, returning a tuple of the results or VOID. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a70fa2eecaa55985c9fb03f0f78634c74}\label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a70fa2eecaa55985c9fb03f0f78634c74} 
+void {\bfseries timestep\+\_\+update} (VIPRA\+::timestep timestep, VIPRA\+::delta\+\_\+t timestep\+Size, \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a7ea2aa73032d1b1c1a59cc87b9ae47e9}{write\+\_\+to\+\_\+file}} (std\+::string const \&filename, std\+::string const \&value)
+\begin{DoxyCompactList}\small\item\em Writes a string to a file in the current output directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Output\+Coordinator $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_abc00e7954399379365a42ffd244d1a02}\index{VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}!new\_run@{new\_run}}
+\index{new\_run@{new\_run}!VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}}
+\doxysubsubsection{\texorpdfstring{new\_run()}{new\_run()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_abc00e7954399379365a42ffd244d1a02} 
+void VIPRA\+::\+Coord\+Modules\+::\+Output\+Coordinator\+::new\+\_\+run (\begin{DoxyParamCaption}\item[{VIPRA\+::idx}]{run\+Idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new output directory for the current simulation run. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em run\+Idx} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a764f8b83a39b7cec5ce2c09a51a3d651}\index{VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}!write@{write}}
+\index{write@{write}!VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a764f8b83a39b7cec5ce2c09a51a3d651} 
+void VIPRA\+::\+Coord\+Modules\+::\+Output\+Coordinator\+::write (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls write on all outputs, returning a tuple of the results or VOID. 
+
+\begin{DoxyReturn}{Returns}
+Util\+::result\+\_\+or\+\_\+\+VOID\+\_\+tuple$<$std\+::tuple$<$output\+\_\+ts...$>$$>$\+::type 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a7ea2aa73032d1b1c1a59cc87b9ae47e9}\index{VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}!write\_to\_file@{write\_to\_file}}
+\index{write\_to\_file@{write\_to\_file}!VIPRA::CoordModules::OutputCoordinator@{VIPRA::CoordModules::OutputCoordinator}}
+\doxysubsubsection{\texorpdfstring{write\_to\_file()}{write\_to\_file()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1CoordModules_1_1OutputCoordinator_a7ea2aa73032d1b1c1a59cc87b9ae47e9} 
+void VIPRA\+::\+Coord\+Modules\+::\+Output\+Coordinator\+::write\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filename}{, }\item[{std\+::string const \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writes a string to a file in the current output directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/special\+\_\+modules/output.\+hpp\end{DoxyCompactItemize}

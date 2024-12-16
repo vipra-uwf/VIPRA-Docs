@@ -1,0 +1,118 @@
+\doxysection{pathing\+\_\+graph.\+hpp}
+\hypertarget{modules_2goals_2astar_2pathing__graph_8hpp_source}{}\label{modules_2goals_2astar_2pathing__graph_8hpp_source}\index{VIPRA/modules/goals/astar/pathing\_graph.hpp@{VIPRA/modules/goals/astar/pathing\_graph.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/types/size.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }VIPRA::Goals\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Goals_1_1GridPoint}{GridPoint}}\ \{}
+\DoxyCodeLine{00015\ \ \ std::array<bool,\ 8>\ neighbors;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traversable;}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{PathingGraph}}\ \{}
+\DoxyCodeLine{00020\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ node\_count()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00022\ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ \_grids.size();}
+\DoxyCodeLine{00024\ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ neighbors(VIPRA::idx\ gridIdx)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ -\/>\ std::array<VIPRA::idx,\ 8>}
+\DoxyCodeLine{00028\ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ assert(gridIdx\ <\ \_grids.size());}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::array<VIPRA::idx,\ 8>\ neighbors\{\};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ VIPRA::idx\ nIdx\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{bool}\ neighbor\ :\ \_grids[gridIdx].neighbors\ )\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ neighbor\ ||\ (neighbor\_idx(gridIdx,\ nIdx)\ >\ \_grids.size()\ ||}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ neighbor\_idx(gridIdx,\ nIdx)\ <\ 0)\ )\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ neighbors[nIdx]\ =\ std::numeric\_limits<VIPRA::idx>::max();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ ++nIdx;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ neighbors[nIdx]\ =\ neighbor\_idx(gridIdx,\ nIdx);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ ++nIdx;}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ neighbors;}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ pos(VIPRA::idx\ gridIdx)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}}
+\DoxyCodeLine{00051\ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ assert(gridIdx\ <\ \_grids.size());}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \_positions[gridIdx];}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00061\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph_a2a59823a2bb693e66e9c886bd34ae04c}{get\_closest\_grid\_idx}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ position)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00063\ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ gridX\ =}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}VIPRA::idx\textcolor{keyword}{>}(std::floor(position.x\ /\ \_gridSize));}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ gridY\ =}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}VIPRA::idx\textcolor{keyword}{>}(std::floor(position.y\ /\ \_gridSize));}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_index(gridX,\ gridY);}
+\DoxyCodeLine{00070\ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ VIPRA::size\ \ \_xCount\{\};}
+\DoxyCodeLine{00074\ \ \ VIPRA::size\ \ \_yCount\{\};}
+\DoxyCodeLine{00075\ \ \ VIPRA::f\_pnt\ \_gridSize\{\};}
+\DoxyCodeLine{00076\ \ \ VIPRA::f\_pnt\ \_closestObstacle\{\};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ std::vector<GridPoint>\ \ \_grids;}
+\DoxyCodeLine{00079\ \ \ std::vector<VIPRA::f3d>\ \_positions;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{void}\ set\_grid\_counts(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map);}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ construct\_graph(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map);}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ set\_adjacents(VIPRA::idx\ currIdx);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ neighbor\_idx(}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ VIPRA::idx\ gridIdx,\ VIPRA::idx\ neighbor)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00087\ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xCount\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\_xCount);}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ std::array<int,\ 8>\ deltaIdx\ =\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ (-\/xCount\ -\/\ 1),\ -\/xCount,\ (-\/xCount\ +\ 1),\ -\/1,\ 1,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ (xCount\ -\/\ 1),\ \ xCount,\ \ (xCount\ +\ 1),}
+\DoxyCodeLine{00092\ \ \ \ \ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ gridIdx\ +\ deltaIdx[neighbor];}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00105\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ get\_index(}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ VIPRA::size\ gridX,\ VIPRA::size\ gridY)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00107\ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ assert(gridX\ +\ (gridY\ *\ \_xCount)\ <\ \_grids.size());}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ gridX\ +\ (gridY\ *\ \_xCount);}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00113\ \ \ PathingGraph(Modules::Map\ \textcolor{keyword}{const}\&\ map,\ VIPRA::f\_pnt\ gridSize,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f\_pnt\ closestObstacle)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ :\ \_gridSize(gridSize),\ \_closestObstacle(closestObstacle)}
+\DoxyCodeLine{00116\ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ construct\_graph(map);}
+\DoxyCodeLine{00118\ \ \ \}}
+\DoxyCodeLine{00119\ \ \ PathingGraph()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00120\ \ \ PathingGraph(\textcolor{keyword}{const}\ PathingGraph\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00121\ \ \ PathingGraph(PathingGraph\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{auto}\ operator=(\textcolor{keyword}{const}\ PathingGraph\&)\ -\/>\ PathingGraph\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{auto}\ operator=(PathingGraph\&\&)\ -\/>\ PathingGraph\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00124\ \ \ \string~PathingGraph()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Goals}}
+
+\end{DoxyCode}

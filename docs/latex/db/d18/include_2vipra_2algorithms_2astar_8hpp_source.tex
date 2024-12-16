@@ -1,0 +1,188 @@
+\doxysection{astar.\+hpp}
+\hypertarget{include_2vipra_2algorithms_2astar_8hpp_source}{}\label{include_2vipra_2algorithms_2astar_8hpp_source}\index{VIPRA/include/vipra/algorithms/astar.hpp@{VIPRA/include/vipra/algorithms/astar.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/types/idx.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/types/util/result\_or\_void.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}vipra/util/invoke\_result\_or.hpp"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }VIPRA::Algo\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }AStar\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ graph\_t>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1Graph}{Graph}}\ =\ \textcolor{keyword}{requires}(\textcolor{keyword}{const}\ graph\_t\ graph,\ VIPRA::idx\ idx)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ graph.neighbors(idx)}
+\DoxyCodeLine{00032\ \ \ \ \ \}\ -\/>\ std::same\_as<std::vector<VIPRA::idx>\ \textcolor{keyword}{const}\&>;}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ func\_t>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1distance__func}{distance\_func}}\ =}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{requires}(func\_t\ func,\ VIPRA::idx\ idx1,\ VIPRA::idx\ idx2)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \{\ func(idx1,\ idx2)\ \}\ -\/>\ std::same\_as<VIPRA::f\_pnt>;}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ func\_t>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1conversion__func}{conversion\_func}}\ =}
+\DoxyCodeLine{00053\ \ \ \ \ std::is\_same\_v<func\_t,\ VOID>\ ||\ \textcolor{keyword}{requires}(func\_t\ func,\ VIPRA::idx\ idx1)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \{\ func(idx1)\ \};}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ \}\ \ \textcolor{comment}{//\ namespace\ AStar}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1Graph}{AStar::Graph}}\ graph\_t,\ \mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1distance__func}{AStar::distance\_func}}\ distance\_f\_t,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptVIPRA_1_1Algo_1_1AStar_1_1conversion__func}{AStar::conversion\_func}}\ conversion\_f\_t\ =\ \mbox{\hyperlink{structVIPRA_1_1VOID}{VOID}}>}
+\DoxyCodeLine{00072\ [[nodiscard]]\ \textcolor{keyword}{auto}\ astar(VIPRA::idx\ start,\ VIPRA::idx\ end,\ graph\_t\ \textcolor{keyword}{const}\&\ graph,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distance\_f\_t\&\&\ \ \ distance\_func,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conversion\_f\_t\&\&\ conversion\_func\ =\ \mbox{\hyperlink{structVIPRA_1_1VOID}{VOID}}\{\})\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00075\ \ \ \ \ -\/>\ std::optional<std::vector<std::remove\_reference\_t<}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Util::invoke\_result\_or\_t<VIPRA::idx,\ conversion\_f\_t,\ VIPRA::idx>>>>}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ proper\ return\ type\ for\ the\ function}}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{using\ }ret\_t\ =\ std::vector<std::remove\_reference\_t<}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ Util::invoke\_result\_or\_t<VIPRA::idx,\ conversion\_f\_t,\ VIPRA::idx>>>;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ holds\ the\ nodes\ visited\ throughout\ the\ algorithm}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Node}{Node}}\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ VIPRA::idx\ \ \ self;}
+\DoxyCodeLine{00085\ \ \ \ \ VIPRA::idx\ \ \ parent;}
+\DoxyCodeLine{00086\ \ \ \ \ VIPRA::f\_pnt\ distanceFromStart;}
+\DoxyCodeLine{00087\ \ \ \ \ VIPRA::f\_pnt\ distanceWithHeuristic;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{auto}\ operator==(\mbox{\hyperlink{structVIPRA_1_1Node}{Node}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self\ ==\ other.self;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{struct\ }Compare\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ operator()(Node*\ left,\ Node*\ right)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ left-\/>distanceWithHeuristic\ >\ right-\/>distanceWithHeuristic;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \};}
+\DoxyCodeLine{00100\ \ \ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{comment}{//\ TODO(rolland):\ look\ at\ replacing\ this\ with\ a\ better\ data\ structure}}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{struct\ }PQueue\ :\ \textcolor{keyword}{public}\ std::priority\_queue<Node*,\ std::vector<Node*>,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typename\ Node::Compare>\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{auto}\ search(VIPRA::idx\ nodeIdx)\ -\/>\ Node*}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ container\ =\ this-\/>c;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ gridPoint\ =}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ std::find\_if(container.begin(),\ container.end(),}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&](Node*\ node)\ \{\ return\ node-\/>self\ ==\ nodeIdx;\ \});}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ gridPoint\ ==\ container.end()\ )\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *gridPoint;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ refresh()}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ std::make\_heap(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ this-\/>c.begin(),\ this-\/>c.end(),\ [](Node*\ left,\ Node*\ right)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ return\ left-\/>distanceWithHeuristic\ >\ right-\/>distanceWithHeuristic;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{auto}\ begin()\ -\/>\ \textcolor{keyword}{decltype}(this-\/>c.begin())\ \{\ \textcolor{keywordflow}{return}\ this-\/>c.begin();\ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{auto}\ end()\ -\/>\ \textcolor{keyword}{decltype}(this-\/>c.end())\ \{\ \textcolor{keywordflow}{return}\ this-\/>c.end();\ \}}
+\DoxyCodeLine{00128\ \ \ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ std::vector<Node>\ \ \ \ \ \ \ \ \ nodes\{graph.nodes().size()\};}
+\DoxyCodeLine{00131\ \ \ PQueue\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ openQueue;}
+\DoxyCodeLine{00132\ \ \ std::unordered\_set<Node*>\ openSet;}
+\DoxyCodeLine{00133\ \ \ std::unordered\_set<Node*>\ closedset;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ nodes[start]\ =\ Node\{start,\ start,\ 0,\ distance\_func(start,\ end)\};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ Node*\ current\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00138\ \ \ openSet.insert(\&nodes[start]);}
+\DoxyCodeLine{00139\ \ \ openQueue.push(\&nodes[start]);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{while}\ (\ !\ openQueue.empty()\ )\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ current\ =\ openQueue.top();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ current-\/>self\ ==\ end\ )\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ openQueue.pop();}
+\DoxyCodeLine{00149\ \ \ \ \ openSet.erase(current);}
+\DoxyCodeLine{00150\ \ \ \ \ closedset.insert(current);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ neighborIdx\ :\ graph.neighbors(current-\/>self)\ )\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ closedset.contains(\&nodes[neighborIdx])\ )\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ Node\ neighbor;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ neighbor.self\ =\ neighborIdx;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ neighbor.parent\ =\ current-\/>self;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ neighbor.distanceFromStart\ =\ current-\/>distanceFromStart\ +}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distance\_func(current-\/>self,\ neighborIdx);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ neighbor.distanceWithHeuristic\ =}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ neighbor.distanceFromStart\ +\ distance\_func(neighborIdx,\ end);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ openSet.contains(\&nodes[neighborIdx])\ )\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ nodes[neighborIdx]\ =\ neighbor;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ openQueue.push(\&nodes[neighborIdx]);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ openSet.insert(\&nodes[neighborIdx]);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ found\ =}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ std::find(openQueue.begin(),\ openQueue.end(),\ \&nodes[neighborIdx]);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ neighbor.distanceFromStart\ <\ (*found)-\/>distanceFromStart\ )\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ (*found)-\/>distanceFromStart\ =\ neighbor.distanceFromStart;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ (*found)-\/>distanceWithHeuristic\ =\ neighbor.distanceWithHeuristic;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ (*found)-\/>parent\ =\ neighbor.parent;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordflow}{if}\ (\ current-\/>self\ !=\ end\ )\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ no\ path\ found}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00184\ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{comment}{//\ construct\ the\ full\ path,\ If\ a\ conversion\ function\ is\ provided,\ run\ the\ path\ through\ that}}
+\DoxyCodeLine{00187\ \ \ ret\_t\ path;}
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordflow}{while}\ (\ current-\/>self\ !=\ start\ )\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<conversion\_f\_t,\ VOID>\ )\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ path.push\_back(current-\/>self);}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ path.push\_back(conversion\_func(current-\/>self));}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ current\ =\ \&nodes[current-\/>parent];}
+\DoxyCodeLine{00197\ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{comment}{//\ add\ the\ starting\ node}}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<conversion\_f\_t,\ VOID>\ )\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ path.push\_back(start);}
+\DoxyCodeLine{00202\ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ path.push\_back(conversion\_func(start));}
+\DoxyCodeLine{00205\ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \textcolor{keywordflow}{return}\ path;}
+\DoxyCodeLine{00208\ \}}
+\DoxyCodeLine{00209\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Algo}}
+
+\end{DoxyCode}

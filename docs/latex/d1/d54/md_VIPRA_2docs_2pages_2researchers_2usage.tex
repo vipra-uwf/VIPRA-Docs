@@ -1,0 +1,93 @@
+\chapter{usage}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage}{}\label{md_VIPRA_2docs_2pages_2researchers_2usage}\index{usage@{usage}}
+\texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2docs}{Main Page}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2parameters}{Module Parameters}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md760}{}\doxysection{\texorpdfstring{VIPRA Usage}{VIPRA Usage}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md760}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md761}{}\doxysubsubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md761}
+\begin{quote}
+Requirements ~\newline
+ Creating a Simulation ~\newline
+ Running the Simulation ~\newline
+ -\/ Flags ~\newline
+ -\/ Simulation Parameters ~\newline
+ -\/ Simulation Config ~\newline
+ -\/ Parameter Sweeps ~\newline
+ -\/ Maps ~\newline
+ VIPRA Behaviors ~\newline
+ Visualization ~\newline
+ \end{quote}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md762}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md762}
+The following are requirement for running the VIPRA simulation.
+
+
+\begin{DoxyEnumerate}
+\item \href{https://cmake.org/download/}{\texttt{ CMake}} version 3.\+14 or newer
+\item A compiler that supports C++20
+\item Linux
+\end{DoxyEnumerate}
+
+Additionally, for distributed simulations\+:
+
+
+\begin{DoxyEnumerate}
+\item MPI, currently \href{https://www.open-mpi.org/software/ompi/v5.0/}{\texttt{ open\+MPI}} is known to work
+\end{DoxyEnumerate}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md763}{}\doxysection{\texorpdfstring{Creating A Simulation}{Creating A Simulation}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md763}
+The simulation and any modules are compiled by running\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+To allow for MPI\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ mpi=on}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md764}{}\doxysection{\texorpdfstring{Running The Simulation}{Running The Simulation}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md764}
+The simulation is run with 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./VIPRA\ <flags>}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md765}{}\doxysubsection{\texorpdfstring{Flags}{Flags}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md765}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/map=\texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}\+: path to the map file (required)
+\item {\ttfamily -\/peds=\texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}\+: path to the pedestrian initial positions
+\item {\ttfamily -\/params=\texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}\+: path to the parameter file, default = ./module\+\_\+params.json
+\item {\ttfamily -\/modules=\texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}\+: path to the sim config file, default = ./sim\+\_\+config.json
+\item {\ttfamily -\/count=\texorpdfstring{$<$}{<}number\texorpdfstring{$>$}{>}}\+: number of simulations to run, default = 1 (more on this in Parameter Sweeps)
+\item {\ttfamily -\/install=\texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}\+: path to module install directory, default = ./install
+\item {\ttfamily -\/log=\texorpdfstring{$<$}{<}debug\texorpdfstring{$\vert$}{|}info\texorpdfstring{$\vert$}{|}warn\texorpdfstring{$\vert$}{|}error\texorpdfstring{$>$}{>}}\+: minimum level to log, default = info
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md766}{}\doxysubsection{\texorpdfstring{Simulation Parameters}{Simulation Parameters}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md766}
+Parameters are loaded into the simulation from a JSON file, each module implementation has its own set of parameters.
+
+An example set of parameters is provided in the {\ttfamily examples/module\+\_\+params.\+json} file.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md767}{}\doxysubsection{\texorpdfstring{Simulation Config}{Simulation Config}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md767}
+A simulation config file is a JSON file that tells VIPRA which modules to use.
+
+The types of modules are discussed in\+: \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2modules}{Modules}{0}
+
+An example simulation config is provided in the {\ttfamily examples/sim\+\_\+config.\+json} file.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md768}{}\doxysubsection{\texorpdfstring{Parameter Sweeps}{Parameter Sweeps}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md768}
+Parameters can be randomized, in parallel or serial, to get a wide range of possible outcomes.
+
+See more on the Parameter Sweeps Page\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md769}{}\doxysubsection{\texorpdfstring{Maps}{Maps}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md769}
+A map defineds the geometry and special areas used by the simulator. These maps include obstacles, spawn positions, objectives for agents to use as goals, and special areas that change agent behavior.
+
+See more on the Maps Tutorial page\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md770}{}\doxysection{\texorpdfstring{VIPRA Behaviors}{VIPRA Behaviors}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md770}
+A detailed explanation of behaviors can be found in the \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors}{Behaviors Page}{0}
+
+The list of behaviors to use in a simulation run are provided in the simulation parameters JSON file.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}behavior\_model"{}:\ \{}
+\DoxyCodeLine{\ \ "{}main"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}behaviors\_dir"{}:\ "{}behaviors"{},}
+\DoxyCodeLine{\ \ \ \ "{}behaviors"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ "{}disembark"{}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md771}{}\doxysection{\texorpdfstring{Visualization}{Visualization}}\label{md_VIPRA_2docs_2pages_2researchers_2usage_autotoc_md771}
+A \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2tools_2visualizer}{very simple visualizer}{0} is provided for {\ttfamily Trajectories\+Json} output. 

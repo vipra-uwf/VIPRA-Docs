@@ -1,0 +1,42 @@
+\doxysection{target\+\_\+selector.\+hpp}
+\hypertarget{target__selector_8hpp_source}{}\label{target__selector_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/targets/target\_selector.hpp@{VIPRA/include/vipra/vipra\_behaviors/targets/target\_selector.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}}\ \{}
+\DoxyCodeLine{00014\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}})}
+\DoxyCodeLine{00015\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}})}
+\DoxyCodeLine{00016\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}})}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}}(TargetFunc\&\&\ func)\ :\ \_select(func)\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{void}\ get\_targets(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\&\ targets)}
+\DoxyCodeLine{00023\ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ \_select\ )\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ std::for\_each(peds.begin(),\ peds.end(),\ [\&](\textcolor{keyword}{auto}\ idx)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ targets[idx]\ =\ Target\{TargetType::PEDESTRIAN,\ idx\};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::for\_each(peds.begin(),\ peds.end(),\ [\&](\textcolor{keyword}{auto}\ idx)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ targets[idx]\ =}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \_select.value()(pack,\ Self\{Target\{TargetType::PEDESTRIAN,\ idx\}\});}
+\DoxyCodeLine{00034\ \ \ \ \ \});}
+\DoxyCodeLine{00035\ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ std::optional<TargetFunc>\ \_select;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

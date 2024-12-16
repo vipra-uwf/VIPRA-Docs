@@ -1,0 +1,31 @@
+\doxysection{ps\+\_\+util.\+hpp}
+\hypertarget{ps__util_8hpp_source}{}\label{ps__util_8hpp_source}\index{VIPRA/include/vipra/parameter\_sweep/ps\_util.hpp@{VIPRA/include/vipra/parameter\_sweep/ps\_util.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00006\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ sim\_count(\textcolor{keywordtype}{size\_t}\ rank,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ totSimCount)\ -\/>\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \textcolor{keywordtype}{size\_t}\ localCount\ =\ totSimCount\ /\ size;}
+\DoxyCodeLine{00009\ \ \ \textcolor{keywordflow}{if}\ (\ rank\ <\ totSimCount\ \%\ size\ )\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ ++localCount;}
+\DoxyCodeLine{00011\ \ \ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordflow}{return}\ localCount;}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ start\_sim\_id(\textcolor{keywordtype}{size\_t}\ rank,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ totSimCount)\ -\/>\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ rank\ *\ sim\_count(rank,\ size,\ totSimCount);}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (\ rank\ >=\ totSimCount\ \%\ size\ )\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ idx\ +=\ totSimCount\ \%\ size;}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{return}\ idx;}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

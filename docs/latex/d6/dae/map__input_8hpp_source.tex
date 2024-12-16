@@ -1,0 +1,43 @@
+\doxysection{map\+\_\+input.\+hpp}
+\hypertarget{map__input_8hpp_source}{}\label{map__input_8hpp_source}\index{VIPRA/include/vipra/modules/map\_input.hpp@{VIPRA/include/vipra/modules/map\_input.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\ \{}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ load(std::string\ \textcolor{keyword}{const}\&)\ =\ 0;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00027\ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc}{get\_obstacles}}()\ const}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \ \ [[nodiscard]]\ virtual\ auto\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac}{get\_spawns}}()\ const}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ =\ 0;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00049\ \ \ [[nodiscard]]\ virtual\ auto\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72}{get\_objectives}}()\ const}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ -\/>\ std::optional<}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::\textcolor{keywordtype}{string},\ std::vector<VIPRA::Geometry::Polygon>>>\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00061\ \ \ [[nodiscard]]\ virtual\ auto\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb}{get\_areas}}()\ const}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ -\/>\ std::optional<std::map<std::\textcolor{keywordtype}{string},\ VIPRA::Geometry::Polygon>>\ =\ 0;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ virtual\ \string~\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}()\ =\ default;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}()\ =\ default;}
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}(const\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&)\ =\ default;}
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&\&)\ =\ default;}
+\DoxyCodeLine{00069\ \ \ auto\ operator=(const\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&\ =\ default;}
+\DoxyCodeLine{00070\ \ \ auto\ operator=(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{MapInput}}\&\ =\ default;}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

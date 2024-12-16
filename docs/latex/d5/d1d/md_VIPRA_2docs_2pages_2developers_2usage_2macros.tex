@@ -1,0 +1,131 @@
+\chapter{Macros}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros}{}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros}\index{Macros@{Macros}}
+\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md554}%
+\Hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md554}%
+
+
+For reference on how to use these macros, you can look at {\ttfamily modules/model/calm\+\_\+model/calm\+\_\+model.\+hpp}\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md555}{}\doxysection{\texorpdfstring{Base Module Macros}{Base Module Macros}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md555}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md556}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+MODULE\+\_\+\+TYPE(type)}{VIPRA\+\_\+\+MODULE\+\_\+\+TYPE(type)}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md556}
+{\ttfamily VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} sets the modules type
+\begin{DoxyItemize}
+\item Model,
+\item Goals,
+\item Input,
+\item Output,
+\item Pedestrians,
+\item Map,
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_MODULE\_TYPE(MODEL)}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md557}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+MODULE\+\_\+\+NAME(name)}{VIPRA\+\_\+\+MODULE\+\_\+\+NAME(name)}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md557}
+{\ttfamily VIPRA\+\_\+\+MODULE\+\_\+\+NAME} sets the modules name, the name is used to grab the correct parameters.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{class\ }ExampleModel\ \{}
+\DoxyCodeLine{\ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}example\_model"{}})}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md558}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS}{VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md558}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md559}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+PARAM}{VIPRA\+\_\+\+PARAM}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md559}
+{\ttfamily VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} provides the proper function signature for the parameter registration step.
+
+{\ttfamily VIPRA\+\_\+\+PARAM} registers a parameter in the parameter registration step.
+
+When the parameters are loaded the variable is filled with the proper value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{class\ }ExampleModel\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ VIPRA\_REGISTER\_PARAMS\ (}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}example\_param"{}},\ \_example1),}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}another\_param"{}},\ \_example2)}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \textcolor{keywordtype}{int}\ \_example1;}
+\DoxyCodeLine{\ \ \ std::string\ \_example2;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md560}{}\doxysection{\texorpdfstring{Model Macros}{Model Macros}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md560}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md561}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+MODEL\+\_\+\+INIT\+\_\+\+STEP}{VIPRA\+\_\+\+MODEL\+\_\+\+INIT\+\_\+\+STEP}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md561}
+{\ttfamily VIPRA\+\_\+\+MODEL\+\_\+\+INIT\+\_\+\+STEP} provides the proper function signature for the model initialization step.
+
+It provides the parameters\+:
+\begin{DoxyItemize}
+\item pedset\+: the pedestrian set module
+\item map\+: the map module
+\item goals\+: the goals module
+\item output\+: the output module
+\item engine\+: randomization engine
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{class\ }ExampleModel\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ VIPRA\_MODEL\_INIT\_STEP\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ initialize\ model\ values}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md562}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP}{VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md562}
+{\ttfamily VIPRA\+\_\+\+MODEL\+\_\+\+TIMESTEP} provides the proper function signature for the model timestep step.
+
+It provides the parameters\+:
+\begin{DoxyItemize}
+\item pedset\+: the pedestrian set module
+\item map\+: the map module
+\item goals\+: the goals module
+\item output\+: the output module
+\item state\+: the \mbox{[}{\ttfamily State}\mbox{]} object to update
+\item delta\+T\+: the size of a timestep
+\item timestep\+: the current timestep number
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{class\ }ExampleModel\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ VIPRA\_MODEL\_TIMESTEP\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ calculate\ pedestrian\ movement}}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ update\ state\ parameter}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md563}{}\doxysection{\texorpdfstring{Goals Macros}{Goals Macros}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md563}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md564}{}\doxysubsubsection{\texorpdfstring{VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP}{VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP}}\label{md_VIPRA_2docs_2pages_2developers_2usage_2macros_autotoc_md564}
+{\ttfamily VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP} provides the proper function signature for the goals initialization step.
+
+It provides the parameters\+:
+\begin{DoxyItemize}
+\item pedset\+: the pedestrian set module
+\item map\+: the map module
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{class\ }ExampleGoals\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ VIPRA\_GOALS\_INIT\_STEP\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ initialize\ pedestrian\ paths}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ 

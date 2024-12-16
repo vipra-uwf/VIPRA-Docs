@@ -1,0 +1,95 @@
+\doxysection{logging.\+hpp}
+\hypertarget{logging_8hpp_source}{}\label{logging_8hpp_source}\index{VIPRA/include/vipra/logging/logging.hpp@{VIPRA/include/vipra/logging/logging.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ FMT\_HEADER\_ONLY}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fmt/format.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fmt/ranges.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Log}{Log}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \textcolor{keyword}{enum\ class}\ Level\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ DEBUG,}
+\DoxyCodeLine{00022\ \ \ \ \ INFO,}
+\DoxyCodeLine{00023\ \ \ \ \ WARN,}
+\DoxyCodeLine{00024\ \ \ \ \ ERROR,}
+\DoxyCodeLine{00025\ \ \ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_level(Level\ lvl)\ \{\ level\ =\ lvl;\ \}}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_level(std::string\ lvl)}
+\DoxyCodeLine{00029\ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ Level>\ LEVELS\ =\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}debug"{}},\ Level::DEBUG\},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}info"{}},\ Level::INFO\},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}warn"{}},\ Level::WARN\},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}error"{}},\ Level::ERROR\},}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::transform(lvl.begin(),\ lvl.end(),\ lvl.begin(),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keywordtype}{char}\ letter)\ \{\ return\ tolower(letter);\ \});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ level\ =\ LEVELS.at(lvl);}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ param\_ts>}
+\DoxyCodeLine{00051\ \ \ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4}{warn}}(fmt::format\_string<param\_ts...>\ message,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param\_ts\&\&...\ params)}
+\DoxyCodeLine{00053\ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ level\ <=\ Level::WARN\ )\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[WARN]\ "{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ fmt::format(message,\ std::forward<param\_ts>(params)...)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ param\_ts>}
+\DoxyCodeLine{00069\ \ \ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Log_af0d31028ec1729f89014d19d1b6b7b41}{info}}(fmt::format\_string<param\_ts...>\ message,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param\_ts\&\&...\ params)}
+\DoxyCodeLine{00071\ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ level\ <=\ Level::INFO\ )\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[INFO]\ "{}}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ fmt::format(message,\ std::forward<param\_ts>(params)...)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ param\_ts>}
+\DoxyCodeLine{00087\ \ \ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{debug}}(fmt::format\_string<param\_ts...>\ message,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param\_ts\&\&...\ params)}
+\DoxyCodeLine{00089\ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ level\ <=\ Level::DEBUG\ )\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[DEBUG]\ "{}}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ fmt::format(message,\ std::forward<param\_ts>(params)...)}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ param\_ts>}
+\DoxyCodeLine{00105\ \ \ VIPRA\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}{error}}(fmt::format\_string<param\_ts...>\ message,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param\_ts\&\&...\ params)}
+\DoxyCodeLine{00107\ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ "{}}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ fmt::format(message,\ std::forward<param\_ts>(params)...)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(cppcoreguidelines-\/avoid-\/non-\/const-\/global-\/variables)}}
+\DoxyCodeLine{00115\ \ \ \textcolor{keyword}{static}\ Level\ level;}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

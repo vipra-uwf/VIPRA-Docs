@@ -1,0 +1,96 @@
+\doxysection{VIPRA\+::Util\+::Clock\texorpdfstring{$<$}{<} time\+\_\+t, clock\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classVIPRA_1_1Util_1_1Clock}{}\label{classVIPRA_1_1Util_1_1Clock}\index{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}}
+
+
+Clock to time execution time.  
+
+
+
+
+{\ttfamily \#include $<$clock.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_ae60dcb2d34b70d5ca44df509a3759b87}{now}} () -\/$>$ time\+\_\+t
+\begin{DoxyCompactList}\small\item\em Returns the current time. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_a3da32043739026665aaaeb2ceb6abe7b}\label{classVIPRA_1_1Util_1_1Clock_a3da32043739026665aaaeb2ceb6abe7b} 
+void {\bfseries start} ()
+\begin{DoxyCompactList}\small\item\em Starts the timer. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_a818fd57e5a7cffe0ee1d63c9d85c2d04}\label{classVIPRA_1_1Util_1_1Clock_a818fd57e5a7cffe0ee1d63c9d85c2d04} 
+auto {\bfseries is\+\_\+running} () const -\/$>$ bool
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_a43fd4f08d0be575cc17fab20f44f10b0}{click}} () -\/$>$ time\+\_\+t
+\begin{DoxyCompactList}\small\item\em Returns the time since it was started. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock_a84e31bb5334a0e98d01def149616aafd}{stop}} () -\/$>$ time\+\_\+t
+\begin{DoxyCompactList}\small\item\em Resets the clock, Returns the time since it was started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_a85d604ba552ccce44a00b7b27a827095}\label{classVIPRA_1_1Util_1_1Clock_a85d604ba552ccce44a00b7b27a827095} 
+static constexpr time\+\_\+t {\bfseries ZERO} = time\+\_\+t\+::zero()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename time\+\_\+t = seconds, typename clock\+\_\+t = std\+::chrono\+::steady\+\_\+clock$>$\newline
+class VIPRA\+::\+Util\+::\+Clock$<$ time\+\_\+t, clock\+\_\+t $>$}
+Clock to time execution time. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em time\+\_\+t} & \+: time scale \\
+\hline
+{\em clock\+\_\+t} & \+: type of clock to use \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_a43fd4f08d0be575cc17fab20f44f10b0}\index{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}!click@{click}}
+\index{click@{click}!VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{click()}{click()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Util_1_1Clock_a43fd4f08d0be575cc17fab20f44f10b0} 
+template$<$typename time\+\_\+t  = seconds, typename clock\+\_\+t  = std\+::chrono\+::steady\+\_\+clock$>$ \\
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock}{VIPRA\+::\+Util\+::\+Clock}}$<$ time\+\_\+t, clock\+\_\+t $>$\+::click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ time\+\_\+t   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Returns the time since it was started. 
+
+\begin{DoxyReturn}{Returns}
+time\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_ae60dcb2d34b70d5ca44df509a3759b87}\index{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}!now@{now}}
+\index{now@{now}!VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{now()}{now()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Util_1_1Clock_ae60dcb2d34b70d5ca44df509a3759b87} 
+template$<$typename time\+\_\+t  = seconds, typename clock\+\_\+t  = std\+::chrono\+::steady\+\_\+clock$>$ \\
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock}{VIPRA\+::\+Util\+::\+Clock}}$<$ time\+\_\+t, clock\+\_\+t $>$\+::now (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ time\+\_\+t \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Returns the current time. 
+
+\begin{DoxyReturn}{Returns}
+time\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Util_1_1Clock_a84e31bb5334a0e98d01def149616aafd}\index{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}!stop@{stop}}
+\index{stop@{stop}!VIPRA::Util::Clock$<$ time\_t, clock\_t $>$@{VIPRA::Util::Clock$<$ time\_t, clock\_t $>$}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Util_1_1Clock_a84e31bb5334a0e98d01def149616aafd} 
+template$<$typename time\+\_\+t  = seconds, typename clock\+\_\+t  = std\+::chrono\+::steady\+\_\+clock$>$ \\
+auto \mbox{\hyperlink{classVIPRA_1_1Util_1_1Clock}{VIPRA\+::\+Util\+::\+Clock}}$<$ time\+\_\+t, clock\+\_\+t $>$\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ time\+\_\+t   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Resets the clock, Returns the time since it was started. 
+
+\begin{DoxyReturn}{Returns}
+time\+\_\+t 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/util/clock.\+hpp\end{DoxyCompactItemize}

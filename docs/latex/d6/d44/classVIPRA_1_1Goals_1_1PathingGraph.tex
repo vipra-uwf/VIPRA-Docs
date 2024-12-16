@@ -1,0 +1,147 @@
+\doxysection{VIPRA\+::Goals\+::Pathing\+Graph Class Reference}
+\hypertarget{classVIPRA_1_1Goals_1_1PathingGraph}{}\label{classVIPRA_1_1Goals_1_1PathingGraph}\index{VIPRA::Goals::PathingGraph@{VIPRA::Goals::PathingGraph}}
+
+
+Inheritance diagram for VIPRA\+::Goals\+::Pathing\+Graph\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{dc/d7c/classVIPRA_1_1Goals_1_1PathingGraph__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Goals\+::Pathing\+Graph\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{d8/d1c/classVIPRA_1_1Goals_1_1PathingGraph__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a4a2c05a41588632394bd8b64d1c46bb8}\label{classVIPRA_1_1Goals_1_1PathingGraph_a4a2c05a41588632394bd8b64d1c46bb8} 
+{\footnotesize template$<$typename map\+\_\+t $>$ }\\{\bfseries Pathing\+Graph} (map\+\_\+t const \&map, VIPRA\+::f\+\_\+pnt grid\+Size, VIPRA\+::f\+\_\+pnt closest\+Obstacle)
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph_aa3dfcc7b091455c50ca3d109ac7957de}{get\+\_\+closest\+\_\+grid\+\_\+idx}} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos) const -\/$>$ VIPRA\+::idx
+\begin{DoxyCompactList}\small\item\em Gets the closest grid index to the coordinate. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a71a69beacd85ccbc0eaebe3cd26ca77d}\label{classVIPRA_1_1Goals_1_1PathingGraph_a71a69beacd85ccbc0eaebe3cd26ca77d} 
+{\bfseries Pathing\+Graph} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_aec3fee7babb0070b21bd774fe6f623bc}\label{classVIPRA_1_1Goals_1_1PathingGraph_aec3fee7babb0070b21bd774fe6f623bc} 
+{\bfseries Pathing\+Graph} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&\&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a03b4cdf21bee2d3e99b3618c49c3cfb5}\label{classVIPRA_1_1Goals_1_1PathingGraph_a03b4cdf21bee2d3e99b3618c49c3cfb5} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a54171d0ba77e946e0d82a8cc16009fcf}\label{classVIPRA_1_1Goals_1_1PathingGraph_a54171d0ba77e946e0d82a8cc16009fcf} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a20847a8938386682c237f87b688f1345}\label{classVIPRA_1_1Goals_1_1PathingGraph_a20847a8938386682c237f87b688f1345} 
+VIPRA\+\_\+\+INLINE auto {\bfseries node\+\_\+count} () const noexcept -\/$>$ size\+\_\+t
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_afadc64ad50926816d8cc89ea1dd37b35}\label{classVIPRA_1_1Goals_1_1PathingGraph_afadc64ad50926816d8cc89ea1dd37b35} 
+auto {\bfseries neighbors} (VIPRA\+::idx grid\+Idx) const noexcept -\/$>$ std\+::array$<$ VIPRA\+::idx, 8 $>$
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a527ce0f362bdbe5d1eaa4f512e8d78f4}\label{classVIPRA_1_1Goals_1_1PathingGraph_a527ce0f362bdbe5d1eaa4f512e8d78f4} 
+VIPRA\+\_\+\+INLINE auto {\bfseries pos} (VIPRA\+::idx grid\+Idx) const noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph_a2a59823a2bb693e66e9c886bd34ae04c}{get\+\_\+closest\+\_\+grid\+\_\+idx}} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} position) const noexcept -\/$>$ VIPRA\+::idx
+\begin{DoxyCompactList}\small\item\em Gets the closest grid index to the coordinate. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_aa92c00cc4505350e328909a9750baf01}\label{classVIPRA_1_1Goals_1_1PathingGraph_aa92c00cc4505350e328909a9750baf01} 
+{\bfseries Pathing\+Graph} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, VIPRA\+::f\+\_\+pnt grid\+Size, VIPRA\+::f\+\_\+pnt closest\+Obstacle)
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a71a69beacd85ccbc0eaebe3cd26ca77d}\label{classVIPRA_1_1Goals_1_1PathingGraph_a71a69beacd85ccbc0eaebe3cd26ca77d} 
+{\bfseries Pathing\+Graph} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_aec3fee7babb0070b21bd774fe6f623bc}\label{classVIPRA_1_1Goals_1_1PathingGraph_aec3fee7babb0070b21bd774fe6f623bc} 
+{\bfseries Pathing\+Graph} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&\&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a03b4cdf21bee2d3e99b3618c49c3cfb5}\label{classVIPRA_1_1Goals_1_1PathingGraph_a03b4cdf21bee2d3e99b3618c49c3cfb5} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a54171d0ba77e946e0d82a8cc16009fcf}\label{classVIPRA_1_1Goals_1_1PathingGraph_a54171d0ba77e946e0d82a8cc16009fcf} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1PathingGraph}{Pathing\+Graph}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{VIPRA\+::\+Data\+Structures\+::\+Graph\+Mixin$<$ Pathing\+Graph, Grid\+Point $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries reserve} (VIPRA\+::idx size)
+\item 
+void {\bfseries clear} ()
+\item 
+constexpr auto {\bfseries node\+\_\+count} () const -\/$>$ VIPRA\+::idx
+\item 
+constexpr auto {\bfseries nodes} () -\/$>$ std\+::vector$<$ Node $>$ \&
+\item 
+constexpr auto {\bfseries nodes} () const -\/$>$ std\+::vector$<$ Node $>$ const \&
+\item 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ \&
+\item 
+constexpr auto {\bfseries neighbors} (VIPRA\+::idx node\+Idx) const -\/$>$ std\+::vector$<$ VIPRA\+::idx $>$ const \&
+\item 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) -\/$>$ Grid\+Point \&
+\item 
+constexpr auto {\bfseries data} (VIPRA\+::idx node\+Idx) const -\/$>$ Grid\+Point const \&
+\item 
+void {\bfseries add\+\_\+edge} (VIPRA\+::idx node\+Idx1, VIPRA\+::idx node\+Idx2)
+\item 
+constexpr auto {\bfseries add\+\_\+node} (Grid\+Point data) -\/$>$ VIPRA\+::idx
+\item 
+auto {\bfseries add\+\_\+node} (Grid\+Point data, std\+::vector$<$ VIPRA\+::idx $>$ neighbors) -\/$>$ VIPRA\+::idx
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classVIPRA_1_1DataStructures_1_1GraphMixin}{VIPRA\+::\+Data\+Structures\+::\+Graph\+Mixin$<$ Pathing\+Graph, Grid\+Point $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries value\+\_\+t}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_aa3dfcc7b091455c50ca3d109ac7957de}\index{VIPRA::Goals::PathingGraph@{VIPRA::Goals::PathingGraph}!get\_closest\_grid\_idx@{get\_closest\_grid\_idx}}
+\index{get\_closest\_grid\_idx@{get\_closest\_grid\_idx}!VIPRA::Goals::PathingGraph@{VIPRA::Goals::PathingGraph}}
+\doxysubsubsection{\texorpdfstring{get\_closest\_grid\_idx()}{get\_closest\_grid\_idx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Goals_1_1PathingGraph_aa3dfcc7b091455c50ca3d109ac7957de} 
+auto VIPRA\+::\+Goals\+::\+Pathing\+Graph\+::get\+\_\+closest\+\_\+grid\+\_\+idx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}}]{pos}{}\end{DoxyParamCaption}) const -\/$>$ VIPRA\+::idx   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Gets the closest grid index to the coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+VIPRA\+::idx 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Goals_1_1PathingGraph_a2a59823a2bb693e66e9c886bd34ae04c}\index{VIPRA::Goals::PathingGraph@{VIPRA::Goals::PathingGraph}!get\_closest\_grid\_idx@{get\_closest\_grid\_idx}}
+\index{get\_closest\_grid\_idx@{get\_closest\_grid\_idx}!VIPRA::Goals::PathingGraph@{VIPRA::Goals::PathingGraph}}
+\doxysubsubsection{\texorpdfstring{get\_closest\_grid\_idx()}{get\_closest\_grid\_idx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Goals_1_1PathingGraph_a2a59823a2bb693e66e9c886bd34ae04c} 
+auto VIPRA\+::\+Goals\+::\+Pathing\+Graph\+::get\+\_\+closest\+\_\+grid\+\_\+idx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}}}]{position}{}\end{DoxyParamCaption}) const -\/$>$ VIPRA\+::idx   \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the closest grid index to the coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+VIPRA\+::idx 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/base\+\_\+modules/goals/pathing\+\_\+graph.\+hpp\item 
+VIPRA/modules/goals/astar/pathing\+\_\+graph.\+hpp\item 
+VIPRA/modules/goals/astar/pathing\+\_\+graph.\+cpp\end{DoxyCompactItemize}

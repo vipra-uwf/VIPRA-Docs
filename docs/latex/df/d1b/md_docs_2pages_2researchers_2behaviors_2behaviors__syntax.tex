@@ -1,0 +1,1216 @@
+\chapter{behaviors\+\_\+syntax}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax}{}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax}\index{behaviors\_syntax@{behaviors\_syntax}}
+\texorpdfstring{$\vert$}{|} \doxylink{index_md_docs_2docs}{Main Page} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} Module Parameters \texorpdfstring{$\vert$}{|} \doxysectlink{md_docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md214}{}\doxysection{\texorpdfstring{VIPRA Behaviors Syntax Reference}{VIPRA Behaviors Syntax Reference}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md214}
+\texorpdfstring{$>$}{>}{\bfseries{Document Note\+:}} Text wrapped with {\ttfamily \texorpdfstring{$<$}{<}} and {\ttfamily \texorpdfstring{$>$}{>}}, denote a placeholder value. You should not include {\ttfamily \texorpdfstring{$<$}{<}} and {\ttfamily \texorpdfstring{$>$}{>}} when writing Behaviors.\texorpdfstring{$\ast$}{*}\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md215}{}\doxysection{\texorpdfstring{Behavior Layout}{Behavior Layout}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md215}
+The general layout of a {\ttfamily Behavior} is as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types\ Declaration.}
+\DoxyCodeLine{}
+\DoxyCodeLine{States\ Declaration.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Location\ Declarations.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector\ Declarations.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Event\ Declartions.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ Declarations.}
+
+\end{DoxyCode}
+
+
+Each Declaration has a subset of components.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<declaration\_type>:}
+\DoxyCodeLine{\ \ <component\_name>\ :\ <component\_value>}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+Each section goes over what components are available for each.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Selector:}
+\DoxyCodeLine{\ \ Type:\ injured\_person}
+\DoxyCodeLine{\ \ Select:\ 10\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ {\ttfamily Type} and {\ttfamily Select} are both components of the \`{}\+Selector\`{} declaration
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md217}{}\doxysection{\texorpdfstring{Behavior General Syntax Rules}{Behavior General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md217}
+This section has some simple {\ttfamily Syntax} rules that must be followed for a {\ttfamily Behavior} to be considered correct.
+
+The other sections will have the specific {\ttfamily Syntax} rules for their respective parts, in a {\ttfamily Section -\/ General Syntax Rules} section
+
+
+\begin{DoxyEnumerate}
+\item All Declarations must end in a {\ttfamily .} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{correct:}
+\DoxyCodeLine{\ \ Event:}
+\DoxyCodeLine{\ \ \ \ Name:\ Example}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ .}
+\DoxyCodeLine{}
+\DoxyCodeLine{incorrect:}
+\DoxyCodeLine{\ \ Event:}
+\DoxyCodeLine{\ \ \ \ Name:\ Example}
+\DoxyCodeLine{\ \ \ \ ...}
+
+\end{DoxyCode}
+
+\item Each {\ttfamily Behavior} must {\bfseries{start}} with a Types Declaration
+\item Each {\ttfamily Behavior} must {\bfseries{only have 1}} Types Declaration
+\item Each {\ttfamily Behavior} must have {\bfseries{at least 1}} Selector
+\item {\ttfamily Behaviors} are NOT case-\/sensitive so {\ttfamily Consider}, {\ttfamily consider}, and {\ttfamily Con\+Si\+DEr} are all valid.
+\item Comments can be added following \textquotesingle{}//\textquotesingle{} or between \textquotesingle{}/\texorpdfstring{$\ast$}{*}\textquotesingle{} and \textquotesingle{}\texorpdfstring{$\ast$}{*}/\textquotesingle{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ is\ a\ comment\ and\ does\ not\ affect\ the\ behavior}
+\DoxyCodeLine{}
+\DoxyCodeLine{/*}
+\DoxyCodeLine{This\ is\ a\ multi-\/line\ comment}
+\DoxyCodeLine{and\ does\ not\ affect\ the\ behavior}
+\DoxyCodeLine{*/}
+
+\end{DoxyCode}
+
+\item Whitespace does not affect {\ttfamily Behaviors}, the following are valid and equivalent. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:\ typeA\ typeB.}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ and}
+\DoxyCodeLine{}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ \ typeA}
+\DoxyCodeLine{\ \ typeB}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\item Declaration Components can be written in any order, the following are equivalent 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Event:}
+\DoxyCodeLine{\ \ Name:\ Example}
+\DoxyCodeLine{\ \ Start:\ <start\_condition>}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Event:}
+\DoxyCodeLine{\ \ Start:\ <start\_condition>}
+\DoxyCodeLine{\ \ Name:\ Example}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md219}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md219}
+{\ttfamily Types} are how pedestrians are organized in {\ttfamily Behaviors}
+
+Each pedestrian is assigned a user-\/defined {\ttfamily Type}. These {\ttfamily Types} are used to categorize the Actions pedestrians will take during the simulation.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md221}{}\doxysubsection{\texorpdfstring{Types Declaration}{Types Declaration}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md221}
+{\ttfamily Types} are declared in the {\ttfamily Types Declaration} of a {\ttfamily Behavior}.
+
+A {\ttfamily Types Declaration} is what says which types are being used in the {\ttfamily Behavior}.
+
+{\ttfamily Behaviors} can only have 1 {\ttfamily Types Declaration} which can include up to 64 {\ttfamily Types}.
+
+{\ttfamily Types Declarations} are slightly different from other declarations, in that they do not have components; instead each type is simply listed out.
+
+Single {\ttfamily Type}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ \ injured\_person}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+Multiple {\ttfamily Types}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ injured\_person}
+\DoxyCodeLine{\ helper}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md223}{}\doxysubsubsection{\texorpdfstring{Types Declaration General Syntax Rules}{Types Declaration General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md223}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily Types Declarations} can be any length up to 64 {\ttfamily Types} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ \ typeA}
+\DoxyCodeLine{\ \ typeB}
+\DoxyCodeLine{\ \ typeC}
+\DoxyCodeLine{\ \ typeD}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\item {\ttfamily Types Declarations} must be the first declaration in a {\ttfamily Behavior}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md225}{}\doxysubsection{\texorpdfstring{Composite Types}{Composite Types}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md225}
+A Pedestrians {\ttfamily Type} can be composed of several other types.
+
+A Pedestrian with a {\ttfamily Composite Type} will have the attributes of each individual {\ttfamily Type}.
+
+How to assign {\ttfamily Composite Types} is explained in the Selectors section.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md227}{}\doxysubsection{\texorpdfstring{Groups}{Groups}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md227}
+For most users, {\ttfamily Groups} and {\ttfamily Types} refer to the same thing.
+
+The main difference between a {\ttfamily Type} and a {\ttfamily Group} is that there is a base {\ttfamily Group} for each {\ttfamily Behavior}, being \textquotesingle{}Pedestrian\textquotesingle{} (or \textquotesingle{}Pedestrians\textquotesingle{}).
+
+Each pedestrian with a {\ttfamily Type} is considered in that {\ttfamily Type}\textquotesingle{}s {\ttfamily Group}.
+
+Pedestrians with {\ttfamily Composite Types} are in a {\ttfamily Group} for each {\ttfamily Type}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md229}{}\doxysubsection{\texorpdfstring{Type General Syntax Rules}{Type General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md229}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily Type} names can only contain Letters, Underscores, and Hyphens `(a-\/z), (A-\/Z), '\+\_\+\textquotesingle{}, \textquotesingle{}-\/\textquotesingle{}\`{}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md231}{}\doxysection{\texorpdfstring{Locations}{Locations}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md231}
+{\ttfamily Locations} are rectangular regions that can be used in {\ttfamily Selectors}, {\ttfamily Conditions}, and {\ttfamily Actions}.
+
+After being declared, {\ttfamily Location} names are always preceded by a {\ttfamily @}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Location:}
+\DoxyCodeLine{\ \ Name:\ <name>}
+\DoxyCodeLine{\ \ Dimensions:}
+\DoxyCodeLine{\ \ \ \ Center:\ <center\_coords>\ \ //\ Coord\ Value}
+\DoxyCodeLine{\ \ \ \ Lengths:\ <side\_lengths>\ \ //\ Coord\ Value}
+\DoxyCodeLine{\ \ \ \ Rotation:\ <rotation>\ \ \ \ \ //\ Numeric\ Value}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\+Name\texorpdfstring{$\ast$}{*} -\/ The name used to reference this {\ttfamily Location}
+\item \texorpdfstring{$\ast$}{*}\+Dimensions\texorpdfstring{$\ast$}{*} -\/ The dimensions for the {\ttfamily Location}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\+Center\texorpdfstring{$\ast$}{*} -\/ X,Y,Z coordinates for the center of the rectangle as coordinates.
+\item \texorpdfstring{$\ast$}{*}\+Lengths\texorpdfstring{$\ast$}{*} -\/ X,Y,Z lengths of the rectangle as coordinates.
+\item \texorpdfstring{$\ast$}{*}\+Rotation\texorpdfstring{$\ast$}{*} -\/ degrees of clockwise rotation as a numeric value
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Location:}
+\DoxyCodeLine{\ \ Name:\ Aisle}
+\DoxyCodeLine{\ \ Dimensions:}
+\DoxyCodeLine{\ \ \ \ Center:\ \{15,\ 1.7\}\ \ \ \ \ //\ Center\ of\ rectangle\ is\ at\ (15,\ 1.7)}
+\DoxyCodeLine{\ \ \ \ Lenghts:\ \{30,\ 0.3\}\ \ \ \ //\ Width\ of\ 30m,\ Height\ of\ 30cm}
+\DoxyCodeLine{\ \ \ \ Rotation:\ 0\ \ \ \ \ \ \ \ \ \ \ //\ Rotated\ 0\ degrees\ (aligned\ with\ X\ axis)}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ \DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md233}{}\doxysubsection{\texorpdfstring{Locations General Syntax Rules}{Locations General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md233}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily Location} names are always preceded by a {\ttfamily @} after the declaration
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md235}{}\doxysection{\texorpdfstring{Selectors}{Selectors}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md235}
+{\ttfamily Selectors} are how pedestrians are selected for a certain Type.
+
+Selecting pedestrians is done through a {\ttfamily Selector} declaration. The basic syntax is as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Selector:}
+\DoxyCodeLine{\ \ Type:\ <types>}
+\DoxyCodeLine{\ \ From:\ <type>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Optional,\ defaults\ to\ base\ pedestrians\ group}
+\DoxyCodeLine{\ \ Select:\ <selection\_criteria>}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\+Type\texorpdfstring{$\ast$}{*} -\/ The Type to assign to selected pedestrians.
+\item \texorpdfstring{$\ast$}{*}\+From\texorpdfstring{$\ast$}{*} -\/ The Group to select pedestrians from.
+\item \texorpdfstring{$\ast$}{*}\+Select\texorpdfstring{$\ast$}{*} -\/ The exact {\ttfamily Select} criteria to use. Available {\ttfamily Select} criteria are listed under Available Select Criteria.
+\end{DoxyItemize}
+
+Selectors are applied with precedence equal to the order they appear in the {\ttfamily Behavior} file.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Selector:\ \ \ //\ Selects\ exactly\ 10\ pedestrians\ to\ be\ of\ typeA}
+\DoxyCodeLine{\ \ Type:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 10}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ //\ Selects\ 50\%\ of\ pedestrians\ to\ be\ of\ typeB}
+\DoxyCodeLine{\ \ Type:\ typeB}
+\DoxyCodeLine{\ \ Select\ 50\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md237}{}\doxysubsection{\texorpdfstring{Selecting From Groups}{Selecting From Groups}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md237}
+{\ttfamily Selectors} can select from specific Groups
+
+This has the effect of selecting the pedestrians for a Composite Type but allows for more dynamic proportions. This allows for refined selections within selections.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ \ typeA}
+\DoxyCodeLine{\ \ typeB}
+\DoxyCodeLine{\ \ typeC}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Select:\ \ \ \ \ \ \ \ //\ Selects\ 50\%\ of\ pedestrians\ to\ be\ typeA}
+\DoxyCodeLine{\ \ Type:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 50\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Select:\ \ \ \ \ \ \ \ //\ Selects\ 15\%\ of\ typeA\ pedestrians\ to\ also\ be\ typeB}
+\DoxyCodeLine{\ \ Type:\ typeB}
+\DoxyCodeLine{\ \ From:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 15\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Select:\ \ \ \ \ \ \ //\ Selects\ 5\%\ of\ typeA\ pedestrians\ to\ also\ be\ typeC}
+\DoxyCodeLine{\ \ Type:\ typeC}
+\DoxyCodeLine{\ \ From:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 5\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+With 100 pedestrians\+:
+\begin{DoxyItemize}
+\item 39 pedestrians are typeA.
+\item 8 pedestrians are typeA and typeB.
+\item 3 pedestrians are typeA and typeC.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md239}{}\doxysubsection{\texorpdfstring{Selector Exclusivity}{Selector Exclusivity}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md239}
+When a pedestrian is selected from a {\ttfamily Group}, it is marked as used and can not be selected by another {\ttfamily Selector}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:}
+\DoxyCodeLine{\ \ Type:\ typeB}
+\DoxyCodeLine{\ \ Group:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 15\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Select:}
+\DoxyCodeLine{\ \ Type:\ typeD}
+\DoxyCodeLine{\ \ Group:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 20\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ Means\+: Those 15\% of \textquotesingle{}typeA\textquotesingle{} pedestrians that also are typeB can not be selected from again. Any selections for typeD in the above scenario will never also be typeB.
+
+However, they can be selected {\bfseries{from}} \textquotesingle{}typeB\textquotesingle{}.
+
+TODO(tyler)\+: What happens if those values exceed 100\%?
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:}
+\DoxyCodeLine{\ \ Type:\ typeC}
+\DoxyCodeLine{\ \ Group:\ typeB}
+\DoxyCodeLine{\ \ Select:\ 15\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+This may result in some pedestrians being of types typeA, typeB, and typeC.
+
+TODO(tyler)\+: What happens if we want some overlap?
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md241}{}\doxysubsection{\texorpdfstring{Required Selectors}{Required Selectors}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md241}
+{\ttfamily Selectors} can be marked as {\ttfamily Required} with a \textquotesingle{}Required\textquotesingle{} {\ttfamily Component}.
+
+This means, if the {\ttfamily Selector} is unable to be filled an error will be thrown, and the simulation will stop.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:}
+\DoxyCodeLine{\ \ typeA}
+\DoxyCodeLine{\ \ typeB}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:}
+\DoxyCodeLine{\ \ Type:\ typeA}
+\DoxyCodeLine{\ \ Select:\ Everyone}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:}
+\DoxyCodeLine{\ \ Required}
+\DoxyCodeLine{\ \ Type:\ typeB}
+\DoxyCodeLine{\ \ Select:\ 50\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ Output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Behavior:\ Example,\ Required\ Selector\ Starved\ For\ Type:\ 2\ From\ Group:\ 0"{}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md243}{}\doxysubsection{\texorpdfstring{Available Select Criteria}{Available Select Criteria}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md243}
+
+\begin{DoxyEnumerate}
+\item Everyone
+\item Percent
+\item Exactly N
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md245}{}\doxysubsubsection{\texorpdfstring{Everyone}{Everyone}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md245}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:\ Everyone}
+
+\end{DoxyCode}
+
+
+This select criteria will select every pedestrian to have the selected Type
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md247}{}\doxysubsubsection{\texorpdfstring{Percent}{Percent}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md247}
+Selects a percentage of a {\ttfamily Group} for the provided {\ttfamily Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<value>\%}
+
+\end{DoxyCode}
+ \texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>} -\/ Number Value (1 -\/ 100)
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:\ 15\%}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md249}{}\doxysubsubsection{\texorpdfstring{Exactly N}{Exactly N}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md249}
+Selects an exact number of pedestrians from a {\ttfamily Group}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Exaclty\ <value>}
+
+\end{DoxyCode}
+ \texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>} -\/ Number Value
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:\ 10}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md251}{}\doxysubsubsection{\texorpdfstring{Location}{Location}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md251}
+Selects all pedestrians inside a given location.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:\ In\ <location>}
+
+\end{DoxyCode}
+ \texorpdfstring{$<$}{<}location\texorpdfstring{$>$}{>} -\/ Name of Location
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Select:\ In\ @Elevator}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md253}{}\doxysubsection{\texorpdfstring{Selectors General Syntax Rules}{Selectors General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md253}
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md255}{}\doxysection{\texorpdfstring{Actions}{Actions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md255}
+{\ttfamily Actions} are what affect a Pedestrian\textquotesingle{}s position, velocity, state, etc.
+
+{\ttfamily Actions} work by applying attribute modifiers known as Atoms each time step their {\ttfamily Condition} is satisfied.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md257}{}\doxysubsection{\texorpdfstring{Unconditional Actions}{Unconditional Actions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md257}
+An {\ttfamily Unconditional Action} will ALWAYS take effect, applying its {\ttfamily Atoms} each timestep.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (<type>):}
+\DoxyCodeLine{\ \ Response:\ <atoms>}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$<$}{<}type\texorpdfstring{$>$}{>} being the pedestrian type that follows this {\ttfamily Action}
+\item \texorpdfstring{$<$}{<}atoms\texorpdfstring{$>$}{>} being the steps taken in an action, more in {\itshape Atoms}
+\end{DoxyItemize}
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (injured\_person):\ \ \ \ \ \ \ \ \ //\ Action\ Declaration\ for\ "{}injured\_person"{}s}
+\DoxyCodeLine{\ \ Response:\ scale\ velocity\ 0.75\ \ //\ "{}Scale"{}\ Atom}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ With this Behavior, an injured person will always walk at 75\% speed.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md259}{}\doxysubsection{\texorpdfstring{A.\+2. Conditional Actions}{A.\+2. Conditional Actions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md259}
+A {\ttfamily Conditional Action} will only take effect if its {\ttfamily Condition} is satisfied.
+
+{\ttfamily Conditional Actions} are written as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (<type>):}
+\DoxyCodeLine{\ \ Condition:\ <condition>}
+\DoxyCodeLine{\ \ Response:\ <atoms>}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$<$}{<}type\texorpdfstring{$>$}{>} being the pedestrian type that follows this {\ttfamily Action}. {\itshape See Types}.
+\item \texorpdfstring{$<$}{<}atoms\texorpdfstring{$>$}{>} being the steps taken in an action. {\itshape See Atoms}.
+\item \texorpdfstring{$<$}{<}condition\texorpdfstring{$>$}{>} being the condition to be filled. {\itshape See Conditions}.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (listener):\ }
+\DoxyCodeLine{\ \ Condition:\ !announcement\ occurring.\ //\ Condition}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}\ \ \ \ \ \ \ \ \ \ //\ Atom}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ Pedestrians of listener will stop moving while the announcement event is occurring.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md262}{}\doxysubsection{\texorpdfstring{Action Durations}{Action Durations}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md262}
+Normally {\ttfamily Actions} only apply to the time step their {\ttfamily Condition} is true in.
+
+If a longer response is needed, a {\ttfamily Duration} can be added to the {\ttfamily Action}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (<type>):\ }
+\DoxyCodeLine{\ \ Condition:\ <condition>}
+\DoxyCodeLine{\ \ Response:\ <atoms>}
+\DoxyCodeLine{\ \ Duration:\ <value>}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$<$}{<}type\texorpdfstring{$>$}{>} being the Type the action applies to
+\item \texorpdfstring{$<$}{<}atoms\texorpdfstring{$>$}{>} being the Atoms for the {\ttfamily Action}
+\item \texorpdfstring{$<$}{<}condition\texorpdfstring{$>$}{>} being the Condition for the action to start
+\item \texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>} being a numerical Value, for how long the action should continue
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+Example, Someone Tripping\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (tripper):}
+\DoxyCodeLine{\ \ Condition:\ 10\ seconds\ after\ !Start\ //\ Condition}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}\ \ \ \ \ \ \ \ \ //\ "{}Set"{}\ Atom}
+\DoxyCodeLine{\ \ Duration:\ 15\ seconds\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Duration}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+Pedestrians of type {\ttfamily tripper} will trip after 10 seconds from the simulation starting, and remain still for 15 seconds.
+
+This will cause all {\ttfamily trippers} to trip at exactly the same time. Normally, randomness should be added to a scenario such as this. For more information on how to add randomness to {\ttfamily Duration} and {\ttfamily Conditions}, see {\itshape Random Values}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md265}{}\doxysubsection{\texorpdfstring{Atoms}{Atoms}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md265}
+{\ttfamily Atoms} are the part of an {\ttfamily Action} that actually affects a pedestrian.
+
+The do this by changing pedestrian Attributes.
+
+See {\itshape Available Atoms} for the list of available {\ttfamily Atoms}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md267}{}\doxysubsubsection{\texorpdfstring{Atom Lists}{Atom Lists}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md267}
+An {\ttfamily Atom List} is the collection of {\ttfamily Atoms} that make up an {\ttfamily Action}.
+
+{\ttfamily Atom Lists} are written as follows\+: {\ttfamily \texorpdfstring{$<$}{<}atom\texorpdfstring{$>$}{>} , \texorpdfstring{$<$}{<}atom\texorpdfstring{$>$}{>}}
+
+{\bfseries{Important Note\+:}} {\ttfamily Atom} effects are applied in the order they are listed
+
+\DoxyHorRuler{0}
+
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{set\ velocity\ to\ \{0\},\ set\ state\ to\ \#listening}
+
+\end{DoxyCode}
+ This {\ttfamily Atom List} will result in the pedestrian stopping and their state being set to "{}listening"{}
+
+(Pedestrian state is useful in Conditions)
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md270}{}\doxysubsection{\texorpdfstring{Available Atoms}{Available Atoms}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md270}
+There are two types of available {\ttfamily Atoms}\+:
+\begin{DoxyEnumerate}
+\item Set 
+\end{DoxyEnumerate}\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md271}{}\doxysubsection{\texorpdfstring{2. Scale}{2. Scale}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md271}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md272}{}\doxysubsubsection{\texorpdfstring{Set}{Set}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md272}
+The {\ttfamily Set Atom} sets a pedestrian\textquotesingle{}s attribute to a specific value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{set\ <attribute>\ to\ <attribute\_value>}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$<$}{<}attributes\texorpdfstring{$>$}{>} are described in Attributes.
+\item \texorpdfstring{$<$}{<}attribute\+\_\+values\texorpdfstring{$>$}{>} are described in Attribute Values.
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md273}{}\doxysubsubsection{\texorpdfstring{Scale}{Scale}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md273}
+The {\ttfamily Scale Atom} multiplies a pedestrian attribute by a given value
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{scale\ <attribute>\ <attribute\_value>}
+
+\end{DoxyCode}
+
+
+Currently, only pedestrian {\ttfamily Velocity} can be scaled.
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$<$}{<}attributes\texorpdfstring{$>$}{>} are described in Attributes.
+\item \texorpdfstring{$<$}{<}attribute\+\_\+values\texorpdfstring{$>$}{>} are described in Attribute Values.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md275}{}\doxysubsection{\texorpdfstring{Action Targets}{Action Targets}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md275}
+Sometimes Pedestrians will want to affect other pedestrians around them.
+
+This is done through the use of {\ttfamily Targets}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (<type>):}
+\DoxyCodeLine{\ \ Condition:\ <condition>\ \ //\ Condition}
+\DoxyCodeLine{\ \ Response:\ <atoms>\ \ \ \ \ \ \ //\ Atoms}
+\DoxyCodeLine{\ \ Target:\ <target>\ \ \ \ \ \ \ \ //\ Action\ Target}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (aggressive):}
+\DoxyCodeLine{\ \ Response:\ set\ target\ velocity\ \{0\}}
+\DoxyCodeLine{\ \ Target:\ nearest\ pedestrian}
+
+\end{DoxyCode}
+ This results in the pedestrian stopping the nearest pedestrian around them.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md278}{}\doxysubsubsection{\texorpdfstring{Available Targets}{Available Targets}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md278}
+There is currently only one type of action {\ttfamily Target}, the "{}nearest"{} {\ttfamily Target}. This {\ttfamily Target} describes proximity to a pedestrian as part of an {\ttfamily Action}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md280}{}\doxysubsubsubsection{\texorpdfstring{Nearest}{Nearest}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md280}
+Selects the nearest of a given type to be the target
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{nearest\ <type\_list>\ \ \ //\ selects\ the\ nearest\ pedestrian\ with\ any\ of\ the\ listed\ types}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{nearest\ pedestrian\ \ \ \ //\ selects\ any\ pedestrian}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md282}{}\doxysubsubsection{\texorpdfstring{Target Modifiers}{Target Modifiers}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md282}
+{\ttfamily Target Modifiers} change how pedestrians are selected to be the Target of an action.
+
+{\ttfamily Target Modifiers} are simply appended to the end of the {\ttfamily Action Target}.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Target:\ nearest\ pedestrain\ in\ front\ within\ 1.0}
+
+\end{DoxyCode}
+ This selects the nearest pedestrian in the direction of motion that is within 1 meter.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md284}{}\doxysubsubsubsection{\texorpdfstring{Distance Target Modifier}{Distance Target Modifier}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md284}
+Targets can be filtered by their distance to the pedestrian.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{within\ <numeric\_value>}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md286}{}\doxysubsubsubsection{\texorpdfstring{Direction Target Modifier}{Direction Target Modifier}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md286}
+Targets can be filtered by their direction from the pedestrian.
+
+Currently, there are only two directions. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{in\ front\ \ \ //\ used\ to\ select\ pedestrians\ in\ the\ direction\ the\ pedestrian\ is\ headed}
+\DoxyCodeLine{}
+\DoxyCodeLine{behind\ \ \ \ \ //\ used\ to\ select\ pedestrians\ in\ the\ opposite\ direction\ the\ pedestrian\ is\ headed}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md288}{}\doxysubsubsubsection{\texorpdfstring{Location Target Modifier}{Location Target Modifier}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md288}
+Targets can be filtered by whether they are inside a {\ttfamily Location} or not.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{in\ <location\_name>}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md290}{}\doxysection{\texorpdfstring{Conditions}{Conditions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md290}
+A {\ttfamily Condition} is what decides if a {\ttfamily Conditional Action} or {\ttfamily Event} occurs.
+
+{\ttfamily Conditions} are comprised of one or more {\ttfamily Sub Conditions} and the boolean operations between them (and/or).
+
+{\ttfamily Conditions} do not stand on their own, and only appear as part of an {\ttfamily Action} or {\ttfamily Event} declaration.
+
+\DoxyHorRuler{0}
+
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ !example\ occurred\ and\ 5\ seconds\ after\ !Start}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}}
+\DoxyCodeLine{\ \ Duration:\ 10\ seconds}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ This results in typeA pedestrians stopping for 10 seconds after the example event has occurred but not before 5 seconds have passed in the simulation.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md293}{}\doxysubsection{\texorpdfstring{Sub Conditions}{Sub Conditions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md293}
+A {\ttfamily Sub Condition} defines a single condition of the state of the simulation in which it returns true.
+
+{\itshape See Available Sub Conditions}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md295}{}\doxysubsection{\texorpdfstring{Available Sub Conditions}{Available Sub Conditions}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md295}
+There are currently 6 total available sub conditions\+:
+\begin{DoxyEnumerate}
+\item Elapsed Time
+\item Spatial
+\item Event Status
+\item Location Enter/\+Leave
+\item Inside Location
+\item Pedestrian Attributes
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md297}{}\doxysubsubsection{\texorpdfstring{Elapsed Time}{Elapsed Time}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md297}
+This {\ttfamily Condition} will be true when a provided amount of time has passed from the {\bfseries{start}} of an Event
+
+{\bfseries{Note\+:}} This is true only for {\bfseries{one time step}} when the time has elapsed, until the {\ttfamily Event} starts again.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<numeric\_value>\ seconds\ after\ <event>.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ 10\ seconds\ after\ !Start\ //\ Elapsed\ Time\ Condition}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}\ \ \ \ \ \ \ \ \ //\ "{}Set"{}\ Atom}
+\DoxyCodeLine{\ \ Duration:\ 5\ seconds\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Duration}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ {\bfseries{Note\+:}} without the {\ttfamily Duration} the pedestrian would stop moving for only one time step. {\itshape See Duration}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md300}{}\doxysubsubsection{\texorpdfstring{Spatial}{Spatial}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md300}
+This {\ttfamily Condition} will be true when the condition Target is within a certain distance
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{target\ within\ <numeric\_value>.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ 10\ seconds\ after\ !Start\ //\ Elapsed\ Time\ Condition}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}\ \ \ \ \ \ \ \ \ //\ "{}Set"{}\ Atom}
+\DoxyCodeLine{\ \ Duration:\ 5\ seconds\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Duration}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ {\bfseries{Note\+:}} without the {\ttfamily Duration} the pedestrian would stop moving for only one time step. {\itshape See Duration}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md303}{}\doxysubsubsection{\texorpdfstring{Event Status}{Event Status}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md303}
+This {\ttfamily Condition} checks for the status of an Event.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<event>\ is\ <status>}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md304}{}\doxysubsubsubsection{\texorpdfstring{Available Statuses\+:}{Available Statuses\+:}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md304}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Starting\ \ //\ True\ for\ the\ timestep\ the\ event\ starts}
+\DoxyCodeLine{Ending\ \ \ \ //\ True\ for\ the\ timestep\ the\ event\ ends}
+\DoxyCodeLine{Occurring\ //\ True\ for\ every\ timestep\ between\ event\ start\ and\ end}
+\DoxyCodeLine{Occurred\ \ //\ True\ if\ the\ event\ has\ occurred\ at\ all\ during\ the\ simulation}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (listener):}
+\DoxyCodeLine{\ \ Condition:\ !announcement\ is\ occurring}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md307}{}\doxysubsection{\texorpdfstring{Location Enter/\+Leave}{Location Enter/\+Leave}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md307}
+This {\ttfamily Condition} checks if a pedestrian has entered or left a Location.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Enter\ <location\_name>}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{Exit\ <location\_name>}
+
+\end{DoxyCode}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (Luggage\_Grabber):}
+\DoxyCodeLine{\ \ Condition:\ Enter\ @Aisle}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}}
+\DoxyCodeLine{\ \ Duration:\ 10-\/30\ seconds}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md309}{}\doxysubsection{\texorpdfstring{Inside Location}{Inside Location}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md309}
+This {\ttfamily Condition} checks if a pedestrian is inside a Location.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{In\ <location\_name>}
+
+\end{DoxyCode}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (Patient):}
+\DoxyCodeLine{\ \ Target:\ nearest\ pedestrian,\ within\ 5m,\ in\ front}
+\DoxyCodeLine{\ \ Condition:\ Target\ in\ @Elevator}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ to\ \{0\}}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md311}{}\doxysubsection{\texorpdfstring{Pedestrian Attributes}{Pedestrian Attributes}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md311}
+This {\ttfamily Condition} checks if a pedestrian\textquotesingle{}s Attribute is a given Attribute Value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<attribute>\ is\ <attribute\_value>}
+
+\end{DoxyCode}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ state\ is\ \#scared\ \ //\ Condition\ for\ the\ pedestrian's\ 'State'\ attribute}
+\DoxyCodeLine{\ \ Response:\ scale\ velocity\ 2.0}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md313}{}\doxysection{\texorpdfstring{Attributes}{Attributes}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md313}
+Each pedestrian has what are called {\ttfamily Attributes}.
+
+These attributes include\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Position\ \ \ \ //\ Coordiante\ pedestrian\ is\ currently\ at}
+\DoxyCodeLine{Velocity\ \ \ \ //\ Velocity\ vector\ of\ pedestrian}
+\DoxyCodeLine{Goal\ \ \ \ \ \ \ \ //\ The\ current\ coordinate\ the\ pedestrian\ is\ heading\ to}
+\DoxyCodeLine{State\ \ \ \ \ \ \ //\ Pedestrians\ internal\ state}
+
+\end{DoxyCode}
+
+
+These {\ttfamily Attributes} are important for {\ttfamily Actions} and {\ttfamily Conditions}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md315}{}\doxysection{\texorpdfstring{Ex. Example}{Ex. Example}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md315}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ state\ is\ \#scared\ \ //\ Condition\ for\ the\ pedestrian's\ 'State'\ attribute}
+\DoxyCodeLine{\ \ Response:\ scale\ velocity\ 2.0\ //\ Atom\ affecting\ the\ pedestrian's\ 'Velocity'\ attribute}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md317}{}\doxysubsection{\texorpdfstring{Attribute Values}{Attribute Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md317}
+Attributes each have a different value type.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Position:\ Coordinate}
+\DoxyCodeLine{Velocity:\ Coordinate}
+\DoxyCodeLine{Goal\ \ \ \ :\ Coordinate}
+\DoxyCodeLine{State\ \ \ :\ State}
+
+\end{DoxyCode}
+
+
+Generally, {\ttfamily Attribute Values} can only be compared to others of the same type, except {\ttfamily Coordinate} values.
+
+{\ttfamily Coordinate} values can be compared with {\ttfamily Locations}.
+
+Example 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Condition:\ position\ is\ @aisle}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{Condition:\ goal\ is\ @aisle}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md319}{}\doxysection{\texorpdfstring{Events}{Events}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md319}
+An {\ttfamily Event} is something that occurs during a simulation, that effects the whole simulation. For example, an announcement or fire could be an {\ttfamily Event}.
+
+{\ttfamily Events} have a start {\ttfamily Condition} and, optionally, an end Condition
+
+An {\ttfamily Event} can only be described once, if a {\ttfamily Behavior} file tries to redefine an {\ttfamily Event} of the same name a {\ttfamily Behavior Error} is thrown.
+
+{\ttfamily Event} names are always preceded by a {\ttfamily !}
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{!announcement}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md321}{}\doxysubsection{\texorpdfstring{Creating Events}{Creating Events}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md321}
+{\ttfamily Events} a defined as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Event:}
+\DoxyCodeLine{\ \ Name:\ <name>}
+\DoxyCodeLine{\ \ Start:\ <condition>}
+\DoxyCodeLine{\ \ End:\ <condition>\ \ \ \ //\ Optional}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Event:}
+\DoxyCodeLine{\ \ Name:\ example}
+\DoxyCodeLine{\ \ Start:\ 10\ seconds\ after\ !Start}
+\DoxyCodeLine{\ \ End:\ 10\ seconds\ after\ !example}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md323}{}\doxysubsection{\texorpdfstring{Special Events}{Special Events}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md323}
+Currently, there is only one special event that is predefined for each {\ttfamily Behavior}\+: {\ttfamily !\+Start}.
+
+The {\ttfamily !\+Start} event fires at the start of a simulation run and is always {\ttfamily Occurring}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md325}{}\doxysubsection{\texorpdfstring{Events General Syntax Rules}{Events General Syntax Rules}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md325}
+{\ttfamily Event} names are always preceded by a {\ttfamily !} when used.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md327}{}\doxysection{\texorpdfstring{Values}{Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md327}
+{\ttfamily Behaviors} support 3 types of values\+:
+
+
+\begin{DoxyEnumerate}
+\item Numeric
+\item Coordinates
+\item State
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md329}{}\doxysubsection{\texorpdfstring{Numerical Values}{Numerical Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md329}
+Anywhere there is a numerical value required the following can be used (with some exceptions)\+:
+\begin{DoxyEnumerate}
+\item Exact Values
+\item Range Values
+\item Random Values
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md331}{}\doxysubsubsection{\texorpdfstring{Exact Values}{Exact Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md331}
+{\ttfamily Exact Values} are used when the value should be a specific value
+
+There are two kinds of {\ttfamily Exact Values}\+:
+\begin{DoxyEnumerate}
+\item {\ttfamily Float Values}
+\item {\ttfamily Number Values}
+\end{DoxyEnumerate}
+
+{\ttfamily Float Values} have decimal precision, while {\ttfamily Number Values} are only integers.
+
+{\ttfamily Exact Values} are written as simple numerical values.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50\ \ \ \ //\ Number\ Value,\ has\ no\ decimal\ places}
+\DoxyCodeLine{50.15\ //\ Float\ Value,\ has\ a\ decimal\ value}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md333}{}\doxysubsubsection{\texorpdfstring{Range Values}{Range Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md333}
+{\ttfamily Range Values} are singular random values within a given range.
+
+When the {\ttfamily Behavior} is run, the value is the {\bfseries{same for every individual using that {\ttfamily Value}}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md335}{}\doxysubsubsubsection{\texorpdfstring{Float Value Ranges vs. Number Value Ranges}{Float Value Ranges vs. Number Value Ranges}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md335}
+{\ttfamily Range Values} are either {\ttfamily Float Value Ranges} or {\ttfamily Number Value Ranges}
+
+With the difference being that\+: {\ttfamily Float Value Ranges} are any real value between the range and {\ttfamily Number Value Ranges} are any integer value between the range.
+
+{\ttfamily Range Values} are written as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Number\ Value\ Range\ -\/>\ 1,\ 2,\ or\ 3}
+\DoxyCodeLine{1\ to\ 3}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Float\ Value\ Range\ -\/>\ 1.0,\ 1.003,\ 1.11,\ 2.3,\ 2.5,\ 3.0,\ etc.}
+\DoxyCodeLine{1.0\ to\ 3.0}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Selector:}
+\DoxyCodeLine{\ \ Type:\ typeA}
+\DoxyCodeLine{\ \ Select:\ 10\ to\ 20\%}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+The exact percentage will be a random integer value between 10 and 20.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md338}{}\doxysubsubsection{\texorpdfstring{Random Values}{Random Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md338}
+{\ttfamily Random Values} are very similar to {\ttfamily Range Values}, with a random value in a given range.
+
+The big difference is that\+: {\ttfamily Range Values} only have one random value, {\ttfamily Random Values} have a random value that is {\bfseries{different for each pedestrian}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md340}{}\doxysubsubsubsection{\texorpdfstring{Float Random Values vs. Number Random Values}{Float Random Values vs. Number Random Values}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md340}
+{\ttfamily Random Values} are either {\ttfamily Float Random Values} or {\ttfamily Number Random Values}
+
+With the difference being that\+: {\ttfamily Float Random Value} are any real value between the range and {\ttfamily Number Random Values} are any integer value between the range.
+
+Random Values are written as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Number\ Random\ Value\ -\/>\ 1,\ 2,\ or\ 3\ (different\ for\ each\ pedestrian)}
+\DoxyCodeLine{random\ 1\ to\ 3}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Float\ Random\ Value\ -\/>\ 1.0,\ 1.003,\ 1.11,\ 2.3,\ 2.5,\ 3.0,\ etc.\ (different\ for\ each\ pedestrian)}
+\DoxyCodeLine{random\ 1.0\ to\ 3.0}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Action\ (typeA):}
+\DoxyCodeLine{\ \ Condition:\ random\ 5-\/10\ seconds\ after\ !Start}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ \{0\}}
+\DoxyCodeLine{\ \ Duration:\ random\ 10-\/20}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ Each typeA pedestrian will stop randomly between 5 and 10 seconds after the start, then stay still for a random amount of time between 10 and 20 seconds.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md343}{}\doxysubsection{\texorpdfstring{Coordinates}{Coordinates}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md343}
+Coordinate Values are X, Y, Z coordinates.
+
+They are written\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ <numeric\_value>,\ <numeric\_value>,\ <numeric\_value>\ \}}
+
+\end{DoxyCode}
+
+
+{\bfseries{The Y and Z coordinates are optional. When not specified, these coordinates are considered 0.}}
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{0\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ is\ the\ same\ as}
+\DoxyCodeLine{}
+\DoxyCodeLine{\{0,\ 0\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ is\ the\ same\ as}
+\DoxyCodeLine{}
+\DoxyCodeLine{\{0,\ 0,\ 0\}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md345}{}\doxysubsection{\texorpdfstring{State}{State}}\label{md_docs_2pages_2researchers_2behaviors_2behaviors__syntax_autotoc_md345}
+Each pedestrian can have a single {\ttfamily State} associated with it. When a new state is set, it overrides the previous state.
+
+{\ttfamily States} are user defined, and used for {\ttfamily Conditions}
+
+{\ttfamily States} are always preceded by a \textquotesingle{}\#\textquotesingle{} when used, but are excluded in the definition.
+
+{\ttfamily States} are defined as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{States:}
+\DoxyCodeLine{\ \ stateA,}
+\DoxyCodeLine{\ \ stateB,}
+\DoxyCodeLine{\ \ stateC}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{States:}
+\DoxyCodeLine{\ \ happy,}
+\DoxyCodeLine{\ \ scared,}
+\DoxyCodeLine{\ \ waiting}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ 

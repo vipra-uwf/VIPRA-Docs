@@ -1,0 +1,285 @@
+\doxysection{json.\+hpp}
+\hypertarget{json_8hpp_source}{}\label{json_8hpp_source}\index{VIPRA/include/vipra/input/json.hpp@{VIPRA/include/vipra/input/json.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map\_input.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/param\_reader.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrian\_input.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/serializable.hpp"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/errors.hpp"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}vipra/util/is\_map.hpp"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}vipra/util/template\_specialization.hpp"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }VIPRA::Input\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON}{JSON}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1ParamReader}{VIPRA::Modules::ParamReader}}<JSON>,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA::Modules::Serializable}},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA::Modules::MapInput}},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA::Modules::PedestrianInput}}\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{using\ }json\_cref\ =\ std::reference\_wrapper<const\ nlohmann::json>;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ module\_name()\ -\/>\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}JSON"{}};\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535}{load}}(std::string\ \textcolor{keyword}{const}\&\ filepath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00045\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a58affde2fb212f0943da7117b220b823}{get}}(std::vector<std::string>\ \textcolor{keyword}{const}\&\ keys)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ -\/>\ std::optional<data\_t>;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ serialize()\ -\/>\ std::string\ \textcolor{keyword}{override}}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \_json.dump();}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_pedestrians()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ -\/>\ std::optional<VIPRA::f3dVec>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_aeec78b200266398e3aca6f2322825a6e}{get\_obstacles}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a996c9ac74f613b1a34ef50aaec9ceaf3}{get\_spawns}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a1e28940a861d5adb665979bff89617bf}{get\_objectives}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ -\/>\ std::optional<std::map<}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ std::string,\ std::vector<VIPRA::Geometry::Polygon>>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_ac290a8f66ed8aeee533acf0f949948ec}{get\_areas}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ -\/>\ std::optional<}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ VIPRA::Geometry::Polygon>>\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ nlohmann::json\ \_json;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00070\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_value(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ -\/>\ std::optional<data\_t>;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ is\_f3d(nlohmann::json\ \textcolor{keyword}{const}\&\ value)\ -\/>\ bool;}
+\DoxyCodeLine{00074\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ is\_f2d(nlohmann::json\ \textcolor{keyword}{const}\&\ value)\ -\/>\ bool;}
+\DoxyCodeLine{00075\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_f3d(json\_cref\ \textcolor{keyword}{const}\&\ value)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ -\/>\ std::optional<VIPRA::f3d>;}
+\DoxyCodeLine{00077\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_f3d\_vec(json\_cref\ \textcolor{keyword}{const}\&\ value)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ -\/>\ std::optional<VIPRA::f3dVec>;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00081\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_vector(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<data\_t>>;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00085\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_map(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ -\/>\ std::optional<std::map<std::string,\ data\_t>>;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_polygons(json\_cref\ \textcolor{keyword}{const}\&\ value)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_value\_at\_key(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\&\ keys)\ \textcolor{keyword}{const}\ -\/>\ std::optional<json\_cref>}
+\DoxyCodeLine{00093\ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ std::cref(\_json);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ std::for\_each(keys.begin(),\ keys.end(),\ [\&](std::string\ \textcolor{keyword}{const}\&\ key)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ if\ (\ !\ found\ )\ return;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ if\ (\ !\ value.get().contains(key)\ )\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ found\ =\ false;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ value\ =\ std::cref(value.get().at(key));}
+\DoxyCodeLine{00106\ \ \ \ \ \});}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ found\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{void}\ parse(std::string\ \textcolor{keyword}{const}\&\ data)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \_json\ =\ nlohmann::json::parse(data);}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\ nlohmann::json::parse\_error\ \textcolor{keyword}{const}\&\ e\ )\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ VIPRA\_MODULE\_ERROR(\textcolor{stringliteral}{"{}Could\ not\ parse\ JSON\ data\(\backslash\)n"{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Input}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ IMPLEMENTATION\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00137\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a58affde2fb212f0943da7117b220b823}{VIPRA::Input::JSON::get}}(std::vector<std::string>\ \textcolor{keyword}{const}\&\ keys)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00138\ \ \ \ \ -\/>\ std::optional<data\_t>}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{auto}\ value\ =\ get\_value\_at\_key(keys);}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordflow}{return}\ get\_value<data\_t>(value.value());}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00154\ [[nodiscard]]\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::get\_vector(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00155\ \ \ \ \ -\/>\ std::optional<std::vector<data\_t>>}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.get().is\_array()\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ std::vector<data\_t>\ vec;}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ element\ :\ value.get()\ )\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{auto}\ elementValue\ =\ get\_value<data\_t>(std::cref(element));}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ elementValue\ )\ vec.emplace\_back(*elementValue);}
+\DoxyCodeLine{00163\ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00174\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::get\_f3d\_vec(}
+\DoxyCodeLine{00175\ \ \ \ \ json\_cref\ \textcolor{keyword}{const}\&\ value)\ -\/>\ std::optional<VIPRA::f3dVec>}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.get().is\_array()\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ VIPRA::f3dVec\ f3dVec;}
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ f3d\ :\ value.get()\ )\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ is\_f3d(f3d)\ )\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ is\_f2d(f3d)\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ f3dVec.emplace\_back(f3d.at(\textcolor{stringliteral}{"{}x"{}}).get<VIPRA::f\_pnt>(),}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f3d.at(\textcolor{stringliteral}{"{}y"{}}).get<VIPRA::f\_pnt>(),\ 0);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ f3dVec.emplace\_back(f3d.at(\textcolor{stringliteral}{"{}x"{}}).get<VIPRA::f\_pnt>(),}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f3d.at(\textcolor{stringliteral}{"{}y"{}}).get<VIPRA::f\_pnt>(),}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f3d.at(\textcolor{stringliteral}{"{}z"{}}).get<VIPRA::f\_pnt>());}
+\DoxyCodeLine{00192\ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{return}\ f3dVec;}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00203\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::get\_f3d(json\_cref\ \textcolor{keyword}{const}\&\ value)}
+\DoxyCodeLine{00204\ \ \ \ \ -\/>\ std::optional<VIPRA::f3d>}
+\DoxyCodeLine{00205\ \{}
+\DoxyCodeLine{00206\ \ \ \textcolor{keywordflow}{if}\ (\ !\ is\_f3d(value.get())\ )\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}(value.get().at(\textcolor{stringliteral}{"{}x"{}}).get<VIPRA::f\_pnt>(),}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.get().at(\textcolor{stringliteral}{"{}y"{}}).get<VIPRA::f\_pnt>(),}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.get().at(\textcolor{stringliteral}{"{}z"{}}).get<VIPRA::f\_pnt>());}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535}{VIPRA::Input::JSON::load}}(std::string\ \textcolor{keyword}{const}\&\ filepath)}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{if}\ (\ !\ std::filesystem::exists(filepath)\ )}
+\DoxyCodeLine{00221\ \ \ \ \ VIPRA\_MODULE\_ERROR(\textcolor{stringliteral}{"{}File\ does\ not\ exist\ at:\ \{\}"{}},\ filepath);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \textcolor{keywordflow}{if}\ (\ !\ std::filesystem::is\_regular\_file(filepath)\ )}
+\DoxyCodeLine{00224\ \ \ \ \ VIPRA\_MODULE\_ERROR(\textcolor{stringliteral}{"{}\{\}\ is\ not\ a\ file"{}},\ filepath);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ std::ifstream\ file(filepath,\ std::ios::in);}
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordflow}{if}\ (\ !\ file.is\_open()\ )}
+\DoxyCodeLine{00228\ \ \ \ \ VIPRA\_MODULE\_ERROR(\textcolor{stringliteral}{"{}Could\ not\ open\ file\ at:\ "{}},\ filepath);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \_json\ =\ nlohmann::json::parse(file);}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \textcolor{keywordflow}{catch}\ (\ nlohmann::json::parse\_error\ \textcolor{keyword}{const}\&\ e\ )\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ VIPRA\_MODULE\_ERROR(}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Could\ not\ parse\ JSON\ file\ at:\ \{\}\(\backslash\)nnlohmann\ json\ error:\ \{\}"{}},\ filepath,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ e.what());}
+\DoxyCodeLine{00237\ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ file.close();}
+\DoxyCodeLine{00240\ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00250\ [[nodiscard]]\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::get\_value(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00251\ \ \ \ \ -\/>\ std::optional<data\_t>}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<data\_t,\ VIPRA::f3d>\ )\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_f3d(value);}
+\DoxyCodeLine{00255\ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<data\_t,\ VIPRA::f3dVec>\ )\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_f3d\_vec(value);}
+\DoxyCodeLine{00259\ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<data\_t,}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<VIPRA::Geometry::Polygon>>\ )\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_polygons(value);}
+\DoxyCodeLine{00264\ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \mbox{\hyperlink{structVIPRA_1_1Util_1_1is__specialization}{VIPRA::Util::is\_specialization}}<data\_t,}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector>::value\ )\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{using\ }value\_t\ =}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structVIPRA_1_1Util_1_1get__specialization__internal}{VIPRA::Util::get\_specialization\_internal<data\_t>::type}};}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_vector<value\_t>(value);}
+\DoxyCodeLine{00271\ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ VIPRA::Util::is\_map\_v<data\_t>\ )\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{using\ }value\_t\ =}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structVIPRA_1_1Util_1_1get__map__specialization}{VIPRA::Util::get\_map\_specialization<data\_t>::value\_t}};}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_map<value\_t>(value);}
+\DoxyCodeLine{00277\ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value.get().get<data\_t>();}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\ nlohmann::json::type\_error\ \textcolor{keyword}{const}\&\ e\ )\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00289\ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t>}
+\DoxyCodeLine{00292\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::get\_map(json\_cref\ \textcolor{keyword}{const}\&\ value)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00293\ \ \ \ \ -\/>\ std::optional<std::map<std::string,\ data\_t>>}
+\DoxyCodeLine{00294\ \{}
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{return}\ value.get().get<std::map<std::string,\ data\_t>>();}
+\DoxyCodeLine{00297\ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \textcolor{keywordflow}{catch}\ (\ nlohmann::json::type\_error\ \textcolor{keyword}{const}\&\ e\ )\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00300\ \ \ \}}
+\DoxyCodeLine{00301\ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00310\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::is\_f3d(}
+\DoxyCodeLine{00311\ \ \ \ \ nlohmann::json\ \textcolor{keyword}{const}\&\ value)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00312\ \{}
+\DoxyCodeLine{00313\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.is\_object()\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00314\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.contains(\textcolor{stringliteral}{"{}x"{}})\ ||\ !\ value.contains(\textcolor{stringliteral}{"{}y"{}})\ ||\ !\ value.contains(\textcolor{stringliteral}{"{}z"{}})\ )}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00316\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.at(\textcolor{stringliteral}{"{}x"{}}).is\_number()\ ||\ !\ value.at(\textcolor{stringliteral}{"{}y"{}}).is\_number()\ ||}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ !\ value.at(\textcolor{stringliteral}{"{}z"{}}).is\_number()\ )}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00319\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00320\ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00329\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ VIPRA::Input::JSON::is\_f2d(}
+\DoxyCodeLine{00330\ \ \ \ \ nlohmann::json\ \textcolor{keyword}{const}\&\ value)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00331\ \{}
+\DoxyCodeLine{00332\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.is\_object()\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00333\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.contains(\textcolor{stringliteral}{"{}x"{}})\ ||\ !\ value.contains(\textcolor{stringliteral}{"{}y"{}})\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00334\ \ \ \textcolor{keywordflow}{if}\ (\ !\ value.at(\textcolor{stringliteral}{"{}x"{}}).is\_number()\ ||\ !\ value.at(\textcolor{stringliteral}{"{}y"{}}).is\_number()\ )}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00336\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00337\ \}}
+
+\end{DoxyCode}

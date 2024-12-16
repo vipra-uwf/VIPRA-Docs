@@ -1,0 +1,165 @@
+\doxysection{module.\+hpp}
+\hypertarget{modules_2module_8hpp_source}{}\label{modules_2module_8hpp_source}\index{VIPRA/include/vipra/modules/module.hpp@{VIPRA/include/vipra/modules/module.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/has\_parameters.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/special\_modules/parameters.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/util/crtp.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule}{BaseModule}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<BaseModule<class\_t>>\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<\mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule}{BaseModule<class\_t>}}>::self;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a2ffeb9f248f5230cacf74cd325f965e8}{register\_base\_params}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a068ab6fd03b07540360ac0b39f9c6c74}{config\_base}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine);}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{Module}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<Module<class\_t>>\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{Module<class\_t>}}>::self;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\_params}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine);}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ IMPLEMENTATIONS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{Module<class\_t>::register\_params}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1has__parameters}{Concepts::has\_parameters<class\_t>}},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Module\ is\ missing\ VIPRA\_REGISTER\_PARAMS"{}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Registering\ Params\ For:\ \{\}"{}},\ self().module\_name());}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ get\ module\ parameters\ customization\ point}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{auto}\ params\ =\ self().module\_params();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ !\ std::is\_same\_v<std::tuple<>,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(params)>>\ )\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ register\ all\ of\ the\ parameters\ with\ the\ parameter\ loader}}
+\DoxyCodeLine{00069\ \ \ \ \ std::apply(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ first,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&...\ restArgs)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ regis\ =\ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ param)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ paramIn.\mbox{\hyperlink{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad}{register\_param}}(self().module\_type(),\ self().module\_name(),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param.first);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ recursively\ register\ each\ parameter}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ regis(first);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ (regis(restArgs),\ ...);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ params);}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Done\ Registering\ Params\ For:\ \{\}"{}},\ self().module\_name());}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{Module<class\_t>::config}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1has__parameters}{Concepts::has\_parameters<class\_t>}},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Module\ is\ missing\ VIPRA\_REGISTER\_PARAMS"{}});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Configuring\ Module:\ \{\}"{}},\ self().module\_name());}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{comment}{//\ get\ module\ parameters\ customization\ point}}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ params\ =\ self().module\_params();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ !\ std::is\_same\_v<std::tuple<>,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(params)>>\ )\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ load\ each\ parameter\ and\ apply\ it\ to\ the\ coresponding\ variable}}
+\DoxyCodeLine{00107\ \ \ \ \ std::apply(}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ first,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&...\ restArgs)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ configure\ =\ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ param)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }param\_t\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(param.second)>;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Loading\ Param:\ \{\},\ \{\}"{}},\ param.first,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\&param.second));}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ the\ parameter\ variable\ as\ loaded\ from\ input}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ param.second\ =\ paramIn.\mbox{\hyperlink{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}{get\_param}}<param\_t>(self().module\_type(),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self().module\_name(),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param.first,\ engine);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ recursively\ load\ the\ parameters}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ configure(first);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ (configure(restArgs),\ ...);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ params);}
+\DoxyCodeLine{00125\ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Done\ Configuring\ Module:\ \{\}"{}},\ self().module\_name());}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00137\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a2ffeb9f248f5230cacf74cd325f965e8}{BaseModule<class\_t>::register\_base\_params}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ paramIn)}
+\DoxyCodeLine{00138\ \{}
+\DoxyCodeLine{00139\ \ \ \textcolor{comment}{//\ get\ module\ parameters\ customization\ point}}
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{auto}\ params\ =\ self().base\_module\_params();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ !\ std::is\_same\_v<std::tuple<>,}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(params)>>\ )\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ register\ all\ of\ the\ parameters\ with\ the\ parameter\ loader}}
+\DoxyCodeLine{00145\ \ \ \ \ std::apply(}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ first,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&...\ restArgs)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ regis\ =\ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ param)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ paramIn.\mbox{\hyperlink{classVIPRA_1_1Parameters_aa1be446b13aec66b4c2dd3c09e47f0ad}{register\_param}}(self().module\_type(),\ \textcolor{stringliteral}{"{}Base"{}},\ param.first);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ recursively\ register\ each\ parameter}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ regis(first);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ (regis(restArgs),\ ...);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ params);}
+\DoxyCodeLine{00156\ \ \ \}}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1BaseModule_a068ab6fd03b07540360ac0b39f9c6c74}{BaseModule<class\_t>::config\_base}}(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ \ \ \ \ \ \ \ \ \ \ \ paramIn,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \textcolor{comment}{//\ get\ module\ parameters\ customization\ point}}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ params\ =\ self().base\_module\_params();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ !\ std::is\_same\_v<std::tuple<>,}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(params)>>\ )\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ load\ each\ parameter\ and\ apply\ it\ to\ the\ coresponding\ variable}}
+\DoxyCodeLine{00176\ \ \ \ \ std::apply(}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ first,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&...\ restArgs)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ configure\ =\ [\&](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ param)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }param\_t\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(param.second)>;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{VIPRA::Log::debug}}(\textcolor{stringliteral}{"{}Loading\ Param:\ \{\},\ \{\}"{}},\ param.first,}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\&param.second));}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ the\ parameter\ variable\ as\ loaded\ from\ input}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ param.second\ =\ paramIn.\mbox{\hyperlink{classVIPRA_1_1Parameters_a70910ba99fef727ac83eab24dfe55545}{get\_param}}<param\_t>(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self().module\_type(),\ \textcolor{stringliteral}{"{}Base"{}},\ param.first,\ engine);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ recursively\ load\ the\ parameters}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ configure(first);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ (configure(restArgs),\ ...);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ params);}
+\DoxyCodeLine{00193\ \ \ \}}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

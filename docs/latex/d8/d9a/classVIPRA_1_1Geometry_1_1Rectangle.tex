@@ -1,0 +1,73 @@
+\doxysection{VIPRA\+::Geometry\+::Rectangle Class Reference}
+\hypertarget{classVIPRA_1_1Geometry_1_1Rectangle}{}\label{classVIPRA_1_1Geometry_1_1Rectangle}\index{VIPRA::Geometry::Rectangle@{VIPRA::Geometry::Rectangle}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a5d667cc8e560bcf8a23ea3ad3b1f2d41}\label{classVIPRA_1_1Geometry_1_1Rectangle_a5d667cc8e560bcf8a23ea3ad3b1f2d41} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries is\+\_\+point\+\_\+inside} (\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point) const noexcept -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a510ba5a95a02ec32591724e662acdb58}\label{classVIPRA_1_1Geometry_1_1Rectangle_a510ba5a95a02ec32591724e662acdb58} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries random\+\_\+point} (\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Random\+::\+Engine}} \&engine) const noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a1cd727ff3eeaa820f03821e9c4e4d340}\label{classVIPRA_1_1Geometry_1_1Rectangle_a1cd727ff3eeaa820f03821e9c4e4d340} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries sides} () const noexcept -\/$>$ std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}, 4 $>$
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a4e4f0b6c3c8b6771e5f18eed4cbbc1ac}\label{classVIPRA_1_1Geometry_1_1Rectangle_a4e4f0b6c3c8b6771e5f18eed4cbbc1ac} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries rotation} () const noexcept -\/$>$ f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a947fcfda57c98d8fc4e05563fec81150}\label{classVIPRA_1_1Geometry_1_1Rectangle_a947fcfda57c98d8fc4e05563fec81150} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries center} () const noexcept -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_ad4297322aacd4a52ba7175fbc939092c}\label{classVIPRA_1_1Geometry_1_1Rectangle_ad4297322aacd4a52ba7175fbc939092c} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries area} () const noexcept -\/$>$ f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a824d3620ecaba37c6eb0349785ab2ea6}\label{classVIPRA_1_1Geometry_1_1Rectangle_a824d3620ecaba37c6eb0349785ab2ea6} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries width} () const noexcept -\/$>$ f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a25678a5342caf5a99a292c2f6a11b2ed}\label{classVIPRA_1_1Geometry_1_1Rectangle_a25678a5342caf5a99a292c2f6a11b2ed} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries height} () const noexcept -\/$>$ f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a14854934c10befde4df22c71d45fabb5}\label{classVIPRA_1_1Geometry_1_1Rectangle_a14854934c10befde4df22c71d45fabb5} 
+VIPRA\+\_\+\+POLY\+\_\+\+FUNC auto {\bfseries points} () const noexcept -\/$>$ std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}, 4 $>$ const \&
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a18837970c5273fd0e6ffcda71e753471}\label{classVIPRA_1_1Geometry_1_1Rectangle_a18837970c5273fd0e6ffcda71e753471} 
+constexpr {\bfseries Rectangle} (\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point1, \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point2, \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point3, \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}} point4)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a2dcd120aee1b764b85bbe4145f052491}\label{classVIPRA_1_1Geometry_1_1Rectangle_a2dcd120aee1b764b85bbe4145f052491} 
+constexpr {\bfseries Rectangle} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}, 4 $>$ const \&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a05c5a5e5e9bc28d2a585b8254a27862a}\label{classVIPRA_1_1Geometry_1_1Rectangle_a05c5a5e5e9bc28d2a585b8254a27862a} 
+constexpr {\bfseries Rectangle} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}, 4 $>$ \&\&points)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a75594fa373f257add14ea281085c504c}\label{classVIPRA_1_1Geometry_1_1Rectangle_a75594fa373f257add14ea281085c504c} 
+constexpr {\bfseries Rectangle} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}} $>$ const \&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a85301fd82fc96d6da147bca2adec45d9}\label{classVIPRA_1_1Geometry_1_1Rectangle_a85301fd82fc96d6da147bca2adec45d9} 
+constexpr {\bfseries Rectangle} (std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}} $>$ \&\&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_afa88875d2cadc5f995546cde9045afc8}\label{classVIPRA_1_1Geometry_1_1Rectangle_afa88875d2cadc5f995546cde9045afc8} 
+constexpr {\bfseries Rectangle} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}, 4 $>$ const \&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a000e7ef2b742ada0c1c69f5399a58fb3}\label{classVIPRA_1_1Geometry_1_1Rectangle_a000e7ef2b742ada0c1c69f5399a58fb3} 
+constexpr {\bfseries Rectangle} (std\+::array$<$ \mbox{\hyperlink{structVIPRA_1_1Geometry_1_1Line}{Line}}, 4 $>$ \&\&lines)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a249996edb87d7ebdee1214225a52cb90}\label{classVIPRA_1_1Geometry_1_1Rectangle_a249996edb87d7ebdee1214225a52cb90} 
+constexpr {\bfseries Rectangle} (\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&center, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&dimensions, VIPRA\+::f\+\_\+pnt rotation)
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a8147f359a19e9cd9051bcfe4c1f4cf26}\label{classVIPRA_1_1Geometry_1_1Rectangle_a8147f359a19e9cd9051bcfe4c1f4cf26} 
+constexpr {\bfseries Rectangle} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} const \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a529aff60fa151407da38307c1326d167}\label{classVIPRA_1_1Geometry_1_1Rectangle_a529aff60fa151407da38307c1326d167} 
+constexpr auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} const \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_ad3325e4d8bb928b4d62a35f1875b97a5}\label{classVIPRA_1_1Geometry_1_1Rectangle_ad3325e4d8bb928b4d62a35f1875b97a5} 
+constexpr {\bfseries Rectangle} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Geometry_1_1Rectangle_a9b827ff63cd0632d9e78ff06352f2bc3}\label{classVIPRA_1_1Geometry_1_1Rectangle_a9b827ff63cd0632d9e78ff06352f2bc3} 
+constexpr auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Rectangle}} \&=default
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/geometry/rectangle.\+hpp\end{DoxyCompactItemize}

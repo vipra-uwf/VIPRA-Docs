@@ -1,0 +1,58 @@
+\doxysection{input.\+hpp}
+\hypertarget{input_8hpp_source}{}\label{input_8hpp_source}\index{VIPRA/include/vipra/modules/input.hpp@{VIPRA/include/vipra/modules/input.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/string\_view.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/module.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/util/crtp.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ TODO(rolland):\ remember\ to\ add\ in\ documentation\ that\ inputs\ should\ hold\ off\ on\ loading\ until\ their\ load()\ method\ is\ called}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ module\_t>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Input}{Input}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<Input<module\_t>>\ \{}
+\DoxyCodeLine{00020\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Input}{Input<module\_t>}}>::self;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ load()}
+\DoxyCodeLine{00024\ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ TODO(rolland)\ maybe\ have\ load\_impl\ return\ a\ bool\ and\ handle\ if\ it\ failed?}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_loaded\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00027\ \ \ \ \ \_loaded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ \ \ \ \ self().load\_impl();}
+\DoxyCodeLine{00029\ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ data\_t,\ \mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1StringView}{Concepts::StringView}}...\ keys\_t>}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Input_aca6b3580a69b77cc87485585459a7684}{get}}(keys\_t\&\&...\ keys)\ \textcolor{keyword}{const}\ -\/>\ std::optional<data\_t>}
+\DoxyCodeLine{00041\ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ assert(\_loaded);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self().template\ get\_impl<data\_t>(std::string\_view(std::forward<keys\_t>(keys))...);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\ std::exception\&\ ex\ )\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \textcolor{comment}{//\ TODO(rolland):\ if\ the\ input\ module\ has\ an\ issue\ should\ we\ just\ let\ it\ throw\ or\ just\ return\ nullopt\ like\ this?}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ module\ has\ an\ issue\ getting\ the\ value\ return\ nullopt}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ set\_loaded(\textcolor{keywordtype}{bool}\ loaded)\ \{\ \_loaded\ =\ loaded;\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{bool}\ \_loaded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

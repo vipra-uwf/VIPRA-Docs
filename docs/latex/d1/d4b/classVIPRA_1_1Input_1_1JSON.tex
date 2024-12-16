@@ -1,0 +1,299 @@
+\doxysection{VIPRA\+::Input\+::JSON Class Reference}
+\hypertarget{classVIPRA_1_1Input_1_1JSON}{}\label{classVIPRA_1_1Input_1_1JSON}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+
+
+Parameter and Polygon qualified JSON input module.  
+
+
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Input\+::JSON\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d3b/classVIPRA_1_1Input_1_1JSON__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Input\+::JSON\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dbe/classVIPRA_1_1Input_1_1JSON__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535}{load}} (std\+::string const \&filepath) override
+\begin{DoxyCompactList}\small\item\em Loads the JSON file from the given path. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename data\+\_\+t $>$ }\\auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a58affde2fb212f0943da7117b220b823}{get}} (std\+::vector$<$ std\+::string $>$ const \&keys) const -\/$>$ std\+::optional$<$ data\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Returns the value of the given key from the JSON file. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a432e0d253d6e3351965885a529c02248}{serialize}} () -\/$>$ std\+::string override
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a35cd1a2745b9dd5f36eacd96ffd6003d}{get\+\_\+pedestrians}} () const -\/$>$ std\+::optional$<$ VIPRA\+::f3d\+Vec $>$ override
+\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_aeec78b200266398e3aca6f2322825a6e}{get\+\_\+obstacles}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a996c9ac74f613b1a34ef50aaec9ceaf3}{get\+\_\+spawns}} () const -\/$>$ std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_a1e28940a861d5adb665979bff89617bf}{get\+\_\+objectives}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_ac290a8f66ed8aeee533acf0f949948ec}{get\+\_\+areas}} () const -\/$>$ std\+::optional$<$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ override
+\begin{DoxyCompactList}\small\item\em Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Input_1_1JSON_ad5a4a92790b8e28453fcb573b5a60ec2}{parse}} (std\+::string const \&data) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1ParamReader}{VIPRA\+::\+Modules\+::\+Param\+Reader$<$ JSON $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+auto {\bfseries get\+\_\+param} (std\+::string const \&type, std\+::string const \&module\+Name, std\+::string const \&param\+Name, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine) const -\/$>$ std\+::optional$<$ std\+::remove\+\_\+cvref\+\_\+t$<$ data\+\_\+t $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Serializable} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&)=default
+\item 
+{\bfseries Serializable} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Map\+Input} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&)=default
+\item 
+{\bfseries Map\+Input} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Map\+Input}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA\+::\+Modules\+::\+Pedestrian\+Input}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Pedestrian\+Input} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&)=default
+\item 
+{\bfseries Pedestrian\+Input} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&\&)=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Pedestrian\+Input}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a6ae1187fe330fe8c0bc87057618c0c61}\label{classVIPRA_1_1Input_1_1JSON_a6ae1187fe330fe8c0bc87057618c0c61} 
+static constexpr auto {\bfseries module\+\_\+name} () -\/$>$ const char \texorpdfstring{$\ast$}{*}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameter and Polygon qualified JSON input module. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a58affde2fb212f0943da7117b220b823}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get@{get}}
+\index{get@{get}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a58affde2fb212f0943da7117b220b823} 
+template$<$typename data\+\_\+t $>$ \\
+auto VIPRA\+::\+Input\+::\+JSON\+::get (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ const \&}]{keys}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$data\+\_\+t$>$\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns the value of the given key from the JSON file. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em keys} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$data\+\_\+t$>$ 
+\end{DoxyReturn}
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_ac290a8f66ed8aeee533acf0f949948ec}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get\_areas@{get\_areas}}
+\index{get\_areas@{get\_areas}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get\_areas()}{get\_areas()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_ac290a8f66ed8aeee533acf0f949948ec} 
+auto VIPRA\+::\+Input\+::\+JSON\+::get\+\_\+areas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::map$<$ std\+::string, \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_aa6a88b1a40574eabc433bbca792307fb}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a1e28940a861d5adb665979bff89617bf}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get\_objectives@{get\_objectives}}
+\index{get\_objectives@{get\_objectives}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get\_objectives()}{get\_objectives()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a1e28940a861d5adb665979bff89617bf} 
+auto VIPRA\+::\+Input\+::\+JSON\+::get\+\_\+objectives (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_af9430c3c35bb09a9e9a86b25f96e0b72}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_aeec78b200266398e3aca6f2322825a6e}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get\_obstacles@{get\_obstacles}}
+\index{get\_obstacles@{get\_obstacles}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get\_obstacles()}{get\_obstacles()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_aeec78b200266398e3aca6f2322825a6e} 
+auto VIPRA\+::\+Input\+::\+JSON\+::get\+\_\+obstacles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_ad4bf78da6620faa35a9cd968837d8cfc}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a35cd1a2745b9dd5f36eacd96ffd6003d}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get\_pedestrians@{get\_pedestrians}}
+\index{get\_pedestrians@{get\_pedestrians}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get\_pedestrians()}{get\_pedestrians()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a35cd1a2745b9dd5f36eacd96ffd6003d} 
+auto VIPRA\+::\+Input\+::\+JSON\+::get\+\_\+pedestrians (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$ std\+::optional$<$VIPRA\+::f3d\+Vec$>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{VIPRA\+::\+Modules\+::\+Pedestrian\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a996c9ac74f613b1a34ef50aaec9ceaf3}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!get\_spawns@{get\_spawns}}
+\index{get\_spawns@{get\_spawns}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{get\_spawns()}{get\_spawns()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a996c9ac74f613b1a34ef50aaec9ceaf3} 
+auto VIPRA\+::\+Input\+::\+JSON\+::get\+\_\+spawns (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const -\/$>$  std\+::optional$<$ std\+::vector$<$ \mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Polygon}{VIPRA\+::\+Geometry\+::\+Polygon}} $>$ $>$\hspace{0.3cm}{\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns polygons as loaded from the input module, std\+::nullopt if incorrect type / doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+\_\+t} & \\
+\hline
+{\em key\+\_\+ts} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Geometry\+::\+Polygon$>$ 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput_a0a957a017321e760ea554a199ed31aac}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!load@{load}}
+\index{load@{load}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a782cd7d5017352e16f90586cd10a5535} 
+void VIPRA\+::\+Input\+::\+JSON\+::load (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Loads the JSON file from the given path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{VIPRA\+::\+Modules\+::\+Map\+Input}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_ad5a4a92790b8e28453fcb573b5a60ec2}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!parse@{parse}}
+\index{parse@{parse}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_ad5a4a92790b8e28453fcb573b5a60ec2} 
+void VIPRA\+::\+Input\+::\+JSON\+::parse (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}.
+
+\Hypertarget{classVIPRA_1_1Input_1_1JSON_a432e0d253d6e3351965885a529c02248}\index{VIPRA::Input::JSON@{VIPRA::Input::JSON}!serialize@{serialize}}
+\index{serialize@{serialize}!VIPRA::Input::JSON@{VIPRA::Input::JSON}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Input_1_1JSON_a432e0d253d6e3351965885a529c02248} 
+auto VIPRA\+::\+Input\+::\+JSON\+::serialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) -\/$>$ std\+::string\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{VIPRA\+::\+Modules\+::\+Serializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/input/json.\+hpp\item 
+VIPRA/src/json/json.\+cpp\end{DoxyCompactItemize}

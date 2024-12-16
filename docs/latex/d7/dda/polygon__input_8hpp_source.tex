@@ -1,0 +1,32 @@
+\doxysection{polygon\+\_\+input.\+hpp}
+\hypertarget{polygon__input_8hpp_source}{}\label{polygon__input_8hpp_source}\index{VIPRA/include/vipra/modules/polygon\_input.hpp@{VIPRA/include/vipra/modules/polygon\_input.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/module.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/util/crtp.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ module\_t>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PolygonInput}{PolygonInput}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<PolygonInput<module\_t>>\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{Util::CRTP}}<\mbox{\hyperlink{classVIPRA_1_1Modules_1_1PolygonInput}{PolygonInput<module\_t>}}>::self;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ keys\_t>}
+\DoxyCodeLine{00031\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PolygonInput_a79f0513761cbc6fb9fce8891c52e4c3d}{load\_polygons}}(keys\_t\&\&...\ keys)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ -\/>\ std::optional<std::vector<VIPRA::Geometry::Polygon>>}
+\DoxyCodeLine{00033\ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ self().template\ get<std::vector<VIPRA::Geometry::Polygon>>(std::forward<keys\_t>(keys)...);}
+\DoxyCodeLine{00035\ \ \ \}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

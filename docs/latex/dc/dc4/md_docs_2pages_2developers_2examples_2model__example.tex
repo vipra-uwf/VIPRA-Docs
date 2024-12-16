@@ -1,0 +1,186 @@
+\chapter{Model Implementation Example}
+\hypertarget{md_docs_2pages_2developers_2examples_2model__example}{}\label{md_docs_2pages_2developers_2examples_2model__example}\index{Model Implementation Example@{Model Implementation Example}}
+\label{md_docs_2pages_2developers_2examples_2model__example_autotoc_md8}%
+\Hypertarget{md_docs_2pages_2developers_2examples_2model__example_autotoc_md8}%
+
+
+In this example we will walk through creating a \doxysectlink{md_docs_2pages_2developers_2implementation_2model}{{\ttfamily Model}}{0} module. This Model will simply have pedestrians walking in circles around their initial position.
+
+
+\begin{DoxyEnumerate}
+\item Create Folder and Files We will create the following\+:
+\begin{DoxyItemize}
+\item {\ttfamily modules/model/\+Example\+Model}
+\item {\ttfamily modules/model/\+Example\+Model/\+Example\+Model.\+hpp}
+\item {\ttfamily modules/model/\+Example\+Model/\+CMake\+Lists.\+txt}
+\end{DoxyItemize}
+\item Create the model 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vipra.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ a\ new\ module,\ with\ it's\ C++\ name\ and\ Module\ type\ (see\ Modules\ page\ for\ other\ types)}}
+\DoxyCodeLine{VIPRA\_NEW\_MODULE(ExampleModel,\ Model)\ \{}
+\DoxyCodeLine{\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Give\ the\ module\ a\ name\ and\ set\ its\ type}}
+\DoxyCodeLine{\ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}ExampleModel"{}})}
+\DoxyCodeLine{\ \ VIPRA\_MODULE\_TYPE(Model)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Add\ in\ the\ parameter\ registration\ step,\ this\ is\ where\ we\ tell\ VIPRA\ what\ parameters\ the\ module\ needs}}
+\DoxyCodeLine{\ \ VIPRA\_REGISTER\_PARAMS\ (\ }
+\DoxyCodeLine{\ \ \ \ VIPRA\_PARAM("{}radius"{},\ \_radius);}
+\DoxyCodeLine{\ \ )}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Add\ in\ the\ initialization\ step,\ this\ is\ run\ right\ before\ the\ simulation\ starts}}
+\DoxyCodeLine{\ \ VIPRA\_MODEL\_INIT\_STEP\ \{}
+\DoxyCodeLine{\ \ \ \ \_initialPoints\ =\ pedset.all\_coords();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Add\ in\ the\ timestep,\ this\ is\ where\ the\ model\ updates\ the\ pedestrians\ state}}
+\DoxyCodeLine{\ \ VIPRA\_MODEL\_TIMESTEP\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ pedset.num\_pedestrians();\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ pedestrian's\ position,\ to\ make\ them\ move\ in\ a\ circle}}
+\DoxyCodeLine{\ \ \ \ \ \ state.positions[i]\ =\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{\_initialPoints[i][0]\ +\ \_radius\ *\ std::cos(deltaT\ *\ timestep),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_initialPoints[i][1]\ +\ \_radius\ *\ std::sin(deltaT\ *\ timestep)\};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Member\ variables\ to\ hold\ the\ parameters}}
+\DoxyCodeLine{\ \ VIPRA::f\_pnt\ \ \_radius;}
+\DoxyCodeLine{\ \ VIPRA::f3dVec\ \_initialPoints;}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\item Update {\ttfamily main.\+cpp} to use our new model
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vipra.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}modules/model/calm\_model/calm\_model.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ main()\ -\/>\ \textcolor{keywordtype}{int}\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Create\ the\ simulation\ object,\ modules\ can\ be\ placed\ in\ any\ order\ so\ long\ as\ they\ are\ all\ there}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ sim\ =\ VIPRA::simulation(}
+\DoxyCodeLine{\ \ \ \ \ \ Example::Model\{\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here,\ we\ use\ our\ new\ model}}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1AStar}{VIPRA::Goals::AStar}}\{\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Goals\ Module}}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA::Pedestrians::Grid\{\},\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pedestrian\ Set\ Module}}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Map_1_1QuadTree}{VIPRA::Map::QuadTree}}\{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ Module}}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA::Module::Output\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Output\ Coordinator}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VIPRA::Output::Trajectories::Json\{\}\ \ \ \textcolor{comment}{//\ Output\ Module}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Run\ the\ simulation,\ passing\ in\ parameters}}
+\DoxyCodeLine{\ \ sim(}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Parameters}{VIPRA::Parameters}}\{}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA::Input::Json\{\textcolor{stringliteral}{"{}maps/pedestrians/a320/a320\_144\_pedestrians.json"{}}\},\ \textcolor{comment}{//\ Input\ Module\ for\ pedestrians}}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA::Input::Json\{\textcolor{stringliteral}{"{}maps/obstacles/a320/a320\_polygons.json"{}}\}\ \textcolor{comment}{//\ Input\ Module\ for\ obstalces}}
+\DoxyCodeLine{\ \ \ \ \ \ VIPRA::Input::Json\{\textcolor{stringliteral}{"{}examples/module\_params.json"{}}\}\ \textcolor{comment}{//\ Input\ Module\ for\ loading\ the\ parameters}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Update the {\ttfamily module\+\_\+params.\+json}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}simulation"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}main"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}max\_timestep"{}:\ 10000,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}timestep\_size"{}:\ 0.005,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}output\_frequency"{}:\ 100,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}random\_seed"{}:\ 12345}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}model"{}:\ \{\ \ \ \ \ //\ Since\ our\ module\ is\ a\ model\ we\ put\ the\ parameters\ under\ the\ "{}model"{}\ field}
+\DoxyCodeLine{\ \ \ \ "{}example\_model"{}:\ \{\ \ //\ We\ add\ in\ a\ field\ with\ our\ module\ name}
+\DoxyCodeLine{\ \ \ \ \ \ "{}radius"{}:\ 0.2\ \ \ \ \ //\ Here\ is\ our\ radius\ parameter}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}goals"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}astar"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}endGoalType"{}:\ "{}exit"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}gridSize"{}:\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}closestObstacle"{}:\ 0.25,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}goalRange"{}:\ 0.05}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}pedestrians"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}grid"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}gridSize"{}:\ 0.5}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}obstacles"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}quad\_tree"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}minQuadSize"{}:\ 0.05}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}output"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}coordinator"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}output\_dir"{}:\ "{}./output"{}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ "{}trajectories\_json"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}filename"{}:\ "{}trajectories.json"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}behavior\_model"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}main"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}behaviors\_dir"{}:\ "{}./behaviors"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}behaviors"{}:\ []}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Adding {\ttfamily CMake\+Lists.\+txt}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vipra\_add\_all()}
+
+\end{DoxyCode}
+
+
+See the \doxysectlink{md_docs_2pages_2developers_2implementation_2module}{Base Module Implementation}{0} to see more.
+
+
+\begin{DoxyEnumerate}
+\item Compile Simulation
+\end{DoxyEnumerate}
+
+The simulation can be compiled by running 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Run
+\end{DoxyEnumerate}
+
+Run the simulation with 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./VIPRA}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2pages_2developers_2examples_2model__example_autotoc_md9}{}\doxysection{\texorpdfstring{The output will be under {\ttfamily ./output/trajectories.json}}{The output will be under {\ttfamily ./output/trajectories.json}}}\label{md_docs_2pages_2developers_2examples_2model__example_autotoc_md9}

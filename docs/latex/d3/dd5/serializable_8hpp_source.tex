@@ -1,0 +1,26 @@
+\doxysection{serializable.\+hpp}
+\hypertarget{serializable_8hpp_source}{}\label{serializable_8hpp_source}\index{VIPRA/include/vipra/modules/serializable.hpp@{VIPRA/include/vipra/modules/serializable.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\ \{}
+\DoxyCodeLine{00008\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{auto}\ serialize()\ -\/>\ std::string\ =\ 0;}
+\DoxyCodeLine{00010\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parse(std::string\ \textcolor{keyword}{const}\&\ data)\ =\ 0;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{auto}\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{Serializable}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Serializable}{\string~Serializable}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

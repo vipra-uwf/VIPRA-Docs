@@ -1,0 +1,65 @@
+\doxysection{random.\+hpp}
+\hypertarget{random_2random_8hpp_source}{}\label{random_2random_8hpp_source}\index{VIPRA/include/vipra/random/random.hpp@{VIPRA/include/vipra/random/random.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Random\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ NOLINTNEXTLINE\ (rolland)\ Default\ Naming\ Convention\ looks\ ugly}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{using\ }seed\ =\ \_\_uint128\_t;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{using\ }result\_type\ =\ uint64\_t;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}()\ :\ \_currVal(DEFAULT\_SEED)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}(uint64\_t\ seedVal)\ :\ \_currVal(seedVal)}
+\DoxyCodeLine{00023\ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ assert(seedVal\ !=\ 0);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \_currVal\ <<=\ SHIFT\_NUM;}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ DEFAULT\_SEED\ =\ 12345;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine_a6ede0ac74268d511e148682b3fbe114c}{operator()}}()\ noexcept\ -\/>\ uint64\_t}
+\DoxyCodeLine{00037\ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ assert(\_currVal\ !=\ 0);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \_currVal\ *=\ MULT\_NUM;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ \_currVal\ >>\ SHIFT\_NUM;}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine_a49e677f0a9609ce76b96a0e855da75e1}{reseed}}(uint64\_t\ seedNum)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00050\ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \_currVal\ =\ seedNum;}
+\DoxyCodeLine{00052\ \ \ \ \ \_currVal\ <<=\ SHIFT\_NUM;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ assert(\_currVal\ !=\ 0);}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine_a3caead5675755726b36dfc14dad6c0ba}{min}}()\ noexcept\ -\/>\ uint64\_t\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine_a709ce38c547084a3a17861b8772c002e}{max}}()\ noexcept\ -\/>\ uint64\_t\ \{\ \textcolor{keywordflow}{return}\ std::numeric\_limits<uint64\_t>::max();\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ seed\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_currVal;}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ MULT\_NUM\ =\ 0xda942042e4dd58b5;}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ SHIFT\_NUM\ =\ 64;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{\string~Engine}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}(\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&\&)\ noexcept\ =\ default;}
+\DoxyCodeLine{00080\ \ \ auto\ operator=(const\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&\ =\ default;}
+\DoxyCodeLine{00081\ \ \ auto\ operator=(\mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&\&)\ noexcept\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{Engine}}\&\ =\ default;}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Random}}
+
+\end{DoxyCode}

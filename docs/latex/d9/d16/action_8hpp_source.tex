@@ -1,0 +1,74 @@
+\doxysection{action.\+hpp}
+\hypertarget{action_8hpp_source}{}\label{action_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/actions/action.hpp@{VIPRA/include/vipra/vipra\_behaviors/actions/action.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/actions/atom.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target\_selector.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/condition.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/timed\_latch.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/numeric\_value.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\ \{}
+\DoxyCodeLine{00018\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}})}
+\DoxyCodeLine{00019\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}})}
+\DoxyCodeLine{00020\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}})}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ initialize(\textcolor{keyword}{auto}\ pack)}
+\DoxyCodeLine{00024\ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_condition\ )\ \_condition-\/>initialize(pack);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_duration\ )\ \_duration-\/>resize(pack.pedset.num\_pedestrians());}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{void}\ perform\_action(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ targets);}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ perform\_action(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ \ \ conditionMet,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ targets);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{void}\ add\_condition(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\ \textcolor{keyword}{const}\&\ cond)\ \{\ \_condition\ =\ cond;\ \}}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{void}\ add\_atom(Atom\&\&\ atom)\ \{\ \_atoms.push\_back(atom);\ \}}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{void}\ add\_target(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetSelector}{TargetSelector}}\&\&\ target)\ \{\ \_targets\ =\ target;\ \}}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{void}\ add\_duration(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1NumericValue}{Behaviors::NumericValue}}\ \textcolor{keyword}{const}\&\ duration)}
+\DoxyCodeLine{00039\ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \_duration\ =\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection}{TimedLatchCollection}}(duration);}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ has\_condition()\ -\/>\ \textcolor{keywordtype}{bool}\ \{\ \textcolor{keywordflow}{return}\ \_condition.has\_value();\ \}}
+\DoxyCodeLine{00044\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ condition()\ -\/>\ std::optional<Condition>\&}
+\DoxyCodeLine{00045\ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \_condition;}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ has\_duration()\ -\/>\ \textcolor{keywordtype}{bool}\ \{\ \textcolor{keywordflow}{return}\ \_duration.has\_value();\ \}}
+\DoxyCodeLine{00050\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ duration()\ -\/>\ std::optional<TimedLatchCollection>\&}
+\DoxyCodeLine{00051\ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \_duration;}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ has\_target()\ -\/>\ \textcolor{keywordtype}{bool}\ \{\ \textcolor{keywordflow}{return}\ \_targets.has\_value();\ \}}
+\DoxyCodeLine{00056\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ targets()\ -\/>\ std::optional<TargetSelector>\&}
+\DoxyCodeLine{00057\ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ \_targets;}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ std::vector<Atom>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_atoms;}
+\DoxyCodeLine{00063\ \ \ std::optional<Condition>\ \ \ \ \ \ \ \ \ \ \ \ \_condition;}
+\DoxyCodeLine{00064\ \ \ std::optional<TimedLatchCollection>\ \_duration;}
+\DoxyCodeLine{00065\ \ \ std::optional<TargetSelector>\ \ \ \ \ \ \ \_targets;}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

@@ -1,0 +1,34 @@
+\doxysection{target\+\_\+modifier.\+hpp}
+\hypertarget{target__modifier_8hpp_source}{}\label{target__modifier_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/targets/target\_modifier.hpp@{VIPRA/include/vipra/vipra\_behaviors/targets/target\_modifier.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ }Modifier\ =\ std::function<bool(Simpack,\ VIPRA::idx,\ VIPRA::idx)>;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\ \{}
+\DoxyCodeLine{00018\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}})}
+\DoxyCodeLine{00019\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}})}
+\DoxyCodeLine{00020\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}})}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier_a27b900a6f2b21ac0e6aee0c1a4266bc7}{check}}(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ VIPRA::idx\ self,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::idx\ target)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00034\ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ std::all\_of(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \_checks.begin(),\ \_checks.end(),}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ [\&](Modifier\ \textcolor{keyword}{const}\&\ modifier)\ \{\ return\ modifier(pack,\ target,\ self);\ \});}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier_aeddc23f6b4cbf23f4f01f2fb21152a17}{add\_check}}(Modifier\&\&\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier_a27b900a6f2b21ac0e6aee0c1a4266bc7}{check}})\ \{\ \_checks.emplace\_back(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier_a27b900a6f2b21ac0e6aee0c1a4266bc7}{check}});\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ std::vector<Modifier>\ \_checks;}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

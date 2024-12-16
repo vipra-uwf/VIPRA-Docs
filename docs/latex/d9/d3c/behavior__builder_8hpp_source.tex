@@ -1,0 +1,342 @@
+\doxysection{behavior\+\_\+builder.\+hpp}
+\hypertarget{behavior__builder_8hpp_source}{}\label{behavior__builder_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/builder/behavior\_builder.hpp@{VIPRA/include/vipra/vipra\_behaviors/builder/behavior\_builder.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/attributes/attributes.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_enter\_objective.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event\_occurring.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event\_starting.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_exists.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_in\_location.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/behavior/human\_behavior.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/builder/behavior\_error\_listener.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/builder/builder\_maps.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/builder/declaration\_components.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/condition.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_attribute.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_elapsed\_time.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_enter.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event.hpp"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_event\_ending.hpp"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_leave.hpp"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_spatial.hpp"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target\_modifier.hpp"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/values/direction.hpp"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/\_grammar/generated/BehaviorBaseVisitor.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/\_grammar/generated/BehaviorLexer.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/\_grammar/generated/BehaviorParser.h"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}vipra/logging/logging.hpp"{}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ TODO(rolland):\ give\ proper\ errors\ and\ logging}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}{BehaviorBuilder}}\ :\ \textcolor{keyword}{public}\ BehaviorBaseVisitor\ \{}
+\DoxyCodeLine{00046\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}{BehaviorBuilder}})}
+\DoxyCodeLine{00047\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}{BehaviorBuilder}})}
+\DoxyCodeLine{00048\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder}{BehaviorBuilder}})}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorBuilder_abc3c63e92ff7b827f15ac2fac175b680}{build}}(std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::path\ \textcolor{keyword}{const}\&\ filepath,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules::Map}}\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ \ \ \ map,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::seed\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1BehaviorErrorListener}{BehaviorErrorListener}}\ \_errorListener;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ StateMap\ \ \ \ \_states;}
+\DoxyCodeLine{00060\ \ \ TypeMap\ \ \ \ \ \_types;}
+\DoxyCodeLine{00061\ \ \ EventMap\ \ \ \ \_eventsMap;}
+\DoxyCodeLine{00062\ \ \ LocationMap\ \_locations;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\ \ \ \ \ \_startCond;}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Event}{Event}}\ \ \ \ \ \ \ \ \ \_startEvent;}
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}}\ \_currentBehavior;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ Behaviors::stateUID\ \_currState\{\};}
+\DoxyCodeLine{00069\ \ \ Behaviors::typeUID\ \ \_currType\{\};}
+\DoxyCodeLine{00070\ \ \ VIPRA::seed\ \ \ \ \ \ \ \ \ \_currSeed\{\};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{void}\ initial\_behavior\_setup(std::string\ \textcolor{keyword}{const}\&\ \ behaviorName,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules::Map}}\ \textcolor{keyword}{const}\&\ map,\ VIPRA::seed\ seedNum);}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{void}\ initialize\_types();}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ initialize\_events();}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{void}\ initialize\_states();}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{void}\ initialize\_locations(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules::Map}}\ \textcolor{keyword}{const}\&\ map);}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{void}\ end\_behavior\_check();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ UTIL\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ add\_atom\_to\_action(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ action,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Action\_atomContext*\ atom);}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{void}\ add\_target\_to\_action(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ action,\ BehaviorParser::TargetContext*\ ctx);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ add\_event(BehaviorParser::Event\_nameContext*\ ctx)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ -\/>\ VIPRA::idx;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_condition(BehaviorParser::ConditionContext*\ cond)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}};}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ condition\_tree\_condition(BehaviorParser::ConditionContext*\ condition,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tree);}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{void}\ condition\_tree\_unary(BehaviorParser::UnaryContext*\ unary,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tree);}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{void}\ condition\_tree\_primary(BehaviorParser::PrimaryContext*\ primary,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tree);}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{void}\ add\_sub\_condition(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition}{Condition}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condTree,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Sub\_conditionContext*\ subcond);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_sub\_selector(slType\ type,\ slSelector\ selector,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<slGroup>\ group,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ required)\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_location(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ -\/>\ std::optional<VIPRA::idx>;}
+\DoxyCodeLine{00106\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_state(std::string\ \textcolor{keyword}{const}\&\ state)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ -\/>\ std::optional<Behaviors::stateUID>;}
+\DoxyCodeLine{00108\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_event(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ -\/>\ std::optional<VIPRA::idx>;}
+\DoxyCodeLine{00110\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_range(BehaviorParser::Value\_numberContext*\ ctx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ -\/>\ VIPRA::time\_range\_s;}
+\DoxyCodeLine{00112\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_type(std::string\ \textcolor{keyword}{const}\&\ type)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ -\/>\ std::optional<Behaviors::typeUID>;}
+\DoxyCodeLine{00114\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_group(std::optional<slGroup>\ group)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ -\/>\ std::pair<Behaviors::typeUID,\ std::string>;}
+\DoxyCodeLine{00116\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_composite\_type(}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ std::vector<antlr4::tree::TerminalNode*>\ \textcolor{keyword}{const}\&\ types)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Behaviors::Ptype}};}
+\DoxyCodeLine{00119\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ get\_attribute(std::string\ attr)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ -\/>\ Behaviors::Attribute;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_check\_location(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ -\/>\ VIPRA::idx;}
+\DoxyCodeLine{00124\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_check\_state(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ -\/>\ Behaviors::stateUID;}
+\DoxyCodeLine{00126\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_check\_event(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ -\/>\ VIPRA::idx;}
+\DoxyCodeLine{00128\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_check\_type(std::string\ \textcolor{keyword}{const}\&\ name)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ -\/>\ Behaviors::typeUID;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ make\_attribute\_value(}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ BehaviorParser::Attr\_valueContext*\ ctx)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1CAttributeValue}{Behaviors::CAttributeValue}};}
+\DoxyCodeLine{00133\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ make\_attribute\_str(}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ BehaviorParser::AttributeContext*\ ctx)\ -\/>\ std::string;}
+\DoxyCodeLine{00135\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ make\_list\_strs(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ std::vector<antlr4::tree::TerminalNode*>\ \textcolor{keyword}{const}\&\ types)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ -\/>\ std::vector<std::string>;}
+\DoxyCodeLine{00138\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ make\_target\_modifier(}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ std::vector<BehaviorParser::ModifierContext*>\&\ modifiers)}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ -\/>\ std::optional<TargetModifier>;}
+\DoxyCodeLine{00141\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ make\_direction(}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ BehaviorParser::DirectionContext*\ ctx)\ -\/>\ Direction;}
+\DoxyCodeLine{00143\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ make\_dimensions(BehaviorParser::Loc\_dimensionsContext*\ ctx)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keyword}{const}\ -\/>\ std::tuple<VIPRA::f3d,\ VIPRA::f3d,\ VIPRA::f\_pnt>;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ args\_t>}
+\DoxyCodeLine{00154\ \ \ [[noreturn]]\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ error(fmt::format\_string<args\_t...>\ message,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args\_t\&\&...\ values)}
+\DoxyCodeLine{00156\ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}{VIPRA::Log::error}}(message,\ std::forward<args\_t>(values)...);}
+\DoxyCodeLine{00158\ \ \ \ \ BuilderException::error();}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ ANTLR\ FUNCTIONS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{auto}\ visitEvent(BehaviorParser::EventContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{auto}\ visitPed\_Selector(BehaviorParser::Ped\_SelectorContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{auto}\ visitAction(BehaviorParser::ActionContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{auto}\ visitDecl\_Ped\_State(BehaviorParser::Decl\_Ped\_StateContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{auto}\ visitDecl\_Ped(BehaviorParser::Decl\_PedContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{auto}\ visitLocation(BehaviorParser::LocationContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ -\/>\ antlrcpp::Any\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ ATOMS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ add\_set\_atom(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ \textcolor{comment}{/*action*/},}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Set\_atomContext*\ \textcolor{comment}{/*ctx*/});}
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ add\_scale\_atom(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ \textcolor{comment}{/*action*/},}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Scale\_atomContext*\ \textcolor{comment}{/*ctx*/});}
+\DoxyCodeLine{00182\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ add\_set\_obj\_atom(}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ \textcolor{comment}{/*action*/},\ BehaviorParser::Set\_objective\_atomContext*\ \textcolor{comment}{/*ctx*/});}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ TARGET\ SELECTORS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordtype}{void}\ add\_nearest\_type\_target(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Action}{Action}}\&\ \textcolor{comment}{/*action*/},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Nearest\_typeContext*\ \textcolor{comment}{/*ctx*/},}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<TargetModifier>\&\ \textcolor{comment}{/*modifier*/});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ TARGET\ MODIFIERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \textcolor{keywordtype}{void}\ add\_modifier(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\&\ \textcolor{comment}{/*targetModifier*/},}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::ModifierContext*\ \textcolor{comment}{/*modifier*/})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ add\_distance\_modifier(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\&\ \textcolor{comment}{/*modifier*/},}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::DistanceContext*\ \textcolor{comment}{/*ctx*/})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ add\_direction\_modifier(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\&\ \textcolor{comment}{/*modifier*/},}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::DirectionContext*\ \textcolor{comment}{/*ctx*/});}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ add\_location\_modifier(}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\&\ \textcolor{comment}{/*modifier*/},}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ BehaviorParser::Location\_modifierContext*\ \textcolor{comment}{/*ctx*/})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SUBCONDITIONS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_enter\_obj\_subcond(}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ BehaviorParser::Condition\_Enter\_LocationContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnterObj}{SubConditionEnterObj}};}
+\DoxyCodeLine{00209\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_enter\_subcond(}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ BehaviorParser::Condition\_Enter\_LocationContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEnter}{SubConditionEnter}};}
+\DoxyCodeLine{00212\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_exit\_subcond(}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ BehaviorParser::Condition\_Exit\_LocationContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionLeave}{SubConditionLeave}};}
+\DoxyCodeLine{00215\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_time\_elapsed\_subcond(}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ BehaviorParser::Condition\_Time\_Elapsed\_From\_EventContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionElapsedTimeFromEvent}{SubConditionElapsedTimeFromEvent}};}
+\DoxyCodeLine{00218\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_event\_occurred\_subcond(}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ BehaviorParser::Condition\_Event\_OccurredContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurred}{SubConditionEventOccurred}};}
+\DoxyCodeLine{00221\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_event\_occurring\_subcond(}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ BehaviorParser::Condition\_Event\_OccurringContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventOccurring}{SubConditionEventOccurring}};}
+\DoxyCodeLine{00224\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_event\_starting\_subcond(}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ BehaviorParser::Condition\_Event\_StartingContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventStarting}{SubConditionEventStarting}};}
+\DoxyCodeLine{00227\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_event\_ending\_subcond(}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ BehaviorParser::Condition\_Event\_EndingContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionEventEnding}{SubConditionEventEnding}};}
+\DoxyCodeLine{00230\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_spatial\_subcond(}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ BehaviorParser::Condition\_SpatialContext*\ \textcolor{comment}{/*ctx*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionSpatial}{SubConditionSpatial}};}
+\DoxyCodeLine{00232\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_in\_location\_subcond(}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ BehaviorParser::Condition\_Inside\_LocationContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionInLocation}{SubConditionInLocation}};}
+\DoxyCodeLine{00235\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_attribute\_subcond(}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ BehaviorParser::Condition\_AttributeContext*\ \textcolor{comment}{/*ctx*/})}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionAttribute}{SubConditionAttribute}};}
+\DoxyCodeLine{00238\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ build\_exists\_subcond(}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ BehaviorParser::Condition\_ExistsContext*\ \textcolor{comment}{/*ctx*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}};}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SUBSELECTORS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{auto}\ build\_everyone\_selector(slType\ \textcolor{comment}{/*type*/},}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*required*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}};}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{auto}\ build\_exactly\_n\_selector(slType\ \textcolor{comment}{/*type*/},\ slSelector\ \textcolor{comment}{/*selector*/},}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<slGroup>\ \textcolor{comment}{/*group*/},}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*required*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}};}
+\DoxyCodeLine{00248\ \ \ \textcolor{keyword}{auto}\ build\_percent\_selector(slType\ \textcolor{comment}{/*type*/},\ slSelector\ \textcolor{comment}{/*selector*/},}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<slGroup>\ \textcolor{comment}{/*group*/},}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*required*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}};}
+\DoxyCodeLine{00251\ \ \ \textcolor{keyword}{auto}\ build\_location\_selector(slType\ \textcolor{comment}{/*type*/},\ slSelector\ \textcolor{comment}{/*selector*/},}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<slGroup>\ \textcolor{comment}{/*group*/},}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*required*/})\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubSelector}{SubSelector}};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOCATION\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ FINDERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00266\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ comp\_t>}
+\DoxyCodeLine{00267\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ find\_event\_component(}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ BehaviorParser::EventContext*\ ctx)\ -\/>\ std::optional<comp\_t>}
+\DoxyCodeLine{00269\ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ attr\ :\ ctx-\/>event\_attribute()\ )\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \textcolor{comment}{//\ Name}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ std::string>\ )}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>event\_name()\ )\ \textcolor{keywordflow}{return}\ attr-\/>event\_name()-\/>ID()-\/>toString();}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ Condition}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ evStart>\ )}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>event\_start()\ )\ \textcolor{keywordflow}{return}\ attr-\/>event\_start();}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \textcolor{comment}{//\ End\ Condition}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ evEnd>\ )}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>event\_end()\ )\ \textcolor{keywordflow}{return}\ attr-\/>event\_end();}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00285\ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00294\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ comp\_t>}
+\DoxyCodeLine{00295\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ find\_action\_component(}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ BehaviorParser::ActionContext*\ ctx)\ -\/>\ std::optional<comp\_t>}
+\DoxyCodeLine{00297\ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ attr\ :\ ctx-\/>action\_attribute()\ )\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \textcolor{comment}{//\ Stimulus}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ acStimulus>\ )}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>action\_stimulus()\ )\ \textcolor{keywordflow}{return}\ attr-\/>action\_stimulus();}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \textcolor{comment}{//\ Response}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ acResponse>\ )}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>action\_response()\ )\ \textcolor{keywordflow}{return}\ attr-\/>action\_response();}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \textcolor{comment}{//\ Target}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ acTarget>\ )}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>action\_target()\ )\ \textcolor{keywordflow}{return}\ attr-\/>action\_target();}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \textcolor{comment}{//\ Duration}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ acDuration>\ )}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>action\_duration()\ )\ \textcolor{keywordflow}{return}\ attr-\/>action\_duration();}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00317\ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00326\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ comp\_t>}
+\DoxyCodeLine{00327\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ find\_selector\_component(}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ BehaviorParser::Ped\_SelectorContext*\ ctx)\ -\/>\ std::optional<comp\_t>}
+\DoxyCodeLine{00329\ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ attr\ :\ ctx-\/>selector\_attribute()\ )\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \textcolor{comment}{//\ Type}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ slType>\ )}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>selector\_type()\ )\ \textcolor{keywordflow}{return}\ attr-\/>selector\_type();}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \textcolor{comment}{//\ Selector}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ slSelector>\ )}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>selector\_selector()\ )\ \textcolor{keywordflow}{return}\ attr-\/>selector\_selector();}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \textcolor{comment}{//\ Group}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ slGroup>\ )}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>selector\_from()\ )\ \textcolor{keywordflow}{return}\ attr-\/>selector\_from();}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \textcolor{comment}{//\ Required}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ slRequired>\ )}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>selector\_required()\ )\ \textcolor{keywordflow}{return}\ attr-\/>selector\_required();}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00349\ \ \ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00358\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ comp\_t>}
+\DoxyCodeLine{00359\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ find\_location\_component(}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ BehaviorParser::LocationContext*\ ctx)\ -\/>\ std::optional<comp\_t>}
+\DoxyCodeLine{00361\ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ attr\ :\ ctx-\/>location\_attribute()\ )\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \textcolor{comment}{//\ Name}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ lcName>\ )}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>loc\_name()\ )\ \textcolor{keywordflow}{return}\ attr-\/>loc\_name();}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \textcolor{comment}{//\ Dimensions}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ std::is\_same\_v<comp\_t,\ lcDimensions>\ )}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ attr-\/>loc\_dimensions()\ )\ \textcolor{keywordflow}{return}\ attr-\/>loc\_dimensions();}
+\DoxyCodeLine{00370\ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00373\ \ \ \}}
+\DoxyCodeLine{00374\ \};}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

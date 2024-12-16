@@ -1,0 +1,75 @@
+\chapter{VIPRA Trajectories Visualization}
+\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer}{}\label{md_docs_2pages_2researchers_2tools_2visualizer}\index{VIPRA Trajectories Visualization@{VIPRA Trajectories Visualization}}
+\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md366}%
+\Hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md366}%
+\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md367}{}\doxysection{\texorpdfstring{visualize.\+py}{visualize.\+py}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md367}
+{\ttfamily visualize.\+py} is used to view the output from a simulation run.\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md368}{}\doxysubsection{\texorpdfstring{Setup}{Setup}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md368}
+\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md369}{}\doxysubsubsection{\texorpdfstring{Requirements}{Requirements}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md369}
+
+\begin{DoxyItemize}
+\item Python 3.\+7\texorpdfstring{$^\wedge$}{\string^}
+\item FFmpeg
+\item {\ttfamily pip} Modules\+:
+\begin{DoxyItemize}
+\item {\ttfamily json}
+\item {\ttfamily sys}
+\item {\ttfamily os}
+\item {\ttfamily numpy}
+\item {\ttfamily matplotlib}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md370}{}\doxysubsection{\texorpdfstring{Running}{Running}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md370}
+{\ttfamily python3 visualize.\+py \texorpdfstring{$\ast$}{*}flags\texorpdfstring{$\ast$}{*}}\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md371}{}\doxysubsubsection{\texorpdfstring{Flags}{Flags}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md371}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{REQUIRED}} {\ttfamily -\/peds \texorpdfstring{$\ast$}{*}sim output path\texorpdfstring{$\ast$}{*}} \+: sets the path to the simulation output {\itshape (no default)}
+\item {\bfseries{REQUIRED}} {\ttfamily -\/obs \texorpdfstring{$\ast$}{*}obstacle map path\texorpdfstring{$\ast$}{*}} \+: sets the path to the obstacle map {\itshape (no default)}
+\item {\ttfamily -\/outpath \texorpdfstring{$\ast$}{*}output gif path\texorpdfstring{$\ast$}{*}} \+: sets the path for the output gif {\itshape (default ./output.gif)}
+\item {\ttfamily -\/idx} \+: prints the pedestrians index next to their position {\itshape (default OFF)}
+\item {\ttfamily -\/idx\+Clr} \+: colors pedestrian indexes to their color {\itshape (default OFF)}
+\item {\ttfamily -\/shldr \texorpdfstring{$\ast$}{*}len\texorpdfstring{$\ast$}{*}} \+: draws shoulders (axis aligned) on pedestrians, len being half the total shoulder width {\itshape (default OFF)}
+\item {\ttfamily -\/x\+Dim \texorpdfstring{$\ast$}{*}minX, max\+X\texorpdfstring{$\ast$}{*}} \+: sets the min and max X for the plot {\itshape (default\+: -\/1, 25)}
+\item {\ttfamily -\/y\+Dim \texorpdfstring{$\ast$}{*}minY, max\+Y\texorpdfstring{$\ast$}{*}} \+: sets the min and max Y for the plot {\itshape (default\+: -\/1, 4)}
+\item {\ttfamily -\/fps \texorpdfstring{$\ast$}{*}fps\texorpdfstring{$\ast$}{*}} \+: sets the fps of the output Gif {\itshape (default 10)}
+\item {\ttfamily -\/ped\+Clr} \+: sets each pedestrian a different color {\itshape (default OFF)}
+\item {\ttfamily -\/obs\+Clr \texorpdfstring{$\ast$}{*}color\texorpdfstring{$\ast$}{*}} \+: sets the color of obstacles {\itshape (default k)}
+\item {\ttfamily -\/bck\+Clr \texorpdfstring{$\ast$}{*}color\texorpdfstring{$\ast$}{*}} \+: sets the color of the background {\itshape (default w)}
+\item {\ttfamily -\/dif \texorpdfstring{$\ast$}{*}sim output filepath\texorpdfstring{$\ast$}{*}} \+: shows differences between sim runs
+\item {\ttfamily -\/difalpha \texorpdfstring{$\ast$}{*}0.0-\/1.\+0\texorpdfstring{$\ast$}{*}} \+: sets the alpha for dif {\itshape (default 0.\+25)}
+\item {\ttfamily -\/diflines} \+: draws lines between pedestrians that have a dif {\itshape (default OFF)}
+\item {\ttfamily -\/dlmax \texorpdfstring{$\ast$}{*}float\texorpdfstring{$\ast$}{*}} \+: scales dif line alpha by max distance {\itshape (default OFF)}
+\item {\ttfamily -\/overrides \texorpdfstring{$\ast$}{*}filename\texorpdfstring{$\ast$}{*}} \+: overrides helper functions with the module provided
+\end{DoxyEnumerate}
+
+{\bfseries{color options\+: \href{https://matplotlib.org/stable/tutorials/colors/colors.html}{\texttt{ https\+://matplotlib.\+org/stable/tutorials/colors/colors.\+html}}}}\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md372}{}\doxysubsection{\texorpdfstring{Plotting Custom Information}{Plotting Custom Information}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md372}
+For plotting extra information added to the output use the {\ttfamily overrides} flag.
+
+Create a python file that includes the method\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{plotExtras(ax,\ timestep,\ output)}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\ttfamily ax} is the matplotlib plot to draw to
+\item {\ttfamily timestep} is the current timestep
+\item {\ttfamily output} is the entire JSON output from the simulation
+\end{DoxyItemize}
+
+Returns\+:
+\begin{DoxyItemize}
+\item Nothing
+\end{DoxyItemize}\hypertarget{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md373}{}\doxysubsubsection{\texorpdfstring{Pedestrian Colors}{Pedestrian Colors}}\label{md_docs_2pages_2researchers_2tools_2visualizer_autotoc_md373}
+Pedestrian colors can be updated throughout the GIF by overriding the method\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{updateColors(output)}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\ttfamily output} is the entire JSON output from the simulation
+\end{DoxyItemize}
+
+Returns\+:
+\begin{DoxyItemize}
+\item Numpy array containing each pedestrian\textquotesingle{}s color 
+\end{DoxyItemize}

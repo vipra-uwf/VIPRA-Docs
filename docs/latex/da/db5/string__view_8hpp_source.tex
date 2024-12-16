@@ -1,0 +1,17 @@
+\doxysection{string\+\_\+view.\+hpp}
+\hypertarget{string__view_8hpp_source}{}\label{string__view_8hpp_source}\index{VIPRA/include/vipra/concepts/string\_view.hpp@{VIPRA/include/vipra/concepts/string\_view.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }VIPRA::Concepts\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ type\_t>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptVIPRA_1_1Concepts_1_1StringView}{StringView}}\ =}
+\DoxyCodeLine{00010\ \ \ \ \ std::is\_same\_v<type\_t,\ std::string\_view>\ ||\ std::is\_convertible\_v<type\_t,\ std::string\_view>;}
+\DoxyCodeLine{00011\ \}}
+
+\end{DoxyCode}

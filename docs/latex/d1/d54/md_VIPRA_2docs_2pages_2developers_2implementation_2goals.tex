@@ -1,0 +1,114 @@
+\chapter{Goals Modules}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals}{}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals}\index{Goals Modules@{Goals Modules}}
+\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md396}%
+\Hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md396}%
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md397}{}\doxysection{\texorpdfstring{Required Methods}{Required Methods}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md397}
+In addition to the \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2module}{Base Module}{0} requirements {\ttfamily Goals} require the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{++}
+\DoxyCodeLine{\ VIPRA\_GOALS\_INIT\_STEP\ \{\}}
+\DoxyCodeLine{\ VIPRA\_GOALS\_UPDATE\_STEP\ \{\}}
+\DoxyCodeLine{\ VIPRA\_GOALS\_NEXT\_GOAL\ \{\}}
+\DoxyCodeLine{\ VIPRA\_GOALS\_CHANGE\_GOAL\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md398}{}\doxysection{\texorpdfstring{Required Method Details}{Required Method Details}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md398}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_GOALS\_INIT\_STEP\ \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ aka}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ init\_step(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA::Modules::Pedestrians}}\ \textcolor{keyword}{const}\&\ pedset,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine);}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md399}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md399}
+
+\begin{DoxyItemize}
+\item {\ttfamily pedset} -\/ Pedestrians module implementation
+\item {\ttfamily obstalces} -\/ Obstalces module implementation
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md400}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md400}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md401}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md401}
+Each pedestrian has their goals initialized and ready for the first timestep of the simulation
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_GOALS\_UPDATE\_STEP\ \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ aka}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ update\_step(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA::Modules::Pedestrians}}\ \textcolor{keyword}{const}\&\ pedset,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map,\ VIPRA::delta\_t\ deltaT);}
+
+\end{DoxyCode}
+
+
+Called each timestep\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md403}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md403}
+
+\begin{DoxyItemize}
+\item {\ttfamily pedset} -\/ Pedestrians module implementation
+\item {\ttfamily obstalces} -\/ Obstalces module implementation
+\item {\ttfamily deltaT} \+: VIPRA\+::f\+\_\+pnt -\/ amount of time since last time step
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md404}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md404}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md405}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md405}
+Each pedestrian has their current goals updated, if not already handled in VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_GOALS\_NEXT\_GOAL}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ aka}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ next\_goal(VIPRA::idx\ pedIdx,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA::Modules::Pedestrians}}\ \textcolor{keyword}{const}\&\ pedset,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map,\ VIPRA::delta\_t\ deltaT);}
+
+\end{DoxyCode}
+
+
+Called when a pedestrian reaches their current goal\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md407}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md407}
+
+\begin{DoxyItemize}
+\item {\ttfamily ped\+Idx} \+: VIPRA\+::idx -\/ ID of pedestrian that has reached their current goal
+\item {\ttfamily pedset} -\/ Pedestrians module implementation
+\item {\ttfamily obstalces} -\/ Obstalces module implementation
+\item {\ttfamily deltaT} \+: VIPRA\+::f\+\_\+pnt -\/ amount of time since last time step
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md408}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md408}
+{\ttfamily bool}\+: true if the pedestrian has reached their final goal, false if not\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md409}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md409}
+Pedestrian \# ped\+Idx has their current goal updated, if not already handled in VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_GOALS\_CHANGE\_GOAL}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ aka}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ change\_end\_goal(VIPRA::idx\ pedIdx,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ currPos,\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ goalPos);}
+
+\end{DoxyCode}
+
+
+Called from Behaviors\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md411}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md411}
+
+\begin{DoxyItemize}
+\item {\ttfamily ped\+Idx} \+: VIPRA\+::idx -\/ ID of pedestrian to update
+\item {\ttfamily curr\+Pos} \+: VIPRA\+::f3d -\/ the current position of the pedestrian to update
+\item {\ttfamily goal\+Pos} \+: VIPRA\+::f3d -\/ the position of the new end goal
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md412}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md412}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md413}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2goals_autotoc_md413}
+Pedestrian \# ped\+Idx has their end goal changed to {\ttfamily goal\+Pos}
+
+\DoxyHorRuler{0}
+ 

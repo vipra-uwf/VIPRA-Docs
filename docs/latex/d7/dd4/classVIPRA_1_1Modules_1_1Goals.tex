@@ -1,0 +1,101 @@
+\doxysection{VIPRA\+::Modules\+::Goals Class Reference}
+\hypertarget{classVIPRA_1_1Modules_1_1Goals}{}\label{classVIPRA_1_1Modules_1_1Goals}\index{VIPRA::Modules::Goals@{VIPRA::Modules::Goals}}
+
+
+Goals module mixin.  
+
+
+
+
+{\ttfamily \#include $<$goals.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Modules\+::Goals\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{dd/d82/classVIPRA_1_1Modules_1_1Goals__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a4bcba4f42dd9abbc24d57cda45c00014}\label{classVIPRA_1_1Modules_1_1Goals_a4bcba4f42dd9abbc24d57cda45c00014} 
+void {\bfseries initialize} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA\+::\+Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a295d67e4261dca9def7cd345c44aebfa}\label{classVIPRA_1_1Modules_1_1Goals_a295d67e4261dca9def7cd345c44aebfa} 
+void {\bfseries update} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, VIPRA\+::delta\+\_\+t deltaT)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a187ea8d3af6cb0c90f6abcd4f0c70568}\label{classVIPRA_1_1Modules_1_1Goals_a187ea8d3af6cb0c90f6abcd4f0c70568} 
+void {\bfseries change\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} curr\+Pos, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} goal\+Pos, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_ad5832aed7171d38f7b6ba8b8df6d05c2}\label{classVIPRA_1_1Modules_1_1Goals_ad5832aed7171d38f7b6ba8b8df6d05c2} 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a99b9e1388cd24e20957f0485b5ac4eaa}\label{classVIPRA_1_1Modules_1_1Goals_a99b9e1388cd24e20957f0485b5ac4eaa} 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a5bae7e864f90b2a2b68cf55e4ba642f4}\label{classVIPRA_1_1Modules_1_1Goals_a5bae7e864f90b2a2b68cf55e4ba642f4} 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_af9ed3f6c939ed24e03e9c0bf331a5936}\label{classVIPRA_1_1Modules_1_1Goals_af9ed3f6c939ed24e03e9c0bf331a5936} 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a318107b91a44882f785925ca9babee0a}\label{classVIPRA_1_1Modules_1_1Goals_a318107b91a44882f785925ca9babee0a} 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx) const -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_ae3aedad04f9946ed59d74aef516ceff7}\label{classVIPRA_1_1Modules_1_1Goals_ae3aedad04f9946ed59d74aef516ceff7} 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+sim\+\_\+goal\+\_\+met} () const -\/$>$ bool
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_ad4240baddda4a178ee9cb5542ff00e10}\label{classVIPRA_1_1Modules_1_1Goals_ad4240baddda4a178ee9cb5542ff00e10} 
+VIPRA\+\_\+\+INLINE auto {\bfseries time\+\_\+since\+\_\+last\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a2b17f2260cee8b5970e10c93c2b46ba6}\label{classVIPRA_1_1Modules_1_1Goals_a2b17f2260cee8b5970e10c93c2b46ba6} 
+{\bfseries Goals} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a89315468fcaa9c60c51b6c6c9b09f490}\label{classVIPRA_1_1Modules_1_1Goals_a89315468fcaa9c60c51b6c6c9b09f490} 
+{\bfseries Goals} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_affa5d9382b51c350746a2a6487d30048}\label{classVIPRA_1_1Modules_1_1Goals_affa5d9382b51c350746a2a6487d30048} 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a970c1b6783a035f9a2907818862474f8}\label{classVIPRA_1_1Modules_1_1Goals_a970c1b6783a035f9a2907818862474f8} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_aa244efe717e66738f35ef308d41ea295}\label{classVIPRA_1_1Modules_1_1Goals_aa244efe717e66738f35ef308d41ea295} 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP} = 0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_af193a5c254c8ec6eff1da9489c5336e6}\label{classVIPRA_1_1Modules_1_1Goals_af193a5c254c8ec6eff1da9489c5336e6} 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP} = 0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a3bcca2ddd62a30d157770280147a8a48}\label{classVIPRA_1_1Modules_1_1Goals_a3bcca2ddd62a30d157770280147a8a48} 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL} = 0
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_afca1950efabcee9fd9bbd970f64a9974}\label{classVIPRA_1_1Modules_1_1Goals_afca1950efabcee9fd9bbd970f64a9974} 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_a1daab203e57f0563cc2da92ef4505659}\label{classVIPRA_1_1Modules_1_1Goals_a1daab203e57f0563cc2da92ef4505659} 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx, bool met)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_abc47b1ade167ed01d03cd241b8ec8b08}\label{classVIPRA_1_1Modules_1_1Goals_abc47b1ade167ed01d03cd241b8ec8b08} 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\item 
+\Hypertarget{classVIPRA_1_1Modules_1_1Goals_acf493797b85d8ffa51094ec7ee932f88}\label{classVIPRA_1_1Modules_1_1Goals_acf493797b85d8ffa51094ec7ee932f88} 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+current\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Goals module mixin. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/modules/goals.\+hpp\end{DoxyCompactItemize}

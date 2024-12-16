@@ -1,0 +1,32 @@
+\doxysection{quad\+\_\+tree.\+hpp}
+\hypertarget{quad__tree_8hpp_source}{}\label{quad__tree_8hpp_source}\index{VIPRA/modules/map/quad\_tree/quad\_tree.hpp@{VIPRA/modules/map/quad\_tree/quad\_tree.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ TODO(rolland):\ issue\ \#15\ implement\ quadtree\ for\ storing\ obstacles,\ currently\ just\ a\ vector}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/map.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/module.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/module.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }VIPRA::Map\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Map_1_1QuadTree}{QuadTree}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA::Modules::Module}}<QuadTree>,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}QuadTree"{}});}
+\DoxyCodeLine{00021\ \ \ VIPRA\_MODULE\_TYPE(Map);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}minQuadSize"{}},\ \_obsDistance))}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ VIPRA\_MAP\_INIT\ \{\}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ VIPRA::f\_pnt\ \_obsDistance\{\};}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Map}}
+
+\end{DoxyCode}

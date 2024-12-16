@@ -1,0 +1,57 @@
+\doxysection{modules.\+hpp}
+\hypertarget{modules_8hpp_source}{}\label{modules_8hpp_source}\index{VIPRA/include/vipra/modules.hpp@{VIPRA/include/vipra/modules.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Modules\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ NOLINTBEGIN(readability-\/identifier-\/naming)}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum\ class}\ Type\ \{}
+\DoxyCodeLine{00009\ \ \ Model,}
+\DoxyCodeLine{00010\ \ \ Goals,}
+\DoxyCodeLine{00011\ \ \ MapInput,}
+\DoxyCodeLine{00012\ \ \ PedInput,}
+\DoxyCodeLine{00013\ \ \ Output,}
+\DoxyCodeLine{00014\ \ \ Pedestrians,}
+\DoxyCodeLine{00015\ \ \ Parameters,}
+\DoxyCodeLine{00016\ \ \ Map,}
+\DoxyCodeLine{00017\ \ \ Simulation,}
+\DoxyCodeLine{00018\ \ \ Behavior\_model,}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ NOLINTEND(readability-\/identifier-\/naming)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ to\_string(Type\ type)\ -\/>\ std::string}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{switch}\ (\ type\ )\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Model:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}model"{}};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Goals:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}goals"{}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Output:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}output"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Pedestrians:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}pedestrians"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Parameters:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}parameters"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Map:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}map"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Simulation:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}simulation"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Behavior\_model:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}behavior\_model"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::MapInput:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}map\_input"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::PedInput:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}ped\_input"{}};}
+\DoxyCodeLine{00045\ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}unknown"{}};}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ MODULE\_COUNT\ =\ 8;}
+\DoxyCodeLine{00051\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Modules}}
+
+\end{DoxyCode}

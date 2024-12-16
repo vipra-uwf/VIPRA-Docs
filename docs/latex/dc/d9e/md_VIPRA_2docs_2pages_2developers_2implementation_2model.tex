@@ -1,0 +1,58 @@
+\chapter{Model}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model}{}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model}\index{Model@{Model}}
+\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md480}%
+\Hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md480}%
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md481}{}\doxysection{\texorpdfstring{Required Methods}{Required Methods}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md481}
+In addition to the \doxysectlink{md_VIPRA_2docs_2pages_2developers_2implementation_2module}{Base Module}{0} requirements {\ttfamily Model} modules require the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{VIPRA\_MODEL\_INIT\_STEP\ \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VIPRA\_MODEL\_TIMESTEP\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md482}{}\doxysection{\texorpdfstring{Details}{Details}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md482}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VIPRA\_MODEL\_INIT\_STEP\ \{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily pedset} -\/ the Pedestrians Model implementation
+\item {\ttfamily map} -\/ the Map module implementation
+\item {\ttfamily goals} -\/ the Goals implementation
+\item {\ttfamily output} -\/ the Output Coordinator
+\item {\ttfamily engine} -\/ the \doxysectlink{md_VIPRA_2docs_2pages_2developers_2usage_2randomization}{Randomization engine}{0}
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md483}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md483}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md484}{}\doxysubsubsection{\texorpdfstring{Exepected Effects}{Exepected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md484}
+The pedestrian dynamics model is ready for the first simulation timestep
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VIPRA\_MODEL\_TIMESTEP\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md486}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md486}
+
+\begin{DoxyItemize}
+\item {\ttfamily pedset} -\/ the Pedestrians Model implementation
+\item {\ttfamily map} -\/ the Map module implementation
+\item {\ttfamily goals} -\/ the Goals implementation
+\item {\ttfamily output} -\/ the Output Coordinator
+\item {\ttfamily state} -\/ the \href{../usage/types.md\#state}{\texttt{ State}} to write the new positions and velocities to
+\item {\ttfamily deltaT} -\/ the timestep size
+\item {\ttfamily timestep} -\/ the current timestep number
+\end{DoxyItemize}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md487}{}\doxysubsubsection{\texorpdfstring{Returns}{Returns}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md487}
+{\ttfamily NONE}\hypertarget{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md488}{}\doxysubsubsection{\texorpdfstring{Expected Effects}{Expected Effects}}\label{md_VIPRA_2docs_2pages_2developers_2implementation_2model_autotoc_md488}
+{\ttfamily state} contains the updated positions and velocities of each pedestrian
+
+\DoxyHorRuler{0}
+ 

@@ -1,0 +1,38 @@
+\doxysection{subcondition\+\_\+exists.\+hpp}
+\hypertarget{subcondition__exists_8hpp_source}{}\label{subcondition__exists_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_exists.hpp@{VIPRA/include/vipra/vipra\_behaviors/conditions/subconditions/subcondition\_exists.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/sub\_condition.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/conditions/subconditions/subcondition\_attribute.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target\_modifier.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/util/class\_types.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}}\ \{}
+\DoxyCodeLine{00014\ \ \ NON\_DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}})}
+\DoxyCodeLine{00015\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}})}
+\DoxyCodeLine{00016\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}})}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionExists}{SubConditionExists}}(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\ \ \ \ \ \ \ \ modifier,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionAttribute}{SubConditionAttribute}}\ condition)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ :\ \_modifier(std::move(modifier)),\ \_attributeCond(condition)}
+\DoxyCodeLine{00022\ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ operator()(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}\ pack,\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ peds,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Target>\ \textcolor{keyword}{const}\&\ \textcolor{comment}{/*unused*/},\ std::vector<bool>\&\ met,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \textcolor{keyword}{const}\&\ prevMet,\ BoolOp\ oper)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//\ TODO(rolland):\ add\ in\ group\ type,\ currently\ just\ checks\ pedestrians}}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TargetModifier}{TargetModifier}}\ \ \ \ \ \ \ \ \_modifier;}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1SubConditionAttribute}{SubConditionAttribute}}\ \_attributeCond;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{size\_t}\ \_count\ =\ 0;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

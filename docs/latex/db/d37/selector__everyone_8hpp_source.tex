@@ -1,0 +1,26 @@
+\doxysection{selector\+\_\+everyone.\+hpp}
+\hypertarget{selector__everyone_8hpp_source}{}\label{selector__everyone_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/selectors/selector\_everyone.hpp@{VIPRA/include/vipra/vipra\_behaviors/selectors/selector\_everyone.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/selectors/subselector.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorEveryone}{SelectorEveryone}}\ \{}
+\DoxyCodeLine{00011\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorEveryone}{SelectorEveryone}})}
+\DoxyCodeLine{00012\ \ \ COPYABLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorEveryone}{SelectorEveryone}})}
+\DoxyCodeLine{00013\ \ \ MOVEABLE(\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorEveryone}{SelectorEveryone}})}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ VIPRA::idxVec\&\ \textcolor{comment}{/*unused*/},\ \textcolor{keyword}{const}\ VIPRA::idxVec\&\ group,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{comment}{/*unused*/})\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1SelectorResult}{SelectorResult}}}
+\DoxyCodeLine{00017\ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{auto}\ vec\ =\ VIPRA::idxVec(group.size());}
+\DoxyCodeLine{00019\ \ \ \ \ std::iota(vec.begin(),\ vec.end(),\ 0);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{false},\ vec\};}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

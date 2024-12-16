@@ -1,0 +1,122 @@
+\doxysection{human\+\_\+behavior.\+hpp}
+\hypertarget{human__behavior_8hpp_source}{}\label{human__behavior_8hpp_source}\index{VIPRA/include/vipra/vipra\_behaviors/behavior/human\_behavior.hpp@{VIPRA/include/vipra/vipra\_behaviors/behavior/human\_behavior.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/polygon.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/rectangle.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/goals.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrians.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/actions/action.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/behavior\_context.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/definitions/sim\_pack.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/events/event.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/locations/location.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/selectors/selector.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}vipra/vipra\_behaviors/targets/target.hpp"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }VIPRA::Behaviors\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}}\ \{}
+\DoxyCodeLine{00023\ \ \ DEFAULT\_CONSTRUCTIBLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}})}
+\DoxyCodeLine{00024\ \ \ COPYABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}})}
+\DoxyCodeLine{00025\ \ \ MOVEABLE(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior}{HumanBehavior}}(std::string\ behaviorName)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ :\ \_name(std::move(behaviorName)),\ \_context()}
+\DoxyCodeLine{00030\ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1HumanBehavior_a85c09951c230a1a56a53efc518d381c1}{initialize}}(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules::Pedestrians}}\ \textcolor{keyword}{const}\&\ pedset,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules::Map}}\ \textcolor{keyword}{const}\&\ map,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules::Goals}}\&\ goals);}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{void}\ timestep(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules::Pedestrians}}\&\ pedset,\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules::Map}}\&\ map,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules::Goals}}\&\ goals,\ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::delta\_t\ deltaT);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ set\_all\_ped\_types(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype}{Ptype}}\ types)}
+\DoxyCodeLine{00040\ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \_selector.set\_all\_types(types);}
+\DoxyCodeLine{00042\ \ \ \ \ \_actions.resize(types.\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Ptype_adb9a2ccc37a5a0f9aa2d1f83b3337076}{type\_count}}()\ +\ 1);}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ add\_sub\_selector(\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ subSelector)}
+\DoxyCodeLine{00045\ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \_selector.add\_sub\_selector(subSelector);}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{void}\ add\_action(typeUID\ type,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ action)}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \_actions[type].emplace\_back(action);}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{auto}\ add\_event(\mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Event}{Event}}\ \textcolor{keyword}{const}\&\ evnt)\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00053\ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \_context.events.push\_back(evnt);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ \_context.events.size()\ -\/\ 1;}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{auto}\ add\_location(\mbox{\hyperlink{classVIPRA_1_1Geometry_1_1Rectangle}{Location}}\ \textcolor{keyword}{const}\&\ loc)\ -\/>\ VIPRA::idx}
+\DoxyCodeLine{00058\ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \_context.locations.emplace\_back(loc);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ \_context.locations.size()\ -\/\ 1;}
+\DoxyCodeLine{00061\ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{void}\ add\_objectives(std::string\ \textcolor{keyword}{const}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Geometry::Polygon>\ \textcolor{keyword}{const}\&\ locations)}
+\DoxyCodeLine{00065\ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<Geometry::Rectangle>\ locs(locations.size());}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ std::transform(locations.begin(),\ locations.end(),\ locs.begin(),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ poly)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ Geometry::Rectangle\{poly.bounding\_box()\};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \_context.objectives[name]\ =\ std::move(locs);}
+\DoxyCodeLine{00074\ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_name()\ const\ noexcept\ -\/>\ std::\textcolor{keywordtype}{string}\ const\&}
+\DoxyCodeLine{00077\ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \_name;}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ event\_count()\ const\ noexcept\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00081\ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ \_context.events.size();}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ location\_count()\ const\ noexcept\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00085\ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ \_context.locations.size();}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ selector\_count()\ noexcept\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00089\ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \_selector.selector\_count();}
+\DoxyCodeLine{00091\ \ \ \}}
+\DoxyCodeLine{00092\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ action\_count()\ const\ noexcept\ -\/>\ VIPRA::size}
+\DoxyCodeLine{00093\ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ std::accumulate(}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \_actions.begin(),\ \_actions.end(),\ 0,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ [](VIPRA::size\ sum,\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ group)\ \{\ return\ sum\ +\ group.size();\ \});}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ set\_seed(VIPRA::seed\ seed)\ \{\ \_seedNum\ =\ seed;\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00102\ \ \ VIPRA::seed\ \_seedNum\{\};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ std::string\ \ \ \ \ \_name;}
+\DoxyCodeLine{00105\ \ \ BehaviorContext\ \_context;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ Selector\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_selector;}
+\DoxyCodeLine{00108\ \ \ std::vector<std::vector<Action>>\ \_actions;}
+\DoxyCodeLine{00109\ \ \ std::vector<bool>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_conditionMet;}
+\DoxyCodeLine{00110\ \ \ std::vector<Target>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \_targets;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ evaluate\_events(Modules::Pedestrians\&\ pedset,\ Modules::Map\&\ map,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Modules::Goals\&\ goals,\ VIPRA::delta\_t\ deltaT);}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{void}\ apply\_actions(Modules::Pedestrians\&\ pedset,\ Modules::Map\&\ map,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Modules::Goals\&\ goals,\ \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA::State}}\&\ state,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::delta\_t\ deltaT);}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Behaviors}}
+
+\end{DoxyCode}

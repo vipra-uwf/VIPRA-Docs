@@ -1,0 +1,149 @@
+\chapter{behavior\+\_\+tutorial}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial}{}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial}\index{behavior\_tutorial@{behavior\_tutorial}}
+\texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2docs}{Main Page}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2usage}{How To Use}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2base__modules}{Provided Modules}{0} \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors}{VIPRA Behaviors}{0} \texorpdfstring{$\vert$}{|} Module Parameters \texorpdfstring{$\vert$}{|} \doxysectlink{md_VIPRA_2docs_2pages_2developers_2overview}{Developing Modules}{0} \texorpdfstring{$\vert$}{|}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md592}{}\doxysection{\texorpdfstring{VIPRA Behavior Tutorial}{VIPRA Behavior Tutorial}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md592}
+§ markers point to the \doxysectlink{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behaviors__syntax}{Behavior Syntax Reference}{0}\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md593}{}\doxysection{\texorpdfstring{Ex. Creating An Example Behavior}{Ex. Creating An Example Behavior}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md593}
+Here we will make a couple of example {\ttfamily Behaviors}.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md594}{}\doxysubsection{\texorpdfstring{Ex.\+1. The Simplest Behavior}{Ex.\+1. The Simplest Behavior}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md594}
+This example is a simple {\ttfamily Behavior} that causes every pedestrian to stand still for the duration of the simulation.
+
+
+
+{\bfseries{Code}}\begin{adjustwidth}{1em}{0em}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:\ \ \ \ \ \ \ \ \ \ \ //\ Types\ Declarations\ (§T.)\ say\ what\ types\ of\ pedestrians\ there\ are}
+\DoxyCodeLine{\ \ person}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ \ \ \ \ \ //\ Selectors\ (§S.)\ set\ how\ pedestrians\ are\ chosen\ to\ have\ the\ type}
+\DoxyCodeLine{\ \ Type:\ person}
+\DoxyCodeLine{\ \ Select:\ Everyone\ \ //\ in\ this\ case\ everyone\ is\ selected}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ (person):\ //\ Actions\ (§A.)\ decide\ what\ pedestrians\ of\ the\ given\ type\ do}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ \{0\}\ \ //\ in\ this\ case\ they\ are\ always\ stopped}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ \end{adjustwidth}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md596}{}\doxysubsection{\texorpdfstring{Ex.\+2. An Announcment Event}{Ex.\+2. An Announcment Event}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md596}
+This {\ttfamily Behavior} shows {\ttfamily Events}, with an announcement. In this example, we will make a simple {\ttfamily Behavior} and add to it.
+
+
+
+{\bfseries{Code}}\begin{adjustwidth}{1em}{0em}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Types\ Declaration(§T.)}
+\DoxyCodeLine{\ \ Listener}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Selector\ (§S.)}
+\DoxyCodeLine{\ \ Type:\ Listener}
+\DoxyCodeLine{\ \ Select:\ Everyone}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Event:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Event\ (§E.)}
+\DoxyCodeLine{\ \ Name:\ Announcement}
+\DoxyCodeLine{\ \ Start:\ 10\ seconds\ after\ !Start\ \ \ \ \ \ //\ Start\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ End:\ 10\ seconds\ after\ !Announcement\ //\ End\ Condition\ (§C.)}
+\DoxyCodeLine{}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ (Listener):\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Action\ (§A.)}
+\DoxyCodeLine{\ \ Condition:\ !Announcement\ occurring\ \ //\ Condition\ (§C.)\ sets\ what\ causes\ the\ pedestrian\ to\ do\ this\ action}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ \{0\}}
+\DoxyCodeLine{.\ }
+
+\end{DoxyCode}
+ \end{adjustwidth}
+
+
+In this example, an announcement will start after 10 seconds and last for 10 seconds.
+
+While the announcement is occurring, every pedestrian will be stopped to listen.\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md597}{}\doxysubsubsection{\texorpdfstring{Ex.\+2.\+1. A bit more realistic}{Ex.\+2.\+1. A bit more realistic}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md597}
+Everyone stopping to listen isn\textquotesingle{}t very realistic, so we can change it slightly.
+
+
+
+{\bfseries{Code}}\begin{adjustwidth}{1em}{0em}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Types\ Declaration(§T.)}
+\DoxyCodeLine{\ \ Listener}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Selector\ (§S.)}
+\DoxyCodeLine{\ \ Type:\ Listener}
+\DoxyCodeLine{\ \ Select:\ 10\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Event:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Event\ (§E.)}
+\DoxyCodeLine{\ \ Name:\ Announcement}
+\DoxyCodeLine{\ \ Start:\ 10\ seconds\ after\ !Start\ \ \ \ \ \ //\ Start\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ End:\ 10\ seconds\ after\ !Announcement\ //\ End\ Condition\ (§C.)}
+\DoxyCodeLine{}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ (Listener):\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Action\ (§A.)}
+\DoxyCodeLine{\ \ Condition:\ !Announcement\ occurring\ \ //\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ \{0\}}
+\DoxyCodeLine{.\ }
+
+\end{DoxyCode}
+ \end{adjustwidth}
+In this example, only 10\% of pedestrians will actually stop to listen to the announcement. (probably still an over-\/estimation)\hypertarget{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md598}{}\doxysubsubsection{\texorpdfstring{Ex.\+2.\+2. Adding more}{Ex.\+2.\+2. Adding more}}\label{md_VIPRA_2docs_2pages_2researchers_2behaviors_2behavior__tutorial_autotoc_md598}
+A black-\/and-\/white, either pedestrians stop to listen or don\textquotesingle{}t, may not be as realistic as we would like.
+
+
+
+{\bfseries{Code}}\begin{adjustwidth}{1em}{0em}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Types:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Types\ Declaration(§T.)}
+\DoxyCodeLine{\ \ Listener}
+\DoxyCodeLine{\ \ Partial\_Listener}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Selector\ (§S.)}
+\DoxyCodeLine{\ \ Type:\ Listener}
+\DoxyCodeLine{\ \ Select:\ 10\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Selector:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Selector\ (§S.)}
+\DoxyCodeLine{\ \ Type:\ Parital\_Listener}
+\DoxyCodeLine{\ \ Select:\ 25\%}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Event:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Event\ (§E.)}
+\DoxyCodeLine{\ \ Name:\ Announcement}
+\DoxyCodeLine{\ \ Start:\ 10\ seconds\ after\ !Start\ \ \ \ \ \ //\ Start\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ End:\ 10\ seconds\ after\ !Announcement\ //\ End\ Condition\ (§C.)}
+\DoxyCodeLine{}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ (Listener):\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Action\ (§A.)}
+\DoxyCodeLine{\ \ Condition:\ !Announcement\ occurring\ \ //\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ Response:\ set\ velocity\ \{0\}}
+\DoxyCodeLine{.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Action\ (Parital\_Listener):\ \ \ \ \ \ \ \ \ \ \ \ //\ Action\ (§A.)}
+\DoxyCodeLine{\ \ Condition:\ !Announcement\ occurring\ \ //\ Condition\ (§C.)}
+\DoxyCodeLine{\ \ Response:\ scale\ velocity\ 0.75}
+\DoxyCodeLine{.}
+
+\end{DoxyCode}
+ \end{adjustwidth}
+
+
+In this 10\% of pedestrians stop to listen, another 25\% slow down to listen, and the rest behave normally. 

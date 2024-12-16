@@ -1,0 +1,53 @@
+\doxysection{VIPRA\+::Behaviors\+::Condition Class Reference}
+\hypertarget{classVIPRA_1_1Behaviors_1_1Condition}{}\label{classVIPRA_1_1Behaviors_1_1Condition}\index{VIPRA::Behaviors::Condition@{VIPRA::Behaviors::Condition}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Condition_a31d1be61d7fa10c2a38c70e6cf5fc8b1}\label{classVIPRA_1_1Behaviors_1_1Condition_a31d1be61d7fa10c2a38c70e6cf5fc8b1} 
+void {\bfseries initialize} (\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}} pack)
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1Condition_a680ed3afa4f9590b2d2d0c05f50e4d71}{evaluate}} (\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}} pack, VIPRA\+::idx\+Vec const \&peds, std\+::vector$<$ bool $>$ \&met, std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}} $>$ const \&targets, std\+::optional$<$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection}{Timed\+Latch\+Collection}} $>$ \&latches)
+\begin{DoxyCompactList}\small\item\em Evaluates whether a condition is met for a group of pedestrians, writes to \textquotesingle{}met\textquotesingle{} vector. \end{DoxyCompactList}\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Condition_a45c1ae88bf977abd6979aa368ccb4890}\label{classVIPRA_1_1Behaviors_1_1Condition_a45c1ae88bf977abd6979aa368ccb4890} 
+void {\bfseries add\+\_\+operation} (Bool\+Op oper)
+\item 
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Condition_a548ff6b53e3be60e059e11e782ef4eee}\label{classVIPRA_1_1Behaviors_1_1Condition_a548ff6b53e3be60e059e11e782ef4eee} 
+void {\bfseries add\+\_\+subcondition} (Sub\+Condition \&\&condition)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Behaviors_1_1Condition_a680ed3afa4f9590b2d2d0c05f50e4d71}\index{VIPRA::Behaviors::Condition@{VIPRA::Behaviors::Condition}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!VIPRA::Behaviors::Condition@{VIPRA::Behaviors::Condition}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Behaviors_1_1Condition_a680ed3afa4f9590b2d2d0c05f50e4d71} 
+void VIPRA\+::\+Behaviors\+::\+Condition\+::evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Simpack}{Simpack}}}]{pack}{, }\item[{VIPRA\+::idx\+Vec const \&}]{peds}{, }\item[{std\+::vector$<$ bool $>$ \&}]{met}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{structVIPRA_1_1Behaviors_1_1Target}{Target}} $>$ const \&}]{targets}{, }\item[{std\+::optional$<$ \mbox{\hyperlink{classVIPRA_1_1Behaviors_1_1TimedLatchCollection}{Timed\+Latch\+Collection}} $>$ \&}]{latches}{}\end{DoxyParamCaption})}
+
+
+
+Evaluates whether a condition is met for a group of pedestrians, writes to \textquotesingle{}met\textquotesingle{} vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Simpack} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em pack} & \\
+\hline
+{\em peds} & \\
+\hline
+{\em met} & -\/ output vector \\
+\hline
+{\em targets} & \\
+\hline
+{\em latches} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/vipra\+\_\+behaviors/conditions/condition.\+hpp\item 
+VIPRA/src/vipra\+\_\+behaviors/conditions/condition.\+cpp\end{DoxyCompactItemize}

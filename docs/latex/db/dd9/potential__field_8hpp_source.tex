@@ -1,0 +1,132 @@
+\doxysection{potential\+\_\+field.\+hpp}
+\hypertarget{potential__field_8hpp_source}{}\label{potential__field_8hpp_source}\index{VIPRA/modules/goals/potential\_field/potential\_field.hpp@{VIPRA/modules/goals/potential\_field/potential\_field.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vipra/geometry/f3d.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/goals.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/module.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/goals.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/module.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}density\_grid.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}grid.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }VIPRA::Goals\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Goals_1_1PotentialField}{PotentialField}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA::Modules::Module}}<PotentialField>,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA::Modules::Goals}}\ \{}
+\DoxyCodeLine{00020\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}PotentialField"{}})}
+\DoxyCodeLine{00022\ \ \ VIPRA\_MODULE\_TYPE(Goals)}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}endGoalType"{}},\ \_endGoalType),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}cellSize"{}},\ \_cellSize),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}densityUpdateFrequency"{}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_densityUpdateFrequency),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}densityCellSize"{}},\ \_densityCellSize),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}densityWeight"{}},\ \_densityWeight))}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(misc-\/unused-\/parameters)}}
+\DoxyCodeLine{00032\ \ \ VIPRA\_GOALS\_INIT\_STEP}
+\DoxyCodeLine{00033\ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \_field.intialize(map,\ \_cellSize);}
+\DoxyCodeLine{00035\ \ \ \ \ \_densityMap.intialize(map,\ \_densityCellSize);}
+\DoxyCodeLine{00036\ \ \ \ \ fill\_grid(map);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ pedIdx\ =\ 0;\ pedIdx\ <\ pedset.num\_pedestrians();\ ++pedIdx\ )\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ \ pos\ =\ pedset.ped\_coords(pedIdx);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ grid\ =\ \_field.get\_grid(pos);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ grid.end\ ==\ \_emptyf3d\_\ )}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ VIPRA\_MODULE\_ERROR(}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ path\ found\ for\ pedestrian\ \{\},\ Start:\ (\{\},\ \{\}),\ End:\ (\{\},\ \{\})"{}},}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ pedIdx,\ pos.x,\ pos.y,\ end\_goal(pedIdx).x,\ end\_goal(pedIdx).y);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ set\_current\_goal(pedIdx,\ pos\ +\ grid.direction);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ set\_end\_goal(pedIdx,\ grid.end);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(misc-\/unused-\/parameters)}}
+\DoxyCodeLine{00053\ \ \ VIPRA\_GOALS\_UPDATE\_STEP}
+\DoxyCodeLine{00054\ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \_densityCheckCounter++;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Probably\ a\ better\ way\ to\ do\ this\ that\ doesn't\ reuse\ code,\ but\ this\ avoids\ repeating\ the\ same\ check\ every\ single\ loop.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Who\ knows,\ maybe\ compiler\ would\ have\ already\ optimized\ this.}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \_densityCheckCounter\ >=\ \_densityUpdateFrequency\ )\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ fill\_grid(map);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ pedIdx\ =\ 0;\ pedIdx\ <\ pedset.num\_pedestrians();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ ++pedIdx\ )\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos\ =\ pedset.ped\_coords(pedIdx);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ direction\ =\ \_field.get\_grid(pos).direction;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ set\_current\_goal(pedIdx,\ pos\ +\ direction);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ update\_ped\_density(pos);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \_densityMap.clear\_grid();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \_densityCheckCounter\ =\ 0;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ VIPRA::idx\ pedIdx\ =\ 0;\ pedIdx\ <\ pedset.num\_pedestrians();\ ++pedIdx\ )\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ pos\ =\ pedset.ped\_coords(pedIdx);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ direction\ =\ \_field.get\_grid(pos).direction;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ set\_current\_goal(pedIdx,\ pos\ +\ direction);}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(misc-\/unused-\/parameters)}}
+\DoxyCodeLine{00086\ \ \ VIPRA\_GOALS\_NEXT\_GOAL\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{//\ NOLINTNEXTLINE(misc-\/unused-\/parameters)}}
+\DoxyCodeLine{00089\ \ \ VIPRA\_GOALS\_CHANGE\_GOAL}
+\DoxyCodeLine{00090\ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Potential\ Field\ Goals\ is\ unable\ to\ change\ goals"{}});}
+\DoxyCodeLine{00092\ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00095\ \ \ \textcolor{comment}{//\ TODO(rolland):\ update\ SpatialMap\ to\ handle\ this\ use\ case}}
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1Grid}{Grid}}\ \ \ \ \ \ \ \ \_field;}
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{classVIPRA_1_1Goals_1_1DensityGrid}{DensityGrid}}\ \_densityMap;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{int}\ \_densityCheckCounter;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ VIPRA::f\_pnt\ \_cellSize\{\};}
+\DoxyCodeLine{00102\ \ \ VIPRA::f\_pnt\ \_densityCellSize\{\};}
+\DoxyCodeLine{00103\ \ \ VIPRA::f\_pnt\ \_densityWeight\{\};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ std::string\ \_endGoalType;}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \_densityUpdateFrequency;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{void}\ fill\_grid(\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA::Modules::Map}}\ \textcolor{keyword}{const}\&\ map)}
+\DoxyCodeLine{00109\ \ \ \{\ \ \textcolor{comment}{//\ find\ the\ end\ goals,\ provided\ as\ a\ module\ parameter}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ objectives\ =\ map.get\_objectives(\_endGoalType);}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ objectives.empty()\ )\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}No\ objectives\ of\ type\ "{}}\ +\ \_endGoalType\ +}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ found\ in\ map"{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\&\ objective\ :\ objectives\ )\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \_field.flood\_fill(objective.center(),\ map,\ \_densityMap);}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ update\_ped\_density(\mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ \textcolor{keyword}{const}\&\ ped)}
+\DoxyCodeLine{00122\ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \_densityMap.\mbox{\hyperlink{classVIPRA_1_1Goals_1_1DensityGrid_a5bcb246c5e5e8096bf719c49dfa55f32}{incr\_gridpoint}}(ped);}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Goals}}
+
+\end{DoxyCode}

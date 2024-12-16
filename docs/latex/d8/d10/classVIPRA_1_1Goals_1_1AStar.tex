@@ -1,0 +1,117 @@
+\doxysection{VIPRA\+::Goals\+::AStar Class Reference}
+\hypertarget{classVIPRA_1_1Goals_1_1AStar}{}\label{classVIPRA_1_1Goals_1_1AStar}\index{VIPRA::Goals::AStar@{VIPRA::Goals::AStar}}
+
+
+Goals module that uses the A\texorpdfstring{$\ast$}{*} algorithm to find the path to the goal.  
+
+
+
+
+{\ttfamily \#include $<$astar.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Goals\+::AStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{d4/db9/classVIPRA_1_1Goals_1_1AStar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Goals\+::AStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{d6/d4b/classVIPRA_1_1Goals_1_1AStar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1AStar_a16ced07ab53338c695d29731e2f3db7e}\label{classVIPRA_1_1Goals_1_1AStar_a16ced07ab53338c695d29731e2f3db7e} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}end\+Goal\+Type"{}, \+\_\+end\+Goal\+Type), VIPRA\+\_\+\+PARAM("{}goal\+Range"{}, \+\_\+goal\+Range), VIPRA\+\_\+\+PARAM("{}grid\+Size"{}, \+\_\+grid\+Size), VIPRA\+\_\+\+PARAM("{}closest\+Obstacle"{}, \+\_\+closest\+Obstacle)) VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ AStar $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries initialize} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{VIPRA\+::\+Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{VIPRA\+::\+Modules\+::\+Map}} const \&map, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+void {\bfseries update} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} const \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} const \&map, VIPRA\+::delta\+\_\+t deltaT)
+\item 
+void {\bfseries change\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} curr\+Pos, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} goal\+Pos, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goals} () const -\/$>$ const VIPRA\+::f3d\+Vec \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries current\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries end\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} const \&
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx) const -\/$>$ bool
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries is\+\_\+sim\+\_\+goal\+\_\+met} () const -\/$>$ bool
+\item 
+VIPRA\+\_\+\+INLINE auto {\bfseries time\+\_\+since\+\_\+last\+\_\+goal} (VIPRA\+::idx ped\+Idx) const -\/$>$ VIPRA\+::f\+\_\+pnt
+\item 
+{\bfseries Goals} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&)=default
+\item 
+{\bfseries Goals} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept=default
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Goals}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1AStar_a4ae6c76cb3ecb49062f3abe213b07aa2}\label{classVIPRA_1_1Goals_1_1AStar_a4ae6c76cb3ecb49062f3abe213b07aa2} 
+{\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1AStar_a4764157ed68498661649425d047e01bc}\label{classVIPRA_1_1Goals_1_1AStar_a4764157ed68498661649425d047e01bc} 
+{\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL}
+\item 
+\Hypertarget{classVIPRA_1_1Goals_1_1AStar_aa3ad9a29d66ae68230d4285041f171d0}\label{classVIPRA_1_1Goals_1_1AStar_aa3ad9a29d66ae68230d4285041f171d0} 
+{\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+INIT\+\_\+\+STEP} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+UPDATE\+\_\+\+STEP} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+NEXT\+\_\+\+GOAL} = 0
+\item 
+virtual {\bfseries VIPRA\+\_\+\+GOALS\+\_\+\+CHANGE\+\_\+\+GOAL} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{VIPRA\+::\+Modules\+::\+Goals}}}
+\begin{DoxyCompactItemize}
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+goal\+\_\+met} (VIPRA\+::idx ped\+Idx, bool met)
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+end\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\item 
+VIPRA\+\_\+\+INLINE void {\bfseries set\+\_\+current\+\_\+goal} (VIPRA\+::idx ped\+Idx, \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA\+::f3d}} pos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Goals module that uses the A\texorpdfstring{$\ast$}{*} algorithm to find the path to the goal. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/goals/astar/astar.\+hpp\item 
+VIPRA/modules/goals/astar/astar.\+cpp\end{DoxyCompactItemize}

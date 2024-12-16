@@ -1,0 +1,280 @@
+\doxysection{f3d.\+hpp}
+\hypertarget{f3d_8hpp_source}{}\label{f3d_8hpp_source}\index{VIPRA/include/vipra/geometry/f3d.hpp@{VIPRA/include/vipra/geometry/f3d.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/concepts/numeric.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/performance.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/random/distributions.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ F3D\_FUNC\ [[nodiscard]]\ \_\_attribute\_\_((always\_inline))\ constexpr}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ F3D\_FUNC\_W\_DISCARD\ \_\_attribute\_\_((always\_inline))\ constexpr}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ TODO(rolland):\ do\ we\ need\ a\ 3d\ point\ class?}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ we\ can\ use\ a\ 2d\ point\ and\ in\ the\ case\ of\ multiple\ stories\ we\ can\ use\ a\ 3d\ point?}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ maybe\ an\ f2d\ with\ a\ small\ integer\ for\ the\ story?}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ NOLINTNEXTLINE\ (rolland)\ Keeping\ f3d\ from\ before\ format\ changes\ :\ \ ignore(readability-\/identifier-\/naming)}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \{}
+\DoxyCodeLine{00025\ \ \ VIPRA::f\_pnt\ x,\ y,\ z;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{\string~f3d}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ \ \ F3D\_FUNC\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}()\ noexcept\ :\ x(0),\ y(0),\ z(0)\ \{\}}
+\DoxyCodeLine{00029\ \ \ F3D\_FUNC\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}(VIPRA::f\_pnt\ valX)\ noexcept\ :\ x(valX),\ y(0),\ z(0)\ \{\}}
+\DoxyCodeLine{00030\ \ \ F3D\_FUNC\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}(VIPRA::f\_pnt\ valX,\ VIPRA::f\_pnt\ valY)\ noexcept}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ :\ x(valX),\ y(valY),\ z(0)}
+\DoxyCodeLine{00032\ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ \ \ F3D\_FUNC\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}(VIPRA::f\_pnt\ valX,\ VIPRA::f\_pnt\ valY,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA::f\_pnt\ valZ)\ noexcept}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ :\ x(valX),\ y(valY),\ z(valZ)}
+\DoxyCodeLine{00037\ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ \ \ F3D\_FUNC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ \ \ F3D\_FUNC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\ =}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00043\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ F3D\_FUNC\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ random(VIPRA::f\_pnt\ \ \ \ \ \ \ \ \ \ \ magnitude,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&\ engine)\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1uniform__distribution}{Random::uniform\_distribution<VIPRA::f\_pnt>}}\ dist\{-\/1.0,\ 1.0\};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\ retVal\{dist(engine),\ dist(engine)\};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ retVal.\mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ *\ magnitude;}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00054\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator[](data\_t\ index)\ -\/>\ VIPRA::f\_pnt\&}
+\DoxyCodeLine{00055\ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ index\ )\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ z;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'x'}:}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'z'}:}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ z;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempt\ to\ access\ invalid\ index\ on\ VIPRA::f3d"{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00076\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator[](data\_t\ index)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00077\ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ index\ )\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ z;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'x'}:}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'z'}:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ z;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempt\ to\ access\ invalid\ index\ on\ VIPRA::f3d"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00098\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator*(data\_t\&\&\ multiplier)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00099\ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x,\ y,\ z\}\ *=\ std::forward<data\_t>(multiplier);}
+\DoxyCodeLine{00101\ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00103\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator*=(data\_t\&\&\ multiplier)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00104\ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ x\ *=\ multiplier;}
+\DoxyCodeLine{00106\ \ \ \ \ y\ *=\ multiplier;}
+\DoxyCodeLine{00107\ \ \ \ \ z\ *=\ multiplier;}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00109\ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00112\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator/(data\_t\&\&\ divisor)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00113\ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ assert(divisor\ !=\ 0);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x,\ y,\ z\}\ /=\ std::forward<data\_t>(divisor);}
+\DoxyCodeLine{00117\ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00119\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator/=(data\_t\&\&\ divisor)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00120\ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ assert(divisor\ !=\ 0);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ x\ /=\ divisor;}
+\DoxyCodeLine{00124\ \ \ \ \ y\ /=\ divisor;}
+\DoxyCodeLine{00125\ \ \ \ \ z\ /=\ divisor;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00127\ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator-\/(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00130\ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x\ -\/\ other.x,\ y\ -\/\ other.y,\ z\ -\/\ other.z\};}
+\DoxyCodeLine{00132\ \ \ \}}
+\DoxyCodeLine{00133\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator-\/(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00134\ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x\ -\/\ other.x,\ y\ -\/\ other.y,\ z\ -\/\ other.z\};}
+\DoxyCodeLine{00136\ \ \ \}}
+\DoxyCodeLine{00137\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator+(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00138\ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x\ +\ other.x,\ y\ +\ other.y,\ z\ +\ other.z\};}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator+(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00142\ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x\ +\ other.x,\ y\ +\ other.y,\ z\ +\ other.z\};}
+\DoxyCodeLine{00144\ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator+=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00147\ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ x\ +=\ other.x;}
+\DoxyCodeLine{00149\ \ \ \ \ y\ +=\ other.y;}
+\DoxyCodeLine{00150\ \ \ \ \ z\ +=\ other.z;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00152\ \ \ \}}
+\DoxyCodeLine{00153\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator+=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00154\ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ x\ +=\ other.x;}
+\DoxyCodeLine{00156\ \ \ \ \ y\ +=\ other.y;}
+\DoxyCodeLine{00157\ \ \ \ \ z\ +=\ other.z;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator-\/=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00162\ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ x\ -\/=\ other.x;}
+\DoxyCodeLine{00164\ \ \ \ \ y\ -\/=\ other.y;}
+\DoxyCodeLine{00165\ \ \ \ \ z\ -\/=\ other.z;}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00167\ \ \ \}}
+\DoxyCodeLine{00168\ \ \ F3D\_FUNC\_W\_DISCARD\ \textcolor{keyword}{auto}\ operator-\/=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&}
+\DoxyCodeLine{00169\ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ x\ -\/=\ other.x;}
+\DoxyCodeLine{00171\ \ \ \ \ y\ -\/=\ other.y;}
+\DoxyCodeLine{00172\ \ \ \ \ z\ -\/=\ other.z;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ distance\_to\_sqrd(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00178\ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaX\ =\ other.x\ -\/\ x;}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaY\ =\ other.y\ -\/\ y;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaZ\ =\ other.z\ -\/\ z;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ (deltaX\ *\ deltaX)\ +\ (deltaY\ *\ deltaY)\ +\ (deltaZ\ *\ deltaZ);}
+\DoxyCodeLine{00184\ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ distance\_to(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00187\ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaX\ =\ other.x\ -\/\ x;}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaY\ =\ other.y\ -\/\ y;}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaZ\ =\ other.z\ -\/\ z;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ std::sqrt((deltaX\ *\ deltaX)\ +\ (deltaY\ *\ deltaY)\ +\ (deltaZ\ *\ deltaZ));}
+\DoxyCodeLine{00193\ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ distance\_to(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{const}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00196\ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaX\ =\ other.x\ -\/\ x;}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaY\ =\ other.y\ -\/\ y;}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{const}\ VIPRA::f\_pnt\ deltaZ\ =\ other.z\ -\/\ z;}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ std::sqrt((deltaX\ *\ deltaX)\ +\ (deltaY\ *\ deltaY)\ +\ (deltaZ\ *\ deltaZ));}
+\DoxyCodeLine{00202\ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator==(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00205\ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ ==\ other.x\ \&\&\ y\ ==\ other.y\ \&\&\ z\ ==\ other.z);}
+\DoxyCodeLine{00207\ \ \ \}}
+\DoxyCodeLine{00208\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator==(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00209\ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ ==\ other.x\ \&\&\ y\ ==\ other.y\ \&\&\ z\ ==\ other.z);}
+\DoxyCodeLine{00211\ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator!=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00214\ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ other.x\ ||\ y\ !=\ other.y\ ||\ z\ !=\ other.z);}
+\DoxyCodeLine{00216\ \ \ \}}
+\DoxyCodeLine{00217\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator!=(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\&\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00218\ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ other.x\ ||\ y\ !=\ other.y\ ||\ z\ !=\ other.z);}
+\DoxyCodeLine{00220\ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator-\/()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{-\/x,\ -\/y,\ -\/z\};\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00229\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_a6e57dfdf33f28aa298c1fadd7adaeb30}{unit}}()\ const\ noexcept\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00230\ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ x\ ==\ 0\ \&\&\ y\ ==\ 0\ \&\&\ z\ ==\ 0\ )\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{0,\ 0,\ 0\};}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{x,\ y,\ z\}\ /\ \mbox{\hyperlink{structVIPRA_1_1f3d_a2d6198fd743da203ebd3c9ff6804252d}{mag}}();}
+\DoxyCodeLine{00235\ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00242\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_a80310828f9e79e17c8828c4cf0ff65c2}{mag\_sqrd}}()\ const\ noexcept\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00243\ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ *\ x)\ +\ (y\ *\ y)\ +\ (z\ *\ z);}
+\DoxyCodeLine{00245\ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00252\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_a2d6198fd743da203ebd3c9ff6804252d}{mag}}()\ const\ noexcept\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00253\ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ std::sqrt((x\ *\ x)\ +\ (y\ *\ y)\ +\ (z\ *\ z));}
+\DoxyCodeLine{00255\ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00263\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_ae121f2e2029a4ff365f4a4b0e111fc49}{dot}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ VIPRA::f\_pnt}
+\DoxyCodeLine{00264\ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ *\ other.x)\ +\ (y\ *\ other.y)\ +\ (z\ *\ other.z);}
+\DoxyCodeLine{00266\ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00274\ \ \ F3D\_FUNC\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_a20702c229447c098985ab35b572b8cfb}{cross}}(\mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}}
+\DoxyCodeLine{00275\ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structVIPRA_1_1f3d}{f3d}}\{(y\ *\ other.z)\ -\/\ (z\ *\ other.y),\ (z\ *\ other.x)\ -\/\ (x\ *\ other.z),}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (x\ *\ other.y)\ -\/\ (y\ *\ other.x)\};}
+\DoxyCodeLine{00278\ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00285\ \ \ [[nodiscard]]\ VIPRA\_INLINE\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structVIPRA_1_1f3d_a0ebc342e294c6ab09877fc96d8593215}{to\_string}}()\ const\ -\/>\ std::\textcolor{keywordtype}{string}}
+\DoxyCodeLine{00286\ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string\{\textcolor{stringliteral}{"{}("{}}\}\ +\ std::to\_string(x)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(y)\ +}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(z)\ +\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00289\ \ \ \}}
+\DoxyCodeLine{00290\ \};}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}\ <Concepts::Numeric\ data\_t>}
+\DoxyCodeLine{00293\ F3D\_FUNC\ \textcolor{keyword}{auto}\ operator*(data\_t\&\&\ multiplier,\ f3d\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{noexcept}\ -\/>\ f3d}
+\DoxyCodeLine{00294\ \{}
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordflow}{return}\ f3d\{other.x\ *\ multiplier,\ other.y\ *\ multiplier,\ other.z\ *\ multiplier\};}
+\DoxyCodeLine{00296\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{keyword}{using\ }f3dVec\ =\ std::vector<f3d>;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{keyword}{constexpr}\ f3d\ \_emptyf3d\_\ =\ \ \textcolor{comment}{//\ NOLINT}}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{structVIPRA_1_1f3d}{VIPRA::f3d}}\{std::numeric\_limits<VIPRA::f\_pnt>::max(),}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<VIPRA::f\_pnt>::max(),}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<VIPRA::f\_pnt>::max()\};}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ f3dVec\ emptyf3d\_vec;\ \ \textcolor{comment}{//\ NOLINT}}
+\DoxyCodeLine{00306\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

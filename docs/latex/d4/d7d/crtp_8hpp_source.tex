@@ -1,0 +1,21 @@
+\doxysection{crtp.\+hpp}
+\hypertarget{crtp_8hpp_source}{}\label{crtp_8hpp_source}\index{VIPRA/include/vipra/util/crtp.hpp@{VIPRA/include/vipra/util/crtp.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }VIPRA::Util\ \{}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \textcolor{keyword}{class}\_t>}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{CRTP}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}\ <\textcolor{keyword}{template}\ <\textcolor{keyword}{typename}>\ \textcolor{keyword}{class\ }class\_t,\ \textcolor{keyword}{class\ }derived\_t>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Util_1_1CRTP}{CRTP}}<class\_t<derived\_t>>\ \{}
+\DoxyCodeLine{00010\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ self()\ -\/>\ derived\_t\&\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}derived\_t\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ self()\ \textcolor{keyword}{const}\ -\/>\ derived\_t\ \textcolor{keyword}{const}\&\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}derived\_t\ const\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00013\ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA::Util}}
+
+\end{DoxyCode}

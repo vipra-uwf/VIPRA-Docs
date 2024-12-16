@@ -1,0 +1,87 @@
+\doxysection{sim\+\_\+type.\+hpp}
+\hypertarget{sim__type_8hpp_source}{}\label{sim__type_8hpp_source}\index{VIPRA/include/vipra/simulation/sim\_type.hpp@{VIPRA/include/vipra/simulation/sim\_type.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vipra/macros/parameters.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}vipra/modules.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/map\_input.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/model.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrian\_input.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}vipra/modules/pedestrians.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}vipra/random/random.hpp"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}vipra/special\_modules/behavior\_model.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}vipra/special\_modules/output.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}vipra/special\_modules/parameters.hpp"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}vipra/types/float.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}vipra/types/seed.hpp"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}vipra/types/time.hpp"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ TODO(rolland):\ go\ through\ everything\ and\ handle\ errors\ more\ gracefully,\ currently\ we\ just\ throw}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }VIPRA\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVIPRA_1_1Simulation}{Simulation}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{Modules::Module}}<Simulation>\ \{}
+\DoxyCodeLine{00029\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ VIPRA\_MODULE\_NAME(\textcolor{stringliteral}{"{}main"{}});}
+\DoxyCodeLine{00031\ \ \ VIPRA\_MODULE\_TYPE(\mbox{\hyperlink{classVIPRA_1_1Simulation}{Simulation}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ VIPRA\_REGISTER\_PARAMS(VIPRA\_PARAM(\textcolor{stringliteral}{"{}max\_timestep"{}},\ \_maxTimestep),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}timestep\_size"{}},\ \_timestepSize),}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}output\_frequency"{}},\ \_outputFrequency),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}random\_seed"{}},\ \_seed),}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VIPRA\_PARAM(\textcolor{stringliteral}{"{}output\_params"{}},\ \_outputParams));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ run\_sim(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ params);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVIPRA_1_1Simulation_a6804a45fdcd5a9c73c021ad00523f59b}{operator()}}(std::string\ \textcolor{keyword}{const}\&\ pedPath,\ std::string\ \textcolor{keyword}{const}\&\ mapPath,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ paramsPath);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{void}\ set\_install\_dir(std::string\ \textcolor{keyword}{const}\&\ dir)\ \{\ \_installDir\ =\ dir;\ \}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ set\_module(Modules::Type\ type,\ std::string\ \textcolor{keyword}{const}\&\ name);}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{void}\ set\_modules(std::string\ \textcolor{keyword}{const}\&\ modulesPath);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_sim\_id(VIPRA::idx\ idx)\ \{\ \_currSimIdx\ =\ idx;\ \}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ add\_sim\_id(VIPRA::idx\ idx)\ \{\ \_currSimIdx\ +=\ idx;\ \}}
+\DoxyCodeLine{00049\ \ \ [[nodiscard]]\ \textcolor{keyword}{auto}\ get\_sim\_id()\ \textcolor{keyword}{const}\ -\/>\ VIPRA::idx\ \{\ \textcolor{keywordflow}{return}\ \_currSimIdx;\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{auto}\ get\_ped\_input()\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1PedestrianInput}{Modules::PedestrianInput}}\&\ \{\ \textcolor{keywordflow}{return}\ *\_pedInput;\ \}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{auto}\ get\_map\_input()\ -\/>\ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1MapInput}{Modules::MapInput}}\&\ \{\ \textcolor{keywordflow}{return}\ *\_mapInput;\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{classVIPRA_1_1CoordModules_1_1OutputCoordinator}{CoordModules::OutputCoordinator}}\ \ \ \ \ \ \ \ \ \ \ \_output;}
+\DoxyCodeLine{00056\ \ \ std::unique\_ptr<Modules::Model>\ \ \ \ \ \ \ \ \ \ \ \_model;}
+\DoxyCodeLine{00057\ \ \ std::unique\_ptr<Modules::Pedestrians>\ \ \ \ \ \_pedset;}
+\DoxyCodeLine{00058\ \ \ std::unique\_ptr<Modules::Goals>\ \ \ \ \ \ \ \ \ \ \ \_goals;}
+\DoxyCodeLine{00059\ \ \ std::unique\_ptr<Modules::Map>\ \ \ \ \ \ \ \ \ \ \ \ \ \_map;}
+\DoxyCodeLine{00060\ \ \ std::unique\_ptr<Modules::PedestrianInput>\ \_pedInput;}
+\DoxyCodeLine{00061\ \ \ std::unique\_ptr<Modules::MapInput>\ \ \ \ \ \ \ \ \_mapInput;}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{BehaviorModel}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_behaviorModel;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ std::map<Modules::Type,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ std::function<void(\textcolor{keywordtype}{void}*,\ \mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&,\ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\&)>>}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \_configs;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA::Random::Engine}}\ \_engine;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ VIPRA::idx\ \ \ \ \ \ \_currSimIdx\{\};}
+\DoxyCodeLine{00071\ \ \ VIPRA::timestep\ \_currTimestep\{\};}
+\DoxyCodeLine{00072\ \ \ VIPRA::f\_pnt\ \ \ \ \_timestepSize\{\};}
+\DoxyCodeLine{00073\ \ \ VIPRA::timestep\ \_maxTimestep\{\};}
+\DoxyCodeLine{00074\ \ \ VIPRA::seed\ \ \ \ \ \_seed\{\};}
+\DoxyCodeLine{00075\ \ \ VIPRA::timestep\ \_outputFrequency\{\};}
+\DoxyCodeLine{00076\ \ \ std::string\ \ \ \ \ \_installDir;}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \_outputParams\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{void}\ initialize(\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}}\&\ params);}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ \}\ \ \textcolor{comment}{//\ namespace\ VIPRA}}
+
+\end{DoxyCode}

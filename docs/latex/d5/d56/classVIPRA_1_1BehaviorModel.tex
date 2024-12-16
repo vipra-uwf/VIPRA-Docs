@@ -1,0 +1,73 @@
+\doxysection{VIPRA\+::Behavior\+Model Class Reference}
+\hypertarget{classVIPRA_1_1BehaviorModel}{}\label{classVIPRA_1_1BehaviorModel}\index{VIPRA::BehaviorModel@{VIPRA::BehaviorModel}}
+
+
+Behavior\+Model is a special module that is responsible for loading and managing all behaviors.  
+
+
+
+
+{\ttfamily \#include $<$behavior\+\_\+model.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Behavior\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{d9/d03/classVIPRA_1_1BehaviorModel__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Behavior\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{d8/df2/classVIPRA_1_1BehaviorModel__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_a2588f7d2d21a51400cbbd091c50ad69d}\label{classVIPRA_1_1BehaviorModel_a2588f7d2d21a51400cbbd091c50ad69d} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+NAME} ("{}main"{})
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_a4944dcad7893c7a5ec0fa25835bb08ab}\label{classVIPRA_1_1BehaviorModel_a4944dcad7893c7a5ec0fa25835bb08ab} 
+{\bfseries VIPRA\+\_\+\+MODULE\+\_\+\+TYPE} (Behavior\+\_\+model)
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_a08ec4c252a57d2e20f265f6f78f875d9}\label{classVIPRA_1_1BehaviorModel_a08ec4c252a57d2e20f265f6f78f875d9} 
+{\bfseries VIPRA\+\_\+\+REGISTER\+\_\+\+PARAMS} (VIPRA\+\_\+\+PARAM("{}behaviors\+\_\+dir"{}, \+\_\+behaviors\+Dir), VIPRA\+\_\+\+PARAM("{}behaviors"{}, \+\_\+behavior\+Names)) void initialize(Modules
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_abb913e71bdacc6ab1c4471611bc49977}\label{classVIPRA_1_1BehaviorModel_abb913e71bdacc6ab1c4471611bc49977} 
+void {\bfseries timestep} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Pedestrians}{Modules\+::\+Pedestrians}} \&pedset, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Map}{Modules\+::\+Map}} \&map, \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Goals}{Modules\+::\+Goals}} \&goals, \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} \&state, VIPRA\+::delta\+\_\+t deltaT)
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_a59cae0e165cfcefc10b8985bd79c8cae}\label{classVIPRA_1_1BehaviorModel_a59cae0e165cfcefc10b8985bd79c8cae} 
+{\bfseries Behavior\+Model} (\mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} const \&)=default
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_ab5537e0c0f378f62d9194f73f0d56215}\label{classVIPRA_1_1BehaviorModel_ab5537e0c0f378f62d9194f73f0d56215} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} const \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} \&=default
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_aebbfe7a982cf1c6d9ba3a9ad440271aa}\label{classVIPRA_1_1BehaviorModel_aebbfe7a982cf1c6d9ba3a9ad440271aa} 
+{\bfseries Behavior\+Model} (\mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} \&\&) noexcept=default
+\item 
+\Hypertarget{classVIPRA_1_1BehaviorModel_a19a8e5e52d1eb7e12b3715c50660e48c}\label{classVIPRA_1_1BehaviorModel_a19a8e5e52d1eb7e12b3715c50660e48c} 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classVIPRA_1_1BehaviorModel}{Behavior\+Model}} \&=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Behavior\+Model $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Behavior\+Model is a special module that is responsible for loading and managing all behaviors. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/special\+\_\+modules/behavior\+\_\+model.\+hpp\end{DoxyCompactItemize}

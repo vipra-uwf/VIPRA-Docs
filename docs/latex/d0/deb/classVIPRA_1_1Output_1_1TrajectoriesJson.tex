@@ -1,0 +1,88 @@
+\doxysection{VIPRA\+::Output\+::Trajectories\+Json Class Reference}
+\hypertarget{classVIPRA_1_1Output_1_1TrajectoriesJson}{}\label{classVIPRA_1_1Output_1_1TrajectoriesJson}\index{VIPRA::Output::TrajectoriesJson@{VIPRA::Output::TrajectoriesJson}}
+
+
+JSON output module for writing trajectories to a JSON file.  
+
+
+
+
+{\ttfamily \#include $<$trajectories\+\_\+json.\+hpp$>$}
+
+
+
+Inheritance diagram for VIPRA\+::Output\+::Trajectories\+Json\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/da4/classVIPRA_1_1Output_1_1TrajectoriesJson__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for VIPRA\+::Output\+::Trajectories\+Json\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d10/classVIPRA_1_1Output_1_1TrajectoriesJson__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Output_1_1TrajectoriesJson_a48e32f93e99665ff773ae29d284aecda}{write}} (std\+::filesystem\+::path const \&output\+Dir) override
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Output_1_1TrajectoriesJson_a11ee905e81587ce0226f280812a8fe9b}{timestep\+\_\+update}} (VIPRA\+::timestep, VIPRA\+::delta\+\_\+t, \mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} const \&state) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module}{VIPRA\+::\+Modules\+::\+Module$<$ Trajectories\+Json $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_aa28bac85c148150730692baec841f12b}{register\+\_\+params}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In)
+\begin{DoxyCompactList}\small\item\em Registers the modules parameters with the parameter reader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Module_a9ab1df599c35b129dcbb0d899c2b66ec}{config}} (\mbox{\hyperlink{classVIPRA_1_1Parameters}{Parameters}} \&param\+In, \mbox{\hyperlink{classVIPRA_1_1Random_1_1Engine}{VIPRA\+::\+Random\+::\+Engine}} \&engine)
+\begin{DoxyCompactList}\small\item\em Loads in all parameters for the module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{VIPRA\+::\+Modules\+::\+Output}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Output} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&)=default
+\item 
+{\bfseries Output} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&\&)=delete
+\item 
+auto {\bfseries operator=} (const \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&=default
+\item 
+auto {\bfseries operator=} (\mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&\&) -\/$>$ \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{Output}} \&=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+JSON output module for writing trajectories to a JSON file. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Output_1_1TrajectoriesJson_a11ee905e81587ce0226f280812a8fe9b}\index{VIPRA::Output::TrajectoriesJson@{VIPRA::Output::TrajectoriesJson}!timestep\_update@{timestep\_update}}
+\index{timestep\_update@{timestep\_update}!VIPRA::Output::TrajectoriesJson@{VIPRA::Output::TrajectoriesJson}}
+\doxysubsubsection{\texorpdfstring{timestep\_update()}{timestep\_update()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Output_1_1TrajectoriesJson_a11ee905e81587ce0226f280812a8fe9b} 
+void VIPRA\+::\+Output\+::\+Trajectories\+Json\+::timestep\+\_\+update (\begin{DoxyParamCaption}\item[{VIPRA\+::timestep}]{}{, }\item[{VIPRA\+::delta\+\_\+t}]{}{, }\item[{\mbox{\hyperlink{structVIPRA_1_1State}{VIPRA\+::\+State}} const \&}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{VIPRA\+::\+Modules\+::\+Output}}.
+
+\Hypertarget{classVIPRA_1_1Output_1_1TrajectoriesJson_a48e32f93e99665ff773ae29d284aecda}\index{VIPRA::Output::TrajectoriesJson@{VIPRA::Output::TrajectoriesJson}!write@{write}}
+\index{write@{write}!VIPRA::Output::TrajectoriesJson@{VIPRA::Output::TrajectoriesJson}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Output_1_1TrajectoriesJson_a48e32f93e99665ff773ae29d284aecda} 
+void VIPRA\+::\+Output\+::\+Trajectories\+Json\+::write (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path const \&}]{output\+Dir}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVIPRA_1_1Modules_1_1Output}{VIPRA\+::\+Modules\+::\+Output}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/modules/output/trajectories\+\_\+json/trajectories\+\_\+json.\+hpp\item 
+VIPRA/modules/output/trajectories\+\_\+json/trajectories\+\_\+json.\+cpp\end{DoxyCompactItemize}

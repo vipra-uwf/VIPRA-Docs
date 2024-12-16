@@ -1,0 +1,130 @@
+\doxysection{VIPRA\+::Log Class Reference}
+\hypertarget{classVIPRA_1_1Log}{}\label{classVIPRA_1_1Log}\index{VIPRA::Log@{VIPRA::Log}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Log_ac2ab1cf814c0cb1cc45390eece0084e4}\label{classVIPRA_1_1Log_ac2ab1cf814c0cb1cc45390eece0084e4} 
+enum class {\bfseries Level} \{ {\bfseries DEBUG}
+, {\bfseries INFO}
+, {\bfseries WARN}
+, {\bfseries ERROR}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVIPRA_1_1Log_a4c7dce226f55ec650f21a9653e575332}\label{classVIPRA_1_1Log_a4c7dce226f55ec650f21a9653e575332} 
+static void {\bfseries set\+\_\+level} (Level lvl)
+\item 
+\Hypertarget{classVIPRA_1_1Log_a99584b518b52e5abccc48e0acc6b6a80}\label{classVIPRA_1_1Log_a99584b518b52e5abccc48e0acc6b6a80} 
+static void {\bfseries set\+\_\+level} (std\+::string lvl)
+\item 
+{\footnotesize template$<$typename... param\+\_\+ts$>$ }\\static VIPRA\+\_\+\+INLINE void \mbox{\hyperlink{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4}{warn}} (fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$ message, param\+\_\+ts \&\&... params)
+\begin{DoxyCompactList}\small\item\em Calls the provided Logger with Level WARN. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... param\+\_\+ts$>$ }\\static VIPRA\+\_\+\+INLINE void \mbox{\hyperlink{classVIPRA_1_1Log_af0d31028ec1729f89014d19d1b6b7b41}{info}} (fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$ message, param\+\_\+ts \&\&... params)
+\begin{DoxyCompactList}\small\item\em Calls the provided Logger with Level INFO. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... param\+\_\+ts$>$ }\\static VIPRA\+\_\+\+INLINE void \mbox{\hyperlink{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}{debug}} (fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$ message, param\+\_\+ts \&\&... params)
+\begin{DoxyCompactList}\small\item\em Calls the provided Logger with Level DEBUG. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... param\+\_\+ts$>$ }\\static VIPRA\+\_\+\+INLINE void \mbox{\hyperlink{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}{error}} (fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$ message, param\+\_\+ts \&\&... params)
+\begin{DoxyCompactList}\small\item\em Calls the provided Logger with Level DEBUG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064}\index{VIPRA::Log@{VIPRA::Log}!debug@{debug}}
+\index{debug@{debug}!VIPRA::Log@{VIPRA::Log}}
+\doxysubsubsection{\texorpdfstring{debug()}{debug()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Log_ac4846ea952b42497cdc4feef5c25a064} 
+template$<$typename... param\+\_\+ts$>$ \\
+static VIPRA\+\_\+\+INLINE void VIPRA\+::\+Log\+::debug (\begin{DoxyParamCaption}\item[{fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$}]{message}{, }\item[{param\+\_\+ts \&\&...}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calls the provided Logger with Level DEBUG. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em params} & -\/ Variadic Parameters \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Message to pass to logger \\
+\hline
+{\em ps} & -\/ Any additional parameters for the logger \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95}\index{VIPRA::Log@{VIPRA::Log}!error@{error}}
+\index{error@{error}!VIPRA::Log@{VIPRA::Log}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Log_a1cd5bb7553c18733fb5ade2910f14d95} 
+template$<$typename... param\+\_\+ts$>$ \\
+static VIPRA\+\_\+\+INLINE void VIPRA\+::\+Log\+::error (\begin{DoxyParamCaption}\item[{fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$}]{message}{, }\item[{param\+\_\+ts \&\&...}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calls the provided Logger with Level DEBUG. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em params} & -\/ Variadic Parameters \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Message to pass to logger \\
+\hline
+{\em ps} & -\/ Any additional parameters for the logger \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1Log_af0d31028ec1729f89014d19d1b6b7b41}\index{VIPRA::Log@{VIPRA::Log}!info@{info}}
+\index{info@{info}!VIPRA::Log@{VIPRA::Log}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Log_af0d31028ec1729f89014d19d1b6b7b41} 
+template$<$typename... param\+\_\+ts$>$ \\
+static VIPRA\+\_\+\+INLINE void VIPRA\+::\+Log\+::info (\begin{DoxyParamCaption}\item[{fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$}]{message}{, }\item[{param\+\_\+ts \&\&...}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calls the provided Logger with Level INFO. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em params} & -\/ Variadic Parameters \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Message to pass to logger \\
+\hline
+{\em ps} & -\/ Any additional parameters for the logger \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4}\index{VIPRA::Log@{VIPRA::Log}!warn@{warn}}
+\index{warn@{warn}!VIPRA::Log@{VIPRA::Log}}
+\doxysubsubsection{\texorpdfstring{warn()}{warn()}}
+{\footnotesize\ttfamily \label{classVIPRA_1_1Log_a2b5621129bc3a6e5d4d49f217eb780d4} 
+template$<$typename... param\+\_\+ts$>$ \\
+static VIPRA\+\_\+\+INLINE void VIPRA\+::\+Log\+::warn (\begin{DoxyParamCaption}\item[{fmt\+::format\+\_\+string$<$ param\+\_\+ts... $>$}]{message}{, }\item[{param\+\_\+ts \&\&...}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calls the provided Logger with Level WARN. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em params} & -\/ Variadic Parameters \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Message to pass to logger \\
+\hline
+{\em ps} & -\/ Any additional parameters for the logger \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+VIPRA/include/vipra/logging/logging.\+hpp\item 
+VIPRA/src/logging.\+cpp\end{DoxyCompactItemize}
