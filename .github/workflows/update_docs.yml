@@ -4,8 +4,6 @@ permissions:
   contents: write
 
 on:
-  branches:
-    - 'main'
   workflow_dispatch:
 
 jobs:
