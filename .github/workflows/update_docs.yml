@@ -42,14 +42,10 @@ jobs:
       run: |
         rm -rf ./VIPRA
 
-    - name: Add Changes
-      run: |
-        git add .
-        git commit -m "Update documentation [action]"
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - name: VIPRA Documentation
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
-        force: true
+        publish_dir: ./docs/html
+        keep_files: true
+        enable_jekyll: true
