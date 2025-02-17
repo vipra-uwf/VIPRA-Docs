@@ -1,7 +1,7 @@
 var searchData=
 [
   ['latch_0',['Latch',['../de/dfa/classVIPRA_1_1Behaviors_1_1Latch.html',1,'VIPRA::Behaviors']]],
-  ['line_1',['Line',['../da/d49/structVIPRA_1_1Geometry_1_1Line.html',1,'VIPRA::Geometry']]],
+  ['line_1',['Line',['../de/d99/structCALM_1_1Line.html',1,'CALM::Line'],['../da/d49/structVIPRA_1_1Geometry_1_1Line.html',1,'VIPRA::Geometry::Line']]],
   ['loc_5fvalue_2',['loc_value',['../d9/dd8/classloc__value.html',1,'']]],
   ['loc_5fwriter_3',['loc_writer',['../d8/dfd/structdetail_1_1loc__writer.html',1,'detail']]],
   ['locale_5fref_4',['locale_ref',['../d0/d32/classdetail_1_1locale__ref.html',1,'detail']]],

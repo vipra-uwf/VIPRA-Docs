@@ -9,5 +9,5 @@ var searchData=
   ['operator_3d_6',['operator=',['../d7/d4d/classbasic__memory__buffer.html#a20c8cea076154a579ab0a04afb6c1f84',1,'basic_memory_buffer']]],
   ['operator_3d_3d_7',['operator==',['../db/dbc/classVIPRA_1_1Behaviors_1_1Ptype.html#a7c692a65d238c56be2fe0cc7fd1199f0',1,'VIPRA::Behaviors::Ptype']]],
   ['operator_5b_5d_8',['operator[]',['../d7/d24/classVIPRA_1_1Behaviors_1_1GroupsContainer.html#aa97c1b357c0639781591db55c119edb7',1,'VIPRA::Behaviors::GroupsContainer']]],
-  ['orientation_5fto_9',['orientation_to',['../da/d49/structVIPRA_1_1Geometry_1_1Line.html#a023b99deacf304762731a0bec5b24a74',1,'VIPRA::Geometry::Line']]]
+  ['orientation_5fto_9',['orientation_to',['../da/d49/structVIPRA_1_1Geometry_1_1Line.html#a023b99deacf304762731a0bec5b24a74',1,'VIPRA::Geometry::Line::orientation_to()'],['../de/d99/structCALM_1_1Line.html#a023b99deacf304762731a0bec5b24a74',1,'CALM::Line::orientation_to()']]]
 ];

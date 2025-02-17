@@ -25,7 +25,7 @@ var searchData=
   ['goals_20macros_22',['Goals Macros',['../d6/d36/md_docs_2pages_2developers_2usage_2macros.html#autotoc_md177',1,'Goals Macros'],['../d5/d1d/md_VIPRA_2docs_2pages_2developers_2usage_2macros.html#autotoc_md563',1,'Goals Macros']]],
   ['goals_20modules_23',['Goals Modules',['../d6/d09/md_docs_2pages_2developers_2implementation_2goals.html',1,'Goals Modules'],['../d1/d54/md_VIPRA_2docs_2pages_2developers_2implementation_2goals.html',1,'Goals Modules']]],
   ['gperftools_24',['Gperftools',['../dd/d3e/md_docs_2pages_2developers_2setup.html#autotoc_md162',1,'Using Gperftools'],['../d6/d4e/md_VIPRA_2docs_2pages_2developers_2setup.html#autotoc_md548',1,'Using Gperftools']]],
-  ['graph_25',['Graph',['../dd/d40/classVIPRA_1_1DataStructures_1_1Graph.html',1,'VIPRA::DataStructures']]],
+  ['graph_25',['Graph',['../dd/d40/classVIPRA_1_1DataStructures_1_1Graph.html',1,'VIPRA::DataStructures::Graph&lt; data_t &gt;'],['../d6/db6/conceptVIPRA_1_1Algo_1_1AStar_1_1Graph.html',1,'VIPRA::Algo::AStar']]],
   ['graphmixin_26',['GraphMixin',['../d8/de6/classVIPRA_1_1DataStructures_1_1GraphMixin.html',1,'VIPRA::DataStructures']]],
   ['graphmixin_3c_20pathinggraph_2c_20gridpoint_20_3e_27',['GraphMixin&lt; PathingGraph, GridPoint &gt;',['../d8/de6/classVIPRA_1_1DataStructures_1_1GraphMixin.html',1,'VIPRA::DataStructures']]],
   ['graphmixin_3c_20void_2c_20data_5ft_20_3e_28',['GraphMixin&lt; void, data_t &gt;',['../d8/de6/classVIPRA_1_1DataStructures_1_1GraphMixin.html',1,'VIPRA::DataStructures']]],
